@@ -40,8 +40,8 @@ Thumbs.db
 /.swarm/
 /ruvector.db
 
-# Documentation / specs
-/docs/
+# Internal specs (not the main docs)
+/docs/superpowers/
 
 # Sensitive / local
 /.env.*
