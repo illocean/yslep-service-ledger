@@ -43,17 +43,27 @@
         </div>
     </section>
 
+    <section class="paper-panel px-5 py-4 sm:px-8" role="status">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div class="section-kicker">Academic Year Archive</div>
+            <span class="header-status__chip header-status__chip--archive">Read-only</span>
+            <p class="w-full text-sm leading-7 text-stone-600">
+                Read-only archive — edits happen in live records, saved reports, or a new snapshot. Records here cannot be changed in place.
+            </p>
+        </div>
+    </section>
+
     <section class="grid gap-4 lg:grid-cols-4">
         @foreach ($cards as $card)
             <article class="stat-panel rounded-[1.75rem] p-5">
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Count</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Count</div>
                         <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
                     <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Hours</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Hours</div>
                         <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
                     </div>
                 </div>
@@ -117,10 +127,10 @@
                     </div>
                 </div>
 
-                <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-stone-900/10 bg-white/80">
+                <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-stone-900/10 bg-stone-100/70">
                     <div class="clean-scroll overflow-x-auto">
                         <table class="ledger-table min-w-full text-left text-sm">
-                            <thead class="bg-stone-950/[0.03] text-xs uppercase tracking-[0.18em] text-stone-600">
+                            <thead class="bg-stone-900/[0.04] text-xs uppercase tracking-[0.18em] text-stone-600">
                                 <tr>
                                     @if ($type === \App\Enums\IndexType::Formation)
                                         <th class="px-3 py-3">Date</th>

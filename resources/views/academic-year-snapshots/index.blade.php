@@ -111,7 +111,7 @@
                                     <div class="min-w-0 flex-1">
                                         <div class="section-kicker">Saved Report</div>
                                         <div class="mt-2 font-serif text-[1.45rem] leading-tight text-stone-950">{{ $reportGroup->compact_label }}</div>
-                                        <div class="mt-2 text-xs uppercase tracking-[0.16em] text-stone-500">
+                                        <div class="mt-2 text-xs uppercase tracking-[0.16em] text-stone-600">
                                             {{ $reportGroup->tag }} | saved {{ $reportGroup->created_at?->setTimezone(config('app.timezone'))->format('M j, Y') }}
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                 </p>
 
                 @if ($archivedReportGroups->isEmpty())
-                    <div class="mt-4 rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-500">
+                    <div class="mt-4 rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
                         Nothing has been archived yet.
                     </div>
                 @else
@@ -157,7 +157,7 @@
                             <div class="compact-archive-chip" data-hidden-archive-report="{{ $archived['reportGroup']->id }}">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-900">{{ $archived['reportGroup']->compact_label }}</div>
-                                    <div class="mt-1 text-xs uppercase tracking-[0.14em] text-stone-500">In {{ $archived['snapshot']->compact_label }}</div>
+                                    <div class="mt-1 text-xs uppercase tracking-[0.14em] text-stone-600">In {{ $archived['snapshot']->compact_label }}</div>
                                 </div>
                                 <a href="{{ route('academic-year-snapshots.show', $archived['snapshot']) }}" class="secondary-button compact-inline-button">
                                     Open
@@ -175,14 +175,14 @@
                         <a href="{{ route('academic-year-snapshots.show', $snapshot) }}" class="secondary-link-card">
                             <div>
                                 <div class="text-sm font-semibold text-stone-900">{{ $snapshot->compact_label }}</div>
-                                <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">
+                                <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">
                                     {{ $snapshot->reportGroups()->count() }} report(s) | {{ $snapshot->items->count() }} record(s)
                                 </div>
                             </div>
                             <div class="text-sm font-semibold text-stone-900">Open</div>
                         </a>
                     @empty
-                        <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-500">
+                        <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
                             No academic-year snapshots yet.
                         </div>
                     @endforelse

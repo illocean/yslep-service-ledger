@@ -18,6 +18,7 @@
         --ledger-ink: #201612;
         --ledger-muted: #695449;
         --ledger-accent: #c94d24;
+        --ledger-accent-ink: #9c3a1a;
         --ledger-border: rgba(32, 22, 18, 0.12);
         --ledger-grid: rgba(32, 22, 18, 0.09);
     }
@@ -116,7 +117,7 @@
     }
 
     .section-kicker {
-        color: var(--ledger-accent);
+        color: var(--ledger-accent-ink);
         font-size: 0.72rem;
         font-weight: 800;
         letter-spacing: 0.22em;
@@ -149,7 +150,8 @@
         border-color: rgba(32, 22, 18, 0.22);
     }
 
-    .form-input:focus-visible {
+    .form-input:focus-visible,
+    select.form-input:focus-visible {
         outline: none;
         border-color: rgba(201, 77, 36, 0.55);
         box-shadow: 0 0 0 4px rgba(201, 77, 36, 0.12);
@@ -444,6 +446,12 @@
         border-bottom: none;
     }
 
+    details > summary:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(156, 58, 26, 0.35);
+        border-radius: inherit;
+    }
+
     .report-checkbox {
         width: 1rem;
         height: 1rem;
@@ -452,6 +460,11 @@
         background: rgba(255, 255, 255, 0.92);
         accent-color: #9e3418;
         cursor: pointer;
+    }
+
+    .report-checkbox:focus-visible {
+        outline: 2px solid var(--ledger-accent-ink);
+        outline-offset: 2px;
     }
 
     .report-checkbox:disabled {

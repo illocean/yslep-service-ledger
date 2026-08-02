@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-4">
+                <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-4 sync-form">
                     @csrf
                     <button type="submit" class="secondary-button w-full">Sync from Obsidian</button>
                 </form>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+                <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
                     @foreach (\App\Enums\IndexType::cases() as $type)
                         <span class="rounded-full border border-stone-900/10 bg-white/80 px-3 py-2">
                             {{ $type->label() }}: {{ $reportGroup->itemsFor($type->value)->count() }}

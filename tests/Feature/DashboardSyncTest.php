@@ -121,9 +121,9 @@ MD);
         $response = $this->get('/');
 
         $response->assertOk();
-        $response->assertSee('All Time totals');
+        $response->assertSee('service ledger from your three Obsidian inputs');
         $response->assertSee('Open Saved Reports');
-        $response->assertSee('Locked report entries tagged');
+        $response->assertSee('Locked in reports');
         $response->assertSee('3 hr');
         $response->assertSee('2 hr 30 min');
         $response->assertSee('8 hr 30 min');
@@ -171,8 +171,8 @@ MD);
         $management = $this->get(route('reports.show', $reportGroup));
 
         $management->assertOk();
-        $management->assertSee('Saved Report Management');
-        $management->assertSee('Edit Saved Report');
+        $management->assertSee('Pull edits from Obsidian');
+        $management->assertSee('Report title');
         $management->assertSee($reportGroup->display_label);
     }
 
@@ -281,9 +281,9 @@ MD);
 
         $response->assertOk();
         $response->assertSee('Chosen report');
-        $response->assertSee('Add new records straight into this saved report here');
+        $response->assertSee('Add record to report');
         $response->assertSee('Creating MAV slides');
-        $response->assertSee('Add Saved Record');
+        $response->assertSee('Add Record');
     }
 
     public function test_dashboard_hides_categories_with_no_remaining_available_entries(): void
@@ -304,7 +304,7 @@ MD);
         $response = $this->get('/');
 
         $response->assertOk();
-        $response->assertSee('Already Saved Or Locked');
+        $response->assertSee('Already saved:');
         $response->assertSee('data-hidden-save-type="formation"', false);
         $response->assertDontSee('data-save-group-card="formation"', false);
         $response->assertSee('data-save-group-card="parish_involvement"', false);

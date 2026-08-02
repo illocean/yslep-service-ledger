@@ -77,7 +77,7 @@
         <article class="stat-panel rounded-[1.75rem] p-5">
             <div class="section-kicker">{{ $type->label() }}</div>
             <div class="mt-5">
-                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Total count</div>
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total count</div>
                 <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $summary['count'], 2, '0', STR_PAD_LEFT) }}</div>
             </div>
         </article>
@@ -85,7 +85,7 @@
         <article class="stat-panel rounded-[1.75rem] p-5">
             <div class="section-kicker">Hours Served</div>
             <div class="mt-5">
-                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Selected scope total</div>
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Selected scope total</div>
                 <div class="mt-2 font-serif text-4xl text-stone-950">{{ $summary['total_label'] }}</div>
             </div>
         </article>
@@ -97,7 +97,7 @@
                     <a href="{{ route('indexes.show', ['type' => $card['type']->value] + $otherIndexScopeParams) }}" class="secondary-link-card">
                         <div>
                             <div class="text-sm font-semibold text-stone-900">{{ $card['label'] }}</div>
-                            <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-500">{{ $card['count'] }} record(s)</div>
+                            <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">{{ $card['count'] }} record(s)</div>
                         </div>
                         <div class="text-sm font-semibold text-stone-900">{{ $card['total_label'] }}</div>
                     </a>
@@ -149,7 +149,7 @@
                             <div class="section-kicker">Add Record</div>
                             <h2 class="mt-1 font-serif text-xl text-stone-950">New {{ strtolower($type->label()) }} entry</h2>
                         </div>
-                        <div class="flex items-center gap-2 text-sm font-semibold text-stone-500 transition-transform group-open:rotate-180">
+                        <div class="flex items-center gap-2 text-sm font-semibold text-stone-600 transition-transform group-open:rotate-180">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
                         </div>
                     </summary>
@@ -210,7 +210,7 @@
                             <div class="section-kicker">{{ $selectedReportGroup->title ?: 'Untitled Report' }}</div>
                             <h2 class="mt-1 font-serif text-xl text-stone-950">Add record to report</h2>
                         </div>
-                        <div class="flex items-center gap-2 text-sm font-semibold text-stone-500 transition-transform group-open:rotate-180">
+                        <div class="flex items-center gap-2 text-sm font-semibold text-stone-600 transition-transform group-open:rotate-180">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
                         </div>
                     </summary>
@@ -373,7 +373,7 @@
                                     </div>
 
                                     <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                        <div class="break-all font-mono text-[0.72rem] text-stone-500">{{ $cardMeta['file_path'] }}</div>
+                                        <div class="break-all font-mono text-[0.72rem] text-stone-600">{{ $cardMeta['file_path'] }}</div>
                                         <button type="submit" class="primary-button !w-auto">Save Changes</button>
                                     </div>
                                 </form>
@@ -434,7 +434,7 @@
                                     </div>
 
                                     <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                        <div class="break-all font-mono text-[0.72rem] text-stone-500">{{ $entry->obsidian_note_path ?: 'Saved report notes refresh automatically' }}</div>
+                                        <div class="break-all font-mono text-[0.72rem] text-stone-600">{{ $entry->obsidian_note_path ?: 'Saved report notes refresh automatically' }}</div>
                                         <button type="submit" class="primary-button !w-auto">Save Changes</button>
                                     </div>
                                 </form>

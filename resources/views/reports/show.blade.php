@@ -12,7 +12,7 @@
                 <h1 class="font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
                     {{ $reportGroup->title ?: 'Untitled Report' }}
                 </h1>
-                <div class="font-mono text-xs text-stone-500">Tag: {{ $reportGroup->tag }}</div>
+                <div class="font-mono text-xs text-stone-600">Tag: {{ $reportGroup->tag }}</div>
             </div>
 
             <div class="paper-panel rounded-[1.5rem] p-4">
@@ -41,11 +41,11 @@
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Count</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Count</div>
                         <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
                     <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Hours</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Hours</div>
                         <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
         <article class="stat-panel rounded-[1.75rem] border-[color:var(--ledger-accent)] p-5">
             <div class="section-kicker">Grand Total</div>
             <div class="mt-5">
-                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Combined hours across all three indexes</div>
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Combined hours across all three indexes</div>
                 <div class="mt-3 font-serif text-4xl text-stone-950">{{ $grandTotalLabel }}</div>
             </div>
         </article>
@@ -84,7 +84,7 @@
                     <div class="section-kicker">Sync</div>
                     <h2 class="mt-1 font-serif text-xl text-stone-950">Pull edits from Obsidian</h2>
 
-                    <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-4">
+                    <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-4 sync-form">
                         @csrf
                         <button type="submit" class="secondary-button">Sync from Obsidian</button>
                     </form>
@@ -181,7 +181,7 @@
                                     <div class="flex flex-wrap items-center gap-2">
                                         <span class="assignment-chip assignment-chip--saved">
                                             <span class="assignment-chip__dot" aria-hidden="true"></span>
-                                            <span>{{ $type->label() }}</span>
+                                            <span>Saved record · {{ $type->label() }}</span>
                                         </span>
                                         <span class="compact-pill">{{ $item->duration_label }}</span>
                                     </div>
@@ -201,7 +201,7 @@
                                     </div>
 
                                     @if ($item->obsidian_note_path)
-                                        <div class="break-all font-mono text-[0.72rem] text-stone-500">
+                                        <div class="break-all font-mono text-[0.72rem] text-stone-600">
                                             {{ $item->obsidian_note_path }}
                                         </div>
                                     @endif

@@ -51,11 +51,11 @@
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Total count</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total count</div>
                         <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
                     <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Total hours</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total hours</div>
                         <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         <article class="stat-panel rounded-[1.75rem] border-[color:var(--ledger-accent)] p-5">
             <div class="section-kicker">Grand Total</div>
             <div class="mt-5">
-                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Combined hours across all three indexes</div>
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Combined hours across all three indexes</div>
                 <div class="mt-3 font-serif text-4xl text-stone-950">{{ $grandTotalLabel }}</div>
             </div>
         </article>
@@ -109,7 +109,7 @@
                 <div class="mt-5 flex-1 rounded-[1.5rem] border border-stone-900/10 bg-white/75 p-4">
                     <div class="flex items-center justify-between gap-3">
                         <div class="form-label">All Time Preview</div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">{{ $card['total_label'] }}</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">{{ $card['total_label'] }}</div>
                     </div>
 
                     <div class="mt-4 space-y-3">
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="rounded-[1.25rem] border border-dashed border-stone-900/12 bg-stone-50/50 px-4 py-5 text-sm text-stone-500">
+                            <div class="rounded-[1.25rem] border border-dashed border-stone-900/12 bg-stone-50/50 px-4 py-5 text-sm text-stone-600">
                                 No records yet.
                             </div>
                         @endforelse
@@ -179,7 +179,7 @@
                 </div>
             </summary>
 
-            <form method="POST" action="{{ route('report-groups.store') }}" class="mt-5 space-y-5">
+            <form method="POST" action="{{ route('report-groups.store') }}" class="mt-5 space-y-5" data-dirty-guard>
                 @csrf
 
                 <div class="max-w-lg">
@@ -192,7 +192,7 @@
                         <div class="flex flex-wrap items-center gap-2 text-xs text-stone-600">
                             <span class="font-semibold">Already saved:</span>
                             @foreach ($hiddenTypes as $type)
-                                <span class="assignment-chip assignment-chip--complete">{{ $type->label() }}</span>
+                                <span class="assignment-chip assignment-chip--complete" data-hidden-save-type="{{ $type->value }}">{{ $type->label() }}</span>
                             @endforeach
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                                         <div class="section-kicker">{{ $type->cardTitle() }}</div>
                                         <h3 class="mt-1 font-serif text-xl text-stone-950">{{ $type->label() }}</h3>
                                     </div>
-                                    <div class="text-right text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+                                    <div class="text-right text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
                                         {{ $liveEntryStats[$type->value]['available'] }} available
                                     </div>
                                 </div>
