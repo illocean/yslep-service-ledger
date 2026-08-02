@@ -5,7 +5,7 @@
 @section('content')
     @include('partials.alerts')
 
-    <section class="paper-panel overflow-hidden rounded-[2rem]">
+    <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:px-10 lg:py-8">
             <div class="space-y-3">
                 <div class="section-kicker">Saved Reports</div>
@@ -14,22 +14,22 @@
                 </h1>
             </div>
 
-            <div class="paper-panel rounded-[1.5rem] p-4">
+            <div class="paper-panel rounded-card p-4">
                 <div class="section-kicker">Summary</div>
                 <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Reports</div>
                         <div class="mt-1 font-serif text-2xl text-stone-950">{{ str_pad((string) $reportGroups->count(), 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Records</div>
                         <div class="mt-1 font-serif text-2xl text-stone-950">{{ str_pad((string) $totalRecords, 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Hours</div>
                         <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Report file</div>
                         <div class="mt-1 truncate font-mono text-xs text-stone-600">{{ $reportGroupsFilePath }}</div>
                     </div>
@@ -56,7 +56,7 @@
                         : sprintf('%d hr %02d min', $reportHours, $reportRemainingMinutes));
             @endphp
 
-            <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="flex flex-wrap items-start justify-between gap-4">
                     <div>
                         <div class="section-kicker">Saved Snapshot</div>
@@ -70,15 +70,15 @@
                 </div>
 
                 <div class="mt-5 grid gap-3 sm:grid-cols-3">
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Saved on</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportGroup->created_at?->setTimezone(config('app.timezone'))->format('F j, Y g:i A') }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Records</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportGroup->items->count() }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Hours</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportTotalLabel }}</div>
                     </div>
@@ -93,7 +93,7 @@
                 </div>
             </article>
         @empty
-            <div class="paper-panel rounded-[2rem] px-5 py-10 text-center sm:px-8 xl:col-span-2">
+            <div class="paper-panel rounded-panel px-5 py-10 text-center sm:px-8 xl:col-span-2">
                 <div class="section-kicker">No Saved Reports</div>
                 <h2 class="mt-3 font-serif text-2xl text-stone-950">No reports yet</h2>
                 <p class="mx-auto mt-3 max-w-lg text-sm text-stone-600">

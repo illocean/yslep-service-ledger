@@ -41,7 +41,7 @@
         <div class="page-grid min-h-screen">
             <header class="px-4 pt-4 sm:px-6 lg:px-10">
                 <div class="mx-auto max-w-7xl">
-                    <div class="paper-panel masthead-shell rounded-[2rem] px-5 py-4 sm:px-6">
+                    <div class="paper-panel masthead-shell rounded-panel px-5 py-4 sm:px-6">
                         <div class="masthead-row">
                             <div class="brand-lockup">
                                 <div class="section-kicker">YSLEP Service Ledger</div>

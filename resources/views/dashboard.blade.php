@@ -15,7 +15,7 @@
 
     @include('partials.alerts')
 
-    <section class="paper-panel overflow-hidden rounded-[2rem]">
+    <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:items-start lg:px-10 lg:py-8">
             <div class="space-y-3">
                 <div class="section-kicker">Dashboard</div>
@@ -24,7 +24,7 @@
                 </h1>
             </div>
 
-            <div class="paper-panel rounded-[1.5rem] p-5">
+            <div class="paper-panel rounded-card p-5">
                 <div class="flex items-center justify-between gap-3">
                     <div class="section-kicker">Saved Reports</div>
                     <span class="font-serif text-2xl text-stone-950">{{ str_pad((string) $reportGroups->count(), 2, '0', STR_PAD_LEFT) }}</span>
@@ -35,7 +35,7 @@
                     </a>
 
                     @if ($reportGroups->isNotEmpty())
-                        <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                        <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                             <div class="form-label">Latest</div>
                             <p class="mt-1 text-sm font-semibold text-stone-900">{{ $reportGroups->first()->display_label }}</p>
                         </div>
@@ -47,7 +47,7 @@
 
     <section class="grid gap-4 lg:grid-cols-4">
         @foreach ($cards as $card)
-            <article class="stat-panel rounded-[1.75rem] p-5">
+            <article class="stat-panel rounded-stat p-5">
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
@@ -62,7 +62,7 @@
             </article>
         @endforeach
 
-        <article class="stat-panel rounded-[1.75rem] border-[color:var(--ledger-accent)] p-5">
+        <article class="stat-panel rounded-stat border-[color:var(--ledger-accent)] p-5">
             <div class="section-kicker">Grand Total</div>
             <div class="mt-5">
                 <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Combined hours across all three indexes</div>
@@ -80,7 +80,7 @@
                 $manageRoute = route('indexes.show', ['type' => $type->value]);
             @endphp
 
-            <article class="paper-panel flex flex-col rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel flex flex-col rounded-panel p-5 sm:p-6">
                 <div class="flex items-start justify-between gap-4">
                     <div>
                         <div class="section-kicker">{{ $card['card_title'] }}</div>
@@ -96,17 +96,17 @@
                 </div>
 
                 <div class="mt-5 grid gap-3 sm:grid-cols-2">
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">School year</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $profile['school_year'] ?: 'Not set' }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Locked in reports</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $liveEntryStats[$type->value]['locked'] }}</div>
                     </div>
                 </div>
 
-                <div class="mt-5 flex-1 rounded-[1.5rem] border border-stone-900/10 bg-white/75 p-4">
+                <div class="mt-5 flex-1 rounded-card border border-stone-900/10 bg-white/75 p-4">
                     <div class="flex items-center justify-between gap-3">
                         <div class="form-label">All Time Preview</div>
                         <div class="text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">{{ $card['total_label'] }}</div>
@@ -118,7 +118,7 @@
                                 $assignment = $assignedReportLookup[$type->value . ':' . $entry->id] ?? null;
                             @endphp
 
-                            <div class="rounded-[1.25rem] border border-stone-900/8 bg-stone-50/80 px-4 py-3">
+                            <div class="rounded-cell border border-stone-900/8 bg-stone-50/80 px-4 py-3">
                                 <div class="flex items-start justify-between gap-4">
                                     <div>
                                         <div class="text-sm font-semibold text-stone-900">{{ $entry->served_on_label }}</div>
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="rounded-[1.25rem] border border-dashed border-stone-900/12 bg-stone-50/50 px-4 py-5 text-sm text-stone-600">
+                            <div class="rounded-cell border border-dashed border-stone-900/12 bg-stone-50/50 px-4 py-5 text-sm text-stone-600">
                                 No records yet.
                             </div>
                         @endforelse
@@ -167,7 +167,7 @@
         @endforeach
     </section>
 
-    <section class="paper-panel rounded-[2rem] p-5 sm:p-6">
+    <section class="paper-panel rounded-panel p-5 sm:p-6">
         <details class="group" @if($errors->any() || old('title')) open @endif>
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
                 <div>
@@ -188,7 +188,7 @@
                 </div>
 
                 @if ($hiddenTypes->isNotEmpty())
-                    <div class="rounded-[1.5rem] border border-stone-900/10 bg-stone-50/70 p-4">
+                    <div class="rounded-card border border-stone-900/10 bg-stone-50/70 p-4">
                         <div class="flex flex-wrap items-center gap-2 text-xs text-stone-600">
                             <span class="font-semibold">Already saved:</span>
                             @foreach ($hiddenTypes as $type)
@@ -199,13 +199,13 @@
                 @endif
 
                 @if ($saveableTypes->isEmpty())
-                    <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm text-stone-600">
+                    <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm text-stone-600">
                         All categories are saved or locked. Create new live entries in Obsidian first.
                     </div>
                 @else
                     <div class="save-group-grid">
                         @foreach ($saveableTypes as $type)
-                            <article class="rounded-[1.5rem] border border-stone-900/10 bg-white/70 p-4" data-save-group-card="{{ $type->value }}">
+                            <article class="rounded-card border border-stone-900/10 bg-white/70 p-4" data-save-group-card="{{ $type->value }}">
                                 <div class="flex items-start justify-between gap-3">
                                     <div>
                                         <div class="section-kicker">{{ $type->cardTitle() }}</div>
@@ -216,7 +216,7 @@
                                     </div>
                                 </div>
 
-                                <div class="clean-scroll mt-3 max-h-[30rem] overflow-auto rounded-[1.25rem] border border-stone-900/10 bg-stone-50/70">
+                                <div class="mt-3 max-h-[30rem] overflow-auto rounded-cell border border-stone-900/10 bg-stone-50/70">
                                     <table class="ledger-table min-w-full text-left text-sm">
                                         <thead class="bg-stone-950/[0.03] text-xs uppercase tracking-[0.14em] text-stone-600">
                                             <tr>

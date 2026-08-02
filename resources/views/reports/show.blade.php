@@ -5,7 +5,7 @@
 @section('content')
     @include('partials.alerts')
 
-    <section class="paper-panel overflow-hidden rounded-[2rem]">
+    <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:px-10 lg:py-8">
             <div class="space-y-3">
                 <div class="section-kicker">Saved Report</div>
@@ -15,18 +15,18 @@
                 <div class="font-mono text-xs text-stone-600">Tag: {{ $reportGroup->tag }}</div>
             </div>
 
-            <div class="paper-panel rounded-[1.5rem] p-4">
+            <div class="paper-panel rounded-card p-4">
                 <div class="section-kicker">Totals</div>
                 <div class="mt-3 grid gap-3">
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Created</div>
                         <div class="mt-1 text-sm font-semibold text-stone-900">{{ $reportGroup->created_at?->setTimezone(config('app.timezone'))->format('F j, Y g:i A') }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Records</div>
                         <div class="mt-1 text-sm font-semibold text-stone-900">{{ $reportGroup->items->count() }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-3">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Hours</div>
                         <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
                     </div>
@@ -37,7 +37,7 @@
 
     <section class="grid gap-4 lg:grid-cols-4">
         @foreach ($cards as $card)
-            <article class="stat-panel rounded-[1.75rem] p-5">
+            <article class="stat-panel rounded-stat p-5">
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
@@ -52,7 +52,7 @@
             </article>
         @endforeach
 
-        <article class="stat-panel rounded-[1.75rem] border-[color:var(--ledger-accent)] p-5">
+        <article class="stat-panel rounded-stat border-[color:var(--ledger-accent)] p-5">
             <div class="section-kicker">Grand Total</div>
             <div class="mt-5">
                 <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Combined hours across all three indexes</div>
@@ -62,7 +62,7 @@
     </section>
 
     <section class="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-        <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="section-kicker">Rename</div>
             <h2 class="mt-1 font-serif text-xl text-stone-950">Report title</h2>
 
@@ -78,7 +78,7 @@
             </form>
         </article>
 
-        <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="space-y-4">
                 <div>
                     <div class="section-kicker">Sync</div>
@@ -90,7 +90,7 @@
                     </form>
                 </div>
 
-                <div class="rounded-[1.5rem] border border-red-900/10 bg-red-50/70 p-4">
+                <div class="rounded-card border border-red-900/10 bg-red-50/70 p-4">
                     <div class="section-kicker text-red-700">Danger Zone</div>
                     <p class="mt-2 text-sm text-stone-700">
                         This removes record notes and frees entries for reuse.
@@ -113,7 +113,7 @@
                 $sectionPrefix = 'report-' . $type->value;
             @endphp
 
-            <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="flex items-center justify-between gap-4">
                     <div>
                         <div class="section-kicker">{{ $type->cardTitle() }}</div>
@@ -274,7 +274,7 @@
                             </div>
                         </details>
                     @empty
-                        <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
+                        <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
                             No {{ strtolower($type->label()) }} records attached yet.
                         </div>
                     @endforelse

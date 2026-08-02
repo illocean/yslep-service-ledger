@@ -5,7 +5,7 @@
 @section('content')
     @include('partials.alerts')
 
-    <section class="paper-panel overflow-hidden rounded-[2rem]">
+    <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-8 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:items-start lg:px-10 lg:py-8">
             <div class="space-y-5">
                 <div class="section-kicker">Academic Year Snapshot</div>
@@ -19,22 +19,22 @@
                 </div>
             </div>
 
-            <div class="paper-panel rounded-[1.5rem] p-5">
+            <div class="paper-panel rounded-card p-5">
                 <div class="section-kicker">Snapshot Totals</div>
                 <div class="mt-4 grid gap-3">
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Created</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $academicYearSnapshot->created_at?->setTimezone(config('app.timezone'))->format('F j, Y g:i A') }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Records</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $academicYearSnapshot->items->count() }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Grand total</div>
                         <div class="mt-2 text-lg font-bold text-stone-900">{{ $grandTotalLabel }}</div>
                     </div>
-                    <div class="rounded-[1.25rem] border border-stone-900/10 bg-white/70 p-4">
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Obsidian archive file</div>
                         <div class="mt-2 break-all font-mono text-xs text-stone-700">{{ $snapshotFilePath }}</div>
                     </div>
@@ -55,7 +55,7 @@
 
     <section class="grid gap-4 lg:grid-cols-4">
         @foreach ($cards as $card)
-            <article class="stat-panel rounded-[1.75rem] p-5">
+            <article class="stat-panel rounded-stat p-5">
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
@@ -71,7 +71,7 @@
         @endforeach
     </section>
 
-    <section class="paper-panel rounded-[2rem] p-5 sm:p-6">
+    <section class="paper-panel rounded-panel p-5 sm:p-6">
         <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
                 <div class="section-kicker">Included Saved Reports</div>
@@ -115,7 +115,7 @@
                 @continue
             @endif
 
-            <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="flex items-start justify-between gap-4">
                     <div>
                         <div class="section-kicker">{{ $type->cardTitle() }}</div>
@@ -127,8 +127,8 @@
                     </div>
                 </div>
 
-                <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-stone-900/10 bg-stone-100/70">
-                    <div class="clean-scroll overflow-x-auto">
+                <div class="mt-6 overflow-hidden rounded-card border border-stone-900/10 bg-stone-100/70">
+                    <div class="overflow-x-auto">
                         <table class="ledger-table min-w-full text-left text-sm">
                             <thead class="bg-stone-900/[0.04] text-xs uppercase tracking-[0.18em] text-stone-600">
                                 <tr>

@@ -28,7 +28,7 @@
         $createFormEditorKey = 'create-' . $type->value . '-' . $selectedScope->value;
     @endphp
 
-    <section class="paper-panel overflow-hidden rounded-[2rem]">
+    <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-6 px-5 py-6 sm:px-8 xl:grid-cols-[1.2fr_0.8fr] xl:px-10 xl:py-8">
             <div class="space-y-3">
                 <div class="flex flex-wrap items-center gap-2">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="space-y-3">
-                <div class="paper-panel rounded-[1.5rem] p-4">
+                <div class="paper-panel rounded-card p-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="form-label">Scope</span>
                         <a href="{{ route('indexes.show', $allScopeParams) }}" class="topbar-link {{ $selectedScope === \App\Enums\IndexScope::All ? 'is-active' : '' }}">All Time</a>
@@ -63,7 +63,7 @@
                     </form>
                 </div>
 
-                <div class="paper-panel rounded-[1.5rem] p-4">
+                <div class="paper-panel rounded-card p-4">
                     <div class="form-label">{{ $sourceMode === 'live' ? 'Source' : 'Snapshot' }}</div>
                     <p class="mt-1 truncate font-mono text-xs text-stone-600">
                         {{ $sourceMode === 'live' ? $cardMeta['file_path'] : ($selectedReportGroup->obsidian_index_note_path ?? 'Auto-synced') }}
@@ -74,7 +74,7 @@
     </section>
 
     <section class="grid gap-4 lg:grid-cols-3">
-        <article class="stat-panel rounded-[1.75rem] p-5">
+        <article class="stat-panel rounded-stat p-5">
             <div class="section-kicker">{{ $type->label() }}</div>
             <div class="mt-5">
                 <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total count</div>
@@ -82,7 +82,7 @@
             </div>
         </article>
 
-        <article class="stat-panel rounded-[1.75rem] p-5">
+        <article class="stat-panel rounded-stat p-5">
             <div class="section-kicker">Hours Served</div>
             <div class="mt-5">
                 <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Selected scope total</div>
@@ -90,7 +90,7 @@
             </div>
         </article>
 
-        <article class="stat-panel rounded-[1.75rem] p-5">
+        <article class="stat-panel rounded-stat p-5">
             <div class="section-kicker">Other Indexes</div>
             <div class="mt-4 grid gap-3">
                 @foreach ($otherCards as $card)
@@ -106,7 +106,7 @@
         </article>
     </section>
 
-    <section class="paper-panel rounded-[2rem] p-5 sm:p-6">
+    <section class="paper-panel rounded-panel p-5 sm:p-6">
         <div class="section-kicker">Profile</div>
         <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             <div class="profile-cell md:col-span-2 xl:col-span-1">
@@ -141,7 +141,7 @@
     </section>
 
     <section class="space-y-6">
-        <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
             @if ($sourceMode === 'live')
                 <details class="group" @if($errors->any()) open @endif>
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
@@ -270,7 +270,7 @@
             @endif
         </article>
 
-        <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="flex items-center justify-between gap-4 mb-4">
                 <div>
                     <div class="section-kicker">Ledger</div>
@@ -296,7 +296,7 @@
                     @endphp
 
                     <details class="report-record-card group" @if($isOpen) open @endif>
-                        <summary class="flex cursor-pointer list-none flex-col gap-4 rounded-[1.2rem] sm:flex-row sm:items-start sm:justify-between [&::-webkit-details-marker]:hidden">
+                        <summary class="flex cursor-pointer list-none flex-col gap-4 rounded-cell sm:flex-row sm:items-start sm:justify-between [&::-webkit-details-marker]:hidden">
                             <div class="space-y-3">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span class="assignment-chip {{ $sourceMode === 'live' ? 'assignment-chip--complete' : 'assignment-chip--saved' }}">
@@ -451,7 +451,7 @@
                         </div>
                     </details>
                 @empty
-                    <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
+                    <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
                         No {{ strtolower($type->label()) }} records in this scope.
                     </div>
                 @endforelse

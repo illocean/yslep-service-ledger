@@ -9,7 +9,7 @@
 
     @include('partials.alerts')
 
-    <section class="compact-hero paper-panel rounded-[2rem] px-5 py-5 sm:px-7">
+    <section class="compact-hero paper-panel rounded-panel px-5 py-5 sm:px-7">
         <div class="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div class="space-y-2">
                 <div class="section-kicker">Academic Year Snapshots</div>
@@ -39,7 +39,7 @@
     </section>
 
     <section class="snapshot-builder-grid">
-        <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                     <div class="section-kicker">Create Snapshot</div>
@@ -81,7 +81,7 @@
                 </div>
 
                 @if ($availableReportGroups->isEmpty())
-                    <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
+                    <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
                         No saved reports are currently available for a new academic-year snapshot.
                     </div>
                 @else
@@ -140,7 +140,7 @@
         </article>
 
         <aside class="space-y-6">
-            <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="section-kicker">Already Archived</div>
                 <h2 class="mt-3 font-serif text-2xl text-stone-950">Hidden from the picker</h2>
                 <p class="mt-2 text-sm leading-7 text-stone-600">
@@ -148,7 +148,7 @@
                 </p>
 
                 @if ($archivedReportGroups->isEmpty())
-                    <div class="mt-4 rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
+                    <div class="mt-4 rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
                         Nothing has been archived yet.
                     </div>
                 @else
@@ -168,7 +168,7 @@
                 @endif
             </article>
 
-            <article class="paper-panel rounded-[2rem] p-5 sm:p-6">
+            <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="section-kicker">Current Snapshots</div>
                 <div class="mt-4 space-y-3">
                     @forelse ($snapshots as $snapshot)
@@ -182,7 +182,7 @@
                             <div class="text-sm font-semibold text-stone-900">Open</div>
                         </a>
                     @empty
-                        <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
+                        <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
                             No academic-year snapshots yet.
                         </div>
                     @endforelse
