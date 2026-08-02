@@ -91,7 +91,7 @@
         </article>
 
         <article class="stat-panel rounded-[1.75rem] p-5">
-            <div class="section-kicker">Scope</div>
+            <div class="section-kicker">Other Indexes</div>
             <div class="mt-4 grid gap-3">
                 @foreach ($otherCards as $card)
                     <a href="{{ route('indexes.show', ['type' => $card['type']->value] + $otherIndexScopeParams) }}" class="secondary-link-card">
@@ -107,7 +107,7 @@
     </section>
 
     <section class="paper-panel rounded-[2rem] p-5 sm:p-6">
-        <div class="section-kicker">Card Header</div>
+        <div class="section-kicker">Profile</div>
         <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             <div class="profile-cell md:col-span-2 xl:col-span-1">
                 <div class="form-label">Name</div>
@@ -295,7 +295,7 @@
                         };
                     @endphp
 
-                    <details class="report-record-card" @if($isOpen) open @endif>
+                    <details class="report-record-card group" @if($isOpen) open @endif>
                         <summary class="flex cursor-pointer list-none flex-col gap-4 rounded-[1.2rem] sm:flex-row sm:items-start sm:justify-between [&::-webkit-details-marker]:hidden">
                             <div class="space-y-3">
                                 <div class="flex flex-wrap items-center gap-2">
@@ -319,9 +319,9 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-3 text-sm font-semibold text-stone-700">
+                            <div class="flex items-center gap-3 text-sm font-semibold text-stone-700 transition-transform group-open:rotate-180">
                                 <span>Edit details</span>
-                                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-stone-900/10 bg-white/80 text-lg">+</span>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
                             </div>
                         </summary>
 

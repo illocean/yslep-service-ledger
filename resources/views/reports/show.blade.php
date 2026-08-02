@@ -175,8 +175,8 @@
 
                 <div class="mt-6 space-y-4">
                     @forelse ($items as $item)
-                        <article class="report-record-card">
-                            <div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+                        <details class="report-record-card group">
+                            <summary class="flex cursor-pointer list-none flex-col gap-4 xl:flex-row xl:items-start xl:justify-between [&::-webkit-details-marker]:hidden">
                                 <div class="space-y-2">
                                     <div class="flex flex-wrap items-center gap-2">
                                         <span class="assignment-chip assignment-chip--saved">
@@ -207,16 +207,14 @@
                                     @endif
                                 </div>
 
-                                <form method="POST" action="{{ route('reports.records.destroy', [$reportGroup, $item]) }}" class="xl:pt-1">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="danger-button">
-                                        Delete Record
-                                    </button>
-                                </form>
-                            </div>
+                                <div class="flex items-center gap-3 text-sm font-semibold text-stone-700 transition-transform group-open:rotate-180">
+                                    <span>Edit details</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+                                </div>
+                            </summary>
 
-                            <form method="POST" action="{{ route('reports.records.update', [$reportGroup, $item]) }}" class="record-form-shell mt-5">
+                            <div class="mt-5 border-t border-stone-900/8 pt-5">
+                            <form method="POST" action="{{ route('reports.records.update', [$reportGroup, $item]) }}" class="record-form-shell">
                                 @csrf
                                 @method('PATCH')
                                 <input type="hidden" name="index_type" value="{{ $type->value }}">
@@ -265,7 +263,16 @@
                                     </button>
                                 </div>
                             </form>
-                        </article>
+
+                            <form method="POST" action="{{ route('reports.records.destroy', [$reportGroup, $item]) }}" class="mt-3 flex justify-end">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="danger-button">
+                                    Delete Record
+                                </button>
+                            </form>
+                            </div>
+                        </details>
                     @empty
                         <div class="rounded-[1.5rem] border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
                             No {{ strtolower($type->label()) }} records attached yet.

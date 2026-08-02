@@ -1,8 +1,22 @@
 import './bootstrap';
 
+const SCROLL_KEY = 'yslep-scroll';
+
 document.addEventListener('DOMContentLoaded', () => {
+    const savedScroll = sessionStorage.getItem(SCROLL_KEY);
+
+    if (savedScroll !== null) {
+        sessionStorage.removeItem(SCROLL_KEY);
+        const y = parseInt(savedScroll, 10);
+
+        requestAnimationFrame(() => {
+            window.scrollTo({ top: Number.isFinite(y) ? y : 0, behavior: 'instant' });
+        });
+    }
+
     document.querySelectorAll('[data-auto-submit]').forEach((element) => {
         element.addEventListener('change', () => {
+            sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
             element.form?.submit();
         });
     });
