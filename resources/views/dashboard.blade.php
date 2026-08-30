@@ -31,12 +31,12 @@
                 </div>
                 <div class="mt-4 space-y-3">
                     <a href="{{ route('reports.index') }}" class="primary-button w-full">
-                        Open Saved Reports
+                        View All Reports
                     </a>
 
                     @if ($reportGroups->isNotEmpty())
                         <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                            <div class="form-label">Latest</div>
+                            <div class="form-label">Latest Report</div>
                             <p class="mt-1 text-sm font-semibold text-stone-900">{{ $reportGroups->first()->display_label }}</p>
                         </div>
                     @endif
@@ -51,11 +51,11 @@
                 <div class="section-kicker">{{ $card['label'] }}</div>
                 <div class="mt-5 flex items-end justify-between gap-4">
                     <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total count</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total Entries</div>
                         <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
                     </div>
                     <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total hours</div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Total Hours</div>
                         <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
                     </div>
                 </div>
@@ -97,11 +97,11 @@
 
                 <div class="mt-5 grid gap-3 sm:grid-cols-2">
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">School year</div>
+                        <div class="form-label">School Year</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $profile['school_year'] ?: 'Not set' }}</div>
                     </div>
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">Locked in reports</div>
+                        <div class="form-label">Locked in Reports</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $liveEntryStats[$type->value]['locked'] }}</div>
                     </div>
                 </div>
@@ -133,9 +133,12 @@
                                         </div>
 
                                         @if ($assignment)
-                                            <div class="assignment-chip assignment-chip--saved mt-2" title="Saved in {{ $assignment->display_label }}">
-                                                <span class="assignment-chip__dot" aria-hidden="true"></span>
-                                                <span>{{ $assignment->compact_label }}</span>
+                                            <div class="mt-2">
+                                                <x-assignment-chip 
+                                                    variant="saved" 
+                                                    :label="$assignment->compact_label"
+                                                    :title="'Saved in ' . $assignment->display_label"
+                                                />
                                             </div>
                                         @endif
                                     </div>
@@ -148,7 +151,7 @@
                             </div>
                         @empty
                             <div class="rounded-cell border border-dashed border-stone-900/12 bg-stone-50/50 px-4 py-5 text-sm text-stone-600">
-                                No records yet.
+                                No records yet. Add entries in Obsidian to see them here.
                             </div>
                         @endforelse
                     </div>
@@ -160,7 +163,7 @@
                     </div>
 
                     <a href="{{ $manageRoute }}" class="primary-button">
-                        Open Page
+                        Open {{ $card['label'] }} Page
                     </a>
                 </div>
             </article>
@@ -183,7 +186,7 @@
                 @csrf
 
                 <div class="max-w-lg">
-                    <label for="title" class="form-label">Report title</label>
+                    <label for="title" class="form-label">Report Title</label>
                     <input id="title" name="title" type="text" value="{{ old('title') }}" placeholder="e.g. Christmas break service report" class="form-input mt-2">
                 </div>
 
@@ -192,7 +195,10 @@
                         <div class="flex flex-wrap items-center gap-2 text-xs text-stone-600">
                             <span class="font-semibold">Already saved:</span>
                             @foreach ($hiddenTypes as $type)
-                                <span class="assignment-chip assignment-chip--complete" data-hidden-save-type="{{ $type->value }}">{{ $type->label() }}</span>
+                                <x-assignment-chip 
+                                    variant="complete" 
+                                    :label="$type->label()"
+                                />
                             @endforeach
                         </div>
                     </div>
@@ -223,7 +229,7 @@
                                                 <th class="px-3 py-2">Pick</th>
                                                 <th class="px-3 py-2">Date</th>
                                                 <th class="px-3 py-2">Details</th>
-                                                <th class="px-3 py-2">Hrs</th>
+                                                <th class="px-3 py-2">Hours</th>
                                             </tr>
                                         </thead>
                                         <tbody>

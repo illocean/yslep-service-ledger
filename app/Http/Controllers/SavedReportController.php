@@ -6,6 +6,7 @@ use App\Enums\IndexType;
 use App\Http\Controllers\Concerns\BuildsReportScopeData;
 use App\Http\Requests\UpdateReportGroupRequest;
 use App\Models\ReportGroup;
+use App\Services\AcademicYearSnapshotService;
 use App\Services\ReportGroupService;
 use App\Services\ReportGroupVaultSyncService;
 use Illuminate\Http\RedirectResponse;
@@ -35,6 +36,7 @@ class SavedReportController extends Controller
         ReportGroup $reportGroup,
         ReportGroupService $reportGroupService,
         ReportGroupVaultSyncService $reportGroupVaultSyncService,
+        AcademicYearSnapshotService $snapshotService,
     ): View {
         $reportGroup->load('items');
         $cards = [];
@@ -44,6 +46,7 @@ class SavedReportController extends Controller
         }
 
         $grandTotalMinutes = collect($cards)->sum('total_minutes');
+        $archivedInSnapshot = $snapshotService->assignedSnapshotLookup()[$reportGroup->id] ?? null;
 
         return view('reports.show', [
             'reportGroup' => $reportGroup,
@@ -53,6 +56,7 @@ class SavedReportController extends Controller
             'reportGroupsFilePath' => $reportGroupService->reportGroupsPath(),
             'reportNoteDirectory' => $reportGroup->obsidian_directory ?: $reportGroupVaultSyncService->reportDirectory($reportGroup),
             'reportIndexNotePath' => $reportGroup->obsidian_index_note_path ?: $reportGroupVaultSyncService->indexNotePath($reportGroup),
+            'archivedInSnapshot' => $archivedInSnapshot,
         ]);
     }
 

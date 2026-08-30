@@ -61,6 +61,7 @@ class IndexPageController extends Controller
             'sourceMode' => $selectedScope->isLive() ? 'live' : 'report',
             'assignedReportLookup' => $assignedReportLookup,
             'reportGroupsFilePath' => $reportGroupService->reportGroupsPath(),
+            'academicYears' => $cardMeta['entry_options']['academic_years'] ?? [],
         ]);
     }
 }

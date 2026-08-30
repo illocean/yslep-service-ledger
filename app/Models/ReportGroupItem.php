@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Concerns\HasDurationAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReportGroupItem extends Model
 {
     use HasDurationAttributes;
+    use SoftDeletes;
 
     protected $fillable = [
         'report_group_id',
@@ -21,11 +23,13 @@ class ReportGroupItem extends Model
         'module_code',
         'title',
         'about',
+        'role_in_activity',
         'source_order',
         'obsidian_record_uuid',
         'obsidian_note_path',
         'obsidian_note_hash',
         'obsidian_last_synced_at',
+        'obsidian_conflict',
     ];
 
     protected function casts(): array

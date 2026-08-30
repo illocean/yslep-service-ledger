@@ -1,0 +1,167 @@
+- generic [ref=f25e1]:
+  - link "Skip to Content" [ref=f25e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f25e3]:
+    - generic [ref=f25e4]:
+      - generic [ref=f25e5]: ⌘
+      - generic [ref=f25e6]: K
+      - generic [ref=f25e7]: Quick Add
+    - group "Select entry type" [ref=f25e8]:
+      - button "Formation" [pressed] [ref=f25e9]
+      - button "Social Apostolate" [ref=f25e14]
+      - button "Parish Involvement" [ref=f25e21]
+    - button "Add new Formation entry" [ref=f25e26]:
+      - generic [ref=f25e28]: Add Entry
+    - generic [ref=f25e29]: Synced
+  - generic [ref=f25e32]:
+    - banner [ref=f25e33]:
+      - generic [ref=f25e35]:
+        - generic [ref=f25e36]:
+          - generic [ref=f25e37]:
+            - generic [ref=f25e38]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f25e39] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f25e40]:
+            - generic "Live data from Obsidian" [ref=f25e41]: Live
+            - generic "Saved reports" [ref=f25e42]: Reports
+            - generic "Academic year archives" [ref=f25e43]: Archives
+        - navigation "Main navigation" [ref=f25e44]:
+          - menubar [ref=f25e45]:
+            - menuitem "Overview" [ref=f25e46] [cursor=pointer]
+            - menuitem "Formation" [ref=f25e48] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f25e50] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f25e52] [cursor=pointer]
+            - menuitem "Reports" [ref=f25e54] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f25e56] [cursor=pointer]
+    - main [ref=f25e58]:
+      - generic [ref=f25e59]:
+        - generic [ref=f25e61]:
+          - generic [ref=f25e62]:
+            - generic [ref=f25e63]: Academic Year Snapshots
+            - heading "Archive saved reports into one academic-year layer." [level=1] [ref=f25e64]
+            - paragraph [ref=f25e65]: This works like saved reports, one level higher. Pick whole saved reports, and once a report is archived here it disappears from the picker automatically.
+          - generic [ref=f25e66]:
+            - generic [ref=f25e67]:
+              - generic [ref=f25e68]: Snapshots
+              - generic [ref=f25e69]: "03"
+            - generic [ref=f25e70]:
+              - generic [ref=f25e71]: Available Reports
+              - generic [ref=f25e72]: "02"
+            - generic [ref=f25e73]:
+              - generic [ref=f25e74]: Obsidian Snapshot File
+              - generic [ref=f25e75]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\ACADEMIC YEAR SNAPSHOTS.md
+        - generic [ref=f25e76]:
+          - article [ref=f25e77]:
+            - generic [ref=f25e78]:
+              - generic [ref=f25e79]:
+                - generic [ref=f25e80]: Create Snapshot
+                - heading "Select available saved reports" [level=2] [ref=f25e81]
+                - paragraph [ref=f25e82]: Each saved report can belong to only one academic-year snapshot. Anything already archived is hidden from this list and moved to the side panel.
+              - generic [ref=f25e83]: 0 selected
+            - generic [ref=f25e84]:
+              - generic [ref=f25e85]:
+                - generic [ref=f25e86]:
+                  - text: Snapshot title
+                  - 'textbox "Example: AY 2025-2026 Final Archive" [ref=f25e87]'
+                - generic [ref=f25e88]:
+                  - generic [ref=f25e89]:
+                    - generic [ref=f25e90]: Available
+                    - generic [ref=f25e91]: 2 report(s)
+                  - generic [ref=f25e92]:
+                    - generic [ref=f25e93]: Archived
+                    - generic [ref=f25e94]: 10 hidden
+                - button "Create Academic Year Snapshot" [disabled] [ref=f25e96]
+              - generic [ref=f25e98]:
+                - button "Select all" [ref=f25e99]
+                - button "Clear" [ref=f25e100]
+                - button "All" [ref=f25e102] [cursor=pointer]
+                - button "Formation" [active] [ref=f25e103] [cursor=pointer]
+                - button "Parish Involvement" [ref=f25e104] [cursor=pointer]
+                - button "Social Apostolate" [ref=f25e105] [cursor=pointer]
+          - complementary [ref=f25e133]:
+            - article [ref=f25e134]:
+              - generic [ref=f25e135]: Already Archived
+              - heading "Hidden from the picker" [level=2] [ref=f25e136]
+              - paragraph [ref=f25e137]: Saved reports already assigned to an academic-year snapshot are hidden automatically to prevent duplicates.
+              - generic [ref=f25e138]:
+                - generic [ref=f25e139]:
+                  - generic [ref=f25e140]:
+                    - generic [ref=f25e141]: JULY '26
+                    - generic [ref=f25e142]: In Test AY 2025-2026
+                  - link "Open" [ref=f25e143] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-165649-VFRW
+                - generic [ref=f25e144]:
+                  - generic [ref=f25e145]:
+                    - generic [ref=f25e146]: APRIL '26
+                    - generic [ref=f25e147]: In APRIL MMR
+                  - link "Open" [ref=f25e148] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=f25e149]:
+                  - generic [ref=f25e150]:
+                    - generic [ref=f25e151]: MARCH '26
+                    - generic [ref=f25e152]: In APRIL MMR
+                  - link "Open" [ref=f25e153] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=f25e154]:
+                  - generic [ref=f25e155]:
+                    - generic [ref=f25e156]: FEB '26
+                    - generic [ref=f25e157]: In APRIL MMR
+                  - link "Open" [ref=f25e158] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=f25e159]:
+                  - generic [ref=f25e160]:
+                    - generic [ref=f25e161]: JAN '26
+                    - generic [ref=f25e162]: In APRIL MMR
+                  - link "Open" [ref=f25e163] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=f25e164]:
+                  - generic [ref=f25e165]:
+                    - generic [ref=f25e166]: DEC '25
+                    - generic [ref=f25e167]: In 1ST YEAR
+                  - link "Open" [ref=f25e168] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=f25e169]:
+                  - generic [ref=f25e170]:
+                    - generic [ref=f25e171]: NOV '25
+                    - generic [ref=f25e172]: In 1ST YEAR
+                  - link "Open" [ref=f25e173] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=f25e174]:
+                  - generic [ref=f25e175]:
+                    - generic [ref=f25e176]: OCT '25
+                    - generic [ref=f25e177]: In 1ST YEAR
+                  - link "Open" [ref=f25e178] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=f25e179]:
+                  - generic [ref=f25e180]:
+                    - generic [ref=f25e181]: AUG '25
+                    - generic [ref=f25e182]: In 1ST YEAR
+                  - link "Open" [ref=f25e183] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=f25e184]:
+                  - generic [ref=f25e185]:
+                    - generic [ref=f25e186]: SEPT '25
+                    - generic [ref=f25e187]: In 1ST YEAR
+                  - link "Open" [ref=f25e188] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+            - article [ref=f25e189]:
+              - generic [ref=f25e190]: Current Snapshots
+              - generic [ref=f25e191]:
+                - link "Test AY 2025-2026 1 report(s) | 9 record(s) Open" [ref=f25e192] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-165649-VFRW
+                  - generic [ref=f25e193]:
+                    - generic [ref=f25e194]: Test AY 2025-2026
+                    - generic [ref=f25e195]: 1 report(s) | 9 record(s)
+                  - generic [ref=f25e196]: Open
+                - link "APRIL MMR 4 report(s) | 39 record(s) Open" [ref=f25e197] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                  - generic [ref=f25e198]:
+                    - generic [ref=f25e199]: APRIL MMR
+                    - generic [ref=f25e200]: 4 report(s) | 39 record(s)
+                  - generic [ref=f25e201]: Open
+                - link "1ST YEAR 5 report(s) | 41 record(s) Open" [ref=f25e202] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                  - generic [ref=f25e203]:
+                    - generic [ref=f25e204]: 1ST YEAR
+                    - generic [ref=f25e205]: 5 report(s) | 41 record(s)
+                  - generic [ref=f25e206]: Open

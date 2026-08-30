@@ -43,6 +43,9 @@ Thumbs.db
 # Internal specs (not the main docs)
 /docs/superpowers/
 
+# Deepwork session tracking
+/.slim/deepwork/
+
 # Sensitive / local
 /.env.*
 /docker-compose.override.yml

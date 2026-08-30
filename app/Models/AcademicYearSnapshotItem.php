@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Models\Concerns\HasDurationAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AcademicYearSnapshotItem extends Model
 {
     use HasDurationAttributes;
+    use SoftDeletes;
 
     protected $fillable = [
         'academic_year_snapshot_id',
@@ -24,7 +26,9 @@ class AcademicYearSnapshotItem extends Model
         'module_code',
         'title',
         'about',
+        'role_in_activity',
         'source_order',
+        'obsidian_conflict',
     ];
 
     protected function casts(): array

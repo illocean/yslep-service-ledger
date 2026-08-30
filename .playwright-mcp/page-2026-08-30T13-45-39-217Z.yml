@@ -1,0 +1,173 @@
+- generic [ref=f31e1]:
+  - link "Skip to Content" [ref=f31e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f31e3]:
+    - generic [ref=f31e4]:
+      - generic [ref=f31e5]: ⌘
+      - generic [ref=f31e6]: K
+      - generic [ref=f31e7]: Quick Add
+    - group "Select entry type" [ref=f31e8]:
+      - button "Formation" [pressed] [ref=f31e9]
+      - button "Social Apostolate" [ref=f31e14]
+      - button "Parish Involvement" [ref=f31e21]
+    - button "Add new Formation entry" [active] [ref=f31e26]:
+      - generic [ref=f31e28]: Add Entry
+    - generic [ref=f31e29]: Synced
+  - generic [ref=f31e32]:
+    - banner [ref=f31e33]:
+      - generic [ref=f31e35]:
+        - generic [ref=f31e36]:
+          - generic [ref=f31e37]:
+            - generic [ref=f31e38]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f31e39] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f31e40]:
+            - generic "Live data from Obsidian" [ref=f31e41]: Live
+            - generic "Saved reports" [ref=f31e42]: Reports
+            - generic "Academic year archives" [ref=f31e43]: Archives
+        - navigation "Main navigation" [ref=f31e44]:
+          - menubar [ref=f31e45]:
+            - menuitem "Overview" [ref=f31e46] [cursor=pointer]
+            - menuitem "Formation" [ref=f31e48] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f31e50] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f31e52] [cursor=pointer]
+            - menuitem "Reports" [ref=f31e54] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f31e56] [cursor=pointer]
+    - main [ref=f31e58]:
+      - generic [ref=f31e59]:
+        - generic [ref=f31e61]:
+          - generic [ref=f31e62]:
+            - generic [ref=f31e63]:
+              - generic [ref=f31e64]: Formation Index Card
+              - generic [ref=f31e68]: Unsaved Only
+              - generic [ref=f31e69]: 1 record(s)
+            - heading "Formation records" [level=1] [ref=f31e70]
+          - generic [ref=f31e71]:
+            - generic [ref=f31e72]:
+              - generic [ref=f31e73]:
+                - generic [ref=f31e74]: Scope
+                - link "All Time" [ref=f31e75] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/formation
+                - link "Unsaved Only" [ref=f31e76] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/formation?scope=unsaved
+              - form "Filter by saved report" [ref=f31e77]:
+                - text: Filter by Saved Report
+                - combobox "Filter by Saved Report" [ref=f31e78]:
+                  - option "Choose a saved report…" [selected]
+                  - option "JULY '26 (RPT-20260801-152416-FBVV)"
+                  - option "JUNE '26 (RPT-20260628-155000-NGEL)"
+                  - option "MAY '26 (RPT-20260523-133015-PJFY)"
+                  - option "APRIL '26 (RPT-20260428-144236-0XY7)"
+                  - option "MARCH '26 (RPT-20260405-111211-9OYP)"
+                  - option "FEB '26 (RPT-20260331-233739-N2HN)"
+                  - option "JAN '26 (RPT-20260331-233319-FHIA)"
+                  - option "DEC '25 (RPT-20260331-232900-GN2K)"
+                  - option "NOV '25 (RPT-20260331-232717-UBDS)"
+                  - option "OCT '25 (RPT-20260331-232646-NANA)"
+                  - option "AUG '25 (RPT-20260331-232539-QYP3)"
+                  - option "SEPT '25 (RPT-20260331-231839-MMDO)"
+            - generic [ref=f31e79]:
+              - generic [ref=f31e80]: Obsidian Source File
+              - paragraph [ref=f31e81]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\FORMATION.md
+        - generic [ref=f31e82]:
+          - article [ref=f31e83]:
+            - generic [ref=f31e84]: Formation
+            - generic [ref=f31e85]:
+              - generic [ref=f31e86]: Total Entries
+              - generic [ref=f31e87]: "01"
+          - article [ref=f31e88]:
+            - generic [ref=f31e89]: Hours Served
+            - generic [ref=f31e90]:
+              - generic [ref=f31e91]: Selected Scope Total
+              - generic [ref=f31e92]: 1 hr
+          - article [ref=f31e93]:
+            - generic [ref=f31e94]: Other Indexes
+            - generic [ref=f31e95]:
+              - link "Parish Involvement 4 record(s) 8 hr" [ref=f31e96] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement?scope=unsaved
+                - generic [ref=f31e97]:
+                  - generic [ref=f31e98]: Parish Involvement
+                  - generic [ref=f31e99]: 4 record(s)
+                - generic [ref=f31e100]: 8 hr
+              - link "Social Apostolate 2 record(s) 4 hr" [ref=f31e101] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/social_apostolate?scope=unsaved
+                - generic [ref=f31e102]:
+                  - generic [ref=f31e103]: Social Apostolate
+                  - generic [ref=f31e104]: 2 record(s)
+                - generic [ref=f31e105]: 4 hr
+        - generic [ref=f31e106]:
+          - generic [ref=f31e107]: Profile
+          - generic [ref=f31e108]:
+            - generic [ref=f31e109]:
+              - generic [ref=f31e110]: Full Name
+              - generic [ref=f31e111]: Not set
+            - generic [ref=f31e112]:
+              - generic [ref=f31e113]: School Year
+              - generic [ref=f31e114]: 2025-2026
+            - generic [ref=f31e115]:
+              - generic [ref=f31e116]: Year Level
+              - generic [ref=f31e117]: Not set
+            - generic [ref=f31e118]:
+              - generic [ref=f31e119]: Parish
+              - generic [ref=f31e120]: Not set
+            - generic [ref=f31e121]:
+              - generic [ref=f31e122]: Diocese / Institution
+              - generic [ref=f31e123]: Not set
+            - generic [ref=f31e124]:
+              - generic [ref=f31e125]: School
+              - generic [ref=f31e126]: Not set
+            - generic [ref=f31e127]:
+              - generic [ref=f31e128]: Course
+              - generic [ref=f31e129]: Not set
+        - generic [ref=f31e130]:
+          - article [ref=f31e131]:
+            - generic [ref=f31e132]:
+              - generic [ref=f31e133]:
+                - generic [ref=f31e134]: Add Record
+                - heading "New formation entry" [level=2] [ref=f31e135]
+              - button "Add new formation entry" [ref=f31e136]:
+                - generic [ref=f31e138]: Add Entry
+            - dialog "Add Formation Entry" [ref=f31e162]:
+              - document [ref=f31e163]:
+                - generic [ref=f31e164]:
+                  - heading "Add Formation Entry" [level=2] [ref=f31e169]
+                  - button "Close modal" [ref=f31e170]
+                - generic [ref=f31e174]:
+                  - generic [ref=f31e175]:
+                    - text: Academic Year
+                    - combobox [ref=f31e176]:
+                      - option "Select academic year" [disabled]
+                      - option "2025-2026" [selected]
+                  - generic [ref=f31e177]:
+                    - generic [ref=f31e178]: Cycle Code *
+                    - textbox "e.g., C1, C2" [ref=f31e179]
+                  - generic [ref=f31e180]:
+                    - generic [ref=f31e181]: Module Code *
+                    - textbox "e.g., M101" [ref=f31e182]
+                  - generic [ref=f31e183]:
+                    - generic [ref=f31e184]: Title *
+                    - textbox "Module title" [ref=f31e185]
+                  - generic [ref=f31e186]:
+                    - generic [ref=f31e187]: Date *
+                    - textbox [ref=f31e188]
+                  - generic [ref=f31e189]:
+                    - generic [ref=f31e190]: Hours *
+                    - spinbutton [ref=f31e191]
+                  - generic [ref=f31e192]:
+                    - button "Cancel" [ref=f31e193]
+                    - button "Create Entry" [ref=f31e194]
+          - article [ref=f31e139]:
+            - generic [ref=f31e140]:
+              - generic [ref=f31e141]:
+                - generic [ref=f31e142]: Ledger
+                - heading "Unsaved Only entries" [level=2] [ref=f31e143]
+              - generic [ref=f31e144]: 1 record(s)
+            - article [ref=f31e146]:
+              - generic [ref=f31e147]:
+                - generic [ref=f31e148]:
+                  - generic [ref=f31e149]:
+                    - generic [ref=f31e150]: Live record
+                    - generic [ref=f31e154]: 1 hr
+                  - generic [ref=f31e155]: C3 / M1 - Brotherly love
+                  - generic [ref=f31e156]: August 16, 2026 | 3:00 PM - 4:00 PM
+                - button "Edit C3 / M1 - Brotherly love" [ref=f31e158]: Edit

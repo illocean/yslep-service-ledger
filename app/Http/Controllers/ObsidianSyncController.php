@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\IndexType;
 use App\Http\Requests\DestroyIndexEntryRequest;
 use App\Http\Requests\StoreIndexEntryRequest;
 use App\Services\ObsidianSyncService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ObsidianSyncController extends Controller
 {
@@ -43,5 +45,36 @@ class ObsidianSyncController extends Controller
         return redirect()
             ->route('indexes.show', $request->indexRouteParameters($type))
             ->with('status', $type->label().' entry removed and synced to Obsidian.');
+    }
+
+    public function acceptVault(int $entry, Request $request, ObsidianSyncService $syncService): RedirectResponse
+    {
+        $type = IndexType::from($request->input('type'));
+        $syncService->resolveConflictAcceptVault($type, $entry);
+
+        return redirect()
+            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->with('status', 'Conflict resolved: accepted vault version.');
+    }
+
+    public function acceptDb(int $entry, Request $request, ObsidianSyncService $syncService): RedirectResponse
+    {
+        $type = IndexType::from($request->input('type'));
+        $syncService->resolveConflictAcceptDb($type, $entry);
+
+        return redirect()
+            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->with('status', 'Conflict resolved: accepted database version.');
+    }
+
+    public function merge(int $entry, Request $request, ObsidianSyncService $syncService): RedirectResponse
+    {
+        $type = IndexType::from($request->input('type'));
+        $mergedData = $request->except(['_token', 'type', 'scope']);
+        $syncService->resolveConflictMerge($type, $entry, $mergedData);
+
+        return redirect()
+            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->with('status', 'Conflict resolved: merged changes.');
     }
 }

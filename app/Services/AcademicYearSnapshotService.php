@@ -75,6 +75,7 @@ class AcademicYearSnapshotService
                     'module_code' => $item->module_code,
                     'title' => $item->title,
                     'about' => $item->about,
+                    'role_in_activity' => $item->role_in_activity,
                     'source_order' => $index + 1,
                     'created_at' => $timestamp,
                     'updated_at' => $timestamp,
@@ -249,7 +250,7 @@ class AcademicYearSnapshotService
         $headers = match ($type) {
             IndexType::Formation => ['Date', 'Cycle No.', 'Module No.', 'Title', 'Time In', 'Time Out', 'Hours', 'Saved Report'],
             IndexType::ParishInvolvement => ['Date', 'Activity', 'Time In', 'Time Out', 'Hours', 'Saved Report'],
-            IndexType::SocialApostolate => ['Date', 'Activity', 'Time In', 'Time Out', 'Hours', 'Saved Report'],
+            IndexType::SocialApostolate => ['Date', 'Activity', 'Role', 'Time In', 'Time Out', 'Hours', 'Saved Report'],
         };
 
         $lines = [
@@ -282,6 +283,7 @@ class AcademicYearSnapshotService
                 IndexType::SocialApostolate => [
                     $item->served_on_label,
                     str_replace('|', '/', $item->about),
+                    str_replace('|', '/', $item->role_in_activity ?? ''),
                     $item->time_start_label,
                     $item->time_end_label,
                     $item->duration_label,

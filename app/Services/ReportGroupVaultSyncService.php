@@ -28,12 +28,19 @@ class ReportGroupVaultSyncService
         foreach ($reportGroup->items as $item) {
             $item = $this->ensureItemSyncMetadata($reportGroup, $item);
             $path = $item->obsidian_note_path;
+
+            // Always add to expectedPaths to prevent deletion, even for conflicted items
+            $expectedPaths[$this->normalizePath($path)] = true;
+
+            // Skip writing for conflicted items - they need manual resolution before syncing to vault
+            if ($item->obsidian_conflict) {
+                continue;
+            }
+
             $contents = $this->renderRecordNote($reportGroup, $item);
             $hash = hash('sha256', $contents);
 
             File::put($path, $contents);
-
-            $expectedPaths[$this->normalizePath($path)] = true;
 
             ReportGroupItem::withoutTimestamps(function () use ($item, $path, $hash): void {
                 $item->forceFill([
@@ -73,7 +80,7 @@ class ReportGroupVaultSyncService
         $changedReportIds = [];
 
         ReportGroup::query()
-            ->with('items')
+            ->with(['items' => fn ($q) => $q->withTrashed()])
             ->get()
             ->each(function (ReportGroup $reportGroup) use (&$changedReportIds): void {
                 $directory = $this->reportDirectory($reportGroup);
@@ -97,15 +104,11 @@ class ReportGroupVaultSyncService
                     $seenPaths[$normalizedPath] = true;
 
                     $contents = File::get($path);
-                    $hash = hash('sha256', $contents);
+                    $vaultHash = hash('sha256', $contents);
                     $matter = YamlFrontMatter::parse($contents)->matter();
                     $item = $itemsByPath->get($normalizedPath)
                         ?? $itemsById->get((int) Arr::get($matter, 'report_group_item_id'))
                         ?? $itemsByUuid->get((string) Arr::get($matter, 'record_uuid'));
-
-                    if ($item !== null && $item->obsidian_note_hash === $hash) {
-                        continue;
-                    }
 
                     $payload = $this->payloadFromMatter($matter, $item);
 
@@ -113,28 +116,52 @@ class ReportGroupVaultSyncService
                         continue;
                     }
 
-                    if ($item === null) {
+if ($item === null) {
                         $item = $reportGroup->items()->create([
                             ...$payload,
                             'obsidian_record_uuid' => (string) Str::uuid(),
                             'obsidian_note_path' => $path,
-                            'obsidian_note_hash' => $hash,
+                            'obsidian_note_hash' => $vaultHash,
                             'obsidian_last_synced_at' => now(),
+                            'obsidian_conflict' => false,
                         ]);
                     } else {
-                        $updatedType = $payload['index_type'];
-                        $detachedSourceId = $item->index_type !== $updatedType ? null : $item->source_entry_id;
+                        // Conflict detection: compare vault vs DB
+                        $storedHash = $item->obsidian_note_hash;
+                        $vaultChanged = $vaultHash !== $storedHash;
+                        $dbChanged = false;
+                        $isLegacyItem = $storedHash === null;
 
-                        $item->forceFill([
-                            ...$payload,
-                            'source_entry_id' => $detachedSourceId,
-                            'obsidian_note_path' => $path,
-                            'obsidian_note_hash' => $hash,
-                            'obsidian_last_synced_at' => now(),
-                        ])->save();
+                        if (!$isLegacyItem) {
+                            // Render current DB state as a note and hash it
+                            $dbRenderedHash = hash('sha256', $this->renderRecordNote($reportGroup, $item));
+                            $dbChanged = $dbRenderedHash !== $storedHash;
+                        }
+
+                        if (!$isLegacyItem && $vaultChanged && $dbChanged) {
+                            // Both sides changed since last sync - mark as conflicted, don't overwrite
+                            $item->forceFill([
+                                'obsidian_conflict' => true,
+                                'updated_at' => now(),
+                            ])->save();
+
+                            $changedReportIds[$reportGroup->id] = true;
+                        } else {
+                            $updatedType = $payload['index_type'];
+                            $detachedSourceId = $item->index_type !== $updatedType ? null : $item->source_entry_id;
+
+                            $item->forceFill([
+                                ...$payload,
+                                'source_entry_id' => $detachedSourceId,
+                                'obsidian_note_path' => $path,
+                                'obsidian_note_hash' => $vaultHash,
+                                'obsidian_last_synced_at' => now(),
+                                'obsidian_conflict' => false,
+                            ])->save();
+
+                            $changedReportIds[$reportGroup->id] = true;
+                        }
                     }
-
-                    $changedReportIds[$reportGroup->id] = true;
                 }
 
                 foreach ($reportGroup->items as $item) {
@@ -158,7 +185,7 @@ class ReportGroupVaultSyncService
             });
 
         foreach (array_keys($changedReportIds) as $reportGroupId) {
-            $reportGroup = ReportGroup::query()->with('items')->find($reportGroupId);
+            $reportGroup = ReportGroup::query()->with(['items' => fn ($q) => $q->withTrashed()])->find($reportGroupId);
 
             if ($reportGroup !== null) {
                 $this->syncReportGroup($reportGroup);
@@ -246,6 +273,7 @@ class ReportGroupVaultSyncService
             'module_code' => $item->module_code,
             'title' => $item->title,
             'about' => $item->about,
+            'role_in_activity' => $item->role_in_activity,
             'source_order' => $item->source_order,
             'created_at' => $item->created_at?->toIso8601String(),
             'updated_at' => $item->updated_at?->toIso8601String(),
@@ -274,6 +302,9 @@ class ReportGroupVaultSyncService
 
         if ($type === IndexType::SocialApostolate) {
             $lines[] = '- Activity: '.($item->about ?: 'Not set');
+            if ($item->role_in_activity) {
+                $lines[] = '- Role: '.($item->role_in_activity);
+            }
         }
 
         return implode("\n", $lines)."\n";
@@ -389,6 +420,7 @@ class ReportGroupVaultSyncService
                 'module_code' => null,
                 'title' => null,
                 'about' => $about,
+                'role_in_activity' => Arr::get($matter, 'role_in_activity') ? trim((string) Arr::get($matter, 'role_in_activity')) : null,
             ];
         }
 
@@ -399,6 +431,57 @@ class ReportGroupVaultSyncService
             'title' => null,
             'about' => null,
         ];
+    }
+
+    private function computeItemContentHash(ReportGroupItem $item): string
+    {
+        // Compute hash from the item's data fields (not including sync metadata)
+        $type = IndexType::from($item->index_type);
+        $record = $this->itemToNormalizedRecord($type, $item);
+        return hash('sha256', implode('|', $record));
+    }
+
+    private function computeItemNoteHash(ReportGroupItem $item): string
+    {
+        // Compute hash from the full rendered note content (same as syncReportGroup)
+        $contents = $this->renderRecordNote($item->reportGroup ?? ReportGroup::find($item->report_group_id), $item);
+        return hash('sha256', $contents);
+    }
+
+    private function itemToNormalizedRecord(IndexType $type, ReportGroupItem $item): array
+    {
+        $timeStart = (string) $item->time_start;
+        $timeEnd = (string) $item->time_end;
+        // Ensure time has seconds for consistency (expects H:i:s)
+        if (strlen($timeStart) === 5) {
+            $timeStart .= ':00';
+        }
+        if (strlen($timeEnd) === 5) {
+            $timeEnd .= ':00';
+        }
+
+        return match ($type) {
+            IndexType::Formation => [
+                'served_on' => $item->served_on?->format('Y-m-d'),
+                'cycle_code' => $item->cycle_code,
+                'module_code' => $item->module_code,
+                'title' => $item->title,
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+            ],
+            IndexType::ParishInvolvement => [
+                'served_on' => $item->served_on?->format('Y-m-d'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+            ],
+            IndexType::SocialApostolate => [
+                'served_on' => $item->served_on?->format('Y-m-d'),
+                'about' => $item->about,
+                'role_in_activity' => $item->role_in_activity,
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+            ],
+        };
     }
 
     private function normalizeDate(string $value): ?string
@@ -438,5 +521,105 @@ class ReportGroupVaultSyncService
         $candidate = realpath($path) ?: $path;
 
         return preg_replace('#/+#', '/', str_replace('\\', '/', $candidate)) ?: str_replace('\\', '/', $candidate);
+    }
+
+    /**
+     * Resolve a conflict by accepting the vault version.
+     * Re-syncs the specific note from vault, updates DB, clears conflict flag.
+     */
+    public function resolveConflictAcceptVault(ReportGroupItem $item): void
+    {
+        if (! $item->obsidian_conflict || ! $item->obsidian_note_path) {
+            return;
+        }
+
+        // Re-read the specific note from vault and update the item
+        $path = $item->obsidian_note_path;
+        if (! File::exists($path)) {
+            return;
+        }
+
+        $contents = File::get($path);
+        $vaultHash = hash('sha256', $contents);
+        $matter = YamlFrontMatter::parse($contents)->matter();
+        $payload = $this->payloadFromMatter($matter, $item);
+
+        if ($payload === null) {
+            return;
+        }
+
+        $reportGroup = $item->reportGroup;
+
+        $item->forceFill([
+            ...$payload,
+            'obsidian_note_path' => $path,
+            'obsidian_note_hash' => $vaultHash,
+            'obsidian_last_synced_at' => now(),
+            'obsidian_conflict' => false,
+        ])->save();
+
+        // Re-sync the report group to update the index note
+        $this->syncReportGroup($reportGroup);
+    }
+
+    /**
+     * Resolve a conflict by accepting the database version.
+     * Writes current DB state to vault note, clears conflict flag.
+     */
+    public function resolveConflictAcceptDb(ReportGroupItem $item): void
+    {
+        if (! $item->obsidian_conflict) {
+            return;
+        }
+
+        $reportGroup = $item->reportGroup;
+
+        // Write current DB state to vault
+        $noteContent = $this->renderRecordNote($reportGroup, $item);
+        File::put($item->obsidian_note_path, $noteContent);
+        $vaultHash = hash('sha256', $noteContent);
+
+        $item->forceFill([
+            'obsidian_note_hash' => $vaultHash,
+            'obsidian_last_synced_at' => now(),
+            'obsidian_conflict' => false,
+        ])->save();
+
+        // Re-sync the report group to update the index note
+        $this->syncReportGroup($reportGroup);
+    }
+
+    /**
+     * Resolve a conflict by manually merging.
+     * Updates the DB with merged data, writes to vault, clears conflict flag.
+     */
+    public function resolveConflictMerge(ReportGroupItem $item, array $mergedData): void
+    {
+        if (! $item->obsidian_conflict) {
+            return;
+        }
+
+        $payload = $this->payloadFromMatter($mergedData, $item);
+
+        if ($payload === null) {
+            return;
+        }
+
+        $reportGroup = $item->reportGroup;
+        $noteContent = $this->renderRecordNote($reportGroup, $item);
+        $vaultHash = hash('sha256', $noteContent);
+
+        $item->forceFill([
+            ...$payload,
+            'obsidian_note_hash' => $vaultHash,
+            'obsidian_last_synced_at' => now(),
+            'obsidian_conflict' => false,
+        ])->save();
+
+        // Write merged content to vault
+        File::put($item->obsidian_note_path, $noteContent);
+
+        // Re-sync the report group
+        $this->syncReportGroup($reportGroup);
     }
 }

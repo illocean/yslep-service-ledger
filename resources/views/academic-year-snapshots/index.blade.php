@@ -4,10 +4,17 @@
 
 @section('content')
     @php
-        $selectedReportGroups = collect(old('selected_report_groups', []))->map(fn ($id) => (int) $id);
+        $selectedReportGroups = collect(old('selected_report_groups', $prefilledReportGroupIds ?? []))->map(fn ($id) => (int) $id);
+        $selectedIdJson = $selectedReportGroups->values()->all();
     @endphp
 
     @include('partials.alerts')
+
+    @if (request()->has('prefill'))
+        <div class="paper-panel rounded-panel border border-emerald-900/15 bg-emerald-50/70 px-5 py-4 text-sm leading-7 text-stone-700">
+            Pre-selected from the saved report page. Add more reports below or create the snapshot as-is.
+        </div>
+    @endif
 
     <section class="compact-hero paper-panel rounded-panel px-5 py-5 sm:px-7">
         <div class="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
@@ -38,7 +45,10 @@
         </div>
     </section>
 
-    <section class="snapshot-builder-grid">
+    <section class="snapshot-builder-grid"
+        x-data="snapshotBuilder({
+            selectedIds: @json($selectedIdJson),
+        })">
         <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
@@ -49,7 +59,7 @@
                     </p>
                 </div>
                 <div class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">
-                    {{ $selectedReportGroups->count() }} selected
+                    <span x-text="selectedIds.length"></span> selected
                 </div>
             </div>
 
@@ -74,7 +84,7 @@
                     </div>
 
                     <div class="snapshot-builder-toolbar__action">
-                        <button type="submit" class="primary-button" @disabled($availableReportGroups->isEmpty())>
+                        <button type="submit" class="primary-button" :disabled="selectedIds.length === 0">
                             Create Academic Year Snapshot
                         </button>
                     </div>
@@ -85,6 +95,23 @@
                         No saved reports are currently available for a new academic-year snapshot.
                     </div>
                 @else
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" class="secondary-button compact-inline-button" @click="selectAll()">Select all</button>
+                            <button type="button" class="secondary-button compact-inline-button" @click="clearAll()">Clear</button>
+                            <span class="mx-1 hidden h-5 w-px bg-stone-900/10 sm:inline-block"></span>
+                            <button type="button" class="compact-pill" :class="filterType === '' ? 'compact-pill--active' : ''" @click="filterType = ''">All</button>
+                            @foreach (\App\Enums\IndexType::cases() as $type)
+                                <button type="button" class="compact-pill" :class="filterType === '{{ $type->value }}' ? 'compact-pill--active' : ''" @click="filterType = filterType === '{{ $type->value }}' ? '' : '{{ $type->value }}'">
+                                    {{ $type->label() }}
+                                </button>
+                            @endforeach
+                        </div>
+                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600" x-show="selectedIds.length > 0">
+                            <span x-text="selectedIds.length"></span> report(s) | <span x-text="selectedRecordCount"></span> record(s) | <span x-text="selectedHoursLabel"></span>
+                        </div>
+                    </div>
+
                     <div class="archive-report-list">
                         @foreach ($availableReportGroups as $reportGroup)
                             @php
@@ -96,9 +123,21 @@
                                     : ($reportRemainingMinutes === 0
                                         ? $reportHours . ' hr'
                                         : sprintf('%d hr %02d min', $reportHours, $reportRemainingMinutes));
+                                $presentTypes = collect(\App\Enums\IndexType::cases())
+                                    ->filter(fn ($t) => $reportGroup->itemsFor($t->value)->count() > 0)
+                                    ->map(fn ($t) => $t->value)
+                                    ->values()
+                                    ->all();
                             @endphp
 
-                            <label class="archive-report-card" data-available-archive-report="{{ $reportGroup->id }}">
+                            <label
+                                class="archive-report-card"
+                                data-available-archive-report="{{ $reportGroup->id }}"
+                                data-report-records="{{ $reportGroup->items->count() }}"
+                                data-report-minutes="{{ $reportMinutes }}"
+                                data-report-types='@json($presentTypes)'
+                                x-show="filterType === '' || hasType({{ $reportGroup->id }}, filterType)"
+                            >
                                 <div class="archive-report-card__main">
                                     <input
                                         type="checkbox"
@@ -106,6 +145,7 @@
                                         value="{{ $reportGroup->id }}"
                                         @checked($selectedReportGroups->contains($reportGroup->id))
                                         class="report-checkbox mt-1"
+                                        x-model="selectedIds"
                                     >
 
                                     <div class="min-w-0 flex-1">

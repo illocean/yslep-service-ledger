@@ -1,0 +1,265 @@
+- generic [active] [ref=f14e1]:
+  - link "Skip to Content" [ref=f14e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f14e3]:
+    - generic [ref=f14e4]:
+      - generic [ref=f14e5]: ⌘
+      - generic [ref=f14e6]: K
+      - generic [ref=f14e7]: Quick Add
+    - group "Select entry type" [ref=f14e8]:
+      - button "Formation" [pressed] [ref=f14e9]
+      - button "Social Apostolate" [ref=f14e14]
+      - button "Parish Involvement" [ref=f14e21]
+    - button "Add new Formation entry" [ref=f14e26]:
+      - generic [ref=f14e28]: Add Entry
+    - generic [ref=f14e29]: Synced
+  - generic [ref=f14e32]:
+    - banner [ref=f14e33]:
+      - generic [ref=f14e35]:
+        - generic [ref=f14e36]:
+          - generic [ref=f14e37]:
+            - generic [ref=f14e38]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f14e39] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f14e40]:
+            - generic "Live data from Obsidian" [ref=f14e41]: Live
+            - generic "Saved reports" [ref=f14e42]: Reports
+            - generic "Academic year archives" [ref=f14e43]: Archives
+        - navigation "Main navigation" [ref=f14e44]:
+          - menubar [ref=f14e45]:
+            - menuitem "Overview" [ref=f14e46] [cursor=pointer]
+            - menuitem "Formation" [ref=f14e48] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f14e50] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f14e52] [cursor=pointer]
+            - menuitem "Reports" [ref=f14e54] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f14e56] [cursor=pointer]
+    - main [ref=f14e58]:
+      - generic [ref=f14e59]:
+        - generic [ref=f14e61]:
+          - generic [ref=f14e62]:
+            - generic [ref=f14e63]:
+              - generic [ref=f14e64]: Formation Index Card
+              - generic [ref=f14e68]: All Time
+              - generic [ref=f14e69]: 13 record(s)
+            - heading "Formation records" [level=1] [ref=f14e70]
+          - generic [ref=f14e71]:
+            - generic [ref=f14e72]:
+              - generic [ref=f14e73]:
+                - generic [ref=f14e74]: Scope
+                - link "All Time" [ref=f14e75] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/formation
+                - link "Unsaved Only" [ref=f14e76] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/formation?scope=unsaved
+              - form "Filter by saved report" [ref=f14e77]:
+                - text: Filter by Saved Report
+                - combobox "Filter by Saved Report" [ref=f14e78]:
+                  - option "Choose a saved report…" [selected]
+                  - option "JULY '26 (RPT-20260801-152416-FBVV)"
+                  - option "JUNE '26 (RPT-20260628-155000-NGEL)"
+                  - option "MAY '26 (RPT-20260523-133015-PJFY)"
+                  - option "APRIL '26 (RPT-20260428-144236-0XY7)"
+                  - option "MARCH '26 (RPT-20260405-111211-9OYP)"
+                  - option "FEB '26 (RPT-20260331-233739-N2HN)"
+                  - option "JAN '26 (RPT-20260331-233319-FHIA)"
+                  - option "DEC '25 (RPT-20260331-232900-GN2K)"
+                  - option "NOV '25 (RPT-20260331-232717-UBDS)"
+                  - option "OCT '25 (RPT-20260331-232646-NANA)"
+                  - option "AUG '25 (RPT-20260331-232539-QYP3)"
+                  - option "SEPT '25 (RPT-20260331-231839-MMDO)"
+            - generic [ref=f14e79]:
+              - generic [ref=f14e80]: Obsidian Source File
+              - paragraph [ref=f14e81]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\FORMATION.md
+        - generic [ref=f14e82]:
+          - article [ref=f14e83]:
+            - generic [ref=f14e84]: Formation
+            - generic [ref=f14e85]:
+              - generic [ref=f14e86]: Total Entries
+              - generic [ref=f14e87]: "13"
+          - article [ref=f14e88]:
+            - generic [ref=f14e89]: Hours Served
+            - generic [ref=f14e90]:
+              - generic [ref=f14e91]: Selected Scope Total
+              - generic [ref=f14e92]: 14 hr
+          - article [ref=f14e93]:
+            - generic [ref=f14e94]: Other Indexes
+            - generic [ref=f14e95]:
+              - link "Parish Involvement 62 record(s) 99 hr" [ref=f14e96] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+                - generic [ref=f14e97]:
+                  - generic [ref=f14e98]: Parish Involvement
+                  - generic [ref=f14e99]: 62 record(s)
+                - generic [ref=f14e100]: 99 hr
+              - link "Social Apostolate 36 record(s) 54 hr" [ref=f14e101] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/social_apostolate
+                - generic [ref=f14e102]:
+                  - generic [ref=f14e103]: Social Apostolate
+                  - generic [ref=f14e104]: 36 record(s)
+                - generic [ref=f14e105]: 54 hr
+        - generic [ref=f14e106]:
+          - generic [ref=f14e107]: Profile
+          - generic [ref=f14e108]:
+            - generic [ref=f14e109]:
+              - generic [ref=f14e110]: Full Name
+              - generic [ref=f14e111]: Not set
+            - generic [ref=f14e112]:
+              - generic [ref=f14e113]: School Year
+              - generic [ref=f14e114]: 2025-2026
+            - generic [ref=f14e115]:
+              - generic [ref=f14e116]: Year Level
+              - generic [ref=f14e117]: Not set
+            - generic [ref=f14e118]:
+              - generic [ref=f14e119]: Parish
+              - generic [ref=f14e120]: Not set
+            - generic [ref=f14e121]:
+              - generic [ref=f14e122]: Diocese / Institution
+              - generic [ref=f14e123]: Not set
+            - generic [ref=f14e124]:
+              - generic [ref=f14e125]: School
+              - generic [ref=f14e126]: Not set
+            - generic [ref=f14e127]:
+              - generic [ref=f14e128]: Course
+              - generic [ref=f14e129]: Not set
+        - generic [ref=f14e130]:
+          - article [ref=f14e131]:
+            - generic [ref=f14e132]:
+              - generic [ref=f14e133]:
+                - generic [ref=f14e134]: Add Record
+                - heading "New formation entry" [level=2] [ref=f14e135]
+              - button "Add new formation entry" [ref=f14e136]:
+                - generic [ref=f14e138]: Add Entry
+          - article [ref=f14e139]:
+            - generic [ref=f14e140]:
+              - generic [ref=f14e141]:
+                - generic [ref=f14e142]: Ledger
+                - heading "All Time entries" [level=2] [ref=f14e143]
+              - generic [ref=f14e144]: 13 record(s)
+            - generic [ref=f14e145]:
+              - article [ref=f14e146]:
+                - generic [ref=f14e147]:
+                  - generic [ref=f14e148]:
+                    - generic [ref=f14e149]:
+                      - generic [ref=f14e150]: Live record
+                      - generic [ref=f14e154]: 1 hr
+                      - generic "\"Saved" [ref=f14e155]: Saved in AUG '25
+                    - generic [ref=f14e159]: C1 / M8 - Called to Be a Steward
+                    - generic [ref=f14e160]: August 1, 2025 | 3:00 PM - 4:00 PM
+                  - button "Edit C1 / M8 - Called to Be a Steward" [ref=f14e162]: Edit
+              - article [ref=f14e166]:
+                - generic [ref=f14e167]:
+                  - generic [ref=f14e168]:
+                    - generic [ref=f14e169]:
+                      - generic [ref=f14e170]: Live record
+                      - generic [ref=f14e174]: 1 hr
+                      - generic "\"Saved" [ref=f14e175]: Saved in SEPT '25
+                    - generic [ref=f14e179]: C2 / M1 - I Belong to a Family
+                    - generic [ref=f14e180]: September 21, 2025 | 3:00 PM - 4:00 PM
+                  - button "Edit C2 / M1 - I Belong to a Family" [ref=f14e182]: Edit
+              - article [ref=f14e186]:
+                - generic [ref=f14e187]:
+                  - generic [ref=f14e188]:
+                    - generic [ref=f14e189]:
+                      - generic [ref=f14e190]: Live record
+                      - generic [ref=f14e194]: 1 hr
+                      - generic "\"Saved" [ref=f14e195]: Saved in OCT '25
+                    - generic [ref=f14e199]: C2 / M2 - Honor Thy Parent
+                    - generic [ref=f14e200]: October 2, 2025 | 3:00 PM - 4:00 PM
+                  - button "Edit C2 / M2 - Honor Thy Parent" [ref=f14e202]: Edit
+              - article [ref=f14e206]:
+                - generic [ref=f14e207]:
+                  - generic [ref=f14e208]:
+                    - generic [ref=f14e209]:
+                      - generic [ref=f14e210]: Live record
+                      - generic [ref=f14e214]: 1 hr
+                      - generic "\"Saved" [ref=f14e215]: Saved in NOV '25
+                    - generic [ref=f14e219]: C2 / M3 - Celebrating Brotherhood
+                    - generic [ref=f14e220]: November 15, 2025 | 3:00 PM - 4:00 PM
+                  - button "Edit C2 / M3 - Celebrating Brotherhood" [ref=f14e222]: Edit
+              - article [ref=f14e226]:
+                - generic [ref=f14e227]:
+                  - generic [ref=f14e228]:
+                    - generic [ref=f14e229]:
+                      - generic [ref=f14e230]: Live record
+                      - generic [ref=f14e234]: 2 hr
+                      - generic "\"Saved" [ref=f14e235]: Saved in DEC '25
+                    - generic [ref=f14e239]: C2 / M4 - Jesus Is My Brother
+                    - generic [ref=f14e240]: December 7, 2025 | 2:00 PM - 4:00 PM
+                  - button "Edit C2 / M4 - Jesus Is My Brother" [ref=f14e242]: Edit
+              - article [ref=f14e246]:
+                - generic [ref=f14e247]:
+                  - generic [ref=f14e248]:
+                    - generic [ref=f14e249]:
+                      - generic [ref=f14e250]: Live record
+                      - generic [ref=f14e254]: 1 hr
+                      - generic "\"Saved" [ref=f14e255]: Saved in JAN '26
+                    - generic [ref=f14e259]: C2 / M5 - Social Justice
+                    - generic [ref=f14e260]: January 25, 2026 | 2:00 PM - 3:00 PM
+                  - button "Edit C2 / M5 - Social Justice" [ref=f14e262]: Edit
+              - article [ref=f14e266]:
+                - generic [ref=f14e267]:
+                  - generic [ref=f14e268]:
+                    - generic [ref=f14e269]:
+                      - generic [ref=f14e270]: Live record
+                      - generic [ref=f14e274]: 1 hr
+                      - generic "\"Saved" [ref=f14e275]: Saved in FEB '26
+                    - generic [ref=f14e279]: C2 / M6 - Reaching out and touching lives
+                    - generic [ref=f14e280]: February 1, 2026 | 3:00 PM - 4:00 PM
+                  - button "Edit C2 / M6 - Reaching out and touching lives" [ref=f14e282]: Edit
+              - article [ref=f14e286]:
+                - generic [ref=f14e287]:
+                  - generic [ref=f14e288]:
+                    - generic [ref=f14e289]:
+                      - generic [ref=f14e290]: Live record
+                      - generic [ref=f14e294]: 1 hr
+                      - generic "\"Saved" [ref=f14e295]: Saved in MARCH '26
+                    - generic [ref=f14e299]: C2 / M7 - Servanthood a way of life
+                    - generic [ref=f14e300]: March 21, 2026 | 1:00 PM - 2:00 PM
+                  - button "Edit C2 / M7 - Servanthood a way of life" [ref=f14e302]: Edit
+              - article [ref=f14e306]:
+                - generic [ref=f14e307]:
+                  - generic [ref=f14e308]:
+                    - generic [ref=f14e309]:
+                      - generic [ref=f14e310]: Live record
+                      - generic [ref=f14e314]: 1 hr
+                      - generic "\"Saved" [ref=f14e315]: Saved in APRIL '26
+                    - generic [ref=f14e319]: C2 / M8 - Linking others to God
+                    - generic [ref=f14e320]: April 1, 2026 | 3:00 PM - 4:00 PM
+                  - button "Edit C2 / M8 - Linking others to God" [ref=f14e322]: Edit
+              - article [ref=f14e326]:
+                - generic [ref=f14e327]:
+                  - generic [ref=f14e328]:
+                    - generic [ref=f14e329]:
+                      - generic [ref=f14e330]: Live record
+                      - generic [ref=f14e334]: 1 hr
+                      - generic "\"Saved" [ref=f14e335]: Saved in MAY '26
+                    - generic [ref=f14e339]: C0 / M0 - WALA NG MODULE/CYCLE
+                    - generic [ref=f14e340]: May 23, 2026 | 2:00 PM - 3:00 PM
+                  - button "Edit C0 / M0 - WALA NG MODULE/CYCLE" [ref=f14e342]: Edit
+              - article [ref=f14e346]:
+                - generic [ref=f14e347]:
+                  - generic [ref=f14e348]:
+                    - generic [ref=f14e349]:
+                      - generic [ref=f14e350]: Live record
+                      - generic [ref=f14e354]: 1 hr
+                      - generic "\"Saved" [ref=f14e355]: Saved in JUNE '26
+                    - generic [ref=f14e359]: C2 / M9 - Becoming Your Best Self
+                    - generic [ref=f14e360]: June 21, 2026 | 2:00 PM - 3:00 PM
+                  - button "Edit C2 / M9 - Becoming Your Best Self" [ref=f14e362]: Edit
+              - article [ref=f14e366]:
+                - generic [ref=f14e367]:
+                  - generic [ref=f14e368]:
+                    - generic [ref=f14e369]:
+                      - generic [ref=f14e370]: Live record
+                      - generic [ref=f14e374]: 1 hr
+                      - generic "\"Saved" [ref=f14e375]: Saved in JULY '26
+                    - generic [ref=f14e379]: C2 / M7 - what is my personal strength
+                    - generic [ref=f14e380]: July 19, 2026 | 2:00 PM - 3:00 PM
+                  - button "Edit C2 / M7 - what is my personal strength" [ref=f14e382]: Edit
+              - article [ref=f14e386]:
+                - generic [ref=f14e387]:
+                  - generic [ref=f14e388]:
+                    - generic [ref=f14e389]:
+                      - generic [ref=f14e390]: Live record
+                      - generic [ref=f14e394]: 1 hr
+                    - generic [ref=f14e395]: C3 / M1 - Brotherly love
+                    - generic [ref=f14e396]: August 16, 2026 | 3:00 PM - 4:00 PM
+                  - button "Edit C3 / M1 - Brotherly love" [ref=f14e398]: Edit

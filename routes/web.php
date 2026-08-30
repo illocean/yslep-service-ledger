@@ -27,4 +27,10 @@ Route::delete('/academic-year-snapshots/{academicYearSnapshot}', [AcademicYearSn
 Route::post('/entries', [ObsidianSyncController::class, 'store'])->name('entries.store');
 Route::patch('/entries/{entry}', [ObsidianSyncController::class, 'update'])->whereNumber('entry')->name('entries.update');
 Route::delete('/entries/{entry}', [ObsidianSyncController::class, 'destroy'])->whereNumber('entry')->name('entries.destroy');
+Route::post('/entries/{entry}/conflict/accept-vault', [ObsidianSyncController::class, 'acceptVault'])->whereNumber('entry')->name('entries.conflict.accept-vault');
+Route::post('/entries/{entry}/conflict/accept-db', [ObsidianSyncController::class, 'acceptDb'])->whereNumber('entry')->name('entries.conflict.accept-db');
+Route::post('/entries/{entry}/conflict/merge', [ObsidianSyncController::class, 'merge'])->whereNumber('entry')->name('entries.conflict.merge');
+Route::post('/reports/{reportGroup}/records/{reportGroupItem}/conflict/accept-vault', [ReportGroupItemController::class, 'acceptVault'])->whereNumber('reportGroupItem')->name('reports.records.conflict.accept-vault');
+Route::post('/reports/{reportGroup}/records/{reportGroupItem}/conflict/accept-db', [ReportGroupItemController::class, 'acceptDb'])->whereNumber('reportGroupItem')->name('reports.records.conflict.accept-db');
+Route::post('/reports/{reportGroup}/records/{reportGroupItem}/conflict/merge', [ReportGroupItemController::class, 'merge'])->whereNumber('reportGroupItem')->name('reports.records.conflict.merge');
 Route::post('/report-groups', [ReportGroupController::class, 'store'])->name('report-groups.store');

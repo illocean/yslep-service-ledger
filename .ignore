@@ -1,0 +1,3 @@
+# Deepwork session tracking - allow these files for gitignore but ignore for search
+!.slim/deepwork/
+!.slim/deepwork/**

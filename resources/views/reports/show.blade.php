@@ -13,6 +13,13 @@
                     {{ $reportGroup->title ?: 'Untitled Report' }}
                 </h1>
                 <div class="font-mono text-xs text-stone-600">Tag: {{ $reportGroup->tag }}</div>
+
+                @if ($archivedInSnapshot)
+                    <div class="assignment-chip assignment-chip--complete mt-3" title="This report is already part of an academic-year snapshot">
+                        <span class="assignment-chip__dot" aria-hidden="true"></span>
+                        <span>Archived in {{ $archivedInSnapshot->compact_label }}</span>
+                    </div>
+                @endif
             </div>
 
             <div class="paper-panel rounded-card p-4">
@@ -31,6 +38,19 @@
                         <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
                     </div>
                 </div>
+
+                @if (! $archivedInSnapshot)
+                    <a href="{{ route('academic-year-snapshots.index', ['prefill' => $reportGroup->id]) }}" class="primary-button mt-4 w-full justify-center">
+                        Archive this report
+                    </a>
+                    <p class="mt-2 text-[0.72rem] uppercase tracking-[0.16em] text-stone-600">
+                        Jump to the snapshot builder with this report pre-selected.
+                    </p>
+                @else
+                    <a href="{{ route('academic-year-snapshots.show', $archivedInSnapshot) }}" class="secondary-button mt-4 w-full justify-center">
+                        Open snapshot
+                    </a>
+                @endif
             </div>
         </div>
     </section>
@@ -184,6 +204,13 @@
                                             <span>Saved record · {{ $type->label() }}</span>
                                         </span>
                                         <span class="compact-pill">{{ $item->duration_label }}</span>
+
+                                        @if ($item->obsidian_conflict)
+                                            <span class="assignment-chip assignment-chip--conflict" title="Conflict detected: both Obsidian and database have changes since last sync">
+                                                <span class="assignment-chip__dot" aria-hidden="true"></span>
+                                                <span>Conflict</span>
+                                            </span>
+                                        @endif
                                     </div>
 
                                     <div class="text-lg font-semibold text-stone-900">
@@ -263,6 +290,26 @@
                                     </button>
                                 </div>
                             </form>
+
+                            @if ($item->obsidian_conflict)
+                                <div class="mt-3 p-3 rounded-cell border border-stone-900/10 bg-amber-50/70">
+                                    <p class="text-sm text-stone-700">This record has a conflict: both Obsidian and the database have changes since the last sync.</p>
+                                    <div class="mt-2 flex flex-wrap gap-2">
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-vault', [$reportGroup, $item]) }}" class="inline">
+                                            @csrf
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Accept the Obsidian version and overwrite database changes">
+                                                Accept Vault Version
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-db', [$reportGroup, $item]) }}" class="inline">
+                                            @csrf
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Keep the database version and write it to Obsidian">
+                                                Accept Database Version
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
 
                             <form method="POST" action="{{ route('reports.records.destroy', [$reportGroup, $item]) }}" class="mt-3 flex justify-end">
                                 @csrf

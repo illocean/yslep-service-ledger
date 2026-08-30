@@ -10,6 +10,7 @@ use App\Services\AcademicYearSnapshotService;
 use App\Services\ObsidianSyncService;
 use App\Services\ReportGroupService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AcademicYearSnapshotController extends Controller
@@ -17,6 +18,7 @@ class AcademicYearSnapshotController extends Controller
     use BuildsReportScopeData;
 
     public function index(
+        Request $request,
         AcademicYearSnapshotService $snapshotService,
         ReportGroupService $reportGroupService,
     ): View {
@@ -36,12 +38,23 @@ class AcademicYearSnapshotController extends Controller
             })
             ->values();
 
+        $prefilledReportGroupIds = collect(old('selected_report_groups', []))
+            ->map(fn ($id) => (int) $id)
+            ->merge(
+                collect(explode(',', (string) $request->query('prefill', '')))
+                    ->map(fn ($id) => (int) trim($id))
+                    ->filter(fn (int $id) => $id > 0)
+            )
+            ->unique()
+            ->values();
+
         return view('academic-year-snapshots.index', [
             'reportGroups' => $reportGroups,
             'availableReportGroups' => $availableReportGroups,
             'archivedReportGroups' => $archivedReportGroups,
             'snapshots' => $snapshots,
             'snapshotFilePath' => $snapshotService->snapshotPath(),
+            'prefilledReportGroupIds' => $prefilledReportGroupIds,
         ]);
     }
 

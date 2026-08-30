@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "active_work_id": "ui-ux-audit-76c8b147",
+  "works": {
+    "ui-ux-audit-76c8b147": {
+      "work_id": "ui-ux-audit-76c8b147",
+      "active_plan": "C:\\.anyThing\\YSLEP\\laravel\\.omo\\plans\\ui-ux-audit.md",
+      "plan_name": "ui-ux-audit",
+      "status": "completed",
+      "started_at": "2026-08-02T13:10:50.748Z",
+      "updated_at": "2026-08-02T15:04:15.532Z",
+      "session_ids": [
+        "opencode:ses_03d80d1b8ffeqjKhWhlnyYeW8u"
+      ],
+      "session_origins": {
+        "opencode:ses_03d80d1b8ffeqjKhWhlnyYeW8u": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "`resources/css/app.css`: Fix label/kicker contrast — set `.section-kicker { color: var(--ledger-accent-ink) }` (add `--ledger-accent-ink: #9c3a1a` to `:root`), add `--ledger-accent-ink` near L20, leave `--ledger-accent: #c94d24` for decorative borders/chips only (e.g. dashboard L65 `border-[color:var(--ledger-accent)]`, reports/show L55). References: app.css L16-23, L118-125. Acceptance: `.section-kicker` resolves to #9c3a1a; grep `ledger-accent-ink` ≥1. QA happy: computed contrast ≥4.5:1 (record value). QA failure: `text-stone-500` still present in views (see todo 2) → contrast stays broken → fix before commit. Commit: `style: fix kicker contrast on cream palette`.",
+          "session_id": "opencode:ses_03d63cd81ffeunTkNUh6dl0W5N",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-08-02T13:16:29.394Z",
+          "started_at": "2026-08-02T13:14:33.365Z",
+          "status": "completed",
+          "ended_at": "2026-08-02T13:16:29.394Z",
+          "elapsed_ms": 116029
+        },
+        "todo:2": {
+          "task_key": "todo:2",
+          "task_label": "2",
+          "task_title": "All content views (`dashboard.blade.php`, `indexes/show.blade.php`, `reports/index.blade.php`, `reports/show.blade.php`, `academic-year-snapshots/index.blade.php`, `academic-year-snapshots/show.blade.php`): sweep `text-stone-500` → `text-stone-600` (#57534e, 6.6:1 on cream; also passes on white cards). Exact instances: dashboard L54, L58, L68, L112, L152, L213-214; indexes/show L100, L152, L213-214; reports/index L87; reports/show L15, L204, L218; snapshots/index L114, L160; snapshots/show — none, verify. Do NOT change `text-stone-600` occurrences (already compliant). Acceptance: grep `text-stone-500` across `resources/views` = 0. QA happy: computed contrast of #57534e on #f5ede0 ≥4.5:1. QA failure: any remaining `text-stone-500` → revert check. Commit: `style: bump muted text contrast to AA on cream`.",
+          "session_id": "opencode:ses_03d6096a2ffeJEPwcG0kUsbQ1H",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-08-02T13:21:26.994Z",
+          "started_at": "2026-08-02T13:18:55.984Z",
+          "status": "completed",
+          "ended_at": "2026-08-02T13:21:26.994Z",
+          "elapsed_ms": 151010
+        },
+        "todo:3": {
+          "task_key": "todo:3",
+          "task_label": "3",
+          "task_title": "`resources/css/app.css`: add focus-visible rings — `.report-checkbox:focus-visible { outline: 2px solid var(--ledger-accent-ink); outline-offset: 2px; }`, `select.form-input:focus-visible` (reuse existing form-input ring, add `select` selector to L152 rule), `details > summary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(156,58,26,0.35); border-radius: inherit; }`. References: app.css L152-157, L447-455. Acceptance: `:focus-visible` selectors exist for checkbox, select, summary. QA happy (Playwright): Tab through `indexes/show` — every control shows a visible ring on cream. QA failure: summary focus invisible (UA ring suppressed) → ring must appear. Commit: `style: focus-visible rings for accordions, checkbox, select`.",
+          "session_id": "opencode:ses_03d5a23b7ffe05vlh7qnCcK1fP",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-08-02T13:26:43.930Z",
+          "started_at": "2026-08-02T13:25:19.555Z",
+          "status": "completed",
+          "ended_at": "2026-08-02T13:26:43.930Z",
+          "elapsed_ms": 84375
+        },
+        "todo:4": {
+          "task_key": "todo:4",
+          "task_label": "4",
+          "task_title": "`resources/views/academic-year-snapshots/show.blade.php`: add persistent archive-mode banner directly under the hero section (after L44): a `role=\"status\"` strip inside a `paper-panel`-style box — left: `section-kicker` text \"Academic Year Archive\" + a stone-colored chip (reuse `.header-status__chip--archive` visual language: `#57534e` dot), copy: \"Read-only archive — edits happen in live records, saved reports, or a new snapshot. Records here cannot be changed in place.\" Also mute the table containers: L120 `bg-white/80` → `bg-stone-100/70`, header `bg-stone-950/[0.03]` → `bg-stone-900/[0.04]` (subtle, keeps paper tone). Acceptance: banner text + archive chip render only on this view; contrast of banner body ≥4.5:1. QA happy: snapshot show → banner visible, live views (dashboard, indexes/show, reports/*) → no banner. QA failure: banner appears on reports.show → scoping bug → fix selector. Commit: `style: persistent archive-mode indicator on snapshot view`.",
+          "session_id": "opencode:ses_03d56832affexjlt6cXi1jnyIl",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-08-02T13:30:43.509Z",
+          "started_at": "2026-08-02T13:29:19.568Z",
+          "status": "completed",
+          "ended_at": "2026-08-02T13:30:43.509Z",
+          "elapsed_ms": 83941
+        }
+      },
+      "ended_at": "2026-08-02T15:04:15.532Z",
+      "elapsed_ms": 6804784
+    }
+  },
+  "active_plan": "C:\\.anyThing\\YSLEP\\laravel\\.omo\\plans\\ui-ux-audit.md",
+  "started_at": "2026-08-02T13:10:50.748Z",
+  "status": "completed",
+  "updated_at": "2026-08-02T15:04:15.532Z",
+  "session_ids": [
+    "opencode:ses_03d80d1b8ffeqjKhWhlnyYeW8u"
+  ],
+  "session_origins": {
+    "opencode:ses_03d80d1b8ffeqjKhWhlnyYeW8u": "direct"
+  },
+  "plan_name": "ui-ux-audit",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "`resources/css/app.css`: Fix label/kicker contrast — set `.section-kicker { color: var(--ledger-accent-ink) }` (add `--ledger-accent-ink: #9c3a1a` to `:root`), add `--ledger-accent-ink` near L20, leave `--ledger-accent: #c94d24` for decorative borders/chips only (e.g. dashboard L65 `border-[color:var(--ledger-accent)]`, reports/show L55). References: app.css L16-23, L118-125. Acceptance: `.section-kicker` resolves to #9c3a1a; grep `ledger-accent-ink` ≥1. QA happy: computed contrast ≥4.5:1 (record value). QA failure: `text-stone-500` still present in views (see todo 2) → contrast stays broken → fix before commit. Commit: `style: fix kicker contrast on cream palette`.",
+      "session_id": "opencode:ses_03d63cd81ffeunTkNUh6dl0W5N",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-08-02T13:16:29.394Z",
+      "started_at": "2026-08-02T13:14:33.365Z",
+      "status": "completed",
+      "ended_at": "2026-08-02T13:16:29.394Z",
+      "elapsed_ms": 116029
+    },
+    "todo:2": {
+      "task_key": "todo:2",
+      "task_label": "2",
+      "task_title": "All content views (`dashboard.blade.php`, `indexes/show.blade.php`, `reports/index.blade.php`, `reports/show.blade.php`, `academic-year-snapshots/index.blade.php`, `academic-year-snapshots/show.blade.php`): sweep `text-stone-500` → `text-stone-600` (#57534e, 6.6:1 on cream; also passes on white cards). Exact instances: dashboard L54, L58, L68, L112, L152, L213-214; indexes/show L100, L152, L213-214; reports/index L87; reports/show L15, L204, L218; snapshots/index L114, L160; snapshots/show — none, verify. Do NOT change `text-stone-600` occurrences (already compliant). Acceptance: grep `text-stone-500` across `resources/views` = 0. QA happy: computed contrast of #57534e on #f5ede0 ≥4.5:1. QA failure: any remaining `text-stone-500` → revert check. Commit: `style: bump muted text contrast to AA on cream`.",
+      "session_id": "opencode:ses_03d6096a2ffeJEPwcG0kUsbQ1H",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-08-02T13:21:26.994Z",
+      "started_at": "2026-08-02T13:18:55.984Z",
+      "status": "completed",
+      "ended_at": "2026-08-02T13:21:26.994Z",
+      "elapsed_ms": 151010
+    },
+    "todo:3": {
+      "task_key": "todo:3",
+      "task_label": "3",
+      "task_title": "`resources/css/app.css`: add focus-visible rings — `.report-checkbox:focus-visible { outline: 2px solid var(--ledger-accent-ink); outline-offset: 2px; }`, `select.form-input:focus-visible` (reuse existing form-input ring, add `select` selector to L152 rule), `details > summary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(156,58,26,0.35); border-radius: inherit; }`. References: app.css L152-157, L447-455. Acceptance: `:focus-visible` selectors exist for checkbox, select, summary. QA happy (Playwright): Tab through `indexes/show` — every control shows a visible ring on cream. QA failure: summary focus invisible (UA ring suppressed) → ring must appear. Commit: `style: focus-visible rings for accordions, checkbox, select`.",
+      "session_id": "opencode:ses_03d5a23b7ffe05vlh7qnCcK1fP",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-08-02T13:26:43.930Z",
+      "started_at": "2026-08-02T13:25:19.555Z",
+      "status": "completed",
+      "ended_at": "2026-08-02T13:26:43.930Z",
+      "elapsed_ms": 84375
+    },
+    "todo:4": {
+      "task_key": "todo:4",
+      "task_label": "4",
+      "task_title": "`resources/views/academic-year-snapshots/show.blade.php`: add persistent archive-mode banner directly under the hero section (after L44): a `role=\"status\"` strip inside a `paper-panel`-style box — left: `section-kicker` text \"Academic Year Archive\" + a stone-colored chip (reuse `.header-status__chip--archive` visual language: `#57534e` dot), copy: \"Read-only archive — edits happen in live records, saved reports, or a new snapshot. Records here cannot be changed in place.\" Also mute the table containers: L120 `bg-white/80` → `bg-stone-100/70`, header `bg-stone-950/[0.03]` → `bg-stone-900/[0.04]` (subtle, keeps paper tone). Acceptance: banner text + archive chip render only on this view; contrast of banner body ≥4.5:1. QA happy: snapshot show → banner visible, live views (dashboard, indexes/show, reports/*) → no banner. QA failure: banner appears on reports.show → scoping bug → fix selector. Commit: `style: persistent archive-mode indicator on snapshot view`.",
+      "session_id": "opencode:ses_03d56832affexjlt6cXi1jnyIl",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-08-02T13:30:43.509Z",
+      "started_at": "2026-08-02T13:29:19.568Z",
+      "status": "completed",
+      "ended_at": "2026-08-02T13:30:43.509Z",
+      "elapsed_ms": 83941
+    }
+  },
+  "agent": "atlas",
+  "ended_at": "2026-08-02T15:04:15.532Z",
+  "elapsed_ms": 6804784
+}

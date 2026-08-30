@@ -1,0 +1,270 @@
+- generic [active] [ref=f20e1]:
+  - link "Skip to Content" [ref=f20e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f20e3]:
+    - generic [ref=f20e4]:
+      - generic [ref=f20e5]: ⌘
+      - generic [ref=f20e6]: K
+      - generic [ref=f20e7]: Quick Add
+    - group "Select entry type" [ref=f20e8]:
+      - button "Formation" [pressed] [ref=f20e9]
+      - button "Social Apostolate" [ref=f20e14]
+      - button "Parish Involvement" [ref=f20e21]
+    - button "Add new Formation entry" [ref=f20e26]:
+      - generic [ref=f20e28]: Add Entry
+    - generic [ref=f20e29]: Synced
+  - generic [ref=f20e32]:
+    - banner [ref=f20e33]:
+      - generic [ref=f20e35]:
+        - generic [ref=f20e36]:
+          - generic [ref=f20e37]:
+            - generic [ref=f20e38]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f20e39] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f20e40]:
+            - generic "Live data from Obsidian" [ref=f20e41]: Live
+            - generic "Saved reports" [ref=f20e42]: Reports
+            - generic "Academic year archives" [ref=f20e43]: Archives
+        - navigation "Main navigation" [ref=f20e44]:
+          - menubar [ref=f20e45]:
+            - menuitem "Overview" [ref=f20e46] [cursor=pointer]
+            - menuitem "Formation" [ref=f20e48] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f20e50] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f20e52] [cursor=pointer]
+            - menuitem "Reports" [ref=f20e54] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f20e56] [cursor=pointer]
+    - main [ref=f20e58]:
+      - generic [ref=f20e59]:
+        - generic [ref=f20e61]:
+          - generic [ref=f20e62]:
+            - generic [ref=f20e63]: Saved Report
+            - heading "JULY '26" [level=1] [ref=f20e64]
+            - generic [ref=f20e65]: "Tag: RPT-20260801-152416-FBVV"
+            - generic "This report is already part of an academic-year snapshot" [ref=f20e66]: Archived in Test AY 2025-2026
+          - generic [ref=f20e69]:
+            - generic [ref=f20e70]: Totals
+            - generic [ref=f20e71]:
+              - generic [ref=f20e72]:
+                - generic [ref=f20e73]: Created
+                - generic [ref=f20e74]: August 1, 2026 3:24 PM
+              - generic [ref=f20e75]:
+                - generic [ref=f20e76]: Records
+                - generic [ref=f20e77]: "9"
+              - generic [ref=f20e78]:
+                - generic [ref=f20e79]: Hours
+                - generic [ref=f20e80]: 17 hr
+            - link "Open snapshot" [ref=f20e81] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-165649-VFRW
+        - generic [ref=f20e82]:
+          - article [ref=f20e83]:
+            - generic [ref=f20e84]: Formation
+            - generic [ref=f20e85]:
+              - generic [ref=f20e86]:
+                - generic [ref=f20e87]: Count
+                - generic [ref=f20e88]: "01"
+              - generic [ref=f20e89]:
+                - generic [ref=f20e90]: Hours
+                - generic [ref=f20e91]: 1 hr
+          - article [ref=f20e92]:
+            - generic [ref=f20e93]: Parish Involvement
+            - generic [ref=f20e94]:
+              - generic [ref=f20e95]:
+                - generic [ref=f20e96]: Count
+                - generic [ref=f20e97]: "05"
+              - generic [ref=f20e98]:
+                - generic [ref=f20e99]: Hours
+                - generic [ref=f20e100]: 10 hr
+          - article [ref=f20e101]:
+            - generic [ref=f20e102]: Social Apostolate
+            - generic [ref=f20e103]:
+              - generic [ref=f20e104]:
+                - generic [ref=f20e105]: Count
+                - generic [ref=f20e106]: "03"
+              - generic [ref=f20e107]:
+                - generic [ref=f20e108]: Hours
+                - generic [ref=f20e109]: 6 hr
+          - article [ref=f20e110]:
+            - generic [ref=f20e111]: Grand Total
+            - generic [ref=f20e112]:
+              - generic [ref=f20e113]: Combined hours across all three indexes
+              - generic [ref=f20e114]: 17 hr
+        - generic [ref=f20e115]:
+          - article [ref=f20e116]:
+            - generic [ref=f20e117]: Rename
+            - heading "Report title" [level=2] [ref=f20e118]
+            - generic [ref=f20e119]:
+              - textbox "Leave blank to show only the tag" [ref=f20e121]: JULY '26
+              - button "Save Changes" [ref=f20e122]
+          - article [ref=f20e123]:
+            - generic [ref=f20e124]:
+              - generic [ref=f20e125]:
+                - generic [ref=f20e126]: Sync
+                - heading "Pull edits from Obsidian" [level=2] [ref=f20e127]
+                - button "Sync from Obsidian" [ref=f20e129]
+              - generic [ref=f20e130]:
+                - generic [ref=f20e131]: Danger Zone
+                - paragraph [ref=f20e132]: This removes record notes and frees entries for reuse.
+                - button "Delete Report" [ref=f20e134]
+        - generic [ref=f20e135]:
+          - article [ref=f20e136]:
+            - generic [ref=f20e137]:
+              - generic [ref=f20e138]:
+                - generic [ref=f20e139]: Formation Index Card
+                - heading "Formation" [level=2] [ref=f20e140]
+              - generic [ref=f20e141]: 1 record(s)
+            - generic [ref=f20e142]:
+              - generic [ref=f20e143]:
+                - generic [ref=f20e144]:
+                  - text: Date
+                  - textbox "Date" [ref=f20e145]
+                - generic [ref=f20e146]:
+                  - text: Cycle No.
+                  - textbox "Cycle No." [ref=f20e147]:
+                    - /placeholder: C1
+                - generic [ref=f20e148]:
+                  - text: Module
+                  - textbox "Module" [ref=f20e149]:
+                    - /placeholder: M1
+                - generic [ref=f20e150]:
+                  - text: Title
+                  - textbox "Title" [ref=f20e151]:
+                    - /placeholder: Formation Session
+                - generic [ref=f20e152]:
+                  - text: Time in
+                  - textbox "Time in" [ref=f20e153]
+                - generic [ref=f20e154]:
+                  - text: Time out
+                  - textbox "Time out" [ref=f20e155]
+              - button "Add Record" [ref=f20e157]
+            - group [ref=f20e159]:
+              - generic "Saved record · Formation 1 hr C2 / M7 - what is my personal strength July 19, 2026 | 2:00 PM - 3:00 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\formation-53c5dbc8-9744-4a3d-a0ae-b96ed9fd1a75.md Edit details" [ref=f20e160] [cursor=pointer]:
+                - generic [ref=f20e161]:
+                  - generic [ref=f20e162]:
+                    - generic [ref=f20e163]: Saved record · Formation
+                    - generic [ref=f20e166]: 1 hr
+                  - generic [ref=f20e167]: C2 / M7 - what is my personal strength
+                  - generic [ref=f20e168]: July 19, 2026 | 2:00 PM - 3:00 PM
+                  - generic [ref=f20e169]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\formation-53c5dbc8-9744-4a3d-a0ae-b96ed9fd1a75.md
+                - generic [ref=f20e170]: Edit details
+          - article [ref=f20e174]:
+            - generic [ref=f20e175]:
+              - generic [ref=f20e176]:
+                - generic [ref=f20e177]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=f20e178]
+              - generic [ref=f20e179]: 5 record(s)
+            - generic [ref=f20e180]:
+              - generic [ref=f20e181]:
+                - generic [ref=f20e182]:
+                  - text: Date
+                  - textbox "Date" [ref=f20e183]
+                - generic [ref=f20e184]:
+                  - text: Time in
+                  - textbox "Time in" [ref=f20e185]
+                - generic [ref=f20e186]:
+                  - text: Time out
+                  - textbox "Time out" [ref=f20e187]
+              - button "Add Record" [ref=f20e189]
+            - generic [ref=f20e190]:
+              - group [ref=f20e191]:
+                - generic "Saved record · Parish Involvement 2 hr Parish Involvement July 4, 2026 | 6:30 PM - 8:30 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\parish-involvement-cbd38ba6-2c4a-4701-adc5-5058c56bb1cf.md Edit details" [ref=f20e192] [cursor=pointer]:
+                  - generic [ref=f20e193]:
+                    - generic [ref=f20e194]:
+                      - generic [ref=f20e195]: Saved record · Parish Involvement
+                      - generic [ref=f20e198]: 2 hr
+                    - generic [ref=f20e199]: Parish Involvement
+                    - generic [ref=f20e200]: July 4, 2026 | 6:30 PM - 8:30 PM
+                    - generic [ref=f20e201]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\parish-involvement-cbd38ba6-2c4a-4701-adc5-5058c56bb1cf.md
+                  - generic [ref=f20e202]: Edit details
+              - group [ref=f20e206]:
+                - generic "Saved record · Parish Involvement 2 hr Parish Involvement July 12, 2026 | 8:00 AM - 10:00 AM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\parish-involvement-4808e17c-0ea8-4b72-887e-c5b519a3b823.md Edit details" [ref=f20e207] [cursor=pointer]:
+                  - generic [ref=f20e208]:
+                    - generic [ref=f20e209]:
+                      - generic [ref=f20e210]: Saved record · Parish Involvement
+                      - generic [ref=f20e213]: 2 hr
+                    - generic [ref=f20e214]: Parish Involvement
+                    - generic [ref=f20e215]: July 12, 2026 | 8:00 AM - 10:00 AM
+                    - generic [ref=f20e216]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\parish-involvement-4808e17c-0ea8-4b72-887e-c5b519a3b823.md
+                  - generic [ref=f20e217]: Edit details
+              - group [ref=f20e221]:
+                - generic "Saved record · Parish Involvement 2 hr Parish Involvement July 18, 2026 | 6:30 PM - 8:30 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\parish-involvement-6efb06f7-37cc-48c4-96dc-6931e4593c2a.md Edit details" [ref=f20e222] [cursor=pointer]:
+                  - generic [ref=f20e223]:
+                    - generic [ref=f20e224]:
+                      - generic [ref=f20e225]: Saved record · Parish Involvement
+                      - generic [ref=f20e228]: 2 hr
+                    - generic [ref=f20e229]: Parish Involvement
+                    - generic [ref=f20e230]: July 18, 2026 | 6:30 PM - 8:30 PM
+                    - generic [ref=f20e231]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\parish-involvement-6efb06f7-37cc-48c4-96dc-6931e4593c2a.md
+                  - generic [ref=f20e232]: Edit details
+              - group [ref=f20e236]:
+                - generic "Saved record · Parish Involvement 2 hr Parish Involvement July 26, 2026 | 6:00 AM - 8:00 AM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\parish-involvement-7f02828b-74eb-49bd-a1f4-167552591911.md Edit details" [ref=f20e237] [cursor=pointer]:
+                  - generic [ref=f20e238]:
+                    - generic [ref=f20e239]:
+                      - generic [ref=f20e240]: Saved record · Parish Involvement
+                      - generic [ref=f20e243]: 2 hr
+                    - generic [ref=f20e244]: Parish Involvement
+                    - generic [ref=f20e245]: July 26, 2026 | 6:00 AM - 8:00 AM
+                    - generic [ref=f20e246]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\parish-involvement-7f02828b-74eb-49bd-a1f4-167552591911.md
+                  - generic [ref=f20e247]: Edit details
+              - group [ref=f20e251]:
+                - generic "Saved record · Parish Involvement 2 hr Parish Involvement August 1, 2026 | 6:30 PM - 8:30 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\parish-involvement-a3cf2e0a-aa08-4d1d-9844-2e2701f6ab47.md Edit details" [ref=f20e252] [cursor=pointer]:
+                  - generic [ref=f20e253]:
+                    - generic [ref=f20e254]:
+                      - generic [ref=f20e255]: Saved record · Parish Involvement
+                      - generic [ref=f20e258]: 2 hr
+                    - generic [ref=f20e259]: Parish Involvement
+                    - generic [ref=f20e260]: August 1, 2026 | 6:30 PM - 8:30 PM
+                    - generic [ref=f20e261]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\parish-involvement-a3cf2e0a-aa08-4d1d-9844-2e2701f6ab47.md
+                  - generic [ref=f20e262]: Edit details
+          - article [ref=f20e266]:
+            - generic [ref=f20e267]:
+              - generic [ref=f20e268]:
+                - generic [ref=f20e269]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=f20e270]
+              - generic [ref=f20e271]: 3 record(s)
+            - generic [ref=f20e272]:
+              - generic [ref=f20e273]:
+                - generic [ref=f20e274]:
+                  - text: Date
+                  - textbox "Date" [ref=f20e275]
+                - generic [ref=f20e276]:
+                  - text: Activity
+                  - textbox "Activity" [ref=f20e277]:
+                    - /placeholder: Service activity
+                - generic [ref=f20e278]:
+                  - text: Time in
+                  - textbox "Time in" [ref=f20e279]
+                - generic [ref=f20e280]:
+                  - text: Time out
+                  - textbox "Time out" [ref=f20e281]
+              - button "Add Record" [ref=f20e283]
+            - generic [ref=f20e284]:
+              - group [ref=f20e285]:
+                - generic "Saved record · Social Apostolate 2 hr Creating SocCom slides July 9, 2026 | 7:00 AM - 9:00 AM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\social-apostolate-9b92f2cf-d5cb-4856-8ff3-3ee8a90ce14b.md Edit details" [ref=f20e286] [cursor=pointer]:
+                  - generic [ref=f20e287]:
+                    - generic [ref=f20e288]:
+                      - generic [ref=f20e289]: Saved record · Social Apostolate
+                      - generic [ref=f20e292]: 2 hr
+                    - generic [ref=f20e293]: Creating SocCom slides
+                    - generic [ref=f20e294]: July 9, 2026 | 7:00 AM - 9:00 AM
+                    - generic [ref=f20e295]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\social-apostolate-9b92f2cf-d5cb-4856-8ff3-3ee8a90ce14b.md
+                  - generic [ref=f20e296]: Edit details
+              - group [ref=f20e300]:
+                - generic "Saved record · Social Apostolate 2 hr Creating SocCom slides July 23, 2026 | 4:00 PM - 6:00 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\social-apostolate-c9458080-d254-4f1f-a606-647264fb9614.md Edit details" [ref=f20e301] [cursor=pointer]:
+                  - generic [ref=f20e302]:
+                    - generic [ref=f20e303]:
+                      - generic [ref=f20e304]: Saved record · Social Apostolate
+                      - generic [ref=f20e307]: 2 hr
+                    - generic [ref=f20e308]: Creating SocCom slides
+                    - generic [ref=f20e309]: July 23, 2026 | 4:00 PM - 6:00 PM
+                    - generic [ref=f20e310]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\social-apostolate-c9458080-d254-4f1f-a606-647264fb9614.md
+                  - generic [ref=f20e311]: Edit details
+              - group [ref=f20e315]:
+                - generic "Saved record · Social Apostolate 2 hr Helped with the documents August 2, 2026 | 10:00 AM - 12:00 PM C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\\REPORTS\\RPT-20260801-152416-FBVV\\records\\social-apostolate-1167481a-ac35-49bc-837a-0b0c90214b5f.md Edit details" [ref=f20e316] [cursor=pointer]:
+                  - generic [ref=f20e317]:
+                    - generic [ref=f20e318]:
+                      - generic [ref=f20e319]: Saved record · Social Apostolate
+                      - generic [ref=f20e322]: 2 hr
+                    - generic [ref=f20e323]: Helped with the documents
+                    - generic [ref=f20e324]: August 2, 2026 | 10:00 AM - 12:00 PM
+                    - generic [ref=f20e325]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\REPORTS\RPT-20260801-152416-FBVV\records\social-apostolate-1167481a-ac35-49bc-837a-0b0c90214b5f.md
+                  - generic [ref=f20e326]: Edit details

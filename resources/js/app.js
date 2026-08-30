@@ -82,4 +82,61 @@ document.addEventListener('DOMContentLoaded', () => {
             event.returnValue = '';
         }
     });
+
+    const menubar = document.querySelector('[role="menubar"]');
+
+    if (menubar) {
+        const items = Array.from(menubar.querySelectorAll('[role="menuitem"]'));
+
+        menubar.addEventListener('keydown', (event) => {
+            const currentIndex = items.indexOf(document.activeElement);
+
+            switch (event.key) {
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    event.preventDefault();
+                    items[(currentIndex + 1) % items.length]?.focus();
+                    break;
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    event.preventDefault();
+                    items[(currentIndex - 1 + items.length) % items.length]?.focus();
+                    break;
+                case 'Home':
+                    event.preventDefault();
+                    items[0]?.focus();
+                    break;
+                case 'End':
+                    event.preventDefault();
+                    items[items.length - 1]?.focus();
+                    break;
+            }
+        });
+    }
+
+    document.querySelectorAll('details.group').forEach((details) => {
+        const summary = details.querySelector('summary');
+
+        if (!summary) return;
+
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                const firstInput = details.querySelector('input:not([type="hidden"]):not([disabled]), select, textarea');
+
+                if (firstInput) {
+                    requestAnimationFrame(() => firstInput.focus({ preventScroll: true }));
+                }
+            }
+        });
+    });
+
+    const errorSummary = document.querySelector('[role="alert"]');
+
+    if (errorSummary) {
+        const firstErrorField = document.querySelector('.form-input[aria-invalid="true"], .form-input.is-invalid');
+
+        if (firstErrorField) {
+            requestAnimationFrame(() => firstErrorField.focus({ preventScroll: true }));
+        }
+    }
 });

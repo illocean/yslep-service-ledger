@@ -45,6 +45,12 @@ class StoreIndexEntryRequest extends FormRequest
                 'string',
                 'max:255',
             ],
+            'role_in_activity' => [
+                Rule::requiredIf($type === IndexType::SocialApostolate->value),
+                'nullable',
+                'string',
+                'max:255',
+            ],
             'scope' => ['nullable', Rule::enum(IndexScope::class)],
             'return_type' => ['nullable', Rule::enum(IndexType::class)],
             'return_scope' => ['nullable', Rule::enum(IndexScope::class)],
@@ -82,6 +88,7 @@ class StoreIndexEntryRequest extends FormRequest
 
         if ($this->indexType() === IndexType::SocialApostolate) {
             $payload['about'] = trim($this->string('about')->toString());
+            $payload['role_in_activity'] = trim($this->string('role_in_activity')->toString());
         }
 
         return $payload;

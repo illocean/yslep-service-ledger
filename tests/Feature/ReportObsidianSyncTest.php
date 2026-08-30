@@ -170,7 +170,7 @@ MD);
 
         $deleteResponse->assertRedirect('/reports/'.$reportGroup->tag);
 
-        $this->assertDatabaseMissing('report_group_items', [
+        $this->assertSoftDeleted('report_group_items', [
             'id' => $createdItem->id,
         ]);
         $this->assertFalse(File::exists($deletePath));
@@ -257,8 +257,217 @@ MD);
         $this->post('/reports/sync-from-obsidian')->assertRedirect('/reports');
         $this->post('/reports/sync-from-obsidian')->assertRedirect('/reports');
 
-        $this->assertDatabaseMissing('report_group_items', [
+        $this->assertSoftDeleted('report_group_items', [
             'id' => $createdFromVault->id,
         ]);
+    }
+
+    public function test_resolve_conflict_accept_vault(): void
+    {
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Conflict test report',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->firstOrFail();
+        $existingItem = $reportGroup->items()->firstOrFail();
+
+        $this->assertNotNull($existingItem->obsidian_note_path);
+
+        // Store original hash for conflict detection
+        $originalHash = $existingItem->obsidian_note_hash;
+
+        // Vault changes: edit the note file directly
+        File::put($existingItem->obsidian_note_path, <<<MD
+---
+report_group_id: {$reportGroup->id}
+report_group_tag: {$reportGroup->tag}
+report_group_item_id: {$existingItem->id}
+record_uuid: {$existingItem->obsidian_record_uuid}
+index_type: formation
+source_entry_id: {$existingItem->source_entry_id}
+served_on: 2025-09-21
+time_start: '16:00:00'
+time_end: '18:00:00'
+cycle_code: C2
+module_code: M1
+title: Vault Edited Title
+source_order: 1
+created_at: {$existingItem->created_at?->toIso8601String()}
+updated_at: {$existingItem->updated_at?->toIso8601String()}
+---
+# Vault Edited Title
+MD);
+
+        // DB changes: update the item
+        $existingItem->forceFill([
+            'title' => 'DB Edited Title',
+            'obsidian_note_hash' => $originalHash,
+            'updated_at' => now()->subMinute(),
+        ])->save();
+
+        // Sync to create conflict
+        $this->post('/reports/sync-from-obsidian')->assertRedirect('/reports');
+
+        $existingItem = $existingItem->fresh();
+        $this->assertTrue($existingItem->obsidian_conflict, 'Conflict should be detected');
+
+        // Resolve by accepting vault version
+        $response = $this->post(route('reports.records.conflict.accept-vault', [
+            'reportGroup' => $reportGroup->tag,
+            'reportGroupItem' => $existingItem->id,
+        ]));
+
+        $response->assertRedirect();
+
+        $existingItem = $existingItem->fresh();
+        $this->assertFalse($existingItem->obsidian_conflict, 'Conflict should be resolved');
+        $this->assertSame('Vault Edited Title', $existingItem->title, 'Should have vault value after resolution');
+    }
+
+    public function test_resolve_conflict_accept_db(): void
+    {
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Conflict test report 2',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->firstOrFail();
+        $existingItem = $reportGroup->items()->firstOrFail();
+
+        $this->assertNotNull($existingItem->obsidian_note_path);
+
+        // Store original hash for conflict detection
+        $originalHash = $existingItem->obsidian_note_hash;
+
+        // Vault changes: edit the note file directly
+        File::put($existingItem->obsidian_note_path, <<<MD
+---
+report_group_id: {$reportGroup->id}
+report_group_tag: {$reportGroup->tag}
+report_group_item_id: {$existingItem->id}
+record_uuid: {$existingItem->obsidian_record_uuid}
+index_type: formation
+source_entry_id: {$existingItem->source_entry_id}
+served_on: 2025-09-21
+time_start: '16:00:00'
+time_end: '18:00:00'
+cycle_code: C2
+module_code: M1
+title: Vault Edited Title
+source_order: 1
+created_at: {$existingItem->created_at?->toIso8601String()}
+updated_at: {$existingItem->updated_at?->toIso8601String()}
+---
+# Vault Edited Title
+MD);
+
+        // DB changes: update the item
+        $existingItem->forceFill([
+            'title' => 'DB Edited Title',
+            'obsidian_note_hash' => $originalHash,
+            'updated_at' => now()->subMinute(),
+        ])->save();
+
+        // Sync to create conflict
+        $this->post('/reports/sync-from-obsidian')->assertRedirect('/reports');
+
+        $existingItem = $existingItem->fresh();
+        $this->assertTrue($existingItem->obsidian_conflict, 'Conflict should be detected');
+
+        // Resolve by accepting database version
+        $response = $this->post(route('reports.records.conflict.accept-db', [
+            'reportGroup' => $reportGroup->tag,
+            'reportGroupItem' => $existingItem->id,
+        ]));
+
+        $response->assertRedirect();
+
+        $existingItem = $existingItem->fresh();
+        $this->assertFalse($existingItem->obsidian_conflict, 'Conflict should be resolved');
+        $this->assertSame('DB Edited Title', $existingItem->title, 'Should have DB value after resolution');
+    }
+
+    public function test_resolve_conflict_merge(): void
+    {
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Conflict test report 3',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->firstOrFail();
+        $existingItem = $reportGroup->items()->firstOrFail();
+
+        $this->assertNotNull($existingItem->obsidian_note_path);
+
+        // Store original hash for conflict detection
+        $originalHash = $existingItem->obsidian_note_hash;
+
+        // Vault changes: edit the note file directly
+        File::put($existingItem->obsidian_note_path, <<<MD
+---
+report_group_id: {$reportGroup->id}
+report_group_tag: {$reportGroup->tag}
+report_group_item_id: {$existingItem->id}
+record_uuid: {$existingItem->obsidian_record_uuid}
+index_type: formation
+source_entry_id: {$existingItem->source_entry_id}
+served_on: 2025-09-21
+time_start: '16:00:00'
+time_end: '18:00:00'
+cycle_code: C2
+module_code: M1
+title: Vault Edited Title
+source_order: 1
+created_at: {$existingItem->created_at?->toIso8601String()}
+updated_at: {$existingItem->updated_at?->toIso8601String()}
+---
+# Vault Edited Title
+MD);
+
+        // DB changes: update the item
+        $existingItem->forceFill([
+            'title' => 'DB Edited Title',
+            'obsidian_note_hash' => $originalHash,
+            'updated_at' => now()->subMinute(),
+        ])->save();
+
+        // Sync to create conflict
+        $this->post('/reports/sync-from-obsidian')->assertRedirect('/reports');
+
+        $existingItem = $existingItem->fresh();
+        $this->assertTrue($existingItem->obsidian_conflict, 'Conflict should be detected');
+
+        // Resolve by manual merge
+        $response = $this->post(route('reports.records.conflict.merge', [
+            'reportGroup' => $reportGroup->tag,
+            'reportGroupItem' => $existingItem->id,
+        ]), [
+            'index_type' => 'formation',
+            'served_on' => '2025-09-21',
+            'title' => 'Merged Title',
+            'time_start' => '16:00',
+            'time_end' => '18:00',
+            'cycle_code' => 'C2',
+            'module_code' => 'M1',
+        ]);
+
+        $response->assertRedirect();
+
+        $existingItem = $existingItem->fresh();
+        $this->assertFalse($existingItem->obsidian_conflict, 'Conflict should be resolved');
+        $this->assertSame('Merged Title', $existingItem->title, 'Should have merged value after resolution');
     }
 }

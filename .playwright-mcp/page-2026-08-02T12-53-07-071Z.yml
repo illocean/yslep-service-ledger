@@ -1,0 +1,463 @@
+- generic [active] [ref=f6e1]:
+  - link "Skip to Content" [ref=f6e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f6e3]:
+    - banner [ref=f6e4]:
+      - generic [ref=f6e6]:
+        - generic [ref=f6e7]:
+          - generic [ref=f6e8]:
+            - generic [ref=f6e9]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f6e10] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f6e11]:
+            - generic "Live data from Obsidian" [ref=f6e12]: Live
+            - generic "Saved reports" [ref=f6e13]: Reports
+            - generic "Academic year archives" [ref=f6e14]: Archives
+        - navigation "Main navigation" [ref=f6e15]:
+          - menubar [ref=f6e16]:
+            - menuitem "Overview" [ref=f6e17] [cursor=pointer]
+            - menuitem "Formation" [ref=f6e19] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f6e21] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f6e23] [cursor=pointer]
+            - menuitem "Reports" [ref=f6e25] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f6e27] [cursor=pointer]
+    - main [ref=f6e29]:
+      - generic [ref=f6e30]:
+        - generic [ref=f6e32]:
+          - generic [ref=f6e33]:
+            - generic [ref=f6e34]:
+              - generic [ref=f6e35]: Social Apostolate Index Card
+              - generic [ref=f6e36]: All Time
+              - generic [ref=f6e37]: 34 record(s)
+            - heading "Social Apostolate records" [level=1] [ref=f6e38]
+          - generic [ref=f6e39]:
+            - generic [ref=f6e40]:
+              - generic [ref=f6e41]:
+                - generic [ref=f6e42]: Scope
+                - link "All Time" [ref=f6e43] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/social_apostolate
+                - link "Unsaved Only" [ref=f6e44] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/social_apostolate?scope=unsaved
+              - form "Filter by saved report" [ref=f6e45]:
+                - text: Filter by Saved Report
+                - combobox "Filter by Saved Report" [ref=f6e46]:
+                  - option "Choose a saved report…" [selected]
+                  - option "JULY '26 (RPT-20260801-152416-FBVV)"
+                  - option "JUNE '26 (RPT-20260628-155000-NGEL)"
+                  - option "MAY '26 (RPT-20260523-133015-PJFY)"
+                  - option "APRIL '26 (RPT-20260428-144236-0XY7)"
+                  - option "MARCH '26 (RPT-20260405-111211-9OYP)"
+                  - option "FEB '26 (RPT-20260331-233739-N2HN)"
+                  - option "JAN '26 (RPT-20260331-233319-FHIA)"
+                  - option "DEC '25 (RPT-20260331-232900-GN2K)"
+                  - option "NOV '25 (RPT-20260331-232717-UBDS)"
+                  - option "OCT '25 (RPT-20260331-232646-NANA)"
+                  - option "AUG '25 (RPT-20260331-232539-QYP3)"
+                  - option "SEPT '25 (RPT-20260331-231839-MMDO)"
+            - generic [ref=f6e47]:
+              - generic [ref=f6e48]: Obsidian Source File
+              - paragraph [ref=f6e49]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\SOCIAL APOSTOLATE.md
+        - generic [ref=f6e50]:
+          - article [ref=f6e51]:
+            - generic [ref=f6e52]: Social Apostolate
+            - generic [ref=f6e53]:
+              - generic [ref=f6e54]: Total Entries
+              - generic [ref=f6e55]: "34"
+          - article [ref=f6e56]:
+            - generic [ref=f6e57]: Hours Served
+            - generic [ref=f6e58]:
+              - generic [ref=f6e59]: Selected Scope Total
+              - generic [ref=f6e60]: 50 hr
+          - article [ref=f6e61]:
+            - generic [ref=f6e62]: Other Indexes
+            - generic [ref=f6e63]:
+              - link "Formation 12 record(s) 13 hr" [ref=f6e64] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+                - generic [ref=f6e65]:
+                  - generic [ref=f6e66]: Formation
+                  - generic [ref=f6e67]: 12 record(s)
+                - generic [ref=f6e68]: 13 hr
+              - link "Parish Involvement 58 record(s) 91 hr" [ref=f6e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+                - generic [ref=f6e70]:
+                  - generic [ref=f6e71]: Parish Involvement
+                  - generic [ref=f6e72]: 58 record(s)
+                - generic [ref=f6e73]: 91 hr
+        - generic [ref=f6e74]:
+          - generic [ref=f6e75]: Profile
+          - generic [ref=f6e76]:
+            - generic [ref=f6e77]:
+              - generic [ref=f6e78]: Full Name
+              - generic [ref=f6e79]: Not set
+            - generic [ref=f6e80]:
+              - generic [ref=f6e81]: School Year
+              - generic [ref=f6e82]: 2025-2026
+            - generic [ref=f6e83]:
+              - generic [ref=f6e84]: Year Level
+              - generic [ref=f6e85]: Not set
+            - generic [ref=f6e86]:
+              - generic [ref=f6e87]: Parish
+              - generic [ref=f6e88]: Not set
+            - generic [ref=f6e89]:
+              - generic [ref=f6e90]: Diocese / Institution
+              - generic [ref=f6e91]: Not set
+            - generic [ref=f6e92]:
+              - generic [ref=f6e93]: School
+              - generic [ref=f6e94]: Not set
+            - generic [ref=f6e95]:
+              - generic [ref=f6e96]: Course
+              - generic [ref=f6e97]: Not set
+        - generic [ref=f6e98]:
+          - article [ref=f6e99]:
+            - group [ref=f6e100]:
+              - generic "Add Record New social apostolate entry" [ref=f6e101] [cursor=pointer]:
+                - generic [ref=f6e102]:
+                  - generic [ref=f6e103]: Add Record
+                  - heading "New social apostolate entry" [level=2] [ref=f6e104]
+          - article [ref=f6e108]:
+            - generic [ref=f6e109]:
+              - generic [ref=f6e110]:
+                - generic [ref=f6e111]: Ledger
+                - heading "All Time entries" [level=2] [ref=f6e112]
+              - generic [ref=f6e113]: 34 record(s)
+            - generic [ref=f6e114]:
+              - group [ref=f6e115]:
+                - generic "Live record 1 hr Saved in AUG '25 Creating MAV slides August 4, 2025 | 1:00 PM - 2:00 PM Edit Details" [ref=f6e116] [cursor=pointer]:
+                  - generic [ref=f6e117]:
+                    - generic [ref=f6e118]:
+                      - generic [ref=f6e119]: Live record
+                      - generic [ref=f6e122]: 1 hr
+                      - generic [ref=f6e123]: Saved in AUG '25
+                    - generic [ref=f6e126]: Creating MAV slides
+                    - generic [ref=f6e127]: August 4, 2025 | 1:00 PM - 2:00 PM
+                  - generic [ref=f6e128]: Edit Details
+              - group [ref=f6e132]:
+                - generic "Live record 1 hr Saved in AUG '25 Creating MAV slides August 21, 2025 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e133] [cursor=pointer]:
+                  - generic [ref=f6e134]:
+                    - generic [ref=f6e135]:
+                      - generic [ref=f6e136]: Live record
+                      - generic [ref=f6e139]: 1 hr
+                      - generic [ref=f6e140]: Saved in AUG '25
+                    - generic [ref=f6e143]: Creating MAV slides
+                    - generic [ref=f6e144]: August 21, 2025 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e145]: Edit Details
+              - group [ref=f6e149]:
+                - generic "Live record 1 hr Saved in SEPT '25 Creating MAV slides September 8, 2025 | 3:00 PM - 4:00 PM Edit Details" [ref=f6e150] [cursor=pointer]:
+                  - generic [ref=f6e151]:
+                    - generic [ref=f6e152]:
+                      - generic [ref=f6e153]: Live record
+                      - generic [ref=f6e156]: 1 hr
+                      - generic [ref=f6e157]: Saved in SEPT '25
+                    - generic [ref=f6e160]: Creating MAV slides
+                    - generic [ref=f6e161]: September 8, 2025 | 3:00 PM - 4:00 PM
+                  - generic [ref=f6e162]: Edit Details
+              - group [ref=f6e166]:
+                - generic "Live record 1 hr Saved in SEPT '25 Creating MAV slides September 25, 2025 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e167] [cursor=pointer]:
+                  - generic [ref=f6e168]:
+                    - generic [ref=f6e169]:
+                      - generic [ref=f6e170]: Live record
+                      - generic [ref=f6e173]: 1 hr
+                      - generic [ref=f6e174]: Saved in SEPT '25
+                    - generic [ref=f6e177]: Creating MAV slides
+                    - generic [ref=f6e178]: September 25, 2025 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e179]: Edit Details
+              - group [ref=f6e183]:
+                - generic "Live record 1 hr Saved in OCT '25 Creating SocCom slides October 8, 2025 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e184] [cursor=pointer]:
+                  - generic [ref=f6e185]:
+                    - generic [ref=f6e186]:
+                      - generic [ref=f6e187]: Live record
+                      - generic [ref=f6e190]: 1 hr
+                      - generic [ref=f6e191]: Saved in OCT '25
+                    - generic [ref=f6e194]: Creating SocCom slides
+                    - generic [ref=f6e195]: October 8, 2025 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e196]: Edit Details
+              - group [ref=f6e200]:
+                - generic "Live record 1 hr Saved in OCT '25 Creating SocCom slides October 21, 2025 | 2:00 PM - 3:00 PM Edit Details" [ref=f6e201] [cursor=pointer]:
+                  - generic [ref=f6e202]:
+                    - generic [ref=f6e203]:
+                      - generic [ref=f6e204]: Live record
+                      - generic [ref=f6e207]: 1 hr
+                      - generic [ref=f6e208]: Saved in OCT '25
+                    - generic [ref=f6e211]: Creating SocCom slides
+                    - generic [ref=f6e212]: October 21, 2025 | 2:00 PM - 3:00 PM
+                  - generic [ref=f6e213]: Edit Details
+              - group [ref=f6e217]:
+                - generic "Live record 1 hr Saved in NOV '25 Creating SocCom slides November 13, 2025 | 8:00 AM - 9:00 AM Edit Details" [ref=f6e218] [cursor=pointer]:
+                  - generic [ref=f6e219]:
+                    - generic [ref=f6e220]:
+                      - generic [ref=f6e221]: Live record
+                      - generic [ref=f6e224]: 1 hr
+                      - generic [ref=f6e225]: Saved in NOV '25
+                    - generic [ref=f6e228]: Creating SocCom slides
+                    - generic [ref=f6e229]: November 13, 2025 | 8:00 AM - 9:00 AM
+                  - generic [ref=f6e230]: Edit Details
+              - group [ref=f6e234]:
+                - generic "Live record 1 hr Saved in NOV '25 Creating SocCom slides November 17, 2025 | 3:00 PM - 4:00 PM Edit Details" [ref=f6e235] [cursor=pointer]:
+                  - generic [ref=f6e236]:
+                    - generic [ref=f6e237]:
+                      - generic [ref=f6e238]: Live record
+                      - generic [ref=f6e241]: 1 hr
+                      - generic [ref=f6e242]: Saved in NOV '25
+                    - generic [ref=f6e245]: Creating SocCom slides
+                    - generic [ref=f6e246]: November 17, 2025 | 3:00 PM - 4:00 PM
+                  - generic [ref=f6e247]: Edit Details
+              - group [ref=f6e251]:
+                - generic "Live record 2 hr Saved in NOV '25 Helped with the documents November 30, 2025 | 1:00 PM - 3:00 PM Edit Details" [ref=f6e252] [cursor=pointer]:
+                  - generic [ref=f6e253]:
+                    - generic [ref=f6e254]:
+                      - generic [ref=f6e255]: Live record
+                      - generic [ref=f6e258]: 2 hr
+                      - generic [ref=f6e259]: Saved in NOV '25
+                    - generic [ref=f6e262]: Helped with the documents
+                    - generic [ref=f6e263]: November 30, 2025 | 1:00 PM - 3:00 PM
+                  - generic [ref=f6e264]: Edit Details
+              - group [ref=f6e268]:
+                - generic "Live record 4 hr Saved in DEC '25 Pamaskong Handog December 8, 2025 | 1:00 PM - 5:00 PM Edit Details" [ref=f6e269] [cursor=pointer]:
+                  - generic [ref=f6e270]:
+                    - generic [ref=f6e271]:
+                      - generic [ref=f6e272]: Live record
+                      - generic [ref=f6e275]: 4 hr
+                      - generic [ref=f6e276]: Saved in DEC '25
+                    - generic [ref=f6e279]: Pamaskong Handog
+                    - generic [ref=f6e280]: December 8, 2025 | 1:00 PM - 5:00 PM
+                  - generic [ref=f6e281]: Edit Details
+              - group [ref=f6e285]:
+                - generic "Live record 1 hr Saved in DEC '25 SOH December 21, 2025 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e286] [cursor=pointer]:
+                  - generic [ref=f6e287]:
+                    - generic [ref=f6e288]:
+                      - generic [ref=f6e289]: Live record
+                      - generic [ref=f6e292]: 1 hr
+                      - generic [ref=f6e293]: Saved in DEC '25
+                    - generic [ref=f6e296]: SOH
+                    - generic [ref=f6e297]: December 21, 2025 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e298]: Edit Details
+              - group [ref=f6e302]:
+                - generic "Live record 1 hr Saved in DEC '25 SOH December 23, 2025 | 4:00 AM - 5:00 AM Edit Details" [ref=f6e303] [cursor=pointer]:
+                  - generic [ref=f6e304]:
+                    - generic [ref=f6e305]:
+                      - generic [ref=f6e306]: Live record
+                      - generic [ref=f6e309]: 1 hr
+                      - generic [ref=f6e310]: Saved in DEC '25
+                    - generic [ref=f6e313]: SOH
+                    - generic [ref=f6e314]: December 23, 2025 | 4:00 AM - 5:00 AM
+                  - generic [ref=f6e315]: Edit Details
+              - group [ref=f6e319]:
+                - generic "Live record 1 hr Saved in JAN '26 SOH December 28, 2025 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e320] [cursor=pointer]:
+                  - generic [ref=f6e321]:
+                    - generic [ref=f6e322]:
+                      - generic [ref=f6e323]: Live record
+                      - generic [ref=f6e326]: 1 hr
+                      - generic [ref=f6e327]: Saved in JAN '26
+                    - generic [ref=f6e330]: SOH
+                    - generic [ref=f6e331]: December 28, 2025 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e332]: Edit Details
+              - group [ref=f6e336]:
+                - generic "Live record 1 hr Saved in JAN '26 creating SOCCOM slides January 13, 2026 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e337] [cursor=pointer]:
+                  - generic [ref=f6e338]:
+                    - generic [ref=f6e339]:
+                      - generic [ref=f6e340]: Live record
+                      - generic [ref=f6e343]: 1 hr
+                      - generic [ref=f6e344]: Saved in JAN '26
+                    - generic [ref=f6e347]: creating SOCCOM slides
+                    - generic [ref=f6e348]: January 13, 2026 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e349]: Edit Details
+              - group [ref=f6e353]:
+                - generic "Live record 1 hr Saved in JAN '26 creating SOCCOM slides January 23, 2026 | 2:30 PM - 3:30 PM Edit Details" [ref=f6e354] [cursor=pointer]:
+                  - generic [ref=f6e355]:
+                    - generic [ref=f6e356]:
+                      - generic [ref=f6e357]: Live record
+                      - generic [ref=f6e360]: 1 hr
+                      - generic [ref=f6e361]: Saved in JAN '26
+                    - generic [ref=f6e364]: creating SOCCOM slides
+                    - generic [ref=f6e365]: January 23, 2026 | 2:30 PM - 3:30 PM
+                  - generic [ref=f6e366]: Edit Details
+              - group [ref=f6e370]:
+                - generic "Live record 2 hr Saved in JAN '26 HELPED WITH THE DOCUMENTS January 31, 2026 | 3:00 PM - 5:00 PM Edit Details" [ref=f6e371] [cursor=pointer]:
+                  - generic [ref=f6e372]:
+                    - generic [ref=f6e373]:
+                      - generic [ref=f6e374]: Live record
+                      - generic [ref=f6e377]: 2 hr
+                      - generic [ref=f6e378]: Saved in JAN '26
+                    - generic [ref=f6e381]: HELPED WITH THE DOCUMENTS
+                    - generic [ref=f6e382]: January 31, 2026 | 3:00 PM - 5:00 PM
+                  - generic [ref=f6e383]: Edit Details
+              - group [ref=f6e387]:
+                - generic "Live record 1 hr Saved in FEB '26 Creating SocCom slides February 5, 2026 | 3:00 PM - 4:00 PM Edit Details" [ref=f6e388] [cursor=pointer]:
+                  - generic [ref=f6e389]:
+                    - generic [ref=f6e390]:
+                      - generic [ref=f6e391]: Live record
+                      - generic [ref=f6e394]: 1 hr
+                      - generic [ref=f6e395]: Saved in FEB '26
+                    - generic [ref=f6e398]: Creating SocCom slides
+                    - generic [ref=f6e399]: February 5, 2026 | 3:00 PM - 4:00 PM
+                  - generic [ref=f6e400]: Edit Details
+              - group [ref=f6e404]:
+                - generic "Live record 1 hr Saved in FEB '26 Creating SocCom slides February 12, 2026 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e405] [cursor=pointer]:
+                  - generic [ref=f6e406]:
+                    - generic [ref=f6e407]:
+                      - generic [ref=f6e408]: Live record
+                      - generic [ref=f6e411]: 1 hr
+                      - generic [ref=f6e412]: Saved in FEB '26
+                    - generic [ref=f6e415]: Creating SocCom slides
+                    - generic [ref=f6e416]: February 12, 2026 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e417]: Edit Details
+              - group [ref=f6e421]:
+                - generic "Live record 6 hr Saved in MARCH '26 One time, Big time March 15, 2026 | 7:00 AM - 1:00 PM Edit Details" [ref=f6e422] [cursor=pointer]:
+                  - generic [ref=f6e423]:
+                    - generic [ref=f6e424]:
+                      - generic [ref=f6e425]: Live record
+                      - generic [ref=f6e428]: 6 hr
+                      - generic [ref=f6e429]: Saved in MARCH '26
+                    - generic [ref=f6e432]: One time, Big time
+                    - generic [ref=f6e433]: March 15, 2026 | 7:00 AM - 1:00 PM
+                  - generic [ref=f6e434]: Edit Details
+              - group [ref=f6e438]:
+                - generic "Live record 1 hr Saved in MARCH '26 Created SocCom slides March 18, 2026 | 8:00 AM - 9:00 AM Edit Details" [ref=f6e439] [cursor=pointer]:
+                  - generic [ref=f6e440]:
+                    - generic [ref=f6e441]:
+                      - generic [ref=f6e442]: Live record
+                      - generic [ref=f6e445]: 1 hr
+                      - generic [ref=f6e446]: Saved in MARCH '26
+                    - generic [ref=f6e449]: Created SocCom slides
+                    - generic [ref=f6e450]: March 18, 2026 | 8:00 AM - 9:00 AM
+                  - generic [ref=f6e451]: Edit Details
+              - group [ref=f6e455]:
+                - generic "Live record 1 hr Saved in MARCH '26 Created SocCom slides March 21, 2026 | 10:00 AM - 11:00 AM Edit Details" [ref=f6e456] [cursor=pointer]:
+                  - generic [ref=f6e457]:
+                    - generic [ref=f6e458]:
+                      - generic [ref=f6e459]: Live record
+                      - generic [ref=f6e462]: 1 hr
+                      - generic [ref=f6e463]: Saved in MARCH '26
+                    - generic [ref=f6e466]: Created SocCom slides
+                    - generic [ref=f6e467]: March 21, 2026 | 10:00 AM - 11:00 AM
+                  - generic [ref=f6e468]: Edit Details
+              - group [ref=f6e472]:
+                - generic "Live record 2 hr Saved in MARCH '26 Helped with the documents April 1, 2026 | 10:00 AM - 12:00 PM Edit Details" [ref=f6e473] [cursor=pointer]:
+                  - generic [ref=f6e474]:
+                    - generic [ref=f6e475]:
+                      - generic [ref=f6e476]: Live record
+                      - generic [ref=f6e479]: 2 hr
+                      - generic [ref=f6e480]: Saved in MARCH '26
+                    - generic [ref=f6e483]: Helped with the documents
+                    - generic [ref=f6e484]: April 1, 2026 | 10:00 AM - 12:00 PM
+                  - generic [ref=f6e485]: Edit Details
+              - group [ref=f6e489]:
+                - generic "Live record 1 hr Saved in APRIL '26 creating SOCCOM slides April 2, 2026 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e490] [cursor=pointer]:
+                  - generic [ref=f6e491]:
+                    - generic [ref=f6e492]:
+                      - generic [ref=f6e493]: Live record
+                      - generic [ref=f6e496]: 1 hr
+                      - generic [ref=f6e497]: Saved in APRIL '26
+                    - generic [ref=f6e500]: creating SOCCOM slides
+                    - generic [ref=f6e501]: April 2, 2026 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e502]: Edit Details
+              - group [ref=f6e506]:
+                - generic "Live record 1 hr Saved in APRIL '26 creating SOCCOM slides April 9, 2026 | 8:00 AM - 9:00 AM Edit Details" [ref=f6e507] [cursor=pointer]:
+                  - generic [ref=f6e508]:
+                    - generic [ref=f6e509]:
+                      - generic [ref=f6e510]: Live record
+                      - generic [ref=f6e513]: 1 hr
+                      - generic [ref=f6e514]: Saved in APRIL '26
+                    - generic [ref=f6e517]: creating SOCCOM slides
+                    - generic [ref=f6e518]: April 9, 2026 | 8:00 AM - 9:00 AM
+                  - generic [ref=f6e519]: Edit Details
+              - group [ref=f6e523]:
+                - generic "Live record 1 hr Saved in APRIL '26 helped with the documents April 19, 2026 | 3:00 PM - 4:00 PM Edit Details" [ref=f6e524] [cursor=pointer]:
+                  - generic [ref=f6e525]:
+                    - generic [ref=f6e526]:
+                      - generic [ref=f6e527]: Live record
+                      - generic [ref=f6e530]: 1 hr
+                      - generic [ref=f6e531]: Saved in APRIL '26
+                    - generic [ref=f6e534]: helped with the documents
+                    - generic [ref=f6e535]: April 19, 2026 | 3:00 PM - 4:00 PM
+                  - generic [ref=f6e536]: Edit Details
+              - group [ref=f6e540]:
+                - generic "Live record 1 hr Saved in MAY '26 creating SOCCOM slides May 5, 2026 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e541] [cursor=pointer]:
+                  - generic [ref=f6e542]:
+                    - generic [ref=f6e543]:
+                      - generic [ref=f6e544]: Live record
+                      - generic [ref=f6e547]: 1 hr
+                      - generic [ref=f6e548]: Saved in MAY '26
+                    - generic [ref=f6e551]: creating SOCCOM slides
+                    - generic [ref=f6e552]: May 5, 2026 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e553]: Edit Details
+              - group [ref=f6e557]:
+                - generic "Live record 1 hr Saved in MAY '26 creating SOCCOM slides May 15, 2026 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e558] [cursor=pointer]:
+                  - generic [ref=f6e559]:
+                    - generic [ref=f6e560]:
+                      - generic [ref=f6e561]: Live record
+                      - generic [ref=f6e564]: 1 hr
+                      - generic [ref=f6e565]: Saved in MAY '26
+                    - generic [ref=f6e568]: creating SOCCOM slides
+                    - generic [ref=f6e569]: May 15, 2026 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e570]: Edit Details
+              - group [ref=f6e574]:
+                - generic "Live record 2 hr Saved in MAY '26 helped with the documents May 31, 2026 | 10:00 AM - 12:00 PM Edit Details" [ref=f6e575] [cursor=pointer]:
+                  - generic [ref=f6e576]:
+                    - generic [ref=f6e577]:
+                      - generic [ref=f6e578]: Live record
+                      - generic [ref=f6e581]: 2 hr
+                      - generic [ref=f6e582]: Saved in MAY '26
+                    - generic [ref=f6e585]: helped with the documents
+                    - generic [ref=f6e586]: May 31, 2026 | 10:00 AM - 12:00 PM
+                  - generic [ref=f6e587]: Edit Details
+              - group [ref=f6e591]:
+                - generic "Live record 1 hr Saved in JUNE '26 creating SOCCOM slides June 11, 2026 | 9:00 AM - 10:00 AM Edit Details" [ref=f6e592] [cursor=pointer]:
+                  - generic [ref=f6e593]:
+                    - generic [ref=f6e594]:
+                      - generic [ref=f6e595]: Live record
+                      - generic [ref=f6e598]: 1 hr
+                      - generic [ref=f6e599]: Saved in JUNE '26
+                    - generic [ref=f6e602]: creating SOCCOM slides
+                    - generic [ref=f6e603]: June 11, 2026 | 9:00 AM - 10:00 AM
+                  - generic [ref=f6e604]: Edit Details
+              - group [ref=f6e608]:
+                - generic "Live record 1 hr Saved in JUNE '26 creating SOCCOM slides June 25, 2026 | 4:00 PM - 5:00 PM Edit Details" [ref=f6e609] [cursor=pointer]:
+                  - generic [ref=f6e610]:
+                    - generic [ref=f6e611]:
+                      - generic [ref=f6e612]: Live record
+                      - generic [ref=f6e615]: 1 hr
+                      - generic [ref=f6e616]: Saved in JUNE '26
+                    - generic [ref=f6e619]: creating SOCCOM slides
+                    - generic [ref=f6e620]: June 25, 2026 | 4:00 PM - 5:00 PM
+                  - generic [ref=f6e621]: Edit Details
+              - group [ref=f6e625]:
+                - generic "Live record 2 hr Saved in JUNE '26 helped with the papers June 28, 2026 | 10:00 AM - 12:00 PM Edit Details" [ref=f6e626] [cursor=pointer]:
+                  - generic [ref=f6e627]:
+                    - generic [ref=f6e628]:
+                      - generic [ref=f6e629]: Live record
+                      - generic [ref=f6e632]: 2 hr
+                      - generic [ref=f6e633]: Saved in JUNE '26
+                    - generic [ref=f6e636]: helped with the papers
+                    - generic [ref=f6e637]: June 28, 2026 | 10:00 AM - 12:00 PM
+                  - generic [ref=f6e638]: Edit Details
+              - group [ref=f6e642]:
+                - generic "Live record 2 hr Saved in JULY '26 Creating SocCom slides July 9, 2026 | 7:00 AM - 9:00 AM Edit Details" [ref=f6e643] [cursor=pointer]:
+                  - generic [ref=f6e644]:
+                    - generic [ref=f6e645]:
+                      - generic [ref=f6e646]: Live record
+                      - generic [ref=f6e649]: 2 hr
+                      - generic [ref=f6e650]: Saved in JULY '26
+                    - generic [ref=f6e653]: Creating SocCom slides
+                    - generic [ref=f6e654]: July 9, 2026 | 7:00 AM - 9:00 AM
+                  - generic [ref=f6e655]: Edit Details
+              - group [ref=f6e659]:
+                - generic "Live record 2 hr Saved in JULY '26 Creating SocCom slides July 23, 2026 | 4:00 PM - 6:00 PM Edit Details" [ref=f6e660] [cursor=pointer]:
+                  - generic [ref=f6e661]:
+                    - generic [ref=f6e662]:
+                      - generic [ref=f6e663]: Live record
+                      - generic [ref=f6e666]: 2 hr
+                      - generic [ref=f6e667]: Saved in JULY '26
+                    - generic [ref=f6e670]: Creating SocCom slides
+                    - generic [ref=f6e671]: July 23, 2026 | 4:00 PM - 6:00 PM
+                  - generic [ref=f6e672]: Edit Details
+              - group [ref=f6e676]:
+                - generic "Live record 2 hr Saved in JULY '26 Helped with the documents August 2, 2026 | 10:00 AM - 12:00 PM Edit Details" [ref=f6e677] [cursor=pointer]:
+                  - generic [ref=f6e678]:
+                    - generic [ref=f6e679]:
+                      - generic [ref=f6e680]: Live record
+                      - generic [ref=f6e683]: 2 hr
+                      - generic [ref=f6e684]: Saved in JULY '26
+                    - generic [ref=f6e687]: Helped with the documents
+                    - generic [ref=f6e688]: August 2, 2026 | 10:00 AM - 12:00 PM
+                  - generic [ref=f6e689]: Edit Details

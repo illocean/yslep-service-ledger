@@ -22,7 +22,7 @@ class ReportGroupService
     public function all(): EloquentCollection
     {
         return ReportGroup::query()
-            ->with('items')
+            ->with(['items' => fn ($q) => $q->withTrashed()])
             ->orderByDesc('created_at')
             ->get();
     }
@@ -34,7 +34,7 @@ class ReportGroupService
         }
 
         return ReportGroup::query()
-            ->with('items')
+            ->with(['items' => fn ($q) => $q->withTrashed()])
             ->where('tag', $tag)
             ->first();
     }
@@ -152,6 +152,7 @@ class ReportGroupService
     {
         return ReportGroupItem::query()
             ->with('reportGroup')
+            ->withTrashed()
             ->whereNotNull('source_entry_id')
             ->get()
             ->mapWithKeys(function (ReportGroupItem $item): array {
@@ -235,6 +236,7 @@ class ReportGroupService
             'module_code' => $entry->module_code ?? null,
             'title' => $entry->title ?? null,
             'about' => $entry->about ?? null,
+            'role_in_activity' => $entry->role_in_activity ?? null,
             'source_order' => $entry->source_order ?? 0,
         ];
     }
@@ -321,6 +323,7 @@ class ReportGroupService
             $lockedItems = $lockedItems->merge(
                 ReportGroupItem::query()
                     ->with('reportGroup')
+                    ->withTrashed()
                     ->where('index_type', $typeValue)
                     ->whereIn('source_entry_id', $ids)
                     ->whereNotNull('source_entry_id')
@@ -349,7 +352,7 @@ class ReportGroupService
         $headers = match ($type) {
             IndexType::Formation => ['Date', 'Cycle No.', 'Module No.', 'Title', 'Time In', 'Time Out', 'Hours'],
             IndexType::ParishInvolvement => ['Date', 'Activity', 'Time In', 'Time Out', 'Hours'],
-            IndexType::SocialApostolate => ['Date', 'Activity', 'Time In', 'Time Out', 'Hours'],
+            IndexType::SocialApostolate => ['Date', 'Activity', 'Role', 'Time In', 'Time Out', 'Hours'],
         };
 
         $lines = [
@@ -378,6 +381,7 @@ class ReportGroupService
                 IndexType::SocialApostolate => [
                     $item->served_on_label,
                     str_replace('|', '/', $item->about),
+                    str_replace('|', '/', $item->role_in_activity ?? ''),
                     $item->time_start_label,
                     $item->time_end_label,
                     $item->duration_label,
@@ -414,6 +418,7 @@ class ReportGroupService
     private function nextSourceOrder(ReportGroup $reportGroup): int
     {
         return (int) ReportGroupItem::query()
+            ->withTrashed()
             ->where('report_group_id', $reportGroup->id)
             ->max('source_order') + 1;
     }

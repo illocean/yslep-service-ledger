@@ -157,6 +157,7 @@ MD);
             'type' => 'social_apostolate',
             'served_on' => '2025-09-08',
             'about' => 'Updated social activity',
+            'role_in_activity' => 'Volunteer',
             'time_start' => '13:00',
             'time_end' => '14:30',
             'scope' => 'all',
@@ -181,7 +182,7 @@ MD);
 
         $deleteResponse->assertRedirect('/indexes/social_apostolate');
 
-        $this->assertDatabaseMissing('social_apostolate_entries', [
+        $this->assertSoftDeleted('social_apostolate_entries', [
             'id' => $entry->id,
         ]);
         $this->assertStringNotContainsString(
@@ -194,11 +195,13 @@ MD);
     {
         $createdActivity = 'Temporary Playwright Activity Alpha';
         $updatedActivity = 'Temporary Playwright Activity Omega';
+        $role = 'Volunteer';
 
         $this->post(route('entries.store'), [
             'type' => 'social_apostolate',
             'served_on' => '2026-04-18',
             'about' => $createdActivity,
+            'role_in_activity' => $role,
             'time_start' => '09:00',
             'time_end' => '10:30',
             'scope' => 'all',
@@ -214,6 +217,7 @@ MD);
             'type' => 'social_apostolate',
             'served_on' => '2026-04-18',
             'about' => $updatedActivity,
+            'role_in_activity' => $role,
             'time_start' => '10:15',
             'time_end' => '11:45',
             'scope' => 'all',

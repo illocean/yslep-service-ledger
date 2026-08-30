@@ -7,6 +7,7 @@ use App\Models\ReportGroupItem;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Symfony\Component\Yaml\Yaml;
@@ -252,10 +253,14 @@ class ObsidianSyncService
 
         return match ($type) {
             IndexType::Formation => $this->withFormationFields($normalized, $record),
-            IndexType::ParishInvolvement => $normalized,
+            IndexType::ParishInvolvement => [
+                ...$normalized,
+                'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
+            ],
             IndexType::SocialApostolate => [
                 ...$normalized,
                 'about' => trim((string) Arr::get($record, 'about', '')),
+                'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
             ],
         };
     }
@@ -411,10 +416,12 @@ class ObsidianSyncService
             }
 
             $index = array_flip($table['headers']);
+            $roleKey = array_key_exists('role', $index) ? 'role' : (array_key_exists('role in activity', $index) ? 'role in activity' : null);
 
             foreach ($table['rows'] as $row) {
                 $records[] = [
                     'served_on' => $this->normalizeDate($row[$index['date']] ?? null),
+                    'role_in_activity' => $roleKey ? trim((string) ($row[$index[$roleKey]] ?? '')) : null,
                     'time_start' => $this->normalizeTime($row[$index['timein']] ?? null),
                     'time_end' => $this->normalizeTime($row[$index['timeout']] ?? null),
                 ];
@@ -440,10 +447,13 @@ class ObsidianSyncService
                 continue;
             }
 
+            $roleKey = array_key_exists('role', $index) ? 'role' : (array_key_exists('role in activity', $index) ? 'role in activity' : null);
+
             foreach ($table['rows'] as $row) {
                 $records[] = [
                     'served_on' => $this->normalizeDate($row[$index['date']] ?? null),
                     'about' => trim((string) ($row[$index[$aboutKey]] ?? '')),
+                    'role_in_activity' => $roleKey ? trim((string) ($row[$index[$roleKey]] ?? '')) : null,
                     'time_start' => $this->normalizeTime($row[$index['timein']] ?? null),
                     'time_end' => $this->normalizeTime($row[$index['timeout']] ?? null),
                 ];
@@ -630,6 +640,7 @@ class ObsidianSyncService
             IndexType::SocialApostolate => [
                 ...$normalized,
                 'about' => trim((string) Arr::get($record, 'about')),
+                'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
             ],
         };
     }
@@ -776,8 +787,8 @@ class ObsidianSyncService
     {
         return match ($type) {
             IndexType::Formation => ['Date', 'Cycle No.', 'Module No.', 'Title', 'Time In', 'Time Out'],
-            IndexType::ParishInvolvement => ['Date', 'Time In', 'Time Out'],
-            IndexType::SocialApostolate => ['Date', 'Activity', 'Time In', 'Time Out'],
+            IndexType::ParishInvolvement => ['Date', 'Role', 'Time In', 'Time Out'],
+            IndexType::SocialApostolate => ['Date', 'Activity', 'Role', 'Time In', 'Time Out'],
         };
     }
 
@@ -794,12 +805,14 @@ class ObsidianSyncService
             ],
             IndexType::ParishInvolvement => [
                 $this->formatDateForMarkdown($record['served_on'] ?? null),
+                str_replace('|', '/', $record['role_in_activity'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_start'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_end'] ?? ''),
             ],
             IndexType::SocialApostolate => [
                 $this->formatDateForMarkdown($record['served_on'] ?? null),
                 str_replace('|', '/', $record['about'] ?? ''),
+                str_replace('|', '/', $record['role_in_activity'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_start'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_end'] ?? ''),
             ],
@@ -1063,7 +1076,10 @@ class ObsidianSyncService
 
         return DB::transaction(function () use ($modelClass, $records, $type): array {
             $timestamp = now();
+            // Include soft-deleted rows so the same UUID can resurrect them
+            // instead of triggering a unique-constraint conflict.
             $existingEntries = $modelClass::query()
+                ->withTrashed()
                 ->orderBy('id')
                 ->get();
             $unmatchedEntries = $existingEntries->keyBy('id')->all();
@@ -1106,24 +1122,66 @@ class ObsidianSyncService
                     ...Arr::except($normalizedRecord, ['record_uuid']),
                     'source_order' => $index + 1,
                     'obsidian_record_uuid' => $normalizedRecord['record_uuid'],
+                    'obsidian_content_hash' => $this->computeRecordContentHash($type, $normalizedRecord),
+                    'obsidian_last_synced_at' => $timestamp,
+                    'obsidian_last_source' => 'vault',
                     'updated_at' => $timestamp,
                 ];
 
                 if ($entry !== null) {
-                    $entry->forceFill($payload)->save();
+                    // Conflict detection: compare vault, DB, and stored hashes
+                    $vaultHash = $this->computeRecordContentHash($type, $normalizedRecord);
+                    $storedHash = $entry->obsidian_content_hash;
+                    $dbHash = $this->computeRecordContentHashFromEntry($type, $entry);
+
+                    // If stored hash is null (legacy entry), treat as first sync - no conflict detection
+                    $isLegacyEntry = $storedHash === null;
+
+                    $vaultChanged = $vaultHash !== $storedHash;
+                    $dbChanged = $dbHash !== $storedHash;
+
+                    if (!$isLegacyEntry && $vaultChanged && $dbChanged) {
+                        // Both sides changed since last sync - mark as conflicted, don't overwrite
+                        $entry->forceFill([
+                            'obsidian_conflict' => true,
+                            'updated_at' => $timestamp,
+                        ])->save();
+
+                        $resolvedRecords[] = [
+                            ...$normalizedRecord,
+                            'record_uuid' => $entry->obsidian_record_uuid,
+                            'conflict' => true,
+                        ];
+                    } else {
+                        // Resurrection: if the entry was soft-deleted, restore it
+                        // before applying the new payload so it becomes live again.
+                        if ($entry->trashed()) {
+                            $entry->restore();
+                        }
+
+                        $entry->forceFill(array_merge($payload, ['obsidian_conflict' => false]))->save();
+
+                        $resolvedRecords[] = [
+                            ...$normalizedRecord,
+                            'record_uuid' => $entry->obsidian_record_uuid,
+                        ];
+                    }
                 } else {
                     $entry = $modelClass::query()->create([
                         ...$payload,
+                        'obsidian_conflict' => false,
                         'created_at' => $timestamp,
                     ]);
-                }
 
-                $resolvedRecords[] = [
-                    ...$normalizedRecord,
-                    'record_uuid' => $entry->obsidian_record_uuid,
-                ];
+                    $resolvedRecords[] = [
+                        ...$normalizedRecord,
+                        'record_uuid' => $entry->obsidian_record_uuid,
+                    ];
+                }
             }
 
+            // Anything left in $unmatchedEntries was not mentioned in the
+            // vault. Soft-delete (not hard delete) to preserve history.
             if ($unmatchedEntries !== []) {
                 $modelClass::query()
                     ->whereIn('id', array_keys($unmatchedEntries))
@@ -1219,7 +1277,57 @@ class ObsidianSyncService
                 $entry->getRawOriginal('time_start') ?? '',
                 $entry->getRawOriginal('time_end') ?? '',
                 $entry->about ?? '',
+                $entry->role_in_activity ?? '',
             ]),
+        };
+    }
+
+    private function computeRecordContentHash(IndexType $type, array $record): string
+    {
+        $row = $this->tableRow($type, $record);
+        return hash('sha256', implode('|', $row));
+    }
+
+    private function computeRecordContentHashFromEntry(IndexType $type, $entry): string
+    {
+        $record = $this->entryToNormalizedRecord($type, $entry);
+        return $this->computeRecordContentHash($type, $record);
+    }
+
+    private function entryToNormalizedRecord(IndexType $type, $entry): array
+    {
+        $timeStart = (string) $entry->time_start;
+        $timeEnd = (string) $entry->time_end;
+        // Ensure time has seconds for formatTimeForMarkdown (expects H:i:s)
+        if (strlen($timeStart) === 5) {
+            $timeStart .= ':00';
+        }
+        if (strlen($timeEnd) === 5) {
+            $timeEnd .= ':00';
+        }
+
+        return match ($type) {
+            IndexType::Formation => [
+                'served_on' => $entry->served_on?->format('Y-m-d'),
+                'cycle_code' => $entry->cycle_code,
+                'module_code' => $entry->module_code,
+                'title' => $entry->title,
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+            ],
+            IndexType::ParishInvolvement => [
+                'served_on' => $entry->served_on?->format('Y-m-d'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+                'role_in_activity' => $entry->role_in_activity,
+            ],
+            IndexType::SocialApostolate => [
+                'served_on' => $entry->served_on?->format('Y-m-d'),
+                'about' => $entry->about,
+                'role_in_activity' => $entry->role_in_activity,
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd,
+            ],
         };
     }
 
@@ -1231,6 +1339,7 @@ class ObsidianSyncService
     private function lockedRecordKeys(IndexType $type): array
     {
         $sourceEntryIds = ReportGroupItem::query()
+            ->withTrashed()
             ->where('index_type', $type->value)
             ->whereNotNull('source_entry_id')
             ->pluck('source_entry_id');
@@ -1242,6 +1351,7 @@ class ObsidianSyncService
         $modelClass = $type->modelClass();
 
         return $modelClass::query()
+            ->withTrashed()
             ->whereIn('id', $sourceEntryIds)
             ->get()
             ->mapWithKeys(fn ($entry): array => [$this->modelKey($type, $entry) => true])
@@ -1269,6 +1379,7 @@ class ObsidianSyncService
                 IndexType::SocialApostolate => [
                     ...$normalized,
                     'about' => $record['about'] ?? null,
+                    'role_in_activity' => $record['role_in_activity'] ?? null,
                 ],
             };
         }, $records));
@@ -1304,5 +1415,158 @@ class ObsidianSyncService
         $uuid = trim((string) $value);
 
         return $uuid === '' ? null : Str::lower($uuid);
+    }
+
+    /**
+     * Resolve a conflict by accepting the vault version.
+     * Reads the vault file directly and updates the entry with vault data.
+     */
+    public function resolveConflictAcceptVault(IndexType $type, int $entryId): void
+    {
+        $modelClass = $type->modelClass();
+        $entry = $modelClass::query()->withTrashed()->findOrFail($entryId);
+
+        if (! $entry->obsidian_conflict || ! $entry->obsidian_record_uuid) {
+            return;
+        }
+
+        // Find and read the vault file for this entry
+        $filePath = $this->filePath($type);
+        if (! File::exists($filePath)) {
+            return;
+        }
+
+        $contents = File::get($filePath);
+        $matter = YamlFrontMatter::parse($contents)->matter();
+        $records = $matter['records'] ?? [];
+
+        // Find the record with matching UUID
+        $vaultRecord = null;
+        foreach ($records as $record) {
+            if (($record['record_uuid'] ?? null) === $entry->obsidian_record_uuid) {
+                $vaultRecord = $record;
+                break;
+            }
+        }
+
+        if (! $vaultRecord) {
+            return;
+        }
+
+        // Update entry with vault data
+        $normalized = $this->normalizeRecordForStorage($type, $vaultRecord);
+        $vaultHash = $this->computeRecordContentHash($type, $normalized);
+        unset($normalized['record_uuid']);
+
+        $payload = array_merge(
+            $normalized,
+            [
+                'obsidian_content_hash' => $vaultHash,
+                'obsidian_last_synced_at' => now(),
+                'obsidian_last_source' => 'vault',
+                'obsidian_conflict' => false,
+                'updated_at' => now(),
+            ]
+        );
+
+        if ($entry->trashed()) {
+            $entry->restore();
+        }
+
+        $entry->forceFill($payload)->save();
+
+        // Sync to update vault (in case other entries need syncing)
+        $this->syncIndex($type);
+    }
+
+    /**
+     * Resolve a conflict by accepting the database version.
+     * Keeps the database entry as-is, writes it back to vault, and clears conflict flag.
+     */
+    public function resolveConflictAcceptDb(IndexType $type, int $entryId): void
+    {
+        $modelClass = $type->modelClass();
+        $entry = $modelClass::query()->withTrashed()->findOrFail($entryId);
+
+        if (! $entry->obsidian_conflict) {
+            return;
+        }
+
+        // Write current DB state to vault (force sync)
+        $this->syncIndex($type);
+
+        // Clear conflict flag
+        $entry = $modelClass::query()->findOrFail($entryId);
+        $entry->forceFill(['obsidian_conflict' => false])->save();
+    }
+
+    /**
+     * Resolve a conflict by manually merging.
+     * Updates the database entry with provided merged data, writes to vault, clears conflict.
+     */
+    public function resolveConflictMerge(IndexType $type, int $entryId, array $mergedData): void
+    {
+        $modelClass = $type->modelClass();
+        $entry = $modelClass::query()->withTrashed()->findOrFail($entryId);
+
+        if (! $entry->obsidian_conflict) {
+            return;
+        }
+
+        $normalized = $this->normalizeRecordForStorage($type, $mergedData);
+        // Remove record_uuid from normalized data as it's not a database column
+        unset($normalized['record_uuid']);
+
+        $vaultHash = $this->computeRecordContentHash($type, $normalized);
+
+        $payload = array_merge(
+            $normalized,
+            [
+                'obsidian_content_hash' => $vaultHash,
+                'obsidian_last_synced_at' => now(),
+                'obsidian_last_source' => 'manual_merge',
+                'obsidian_conflict' => false,
+                'updated_at' => now(),
+            ]
+        );
+
+        if ($entry->trashed()) {
+            $entry->restore();
+        }
+
+        $entry->forceFill($payload)->save();
+
+        // Write merged data directly to vault file (bypass sync to avoid overwriting)
+        $this->writeMergedRecordToVault($type, $entry, $normalized, $vaultHash);
+    }
+
+    /**
+     * Write a merged record directly to the vault file.
+     * Bypasses normal sync logic to avoid conflict detection overwriting the merge.
+     */
+    private function writeMergedRecordToVault(IndexType $type, $entry, array $normalizedRecord, string $vaultHash): void
+    {
+        $filePath = $this->filePath($type);
+        if (! File::exists($filePath)) {
+            return;
+        }
+
+        $document = YamlFrontMatter::parseFile($filePath);
+        $records = $document->matter()['records'] ?? [];
+
+        // Find and update the record with matching UUID
+        foreach ($records as &$record) {
+            if (($record['record_uuid'] ?? null) === $entry->obsidian_record_uuid) {
+                // Update with merged data, preserving UUID
+                $record = array_merge($record, $normalizedRecord, ['record_uuid' => $entry->obsidian_record_uuid]);
+                break;
+            }
+        }
+
+        // Render and write
+        $matter = $document->matter();
+        $matter['records'] = $records;
+        $contents = $this->renderDocument($type, $matter, $records);
+        $this->writeIfChanged($filePath, $contents);
     }
 }

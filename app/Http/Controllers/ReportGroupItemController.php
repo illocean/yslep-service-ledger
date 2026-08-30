@@ -7,6 +7,7 @@ use App\Http\Requests\UpsertReportGroupItemRequest;
 use App\Models\ReportGroup;
 use App\Models\ReportGroupItem;
 use App\Services\ReportGroupService;
+use App\Services\ReportGroupVaultSyncService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -93,5 +94,51 @@ class ReportGroupItemController extends Controller
         return redirect()
             ->route('reports.show', $reportGroup)
             ->with('status', 'Removed the '.$label.' record from '.$reportGroup->compact_label.'.');
+    }
+
+    public function acceptVault(
+        ReportGroup $reportGroup,
+        ReportGroupItem $reportGroupItem,
+        Request $request,
+        ReportGroupVaultSyncService $vaultSyncService,
+    ): RedirectResponse {
+        abort_unless($reportGroupItem->report_group_id === $reportGroup->id, 404);
+
+        $vaultSyncService->resolveConflictAcceptVault($reportGroupItem);
+
+        return redirect()
+            ->route('reports.show', $reportGroup)
+            ->with('status', 'Conflict resolved: accepted vault version.');
+    }
+
+    public function acceptDb(
+        ReportGroup $reportGroup,
+        ReportGroupItem $reportGroupItem,
+        Request $request,
+        ReportGroupVaultSyncService $vaultSyncService,
+    ): RedirectResponse {
+        abort_unless($reportGroupItem->report_group_id === $reportGroup->id, 404);
+
+        $vaultSyncService->resolveConflictAcceptDb($reportGroupItem);
+
+        return redirect()
+            ->route('reports.show', $reportGroup)
+            ->with('status', 'Conflict resolved: accepted database version.');
+    }
+
+    public function merge(
+        ReportGroup $reportGroup,
+        ReportGroupItem $reportGroupItem,
+        Request $request,
+        ReportGroupVaultSyncService $vaultSyncService,
+    ): RedirectResponse {
+        abort_unless($reportGroupItem->report_group_id === $reportGroup->id, 404);
+
+        $mergedData = $request->except(['_token']);
+        $vaultSyncService->resolveConflictMerge($reportGroupItem, $mergedData);
+
+        return redirect()
+            ->route('reports.show', $reportGroup)
+            ->with('status', 'Conflict resolved: merged changes.');
     }
 }

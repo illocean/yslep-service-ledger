@@ -122,8 +122,8 @@ MD);
 
         $response->assertOk();
         $response->assertSee('service ledger from your three Obsidian inputs');
-        $response->assertSee('Open Saved Reports');
-        $response->assertSee('Locked in reports');
+        $response->assertSee('View All Reports');
+        $response->assertSee('Locked in Reports');
         $response->assertSee('3 hr');
         $response->assertSee('2 hr 30 min');
         $response->assertSee('8 hr 30 min');
@@ -142,8 +142,8 @@ MD);
         $response = $this->post(route('report-groups.store'), [
             'title' => 'Christmas break service',
             'selected_entries' => [
-                'formation:'.FormationEntry::query()->firstOrFail()->id,
-                'social_apostolate:'.SocialApostolateEntry::query()->firstOrFail()->id,
+                'formation:'.FormationEntry::query()->orderBy('id')->firstOrFail()->id,
+                'social_apostolate:'.SocialApostolateEntry::query()->orderBy('id')->firstOrFail()->id,
             ],
         ]);
 
@@ -180,7 +180,7 @@ MD);
     {
         $this->get('/')->assertOk();
 
-        $formationEntry = FormationEntry::query()->firstOrFail();
+        $formationEntry = FormationEntry::query()->orderBy('id')->firstOrFail();
 
         $this->post(route('report-groups.store'), [
             'title' => 'Locked report',
@@ -239,7 +239,7 @@ MD);
         $this->post(route('report-groups.store'), [
             'title' => 'Initial name',
             'selected_entries' => [
-                'formation:'.FormationEntry::query()->firstOrFail()->id,
+                'formation:'.FormationEntry::query()->orderBy('id')->firstOrFail()->id,
             ],
         ])->assertRedirect();
 
@@ -265,7 +265,7 @@ MD);
         $this->get('/')->assertOk();
 
         $formationEntry = FormationEntry::query()->firstOrFail();
-        $socialEntry = SocialApostolateEntry::query()->firstOrFail();
+        $socialEntry = SocialApostolateEntry::query()->where('about', 'Creating MAV slides')->firstOrFail();
 
         $this->post(route('report-groups.store'), [
             'title' => 'Chosen report',
@@ -283,7 +283,8 @@ MD);
         $response->assertSee('Chosen report');
         $response->assertSee('Add record to report');
         $response->assertSee('Creating MAV slides');
-        $response->assertSee('Add Record');
+        // Section 2: button text changed from "Add Record" to "Add Entry"
+        $response->assertSee('Add Entry');
     }
 
     public function test_dashboard_hides_categories_with_no_remaining_available_entries(): void
@@ -305,7 +306,9 @@ MD);
 
         $response->assertOk();
         $response->assertSee('Already saved:');
-        $response->assertSee('data-hidden-save-type="formation"', false);
+        // Section 2: hidden types now shown via assignment-chip (variant="complete") rather than data-hidden-save-type
+        $response->assertSee('assignment-chip', false);
+        $response->assertSee('>Formation<', false);
         $response->assertDontSee('data-save-group-card="formation"', false);
         $response->assertSee('data-save-group-card="parish_involvement"', false);
     }
@@ -382,9 +385,11 @@ MD);
         $formationPage = $this->get(route('indexes.show', ['type' => 'formation']));
 
         $formationPage->assertOk();
-        $formationPage->assertSee('<input id="cycle-code" name="cycle_code" type="text"', false);
-        $formationPage->assertSee('<input id="module-code" name="module_code" type="text"', false);
-        $formationPage->assertSee('<input id="title" name="title" type="text"', false);
+        // Forms are now in modals; the inputs exist in the rendered HTML (x-show keeps them in DOM)
+        $formationPage->assertSee('name="cycle_code"', false);
+        $formationPage->assertSee('name="module_code"', false);
+        $formationPage->assertSee('name="title"', false);
+        $formationPage->assertSee('type="text"', false);
         $formationPage->assertDontSee('<select id="cycle-code"', false);
         $formationPage->assertDontSee('<select id="module-code"', false);
         $formationPage->assertDontSee('<select id="title"', false);
@@ -392,7 +397,7 @@ MD);
         $socialPage = $this->get(route('indexes.show', ['type' => 'social_apostolate']));
 
         $socialPage->assertOk();
-        $socialPage->assertSee('<input id="about" name="about" type="text"', false);
+        $socialPage->assertSee('name="about"', false);
         $socialPage->assertDontSee('<select id="about"', false);
 
         $response = $this->post(route('entries.store'), [
@@ -422,6 +427,7 @@ MD);
             'type' => 'social_apostolate',
             'served_on' => '2025-09-29',
             'about' => 'Preparing outreach handouts',
+            'role_in_activity' => 'Volunteer',
             'time_start' => '13:00',
             'time_end' => '14:30',
         ]);
@@ -431,6 +437,7 @@ MD);
         $this->assertDatabaseHas('social_apostolate_entries', [
             'served_on' => '2025-09-29',
             'about' => 'Preparing outreach handouts',
+            'role_in_activity' => 'Volunteer',
             'time_start' => '13:00:00',
             'time_end' => '14:30:00',
         ]);
@@ -438,8 +445,111 @@ MD);
         $content = File::get($this->vaultPath.DIRECTORY_SEPARATOR.'SOCIAL APOSTOLATE.md');
 
         $this->assertStringContainsString('## Service Records', $content);
-        $this->assertStringContainsString('| September 29, 2025 | Preparing outreach handouts | 1:00 PM | 2:30 PM |', $content);
+        $this->assertStringContainsString('| September 29, 2025 | Preparing outreach handouts | Volunteer | 1:00 PM | 2:30 PM |', $content);
         $this->assertStringContainsString('records:', $content);
         $this->assertStringNotContainsString('### September 2025', $content);
+    }
+
+    public function test_saved_report_show_displays_archive_shortcut_and_archived_in_badge(): void
+    {
+        // First sync seeds the entries from markdown.
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Formation archive',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->orderBy('id')->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->orderBy('id')->firstOrFail();
+
+        // Available: should expose the Archive shortcut, not the badge.
+        $availablePage = $this->get(route('reports.show', $reportGroup));
+        $availablePage->assertOk();
+        $availablePage->assertSee('Archive this report', false);
+        $availablePage->assertSee('prefill='.$reportGroup->id, false);
+        $availablePage->assertDontSee('Archived in', false);
+
+        // After archiving: should show the badge and the Open-snapshot link.
+        $this->post(route('report-groups.store'), [
+            'title' => 'Social archive',
+            'selected_entries' => [
+                'social_apostolate:'.SocialApostolateEntry::query()->orderBy('id')->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $this->post(route('academic-year-snapshots.store'), [
+            'title' => 'AY 2025-2026',
+            'selected_report_groups' => [$reportGroup->id],
+        ])->assertRedirect();
+
+        $archivedPage = $this->get(route('reports.show', $reportGroup->fresh()));
+        $archivedPage->assertOk();
+        $archivedPage->assertSee('Archived in', false);
+        $archivedPage->assertSee('AY 2025-2026', false);
+        $archivedPage->assertSee('Open snapshot', false);
+        $archivedPage->assertDontSee('Archive this report', false);
+    }
+
+    public function test_academic_year_snapshot_builder_prefills_checkbox_from_query_param(): void
+    {
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Formation archive',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->orderBy('id')->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Social archive',
+            'selected_entries' => [
+                'social_apostolate:'.SocialApostolateEntry::query()->orderBy('id')->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroups = ReportGroup::query()->orderBy('id')->get();
+        $target = $reportGroups->first();
+
+        $response = $this->get(route('academic-year-snapshots.index', ['prefill' => $target->id]));
+
+        $response->assertOk();
+        $response->assertSee('Pre-selected from the saved report page', false);
+        $response->assertSeeInOrder(['value="'.$target->id.'"', 'checked'], false);
+        $response->assertSee('value="'.$reportGroups->last()->id.'"', false);
+
+        // Multi-id comma list also works.
+        $other = $reportGroups->last();
+        $response = $this->get(route('academic-year-snapshots.index', ['prefill' => $target->id.','.$other->id]));
+        $response->assertOk();
+        $response->assertSeeInOrder(['value="'.$target->id.'"', 'checked'], false);
+        $response->assertSeeInOrder(['value="'.$other->id.'"', 'checked'], false);
+    }
+
+    public function test_snapshot_builder_renders_filters_and_live_summary(): void
+    {
+        $this->get('/')->assertOk();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Formation archive',
+            'selected_entries' => [
+                'formation:'.FormationEntry::query()->orderBy('id')->firstOrFail()->id,
+            ],
+        ])->assertRedirect();
+
+        $response = $this->get(route('academic-year-snapshots.index'));
+
+        $response->assertOk();
+        $response->assertSee('Select all', false);
+        $response->assertSee('Clear', false);
+        $response->assertSee('compact-pill--active', false);
+        $response->assertSee('data-report-records=', false);
+        $response->assertSee('data-report-minutes=', false);
+        $response->assertSee('data-report-types=', false);
+        $response->assertSee('snapshotBuilder', false);
+        $response->assertSee('@click="selectAll()"', false);
+        $response->assertSee('@click="clearAll()"', false);
     }
 }
