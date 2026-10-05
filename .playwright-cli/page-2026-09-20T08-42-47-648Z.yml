@@ -1,0 +1,98 @@
+- generic [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - dialog "Add Formation" [ref=e6]:
+    - generic [ref=e7]:
+      - banner [ref=e8]:
+        - generic [ref=e9]:
+          - paragraph [ref=e10]: Live ledger
+          - heading "Add Formation" [level=2] [ref=e11]
+        - button "Close modal" [ref=e12]: ×
+      - generic [ref=e13]:
+        - alert [ref=e14]: Please correct the highlighted fields.
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e17]: Date *
+            - textbox "Date" [active] [ref=e18]: 2026-09-20
+          - generic [ref=e19]:
+            - text: Academic year (optional)
+            - combobox "Academic year (optional)" [ref=e20]
+            - paragraph [ref=e21]: Choose a year or type a new one. This does not archive the entry.
+          - generic [ref=e22]:
+            - generic [ref=e23]: Cycle code *
+            - textbox "Cycle code" [ref=e24]:
+              - /placeholder: C1
+              - text: C1
+          - generic [ref=e25]:
+            - generic [ref=e26]: Module code *
+            - textbox "Module code" [ref=e27]:
+              - /placeholder: M1
+              - text: M1
+          - generic [ref=e28]:
+            - generic [ref=e29]: Title *
+            - textbox [ref=e30]: Browser formation check
+          - generic [ref=e31]:
+            - generic [ref=e32]: Time in *
+            - textbox "Time in" [ref=e33]: 09:00
+          - generic [ref=e34]:
+            - generic [ref=e35]: Time out *
+            - textbox "Time out" [invalid] [ref=e36]: 08:00
+            - paragraph [ref=e37]: The time out must be later than the time in.
+        - generic [ref=e38]:
+          - button "Cancel" [ref=e39]
+          - button "Add entry" [ref=e40]
+  - generic [ref=e41]:
+    - banner [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e48] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e49]:
+            - generic "Live data from Obsidian" [ref=e50]: Live
+            - generic "Saved reports" [ref=e51]: Reports
+            - generic "Academic year archives" [ref=e52]: Archives
+        - navigation "Main navigation" [ref=e53]:
+          - menubar [ref=e54]:
+            - menuitem "Overview" [ref=e55] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e57] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e59] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e61] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e63] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e65] [cursor=pointer]: Academic Years
+    - main [ref=e67]:
+      - generic [ref=e68]:
+        - alert [ref=e69]:
+          - paragraph [ref=e70]: Please fix the highlighted form fields and try again.
+          - list [ref=e71]:
+            - listitem [ref=e72]: The time out must be later than the time in.
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - paragraph [ref=e76]: All Time
+              - heading "Formation" [level=1] [ref=e77]
+              - paragraph [ref=e78]: 0 entries · 0 hr served
+            - button "+ Add Formation" [ref=e79]
+          - generic [ref=e80]:
+            - navigation "Record scope" [ref=e81]:
+              - link "All entries" [ref=e82] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation
+              - link "Unsaved only" [ref=e83] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation?scope=unsaved
+            - generic [ref=e84]:
+              - text: Saved report
+              - combobox "Saved report" [ref=e85]:
+                - option "Choose a report" [selected]
+            - group [ref=e86]:
+              - generic "Profile details" [ref=e87] [cursor=pointer]
+        - article [ref=e89]:
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]: Ledger
+              - heading "All Time entries" [level=2] [ref=e93]
+            - generic [ref=e94]: 0 record(s)
+          - generic [ref=e96]: No formation records in this scope. Use Add entry to record your first activity.

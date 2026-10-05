@@ -22,7 +22,7 @@ class ReportGroupService
     public function all(): EloquentCollection
     {
         return ReportGroup::query()
-            ->with(['items' => fn ($q) => $q->withTrashed()])
+            ->with('items')
             ->orderByDesc('created_at')
             ->get();
     }
@@ -34,7 +34,7 @@ class ReportGroupService
         }
 
         return ReportGroup::query()
-            ->with(['items' => fn ($q) => $q->withTrashed()])
+            ->with('items')
             ->where('tag', $tag)
             ->first();
     }
@@ -152,7 +152,6 @@ class ReportGroupService
     {
         return ReportGroupItem::query()
             ->with('reportGroup')
-            ->withTrashed()
             ->whereNotNull('source_entry_id')
             ->get()
             ->mapWithKeys(function (ReportGroupItem $item): array {
@@ -230,6 +229,7 @@ class ReportGroupService
             'index_type' => $type->value,
             'source_entry_id' => $entry->id,
             'served_on' => $entry->served_on->toDateString(),
+            'academic_year' => $entry->academic_year,
             'time_start' => $entry->getRawOriginal('time_start'),
             'time_end' => $entry->getRawOriginal('time_end'),
             'cycle_code' => $entry->cycle_code ?? null,
@@ -323,7 +323,6 @@ class ReportGroupService
             $lockedItems = $lockedItems->merge(
                 ReportGroupItem::query()
                     ->with('reportGroup')
-                    ->withTrashed()
                     ->where('index_type', $typeValue)
                     ->whereIn('source_entry_id', $ids)
                     ->whereNotNull('source_entry_id')

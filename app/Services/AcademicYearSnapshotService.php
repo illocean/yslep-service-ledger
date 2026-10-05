@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\IndexType;
 use App\Models\AcademicYearSnapshot;
 use App\Models\AcademicYearSnapshotItem;
+use App\Models\ReportGroup;
 use App\Models\ReportGroupItem;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
@@ -41,16 +42,17 @@ class AcademicYearSnapshotService
 
     public function create(?string $title, string $academicYear, array $reportGroupIds): AcademicYearSnapshot
     {
-        $this->ensureReportsAreAvailable($reportGroupIds);
-        $items = $this->selectedItems($reportGroupIds);
+        $snapshot = DB::transaction(function () use ($title, $academicYear, $reportGroupIds): AcademicYearSnapshot {
+            ReportGroup::query()->whereIn('id', $reportGroupIds)->orderBy('id')->lockForUpdate()->get();
+            $this->ensureReportsAreAvailable($reportGroupIds);
+            $items = $this->selectedItems($reportGroupIds);
 
-        if ($items->isEmpty()) {
-            throw ValidationException::withMessages([
-                'selected_report_groups' => 'Choose at least one saved report before creating the academic year snapshot.',
-            ]);
-        }
+            if ($items->isEmpty()) {
+                throw ValidationException::withMessages([
+                    'selected_report_groups' => 'Choose at least one saved report with records before creating the academic year snapshot.',
+                ]);
+            }
 
-        $snapshot = DB::transaction(function () use ($title, $academicYear, $items): AcademicYearSnapshot {
             $snapshot = AcademicYearSnapshot::query()->create([
                 'tag' => $this->generateUniqueTag($academicYear),
                 'academic_year' => $academicYear,
@@ -69,6 +71,7 @@ class AcademicYearSnapshotService
                     'source_report_label' => $item->reportGroup?->compact_label,
                     'index_type' => $item->index_type,
                     'served_on' => $item->served_on->toDateString(),
+                    'academic_year' => $item->academic_year,
                     'time_start' => $item->getRawOriginal('time_start'),
                     'time_end' => $item->getRawOriginal('time_end'),
                     'cycle_code' => $item->cycle_code,

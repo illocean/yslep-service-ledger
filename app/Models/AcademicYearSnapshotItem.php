@@ -20,6 +20,7 @@ class AcademicYearSnapshotItem extends Model
         'source_report_label',
         'index_type',
         'served_on',
+        'academic_year',
         'time_start',
         'time_end',
         'cycle_code',

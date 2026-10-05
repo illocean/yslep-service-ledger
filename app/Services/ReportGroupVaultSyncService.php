@@ -116,7 +116,7 @@ class ReportGroupVaultSyncService
                         continue;
                     }
 
-if ($item === null) {
+                    if ($item === null) {
                         $item = $reportGroup->items()->create([
                             ...$payload,
                             'obsidian_record_uuid' => (string) Str::uuid(),
@@ -132,13 +132,13 @@ if ($item === null) {
                         $dbChanged = false;
                         $isLegacyItem = $storedHash === null;
 
-                        if (!$isLegacyItem) {
+                        if (! $isLegacyItem) {
                             // Render current DB state as a note and hash it
                             $dbRenderedHash = hash('sha256', $this->renderRecordNote($reportGroup, $item));
                             $dbChanged = $dbRenderedHash !== $storedHash;
                         }
 
-                        if (!$isLegacyItem && $vaultChanged && $dbChanged) {
+                        if (! $isLegacyItem && $vaultChanged && $dbChanged) {
                             // Both sides changed since last sync - mark as conflicted, don't overwrite
                             $item->forceFill([
                                 'obsidian_conflict' => true,
@@ -267,6 +267,7 @@ if ($item === null) {
             'index_type' => $item->index_type,
             'source_entry_id' => $item->source_entry_id,
             'served_on' => $item->served_on?->toDateString(),
+            ...filled($item->academic_year) ? ['academic_year' => $item->academic_year] : [],
             'time_start' => $item->getRawOriginal('time_start'),
             'time_end' => $item->getRawOriginal('time_end'),
             'cycle_code' => $item->cycle_code,
@@ -384,6 +385,8 @@ if ($item === null) {
         $payload = [
             'index_type' => $type->value,
             'served_on' => $servedOn,
+            'academic_year' => Arr::get($matter, 'academic_year', $existingItem?->academic_year),
+            'role_in_activity' => Arr::get($matter, 'role_in_activity', $existingItem?->role_in_activity),
             'time_start' => $timeStart,
             'time_end' => $timeEnd,
             'source_order' => max(1, (int) Arr::get($matter, 'source_order', $existingItem?->source_order ?? 1)),
@@ -438,6 +441,7 @@ if ($item === null) {
         // Compute hash from the item's data fields (not including sync metadata)
         $type = IndexType::from($item->index_type);
         $record = $this->itemToNormalizedRecord($type, $item);
+
         return hash('sha256', implode('|', $record));
     }
 
@@ -445,6 +449,7 @@ if ($item === null) {
     {
         // Compute hash from the full rendered note content (same as syncReportGroup)
         $contents = $this->renderRecordNote($item->reportGroup ?? ReportGroup::find($item->report_group_id), $item);
+
         return hash('sha256', $contents);
     }
 
@@ -463,6 +468,7 @@ if ($item === null) {
         return match ($type) {
             IndexType::Formation => [
                 'served_on' => $item->served_on?->format('Y-m-d'),
+                'academic_year' => $item->academic_year,
                 'cycle_code' => $item->cycle_code,
                 'module_code' => $item->module_code,
                 'title' => $item->title,
@@ -471,11 +477,13 @@ if ($item === null) {
             ],
             IndexType::ParishInvolvement => [
                 'served_on' => $item->served_on?->format('Y-m-d'),
+                'academic_year' => $item->academic_year,
                 'time_start' => $timeStart,
                 'time_end' => $timeEnd,
             ],
             IndexType::SocialApostolate => [
                 'served_on' => $item->served_on?->format('Y-m-d'),
+                'academic_year' => $item->academic_year,
                 'about' => $item->about,
                 'role_in_activity' => $item->role_in_activity,
                 'time_start' => $timeStart,

@@ -1,0 +1,69 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - status [ref=e34]: Formation entry updated and synced to Obsidian.
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e37]:
+              - paragraph [ref=e38]: All Time
+              - heading "Formation" [level=1] [ref=e39]
+              - paragraph [ref=e40]: 1 entries · 1 hr 30 min served
+            - button "+ Add Formation" [ref=e41]
+          - generic [ref=e42]:
+            - navigation "Record scope" [ref=e43]:
+              - link "All entries" [ref=e44] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation
+              - link "Unsaved only" [ref=e45] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation?scope=unsaved
+            - generic [ref=e46]:
+              - text: Saved report
+              - combobox "Saved report" [ref=e47]:
+                - option "Choose a report" [selected]
+            - group [ref=e48]:
+              - generic "Profile details" [ref=e49] [cursor=pointer]
+        - article [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: Ledger
+              - heading "All Time entries" [level=2] [ref=e55]
+            - generic [ref=e56]: 1 record(s)
+          - article [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - generic [ref=e61]:
+                  - generic [ref=e62]:
+                    - img [ref=e63]
+                    - generic [ref=e65]: Live record
+                  - generic [ref=e66]: 1 hr 30 min
+                - generic [ref=e67]: C1 / M1 - Browser formation edited
+                - generic [ref=e68]: September 20, 2026 | 9:00 AM - 10:30 AM AY 2030-2031
+              - generic [ref=e69]:
+                - button "Edit C1 / M1 - Browser formation edited" [ref=e70]:
+                  - img [ref=e71]
+                  - generic [ref=e74]: Edit
+                - button "Delete" [ref=e76]

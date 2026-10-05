@@ -1,0 +1,307 @@
+- generic [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: ⌘
+      - generic [ref=e6]: K
+      - generic [ref=e7]: Quick Add
+    - group "Select entry type" [ref=e8]:
+      - button "Formation" [pressed] [ref=e9]
+      - button "Social Apostolate" [ref=e14]
+      - button "Parish Involvement" [ref=e21]
+    - button "Add new Formation entry" [active] [ref=e26]:
+      - generic [ref=e28]: Add Entry
+    - generic [ref=e29]: Synced
+  - dialog [ref=e378]:
+    - document [ref=e379]:
+      - banner [ref=e380]:
+        - heading "Add Formation Entry" [level=2] [ref=e385]
+        - button "Close modal" [ref=e386]
+      - generic [ref=e390]:
+        - generic [ref=e391]:
+          - generic [ref=e392]: Cycle Code *
+          - textbox "Cycle Code" [ref=e393]:
+            - /placeholder: e.g., C1, C2
+        - generic [ref=e394]:
+          - generic [ref=e395]: Module Code *
+          - textbox "Module Code" [ref=e396]:
+            - /placeholder: e.g., M101
+        - generic [ref=e397]:
+          - generic [ref=e398]: Title *
+          - textbox "Title Report Title" [ref=e399]:
+            - /placeholder: Module title
+        - generic [ref=e400]:
+          - generic [ref=e401]: Date *
+          - textbox "Date Date *" [ref=e402]:
+            - /placeholder: ""
+        - generic [ref=e403]:
+          - generic [ref=e404]: Hours *
+          - spinbutton "Hours" [ref=e405]
+        - generic [ref=e406]:
+          - button "Cancel" [ref=e407]
+          - button "Create Entry" [ref=e408]
+  - generic [ref=e32]:
+    - banner [ref=e33]:
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e39] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=e40]:
+            - generic "Live data from Obsidian" [ref=e41]: Live
+            - generic "Saved reports" [ref=e42]: Reports
+            - generic "Academic year archives" [ref=e43]: Archives
+        - navigation "Main navigation" [ref=e44]:
+          - menubar [ref=e45]:
+            - menuitem "Overview" [ref=e46] [cursor=pointer]
+            - menuitem "Formation" [ref=e48] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=e50] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=e52] [cursor=pointer]
+            - menuitem "Reports" [ref=e54] [cursor=pointer]
+            - menuitem "AY Archives" [ref=e56] [cursor=pointer]
+    - main [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]: Dashboard
+            - heading "All-time service ledger from your three Obsidian inputs." [level=1] [ref=e64]
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - generic [ref=e67]: Saved Reports
+              - generic [ref=e68]: "12"
+            - generic [ref=e69]:
+              - link "View All Reports" [ref=e70] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports
+              - generic [ref=e71]:
+                - generic [ref=e72]: Latest Report
+                - paragraph [ref=e73]: JULY '26 (RPT-20260801-152416-FBVV)
+        - generic [ref=e74]:
+          - article [ref=e75]:
+            - generic [ref=e76]: Formation
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - generic [ref=e79]: Total Entries
+                - generic [ref=e80]: "13"
+              - generic [ref=e81]:
+                - generic [ref=e82]: Total Hours
+                - generic [ref=e83]: 14 hr
+          - article [ref=e84]:
+            - generic [ref=e85]: Parish Involvement
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]: Total Entries
+                - generic [ref=e89]: "62"
+              - generic [ref=e90]:
+                - generic [ref=e91]: Total Hours
+                - generic [ref=e92]: 99 hr
+          - article [ref=e93]:
+            - generic [ref=e94]: Social Apostolate
+            - generic [ref=e95]:
+              - generic [ref=e96]:
+                - generic [ref=e97]: Total Entries
+                - generic [ref=e98]: "36"
+              - generic [ref=e99]:
+                - generic [ref=e100]: Total Hours
+                - generic [ref=e101]: 54 hr
+          - article [ref=e102]:
+            - generic [ref=e103]: Grand Total
+            - generic [ref=e104]:
+              - generic [ref=e105]: Combined hours across all three indexes
+              - generic [ref=e106]: 167 hr
+        - generic [ref=e107]:
+          - article [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: Formation Index Card
+                - heading "Formation" [level=2] [ref=e112]
+                - paragraph [ref=e113]: "File: FORMATION.md"
+              - generic [ref=e114]: 13 record(s)
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - generic [ref=e117]: School Year
+                - generic [ref=e118]: 2025-2026
+              - generic [ref=e119]:
+                - generic [ref=e120]: Locked in Reports
+                - generic [ref=e121]: "12"
+            - generic [ref=e122]:
+              - generic [ref=e123]:
+                - generic [ref=e124]: All Time Preview
+                - generic [ref=e125]: 14 hr
+              - generic [ref=e126]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]:
+                    - generic [ref=e130]: August 1, 2025
+                    - generic [ref=e131]: C1 / M8 - Called to Be a Steward
+                    - generic "\"Saved" [ref=e133]: AUG '25
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: 3:00 PM - 4:00 PM
+                    - generic [ref=e139]: 1 hr
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - generic [ref=e143]: September 21, 2025
+                    - generic [ref=e144]: C2 / M1 - I Belong to a Family
+                    - generic "\"Saved" [ref=e146]: SEPT '25
+                  - generic [ref=e150]:
+                    - generic [ref=e151]: 3:00 PM - 4:00 PM
+                    - generic [ref=e152]: 1 hr
+                - generic [ref=e154]:
+                  - generic [ref=e155]:
+                    - generic [ref=e156]: October 2, 2025
+                    - generic [ref=e157]: C2 / M2 - Honor Thy Parent
+                    - generic "\"Saved" [ref=e159]: OCT '25
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: 3:00 PM - 4:00 PM
+                    - generic [ref=e165]: 1 hr
+                - generic [ref=e167]:
+                  - generic [ref=e168]:
+                    - generic [ref=e169]: November 15, 2025
+                    - generic [ref=e170]: C2 / M3 - Celebrating Brotherhood
+                    - generic "\"Saved" [ref=e172]: NOV '25
+                  - generic [ref=e176]:
+                    - generic [ref=e177]: 3:00 PM - 4:00 PM
+                    - generic [ref=e178]: 1 hr
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: December 7, 2025
+                    - generic [ref=e183]: C2 / M4 - Jesus Is My Brother
+                    - generic "\"Saved" [ref=e185]: DEC '25
+                  - generic [ref=e189]:
+                    - generic [ref=e190]: 2:00 PM - 4:00 PM
+                    - generic [ref=e191]: 2 hr
+            - generic [ref=e192]:
+              - generic [ref=e193]: Open the dedicated formation page for the full all-time ledger and live input form.
+              - link "Open Formation Page" [ref=e194] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+          - article [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - generic [ref=e198]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=e199]
+                - paragraph [ref=e200]: "File: PARISH INVOLVEMENT.md"
+              - generic [ref=e201]: 62 record(s)
+            - generic [ref=e202]:
+              - generic [ref=e203]:
+                - generic [ref=e204]: School Year
+                - generic [ref=e205]: 2025-2026
+              - generic [ref=e206]:
+                - generic [ref=e207]: Locked in Reports
+                - generic [ref=e208]: "58"
+            - generic [ref=e209]:
+              - generic [ref=e210]:
+                - generic [ref=e211]: All Time Preview
+                - generic [ref=e212]: 99 hr
+              - generic [ref=e213]:
+                - generic [ref=e215]:
+                  - generic [ref=e216]:
+                    - generic [ref=e217]: August 9, 2025
+                    - generic [ref=e218]: Parish Involvement
+                    - generic "\"Saved" [ref=e220]: AUG '25
+                  - generic [ref=e224]:
+                    - generic [ref=e225]: 6:30 PM - 7:30 PM
+                    - generic [ref=e226]: 1 hr
+                - generic [ref=e228]:
+                  - generic [ref=e229]:
+                    - generic [ref=e230]: August 10, 2025
+                    - generic [ref=e231]: Parish Involvement
+                    - generic "\"Saved" [ref=e233]: AUG '25
+                  - generic [ref=e237]:
+                    - generic [ref=e238]: 6:30 AM - 7:30 AM
+                    - generic [ref=e239]: 1 hr
+                - generic [ref=e241]:
+                  - generic [ref=e242]:
+                    - generic [ref=e243]: August 10, 2025
+                    - generic [ref=e244]: Parish Involvement
+                    - generic "\"Saved" [ref=e246]: AUG '25
+                  - generic [ref=e250]:
+                    - generic [ref=e251]: 6:30 PM - 7:30 PM
+                    - generic [ref=e252]: 1 hr
+                - generic [ref=e254]:
+                  - generic [ref=e255]:
+                    - generic [ref=e256]: August 16, 2025
+                    - generic [ref=e257]: Parish Involvement
+                    - generic "\"Saved" [ref=e259]: AUG '25
+                  - generic [ref=e263]:
+                    - generic [ref=e264]: 6:30 PM - 7:30 PM
+                    - generic [ref=e265]: 1 hr
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - generic [ref=e269]: August 23, 2025
+                    - generic [ref=e270]: Parish Involvement
+                    - generic "\"Saved" [ref=e272]: AUG '25
+                  - generic [ref=e276]:
+                    - generic [ref=e277]: 6:30 PM - 7:30 PM
+                    - generic [ref=e278]: 1 hr
+            - generic [ref=e279]:
+              - generic [ref=e280]: Open the dedicated parish involvement page for the full all-time ledger and live input form.
+              - link "Open Parish Involvement Page" [ref=e281] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+          - article [ref=e282]:
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - generic [ref=e285]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=e286]
+                - paragraph [ref=e287]: "File: SOCIAL APOSTOLATE.md"
+              - generic [ref=e288]: 36 record(s)
+            - generic [ref=e289]:
+              - generic [ref=e290]:
+                - generic [ref=e291]: School Year
+                - generic [ref=e292]: 2025-2026
+              - generic [ref=e293]:
+                - generic [ref=e294]: Locked in Reports
+                - generic [ref=e295]: "34"
+            - generic [ref=e296]:
+              - generic [ref=e297]:
+                - generic [ref=e298]: All Time Preview
+                - generic [ref=e299]: 54 hr
+              - generic [ref=e300]:
+                - generic [ref=e302]:
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: August 4, 2025
+                    - generic [ref=e305]: Creating MAV slides
+                    - generic "\"Saved" [ref=e307]: AUG '25
+                  - generic [ref=e311]:
+                    - generic [ref=e312]: 1:00 PM - 2:00 PM
+                    - generic [ref=e313]: 1 hr
+                - generic [ref=e315]:
+                  - generic [ref=e316]:
+                    - generic [ref=e317]: August 21, 2025
+                    - generic [ref=e318]: Creating MAV slides
+                    - generic "\"Saved" [ref=e320]: AUG '25
+                  - generic [ref=e324]:
+                    - generic [ref=e325]: 4:00 PM - 5:00 PM
+                    - generic [ref=e326]: 1 hr
+                - generic [ref=e328]:
+                  - generic [ref=e329]:
+                    - generic [ref=e330]: September 8, 2025
+                    - generic [ref=e331]: Creating MAV slides
+                    - generic "\"Saved" [ref=e333]: SEPT '25
+                  - generic [ref=e337]:
+                    - generic [ref=e338]: 3:00 PM - 4:00 PM
+                    - generic [ref=e339]: 1 hr
+                - generic [ref=e341]:
+                  - generic [ref=e342]:
+                    - generic [ref=e343]: September 25, 2025
+                    - generic [ref=e344]: Creating MAV slides
+                    - generic "\"Saved" [ref=e346]: SEPT '25
+                  - generic [ref=e350]:
+                    - generic [ref=e351]: 9:00 AM - 10:00 AM
+                    - generic [ref=e352]: 1 hr
+                - generic [ref=e354]:
+                  - generic [ref=e355]:
+                    - generic [ref=e356]: October 8, 2025
+                    - generic [ref=e357]: Creating SocCom slides
+                    - generic "\"Saved" [ref=e359]: OCT '25
+                  - generic [ref=e363]:
+                    - generic [ref=e364]: 9:00 AM - 10:00 AM
+                    - generic [ref=e365]: 1 hr
+            - generic [ref=e366]:
+              - generic [ref=e367]: Open the dedicated social apostolate page for the full all-time ledger and live input form.
+              - link "Open Social Apostolate Page" [ref=e368] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/social_apostolate
+        - group [ref=e370]:
+          - generic "Save Report Group Build a saved report from unassigned live entries" [ref=e371] [cursor=pointer]:
+            - generic [ref=e372]:
+              - generic [ref=e373]: Save Report Group
+              - heading "Build a saved report from unassigned live entries" [level=2] [ref=e374]

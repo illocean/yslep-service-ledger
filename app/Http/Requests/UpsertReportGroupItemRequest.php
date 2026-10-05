@@ -21,6 +21,8 @@ class UpsertReportGroupItemRequest extends FormRequest
         return [
             'index_type' => ['required', Rule::enum(IndexType::class)],
             'served_on' => ['required', 'date'],
+            'academic_year' => ['nullable', 'string', 'regex:/^\d{4}-\d{4}$/'],
+            'role_in_activity' => ['nullable', 'string', 'max:255'],
             'time_start' => ['required', 'date_format:H:i'],
             'time_end' => ['required', 'date_format:H:i', 'after:time_start'],
             'cycle_code' => [
@@ -57,6 +59,7 @@ class UpsertReportGroupItemRequest extends FormRequest
             'cycle_code.regex' => 'Use the cycle format C1, C2, C3, and so on.',
             'module_code.regex' => 'Use the module format M1, M2, M3, and so on.',
             'time_end.after' => 'The time out must be later than the time in.',
+            'academic_year.regex' => 'Use the academic year format 2025-2026.',
         ];
     }
 
@@ -72,6 +75,14 @@ class UpsertReportGroupItemRequest extends FormRequest
             'time_start' => $this->string('time_start')->toString(),
             'time_end' => $this->string('time_end')->toString(),
         ];
+
+        if ($this->exists('academic_year')) {
+            $payload['academic_year'] = $this->input('academic_year');
+        }
+
+        if ($this->indexType() !== IndexType::Formation && $this->exists('role_in_activity')) {
+            $payload['role_in_activity'] = $this->input('role_in_activity');
+        }
 
         if ($this->indexType() === IndexType::Formation) {
             $payload['cycle_code'] = strtoupper($this->string('cycle_code')->toString());

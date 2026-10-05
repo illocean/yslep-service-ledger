@@ -15,6 +15,7 @@ class FormationEntry extends Model
 
     protected $fillable = [
         'served_on',
+        'academic_year',
         'cycle_code',
         'module_code',
         'title',

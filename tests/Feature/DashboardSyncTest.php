@@ -281,10 +281,9 @@ MD);
 
         $response->assertOk();
         $response->assertSee('Chosen report');
-        $response->assertSee('Add record to report');
+        $response->assertSee('Saved report: Chosen report');
         $response->assertSee('Creating MAV slides');
-        // Section 2: button text changed from "Add Record" to "Add Entry"
-        $response->assertSee('Add Entry');
+        $response->assertSee('Add Social Apostolate');
     }
 
     public function test_dashboard_hides_categories_with_no_remaining_available_entries(): void
@@ -335,6 +334,7 @@ MD);
 
         $response = $this->post(route('academic-year-snapshots.store'), [
             'title' => 'AY 2025-2026 Final Archive',
+            'academic_year' => '2025-2026',
             'selected_report_groups' => $reportGroups->pluck('id')->all(),
         ]);
 
@@ -369,6 +369,7 @@ MD);
 
         $this->post(route('academic-year-snapshots.store'), [
             'title' => 'AY 2025-2026 Final Archive',
+            'academic_year' => '2025-2026',
             'selected_report_groups' => [$reportGroups->first()->id],
         ])->assertRedirect();
 
@@ -481,6 +482,7 @@ MD);
 
         $this->post(route('academic-year-snapshots.store'), [
             'title' => 'AY 2025-2026',
+            'academic_year' => '2025-2026',
             'selected_report_groups' => [$reportGroup->id],
         ])->assertRedirect();
 
@@ -516,7 +518,7 @@ MD);
         $response = $this->get(route('academic-year-snapshots.index', ['prefill' => $target->id]));
 
         $response->assertOk();
-        $response->assertSee('Pre-selected from the saved report page', false);
+        $response->assertSee('Select the academic year and review the reports', false);
         $response->assertSeeInOrder(['value="'.$target->id.'"', 'checked'], false);
         $response->assertSee('value="'.$reportGroups->last()->id.'"', false);
 

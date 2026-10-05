@@ -1,0 +1,153 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - generic [ref=e37]: Dashboard
+            - heading "All-time service ledger from your three Obsidian inputs." [level=1] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: Saved Reports
+              - generic [ref=e42]: "00"
+            - link "View All Reports" [ref=e44] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011/reports
+        - generic [ref=e45]:
+          - article [ref=e46]:
+            - generic [ref=e47]: Formation
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - generic [ref=e50]: Total Entries
+                - generic [ref=e51]: "01"
+              - generic [ref=e52]:
+                - generic [ref=e53]: Total Hours
+                - generic [ref=e54]: 1 hr 30 min
+          - article [ref=e55]:
+            - generic [ref=e56]: Parish Involvement
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e59]: Total Entries
+                - generic [ref=e60]: "00"
+              - generic [ref=e61]:
+                - generic [ref=e62]: Total Hours
+                - generic [ref=e63]: 0 hr
+          - article [ref=e64]:
+            - generic [ref=e65]: Social Apostolate
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - generic [ref=e68]: Total Entries
+                - generic [ref=e69]: "00"
+              - generic [ref=e70]:
+                - generic [ref=e71]: Total Hours
+                - generic [ref=e72]: 0 hr
+          - article [ref=e73]:
+            - generic [ref=e74]: Grand Total
+            - generic [ref=e75]:
+              - generic [ref=e76]: Combined hours across all three indexes
+              - generic [ref=e77]: 1 hr 30 min
+        - generic [ref=e78]:
+          - article [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]:
+                - generic [ref=e82]: Formation Index Card
+                - heading "Formation" [level=2] [ref=e83]
+                - paragraph [ref=e84]: "File: FORMATION.md"
+              - generic [ref=e85]: 1 record(s)
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]: School Year
+                - generic [ref=e89]: 2025-2026
+              - generic [ref=e90]:
+                - generic [ref=e91]: Locked in Reports
+                - generic [ref=e92]: "0"
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - generic [ref=e95]: All Time Preview
+                - generic [ref=e96]: 1 hr 30 min
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - generic [ref=e101]: September 20, 2026
+                  - generic [ref=e102]: C1 / M1 - Browser formation edited
+                - generic [ref=e103]:
+                  - generic [ref=e104]: 9:00 AM - 10:30 AM
+                  - generic [ref=e105]: 1 hr 30 min
+            - generic [ref=e106]:
+              - generic [ref=e107]: Open the dedicated formation page for the full all-time ledger and live input form.
+              - link "Open Formation Page" [ref=e108] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation
+          - article [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - generic [ref=e112]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=e113]
+                - paragraph [ref=e114]: "File: PARISH INVOLVEMENT.md"
+              - generic [ref=e115]: 0 record(s)
+            - generic [ref=e116]:
+              - generic [ref=e117]:
+                - generic [ref=e118]: School Year
+                - generic [ref=e119]: 2025-2026
+              - generic [ref=e120]:
+                - generic [ref=e121]: Locked in Reports
+                - generic [ref=e122]: "0"
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]: All Time Preview
+                - generic [ref=e126]: 0 hr
+              - generic [ref=e128]: No records yet. Add entries in Obsidian to see them here.
+            - generic [ref=e129]:
+              - generic [ref=e130]: Open the dedicated parish involvement page for the full all-time ledger and live input form.
+              - link "Open Parish Involvement Page" [ref=e131] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/parish_involvement
+          - article [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - generic [ref=e135]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=e136]
+                - paragraph [ref=e137]: "File: SOCIAL APOSTOLATE.md"
+              - generic [ref=e138]: 0 record(s)
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - generic [ref=e141]: School Year
+                - generic [ref=e142]: 2025-2026
+              - generic [ref=e143]:
+                - generic [ref=e144]: Locked in Reports
+                - generic [ref=e145]: "0"
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - generic [ref=e148]: All Time Preview
+                - generic [ref=e149]: 0 hr
+              - generic [ref=e151]: No records yet. Add entries in Obsidian to see them here.
+            - generic [ref=e152]:
+              - generic [ref=e153]: Open the dedicated social apostolate page for the full all-time ledger and live input form.
+              - link "Open Social Apostolate Page" [ref=e154] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/social_apostolate
+        - group [ref=e156]:
+          - generic "Save Report Group Build a saved report from unassigned live entries" [ref=e157] [cursor=pointer]:
+            - generic [ref=e158]:
+              - generic [ref=e159]: Save Report Group
+              - heading "Build a saved report from unassigned live entries" [level=2] [ref=e160]
+            - img [ref=e162]

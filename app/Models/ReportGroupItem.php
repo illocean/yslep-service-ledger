@@ -17,6 +17,7 @@ class ReportGroupItem extends Model
         'index_type',
         'source_entry_id',
         'served_on',
+        'academic_year',
         'time_start',
         'time_end',
         'cycle_code',

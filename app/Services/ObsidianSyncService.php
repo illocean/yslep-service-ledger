@@ -82,7 +82,7 @@ class ObsidianSyncService
         $previousRecord = $records[$recordIndex];
 
         $records[$recordIndex] = [
-            ...$this->normalizeRecordForStorage($type, $record),
+            ...$this->normalizeRecordForStorage($type, array_replace($previousRecord, $record)),
             'record_uuid' => $entry->obsidian_record_uuid,
         ];
 
@@ -246,6 +246,7 @@ class ObsidianSyncService
     {
         $normalized = [
             'record_uuid' => $this->normalizeRecordUuid(Arr::get($record, 'record_uuid', Arr::get($record, 'uuid'))),
+            'academic_year' => $record['academic_year'] ?? null,
             'served_on' => $this->normalizeDate(Arr::get($record, 'served_on', Arr::get($record, 'date'))),
             'time_start' => $this->normalizeTime(Arr::get($record, 'time_start')),
             'time_end' => $this->normalizeTime(Arr::get($record, 'time_end')),
@@ -624,6 +625,7 @@ class ObsidianSyncService
     {
         $normalized = [
             'record_uuid' => $this->normalizeRecordUuid(Arr::get($record, 'record_uuid')),
+            'academic_year' => $record['academic_year'] ?? null,
             'served_on' => $this->normalizeDate((string) Arr::get($record, 'served_on')),
             'time_start' => $this->normalizeTime((string) Arr::get($record, 'time_start')),
             'time_end' => $this->normalizeTime((string) Arr::get($record, 'time_end')),
@@ -636,7 +638,10 @@ class ObsidianSyncService
                 'module_code' => strtoupper((string) Arr::get($record, 'module_code')),
                 'title' => trim((string) Arr::get($record, 'title')),
             ],
-            IndexType::ParishInvolvement => $normalized,
+            IndexType::ParishInvolvement => [
+                ...$normalized,
+                'role_in_activity' => $record['role_in_activity'] ?? null,
+            ],
             IndexType::SocialApostolate => [
                 ...$normalized,
                 'about' => trim((string) Arr::get($record, 'about')),
@@ -880,7 +885,7 @@ class ObsidianSyncService
     {
         $academicYear = trim((string) Arr::get($profile, 'school_year', '2025-2026'));
         $defaults = [
-            'academic_years' => $this->normalizeOptionList([$academicYear !== '' ? $academicYear : '2025-2026']),
+            'academic_years' => $this->normalizeOptionList([$academicYear, ...array_column($records, 'academic_year')]),
         ];
 
         return match ($type) {
@@ -1140,7 +1145,7 @@ class ObsidianSyncService
                     $vaultChanged = $vaultHash !== $storedHash;
                     $dbChanged = $dbHash !== $storedHash;
 
-                    if (!$isLegacyEntry && $vaultChanged && $dbChanged) {
+                    if (! $isLegacyEntry && $vaultChanged && $dbChanged) {
                         // Both sides changed since last sync - mark as conflicted, don't overwrite
                         $entry->forceFill([
                             'obsidian_conflict' => true,
@@ -1247,6 +1252,7 @@ class ObsidianSyncService
                 $record['time_start'] ?? '',
                 $record['time_end'] ?? '',
                 $record['about'] ?? '',
+                $record['role_in_activity'] ?? '',
             ]),
         };
     }
@@ -1285,12 +1291,17 @@ class ObsidianSyncService
     private function computeRecordContentHash(IndexType $type, array $record): string
     {
         $row = $this->tableRow($type, $record);
+        if (filled($record['academic_year'] ?? null)) {
+            $row[] = $record['academic_year'];
+        }
+
         return hash('sha256', implode('|', $row));
     }
 
     private function computeRecordContentHashFromEntry(IndexType $type, $entry): string
     {
         $record = $this->entryToNormalizedRecord($type, $entry);
+
         return $this->computeRecordContentHash($type, $record);
     }
 
@@ -1309,6 +1320,7 @@ class ObsidianSyncService
         return match ($type) {
             IndexType::Formation => [
                 'served_on' => $entry->served_on?->format('Y-m-d'),
+                'academic_year' => $entry->academic_year,
                 'cycle_code' => $entry->cycle_code,
                 'module_code' => $entry->module_code,
                 'title' => $entry->title,
@@ -1317,12 +1329,14 @@ class ObsidianSyncService
             ],
             IndexType::ParishInvolvement => [
                 'served_on' => $entry->served_on?->format('Y-m-d'),
+                'academic_year' => $entry->academic_year,
                 'time_start' => $timeStart,
                 'time_end' => $timeEnd,
                 'role_in_activity' => $entry->role_in_activity,
             ],
             IndexType::SocialApostolate => [
                 'served_on' => $entry->served_on?->format('Y-m-d'),
+                'academic_year' => $entry->academic_year,
                 'about' => $entry->about,
                 'role_in_activity' => $entry->role_in_activity,
                 'time_start' => $timeStart,
@@ -1339,7 +1353,6 @@ class ObsidianSyncService
     private function lockedRecordKeys(IndexType $type): array
     {
         $sourceEntryIds = ReportGroupItem::query()
-            ->withTrashed()
             ->where('index_type', $type->value)
             ->whereNotNull('source_entry_id')
             ->pluck('source_entry_id');
@@ -1363,6 +1376,7 @@ class ObsidianSyncService
         return array_values(array_map(function (array $record) use ($type): array {
             $normalized = [
                 'record_uuid' => $record['record_uuid'] ?? (string) Str::uuid(),
+                'academic_year' => $record['academic_year'] ?? null,
                 'served_on' => $record['served_on'] ?? null,
                 'time_start' => $record['time_start'] ?? null,
                 'time_end' => $record['time_end'] ?? null,
@@ -1375,7 +1389,10 @@ class ObsidianSyncService
                     'module_code' => $record['module_code'] ?? null,
                     'title' => $record['title'] ?? null,
                 ],
-                IndexType::ParishInvolvement => $normalized,
+                IndexType::ParishInvolvement => [
+                    ...$normalized,
+                    'role_in_activity' => $record['role_in_activity'] ?? null,
+                ],
                 IndexType::SocialApostolate => [
                     ...$normalized,
                     'about' => $record['about'] ?? null,

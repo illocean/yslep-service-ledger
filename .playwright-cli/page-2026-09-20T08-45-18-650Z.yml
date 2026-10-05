@@ -1,0 +1,162 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - status [ref=e34]: Browser selected report now includes a new Parish Involvement record.
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]: Saved Report
+            - heading "Browser selected report" [level=1] [ref=e39]
+            - generic [ref=e40]: "Tag: RPT-20260920-164406-EKAE"
+          - generic [ref=e41]:
+            - generic [ref=e42]: Totals
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - generic [ref=e45]: Created
+                - generic [ref=e46]: September 20, 2026 4:44 PM
+              - generic [ref=e47]:
+                - generic [ref=e48]: Records
+                - generic [ref=e49]: "3"
+              - generic [ref=e50]:
+                - generic [ref=e51]: Hours
+                - generic [ref=e52]: 3 hr 30 min
+            - link "Archive this report" [ref=e53] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011/academic-year-snapshots?prefill=18
+            - paragraph [ref=e54]: Jump to the snapshot builder with this report pre-selected.
+        - generic [ref=e55]:
+          - article [ref=e56]:
+            - generic [ref=e57]: Formation
+            - generic [ref=e58]:
+              - generic [ref=e59]:
+                - generic [ref=e60]: Count
+                - generic [ref=e61]: "01"
+              - generic [ref=e62]:
+                - generic [ref=e63]: Hours
+                - generic [ref=e64]: 1 hr 30 min
+          - article [ref=e65]:
+            - generic [ref=e66]: Parish Involvement
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - generic [ref=e69]: Count
+                - generic [ref=e70]: "01"
+              - generic [ref=e71]:
+                - generic [ref=e72]: Hours
+                - generic [ref=e73]: 1 hr
+          - article [ref=e74]:
+            - generic [ref=e75]: Social Apostolate
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - generic [ref=e78]: Count
+                - generic [ref=e79]: "01"
+              - generic [ref=e80]:
+                - generic [ref=e81]: Hours
+                - generic [ref=e82]: 1 hr
+          - article [ref=e83]:
+            - generic [ref=e84]: Grand Total
+            - generic [ref=e85]:
+              - generic [ref=e86]: Combined hours across all three indexes
+              - generic [ref=e87]: 3 hr 30 min
+        - generic [ref=e88]:
+          - article [ref=e89]:
+            - generic [ref=e90]: Rename
+            - heading "Report title" [level=2] [ref=e91]
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]: Report title
+                - textbox "Report title" [ref=e95]:
+                  - /placeholder: Leave blank to show only the tag
+                  - text: Browser selected report
+              - button "Save Changes" [ref=e96]
+          - article [ref=e97]:
+            - generic [ref=e98]:
+              - generic [ref=e99]:
+                - generic [ref=e100]: Sync
+                - heading "Pull edits from Obsidian" [level=2] [ref=e101]
+                - button "Sync from Obsidian" [ref=e103]
+              - generic [ref=e104]:
+                - generic [ref=e105]: Danger Zone
+                - paragraph [ref=e106]: This removes record notes and frees entries for reuse.
+                - button "Delete Report" [ref=e108]
+        - generic [ref=e109]:
+          - article [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - generic [ref=e113]: Formation Index Card
+                - heading "Formation" [level=2] [ref=e114]
+              - generic [ref=e115]: 1 record(s)
+            - button "+ Add Formation" [ref=e116]
+            - article [ref=e118]:
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e124]: Saved record · Formation
+                  - generic [ref=e125]: 1 hr 30 min
+                - generic [ref=e126]: C1 / M1 - Browser formation edited
+                - generic [ref=e127]: September 20, 2026 | 9:00 AM - 10:30 AM AY 2030-2031
+                - generic [ref=e128]: C:\.anyThing\YSLEP\laravel\storage\framework\testing\browser-entry-workflow\REPORTS\RPT-20260920-164406-EKAE\records\formation-d8df6007-fb0e-4ffb-9f71-557781e343e9.md
+              - generic [ref=e129]:
+                - button "Edit entry" [ref=e130]
+                - button "Delete Record" [ref=e132]
+          - article [ref=e133]:
+            - generic [ref=e134]:
+              - generic [ref=e135]:
+                - generic [ref=e136]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=e137]
+              - generic [ref=e138]: 1 record(s)
+            - button "+ Add Parish Involvement" [ref=e139]
+            - article [ref=e141]:
+              - generic [ref=e143]:
+                - generic [ref=e144]:
+                  - generic [ref=e147]: Saved record · Parish Involvement
+                  - generic [ref=e148]: 1 hr
+                - generic [ref=e149]: Parish Involvement
+                - generic [ref=e150]:
+                  - text: September 20, 2026 | 1:00 PM - 2:00 PM AY 2030-2031
+                  - generic [ref=e151]: Lector
+                - generic [ref=e152]: C:\.anyThing\YSLEP\laravel\storage\framework\testing\browser-entry-workflow\REPORTS\RPT-20260920-164406-EKAE\records\parish-involvement-6b09e85d-76ba-4bdf-9650-1121c73d624b.md
+              - generic [ref=e153]:
+                - button "Edit entry" [ref=e154]
+                - button "Delete Record" [ref=e156]
+          - article [ref=e157]:
+            - generic [ref=e158]:
+              - generic [ref=e159]:
+                - generic [ref=e160]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=e161]
+              - generic [ref=e162]: 1 record(s)
+            - button "+ Add Social Apostolate" [ref=e163]
+            - article [ref=e165]:
+              - generic [ref=e167]:
+                - generic [ref=e168]:
+                  - generic [ref=e171]: Saved record · Social Apostolate
+                  - generic [ref=e172]: 1 hr
+                - generic [ref=e173]: Browser outreach
+                - generic [ref=e174]:
+                  - text: September 20, 2026 | 11:00 AM - 12:00 PM
+                  - generic [ref=e175]: Volunteer
+                - generic [ref=e176]: C:\.anyThing\YSLEP\laravel\storage\framework\testing\browser-entry-workflow\REPORTS\RPT-20260920-164406-EKAE\records\social-apostolate-36ae381d-ac4f-40ea-8058-8374ee183d37.md
+              - generic [ref=e177]:
+                - button "Edit entry" [ref=e178]
+                - button "Delete Record" [ref=e180]

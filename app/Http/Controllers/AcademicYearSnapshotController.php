@@ -7,7 +7,6 @@ use App\Http\Controllers\Concerns\BuildsReportScopeData;
 use App\Http\Requests\StoreAcademicYearSnapshotRequest;
 use App\Models\AcademicYearSnapshot;
 use App\Services\AcademicYearSnapshotService;
-use App\Services\ObsidianSyncService;
 use App\Services\ReportGroupService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,13 +37,12 @@ class AcademicYearSnapshotController extends Controller
             })
             ->values();
 
-        $prefilledReportGroupIds = collect(old('selected_report_groups', []))
-            ->map(fn ($id) => (int) $id)
-            ->merge(
-                collect(explode(',', (string) $request->query('prefill', '')))
-                    ->map(fn ($id) => (int) trim($id))
-                    ->filter(fn (int $id) => $id > 0)
-            )
+        $selection = $request->session()->hasOldInput()
+            ? old('selected_report_groups', [])
+            : explode(',', (string) $request->query('prefill', ''));
+        $prefilledReportGroupIds = collect($selection)
+            ->map(fn ($id): int => (int) $id)
+            ->intersect($availableReportGroups->pluck('id'))
             ->unique()
             ->values();
 
@@ -80,11 +78,10 @@ class AcademicYearSnapshotController extends Controller
     public function store(
         StoreAcademicYearSnapshotRequest $request,
         AcademicYearSnapshotService $snapshotService,
-        ObsidianSyncService $syncService,
     ): RedirectResponse {
         $snapshot = $snapshotService->create(
             $request->snapshotTitle(),
-            $request->academicYear() ?? $this->defaultAcademicYear($syncService),
+            $request->academicYear(),
             $request->selectedReportGroupIds(),
         );
 
@@ -103,13 +100,5 @@ class AcademicYearSnapshotController extends Controller
         return redirect()
             ->route('academic-year-snapshots.index')
             ->with('status', 'Academic year snapshot '.$label.' was deleted.');
-    }
-
-    private function defaultAcademicYear(ObsidianSyncService $syncService): string
-    {
-        return collect(IndexType::cases())
-            ->flatMap(fn (IndexType $type): array => $syncService->cardMeta($type)['entry_options']['academic_years'] ?? [])
-            ->filter()
-            ->first() ?? 'Snapshot';
     }
 }

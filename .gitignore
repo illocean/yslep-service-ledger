@@ -33,6 +33,9 @@ Thumbs.db
 /.github/copilot*
 /agent*
 /*.ai
+!/.ai/
+/.ai/*
+!/.ai/rules/
 /claude*
 /opencode*
 

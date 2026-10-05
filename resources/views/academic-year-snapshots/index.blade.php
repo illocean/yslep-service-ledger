@@ -4,7 +4,7 @@
 
 @section('content')
     @php
-        $selectedReportGroups = collect(old('selected_report_groups', $prefilledReportGroupIds ?? []))->map(fn ($id) => (int) $id);
+        $selectedReportGroups = $prefilledReportGroupIds;
         $selectedIdJson = $selectedReportGroups->values()->all();
     @endphp
 
@@ -12,7 +12,7 @@
 
     @if (request()->has('prefill'))
         <div class="paper-panel rounded-panel border border-emerald-900/15 bg-emerald-50/70 px-5 py-4 text-sm leading-7 text-stone-700">
-            Pre-selected from the saved report page. Add more reports below or create the snapshot as-is.
+            Select the academic year and review the reports before creating a snapshot.
         </div>
     @endif
 
@@ -21,10 +21,10 @@
             <div class="space-y-2">
                 <div class="section-kicker">Academic Year Snapshots</div>
                 <h1 class="font-serif text-3xl leading-tight text-stone-950 sm:text-4xl">
-                    Archive saved reports into one academic-year layer.
+                    Collect reports for an academic year.
                 </h1>
                 <p class="max-w-3xl text-sm leading-7 text-stone-600">
-                    This works like saved reports, one level higher. Pick whole saved reports, and once a report is archived here it disappears from the picker automatically.
+                    Choose the year and reports yourself. Nothing is archived until you create a snapshot; saved reports stay in Reports.
                 </p>
             </div>
 
@@ -55,7 +55,7 @@
                     <div class="section-kicker">Create Snapshot</div>
                     <h2 class="mt-3 font-serif text-2xl text-stone-950">Select available saved reports</h2>
                     <p class="mt-2 max-w-2xl text-sm leading-7 text-stone-600">
-                        Each saved report can belong to only one academic-year snapshot. Anything already archived is hidden from this list and moved to the side panel.
+                        Select the reports to include. Reports already in a snapshot stay assigned to that year and cannot be moved automatically.
                     </p>
                 </div>
                 <div class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">
@@ -65,6 +65,13 @@
 
             <form method="POST" action="{{ route('academic-year-snapshots.store') }}" class="mt-5 space-y-5">
                 @csrf
+
+                <div>
+                    <label for="snapshot-academic-year" class="form-label">Academic year *</label>
+                    <input id="snapshot-academic-year" name="academic_year" type="text" required maxlength="9" pattern="[0-9]{4}-[0-9]{4}"
+                        list="entry-academic-years" value="{{ old('academic_year') }}" placeholder="2025-2026" class="form-input mt-2 sm:max-w-xs">
+                    <p class="mt-1 text-xs text-stone-600">Choose an existing year or enter a new one.</p>
+                </div>
 
                 <div class="snapshot-builder-toolbar">
                     <div class="snapshot-builder-toolbar__field">
@@ -79,7 +86,7 @@
                         </div>
                         <div class="compact-stat">
                             <div class="form-label">Archived</div>
-                            <div class="mt-2 text-sm font-semibold text-stone-900">{{ $archivedReportGroups->count() }} hidden</div>
+                            <div class="mt-2 text-sm font-semibold text-stone-900">{{ $archivedReportGroups->count() }} included</div>
                         </div>
                     </div>
 
@@ -182,9 +189,9 @@
         <aside class="space-y-6">
             <article class="paper-panel rounded-panel p-5 sm:p-6">
                 <div class="section-kicker">Already Archived</div>
-                <h2 class="mt-3 font-serif text-2xl text-stone-950">Hidden from the picker</h2>
+                <h2 class="mt-3 font-serif text-2xl text-stone-950">Included in snapshots</h2>
                 <p class="mt-2 text-sm leading-7 text-stone-600">
-                    Saved reports already assigned to an academic-year snapshot are hidden automatically to prevent duplicates.
+                    These reports were included in a snapshot. Open it to review the year and contents.
                 </p>
 
                 @if ($archivedReportGroups->isEmpty())

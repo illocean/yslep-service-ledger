@@ -1,0 +1,222 @@
+- generic [ref=f55e2]:
+  - generic [ref=f55e4]:
+    - generic [ref=f55e5]: Internal Server Error
+    - button "Copy as Markdown" [ref=f55e11] [cursor=pointer]
+  - generic [ref=f55e18]:
+    - generic [ref=f55e19]:
+      - heading "ErrorException" [level=1] [ref=f55e20]
+      - generic [ref=f55e21]: resources\views\layouts\app.blade.php:44
+      - paragraph [ref=f55e23]: Array to string conversion
+    - generic [ref=f55e24]:
+      - generic [ref=f55e25]:
+        - generic [ref=f55e26]:
+          - generic [ref=f55e27]: LARAVEL
+          - generic [ref=f55e28]: 13.2.0
+        - generic [ref=f55e29]:
+          - generic [ref=f55e30]: PHP
+          - generic [ref=f55e31]: 8.4.12
+      - generic [ref=f55e32]: UNHANDLED
+      - generic [ref=f55e36]: CODE 0
+    - generic [ref=f55e38]:
+      - generic [ref=f55e39]: "500"
+      - generic [ref=f55e43]: GET
+      - generic [ref=f55e47]: http://127.0.0.1:8000/indexes/formation
+      - button [ref=f55e48] [cursor=pointer]
+  - generic [ref=f55e53]:
+    - generic [ref=f55e54]:
+      - heading "Exception trace" [level=3] [ref=f55e60]
+      - generic [ref=f55e61]:
+        - generic [ref=f55e62]:
+          - generic [ref=f55e63] [cursor=pointer]:
+            - generic [ref=f55e66]:
+              - code [ref=f55e70]:
+                - generic [ref=f55e71]: "Illuminate\\Foundation\\Bootstrap\\HandleExceptions->{closure:Illuminate\\Foundation\\Bootstrap\\HandleExceptions::forwardsTo():257}(integer, string, string, integer)"
+              - generic [ref=f55e72]: resources\views\layouts\app.blade.php:44
+            - button [ref=f55e75]
+          - code [ref=f55e84]:
+            - generic [ref=f55e85]: 39 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-stone-900">
+            - generic [ref=f55e86]: 40 Skip to Content
+            - generic [ref=f55e87]: 41 </a>
+            - generic [ref=f55e88]: "42"
+            - generic [ref=f55e89]: 43 <!-- Quick Add Bar (docked bottom) -->
+            - generic [ref=f55e90]: 44 @stack('quick-add-bar', [])
+            - generic [ref=f55e91]: 45 @if(empty(trim(ob_get_clean() ?? '')))
+            - generic [ref=f55e92]: 46 <x-quick-add-bar
+            - generic [ref=f55e93]: 47 :types="[ \App\Enums\IndexType::Formation, \App\Enums\IndexType::SocialApostolate, \App\Enums\IndexType::ParishInvolvement ]"
+            - generic [ref=f55e94]: 48 class="fixed bottom-0 left-0 right-0 z-40 sm:bottom-4 sm:left-auto sm:right-4 sm:w-auto sm:max-w-md sm:rounded-panel"
+            - generic [ref=f55e95]: 49 />
+            - generic [ref=f55e96]: 50 @endif
+            - generic [ref=f55e97]: "51"
+            - generic [ref=f55e98]: 52 <!-- Global Conflict Modal -->
+            - generic [ref=f55e99]: 53 <x-conflict-modal
+            - generic [ref=f55e100]: 54 :conflicts="session('sync_conflicts', [])"
+            - generic [ref=f55e101]: 55 class="fixed inset-0 z-50"
+            - generic [ref=f55e102]: "56"
+        - generic [ref=f55e104] [cursor=pointer]:
+          - generic [ref=f55e109]: 7 vendor frames
+          - button [ref=f55e110]
+        - generic [ref=f55e116] [cursor=pointer]:
+          - generic [ref=f55e119]:
+            - code [ref=f55e123]:
+              - generic [ref=f55e124]: Illuminate\View\View->render()
+            - generic [ref=f55e125]: resources\views\indexes\show.blade.php:317
+          - button [ref=f55e128]
+        - generic [ref=f55e134] [cursor=pointer]:
+          - generic [ref=f55e139]: 57 vendor frames
+          - button [ref=f55e140]
+        - generic [ref=f55e146] [cursor=pointer]:
+          - generic [ref=f55e149]:
+            - code [ref=f55e153]:
+              - generic [ref=f55e154]: Illuminate\Foundation\Application->handleRequest(object(Illuminate\Http\Request))
+            - generic [ref=f55e155]: public\index.php:20
+          - button [ref=f55e158]
+        - generic [ref=f55e164] [cursor=pointer]:
+          - generic [ref=f55e169]: 1 vendor frame
+          - button [ref=f55e170]
+    - generic [ref=f55e175]:
+      - generic [ref=f55e176]:
+        - heading "Queries" [level=3] [ref=f55e181]
+        - generic [ref=f55e182]: 1-10 of 100
+      - generic [ref=f55e184]:
+        - generic [ref=f55e185]:
+          - generic [ref=f55e186]:
+            - generic [ref=f55e187]: pgsql
+            - code [ref=f55e194]:
+              - generic [ref=f55e195]: select * from "sessions" where "id" = 'ZIYCpjLlXkR1dczEwlvswojz2VZmhn15xLiYGC7x' limit 1
+          - generic [ref=f55e196]: 260.63ms
+        - generic [ref=f55e197]:
+          - generic [ref=f55e198]:
+            - generic [ref=f55e199]: pgsql
+            - code [ref=f55e206]:
+              - generic [ref=f55e207]: select * from "formation_entries" order by "id" asc
+          - generic [ref=f55e208]: 15.97ms
+        - generic [ref=f55e209]:
+          - generic [ref=f55e210]:
+            - generic [ref=f55e211]: pgsql
+            - code [ref=f55e218]:
+              - generic [ref=f55e219]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 333
+          - generic [ref=f55e220]: 8.1ms
+        - generic [ref=f55e221]:
+          - generic [ref=f55e222]:
+            - generic [ref=f55e223]: pgsql
+            - code [ref=f55e230]:
+              - generic [ref=f55e231]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 326
+          - generic [ref=f55e232]: 0.95ms
+        - generic [ref=f55e233]:
+          - generic [ref=f55e234]:
+            - generic [ref=f55e235]: pgsql
+            - code [ref=f55e242]:
+              - generic [ref=f55e243]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 327
+          - generic [ref=f55e244]: 1.1ms
+        - generic [ref=f55e245]:
+          - generic [ref=f55e246]:
+            - generic [ref=f55e247]: pgsql
+            - code [ref=f55e254]:
+              - generic [ref=f55e255]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 328
+          - generic [ref=f55e256]: 0.85ms
+        - generic [ref=f55e257]:
+          - generic [ref=f55e258]:
+            - generic [ref=f55e259]: pgsql
+            - code [ref=f55e266]:
+              - generic [ref=f55e267]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 329
+          - generic [ref=f55e268]: 3.7ms
+        - generic [ref=f55e269]:
+          - generic [ref=f55e270]:
+            - generic [ref=f55e271]: pgsql
+            - code [ref=f55e278]:
+              - generic [ref=f55e279]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 330
+          - generic [ref=f55e280]: 1.06ms
+        - generic [ref=f55e281]:
+          - generic [ref=f55e282]:
+            - generic [ref=f55e283]: pgsql
+            - code [ref=f55e290]:
+              - generic [ref=f55e291]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 334
+          - generic [ref=f55e292]: 0.84ms
+        - generic [ref=f55e293]:
+          - generic [ref=f55e294]:
+            - generic [ref=f55e295]: pgsql
+            - code [ref=f55e302]:
+              - generic [ref=f55e303]: update "formation_entries" set "obsidian_last_synced_at" = '2026-08-31 12:57:11', "updated_at" = '2026-08-31 12:57:11' where "id" = 335
+          - generic [ref=f55e304]: 2.17ms
+      - generic [ref=f55e305]:
+        - button [disabled] [ref=f55e306]
+        - button [disabled] [ref=f55e310]
+        - button "1" [ref=f55e314] [cursor=pointer]
+        - button "2" [ref=f55e316] [cursor=pointer]
+        - button "3" [ref=f55e318] [cursor=pointer]
+        - button "4" [ref=f55e320] [cursor=pointer]
+        - button "5" [ref=f55e322] [cursor=pointer]
+        - generic [ref=f55e323]: ...
+        - button "10" [ref=f55e326] [cursor=pointer]
+        - button [ref=f55e327] [cursor=pointer]
+        - button [ref=f55e330] [cursor=pointer]
+  - generic [ref=f55e335]:
+    - generic [ref=f55e336]:
+      - heading "Headers" [level=2] [ref=f55e337]
+      - generic [ref=f55e338]:
+        - generic [ref=f55e339]:
+          - generic [ref=f55e340]: host
+          - generic [ref=f55e342]: 127.0.0.1:8000
+        - generic [ref=f55e343]:
+          - generic [ref=f55e344]: connection
+          - generic [ref=f55e346]: keep-alive
+        - generic [ref=f55e347]:
+          - generic [ref=f55e348]: sec-ch-ua
+          - generic [ref=f55e350]: "\"Chromium\";v=\"152\", \"Not?A_Brand\";v=\"24\", \"Google Chrome\";v=\"152\""
+        - generic [ref=f55e351]:
+          - generic [ref=f55e352]: sec-ch-ua-mobile
+          - generic [ref=f55e354]: "?0"
+        - generic [ref=f55e355]:
+          - generic [ref=f55e356]: sec-ch-ua-platform
+          - generic [ref=f55e358]: "\"Windows\""
+        - generic [ref=f55e359]:
+          - generic [ref=f55e360]: upgrade-insecure-requests
+          - generic [ref=f55e362]: "1"
+        - generic [ref=f55e363]:
+          - generic [ref=f55e364]: user-agent
+          - generic [ref=f55e366]: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+        - generic [ref=f55e367]:
+          - generic [ref=f55e368]: accept
+          - generic [ref=f55e370]: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+        - generic [ref=f55e371]:
+          - generic [ref=f55e372]: sec-fetch-site
+          - generic [ref=f55e374]: none
+        - generic [ref=f55e375]:
+          - generic [ref=f55e376]: sec-fetch-mode
+          - generic [ref=f55e378]: navigate
+        - generic [ref=f55e379]:
+          - generic [ref=f55e380]: sec-fetch-user
+          - generic [ref=f55e382]: "?1"
+        - generic [ref=f55e383]:
+          - generic [ref=f55e384]: sec-fetch-dest
+          - generic [ref=f55e386]: document
+        - generic [ref=f55e387]:
+          - generic [ref=f55e388]: accept-encoding
+          - generic [ref=f55e390]: gzip, deflate, br, zstd
+        - generic [ref=f55e391]:
+          - generic [ref=f55e392]: accept-language
+          - generic [ref=f55e394]: en-US,en;q=0.9
+        - generic [ref=f55e395]:
+          - generic [ref=f55e396]: cookie
+          - generic [ref=f55e398]: XSRF-TOKEN=eyJpdiI6IlBEekJnNU50a1N6YjZqSWpVbnFtZ0E9PSIsInZhbHVlIjoiSDYyY1k5djBnTnE4ZXVYN3FLd3duNDlYRU0zWFBuMTVCWU9PdzZ3MDhaVmpaQTI1QXQyWlB1Q3VuSWtSR0l3Sk1lNTh6aE42MTZ1dUw0N3QzMUVtVkZjYXZ4VEp1VzY1OXk3YU5TcnR4TFJ0SzhaTGVreFpGWk1TTXBabEl1LzQiLCJtYWMiOiJmOGIwYzA1NjhlZThlM2UzNDM5YjcyYWU2MTA3YjU5NjlkMDEwMTQyMjQ5NTQwM2E3ODJlN2U4MTdkMTcwYThlIiwidGFnIjoiIn0%3D; yslep-service-ledger-session=eyJpdiI6ImpaZFk1VW1VY2FDaWNPZGhTSkJkVFE9PSIsInZhbHVlIjoiVEppSVYzd015UU9ySEJFRE9ubmdvVG4rMHJIVTVuUEw1WWttbHdEd2FrVFk4SlhzdGZNSkNMY2pPdXJ0Rm5NWjlBZEF2OVZEcERXS1hEQVJHRnF3b1JZaEZOV01HWHFZVXBkOU4vZkgzYitnNFRJYlBITG0rTFNoUWp4OFhEbEMiLCJtYWMiOiJiNTM0ZWM5OTMyN2ZlNmQ3Njg2OGMzZmZiMzAyZWY3MGU4Y2Q0M2RlNzBmYThkNTgzYTIxZGYyMzQzYmM0MzdkIiwidGFnIjoiIn0%3D
+    - generic [ref=f55e399]:
+      - heading "Body" [level=2] [ref=f55e400]
+      - generic [ref=f55e401]: // No request body
+    - generic [ref=f55e402]:
+      - heading "Routing" [level=2] [ref=f55e403]
+      - generic [ref=f55e404]:
+        - generic [ref=f55e405]:
+          - generic [ref=f55e406]: controller
+          - generic [ref=f55e408]: App\Http\Controllers\IndexPageController@show
+        - generic [ref=f55e409]:
+          - generic [ref=f55e410]: route name
+          - generic [ref=f55e412]: indexes.show
+        - generic [ref=f55e413]:
+          - generic [ref=f55e414]: middleware
+          - generic [ref=f55e416]: web
+    - generic [ref=f55e417]:
+      - heading "Routing parameters" [level=2] [ref=f55e418]
+      - code [ref=f55e423]:
+        - generic [ref=f55e424]: "{"
+        - generic [ref=f55e425]: "\"type\": \"formation\""
+        - generic [ref=f55e426]: "}"

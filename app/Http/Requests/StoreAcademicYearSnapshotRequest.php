@@ -15,8 +15,9 @@ class StoreAcademicYearSnapshotRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:255'],
-            'selected_report_groups' => ['nullable', 'array'],
-            'selected_report_groups.*' => ['integer', 'exists:report_groups,id'],
+            'academic_year' => ['required', 'string', 'regex:/^\d{4}-\d{4}$/'],
+            'selected_report_groups' => ['required', 'array', 'min:1'],
+            'selected_report_groups.*' => ['required', 'integer', 'distinct', 'exists:report_groups,id'],
         ];
     }
 

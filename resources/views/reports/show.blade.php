@@ -91,6 +91,7 @@
                 @method('PATCH')
 
                 <div>
+                    <label for="title" class="sr-only">Report title</label>
                     <input id="title" name="title" type="text" value="{{ old('title', $reportGroup->title) }}" placeholder="Leave blank to show only the tag" class="form-input">
                 </div>
 
@@ -116,7 +117,7 @@
                         This removes record notes and frees entries for reuse.
                     </p>
 
-                    <form method="POST" action="{{ route('reports.destroy', $reportGroup) }}" class="mt-3">
+                    <form method="POST" action="{{ route('reports.destroy', $reportGroup) }}" class="mt-3" data-confirm="Delete this report and its record notes?">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="danger-button">Delete Report</button>
@@ -144,59 +145,12 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('reports.records.store', $reportGroup) }}" class="record-form-shell mt-6">
-                    @csrf
-                    <input type="hidden" name="index_type" value="{{ $type->value }}">
-
-                    <div class="record-form-grid">
-                        <div>
-                            <label for="{{ $sectionPrefix }}-served-on" class="form-label">Date</label>
-                            <input id="{{ $sectionPrefix }}-served-on" name="served_on" type="date" value="{{ old('index_type') === $type->value ? old('served_on') : '' }}" class="form-input mt-2">
-                        </div>
-
-                        @if ($type === \App\Enums\IndexType::Formation)
-                            <div>
-                                <label for="{{ $sectionPrefix }}-cycle-code" class="form-label">Cycle No.</label>
-                                    <input id="{{ $sectionPrefix }}-cycle-code" name="cycle_code" type="text" value="{{ old('index_type') === $type->value ? old('cycle_code') : '' }}" placeholder="C1" class="form-input mt-2">
-                                </div>
-                                <div>
-                                    <label for="{{ $sectionPrefix }}-module-code" class="form-label">Module</label>
-                                    <input id="{{ $sectionPrefix }}-module-code" name="module_code" type="text" value="{{ old('index_type') === $type->value ? old('module_code') : '' }}" placeholder="M1" class="form-input mt-2">
-                                </div>
-                                <div class="record-form-grid__wide">
-                                    <label for="{{ $sectionPrefix }}-title" class="form-label">Title</label>
-                                    <input id="{{ $sectionPrefix }}-title" name="title" type="text" value="{{ old('index_type') === $type->value ? old('title') : '' }}" placeholder="Formation Session" class="form-input mt-2">
-                                </div>
-                            @endif
-
-                            @if ($type === \App\Enums\IndexType::SocialApostolate)
-                                <div class="record-form-grid__wide">
-                                    <label for="{{ $sectionPrefix }}-about" class="form-label">Activity</label>
-                                    <input id="{{ $sectionPrefix }}-about" name="about" type="text" value="{{ old('index_type') === $type->value ? old('about') : '' }}" placeholder="Service activity" class="form-input mt-2">
-                            </div>
-                        @endif
-
-                        <div>
-                            <label for="{{ $sectionPrefix }}-time-start" class="form-label">Time in</label>
-                            <input id="{{ $sectionPrefix }}-time-start" name="time_start" type="time" value="{{ old('index_type') === $type->value ? old('time_start') : '' }}" class="form-input mt-2">
-                        </div>
-                        <div>
-                            <label for="{{ $sectionPrefix }}-time-end" class="form-label">Time out</label>
-                            <input id="{{ $sectionPrefix }}-time-end" name="time_end" type="time" value="{{ old('index_type') === $type->value ? old('time_end') : '' }}" class="form-input mt-2">
-                        </div>
-                    </div>
-
-                    <div class="mt-4 flex justify-end">
-                        <button type="submit" class="primary-button">
-                            Add Record
-                        </button>
-                    </div>
-                </form>
+                <button type="button" class="primary-button mt-4" @click="$dispatch('quick-add-open', { type: '{{ $type->value }}' })" aria-haspopup="dialog">+ Add {{ $type->label() }}</button>
 
                 <div class="mt-6 space-y-4">
                     @forelse ($items as $item)
-                        <details class="report-record-card group">
-                            <summary class="flex cursor-pointer list-none flex-col gap-4 xl:flex-row xl:items-start xl:justify-between [&::-webkit-details-marker]:hidden">
+                        <article class="report-record-card">
+                            <div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                                 <div class="space-y-2">
                                     <div class="flex flex-wrap items-center gap-2">
                                         <span class="assignment-chip assignment-chip--saved">
@@ -225,71 +179,19 @@
 
                                     <div class="text-sm leading-7 text-stone-600">
                                         {{ $item->served_on_label }} | {{ $item->time_start_label }} - {{ $item->time_end_label }}
+                                        @if ($item->academic_year)<span class="ml-2">AY {{ $item->academic_year }}</span>@endif
+                                        @if ($item->role_in_activity)<div>{{ $item->role_in_activity }}</div>@endif
                                     </div>
 
-                                    @if ($item->obsidian_note_path)
-                                        <div class="break-all font-mono text-[0.72rem] text-stone-600">
-                                            {{ $item->obsidian_note_path }}
-                                        </div>
-                                    @endif
+
                                 </div>
 
-                                <div class="flex items-center gap-3 text-sm font-semibold text-stone-700 transition-transform group-open:rotate-180">
-                                    <span>Edit details</span>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
-                                </div>
-                            </summary>
+                            </div>
 
-                            <div class="mt-5 border-t border-stone-900/8 pt-5">
-                            <form method="POST" action="{{ route('reports.records.update', [$reportGroup, $item]) }}" class="record-form-shell">
-                                @csrf
-                                @method('PATCH')
-                                <input type="hidden" name="index_type" value="{{ $type->value }}">
-
-                                <div class="record-form-grid">
-                                    <div>
-                                        <label for="record-{{ $item->id }}-served-on" class="form-label">Date</label>
-                                        <input id="record-{{ $item->id }}-served-on" name="served_on" type="date" value="{{ $item->served_on?->toDateString() }}" class="form-input mt-2">
-                                    </div>
-
-                                    @if ($type === \App\Enums\IndexType::Formation)
-                                        <div>
-                                            <label for="record-{{ $item->id }}-cycle-code" class="form-label">Cycle No.</label>
-                                            <input id="record-{{ $item->id }}-cycle-code" name="cycle_code" type="text" value="{{ $item->cycle_code }}" class="form-input mt-2">
-                                        </div>
-                                        <div>
-                                            <label for="record-{{ $item->id }}-module-code" class="form-label">Module</label>
-                                            <input id="record-{{ $item->id }}-module-code" name="module_code" type="text" value="{{ $item->module_code }}" class="form-input mt-2">
-                                        </div>
-                                        <div class="record-form-grid__wide">
-                                            <label for="record-{{ $item->id }}-title" class="form-label">Title</label>
-                                            <input id="record-{{ $item->id }}-title" name="title" type="text" value="{{ $item->title }}" class="form-input mt-2">
-                                        </div>
-                                    @endif
-
-                                    @if ($type === \App\Enums\IndexType::SocialApostolate)
-                                        <div class="record-form-grid__wide">
-                                            <label for="record-{{ $item->id }}-about" class="form-label">Activity / about</label>
-                                            <input id="record-{{ $item->id }}-about" name="about" type="text" value="{{ $item->about }}" class="form-input mt-2">
-                                        </div>
-                                    @endif
-
-                                    <div>
-                                        <label for="record-{{ $item->id }}-time-start" class="form-label">Time in</label>
-                                        <input id="record-{{ $item->id }}-time-start" name="time_start" type="time" value="{{ substr((string) $item->getRawOriginal('time_start'), 0, 5) }}" class="form-input mt-2">
-                                    </div>
-                                    <div>
-                                        <label for="record-{{ $item->id }}-time-end" class="form-label">Time out</label>
-                                        <input id="record-{{ $item->id }}-time-end" name="time_end" type="time" value="{{ substr((string) $item->getRawOriginal('time_end'), 0, 5) }}" class="form-input mt-2">
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 flex justify-end">
-                                    <button type="submit" class="secondary-button !w-auto">
-                                        Update Record
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="mt-4 flex flex-wrap items-center gap-3">
+                            <button type="button" class="secondary-button" @click="$dispatch('open-entry-modal', { type: '{{ $type->value }}', entryId: {{ $item->id }} })" aria-haspopup="dialog">Edit entry</button>
+                            <x-entry-modal :type="$type" :entry="$item" :report="$reportGroup"
+                                :form-action="route('reports.records.update', [$reportGroup, $item])" form-method="PATCH" />
 
                             @if ($item->obsidian_conflict)
                                 <div class="mt-3 p-3 rounded-cell border border-stone-900/10 bg-amber-50/70">
@@ -311,7 +213,7 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('reports.records.destroy', [$reportGroup, $item]) }}" class="mt-3 flex justify-end">
+                            <form method="POST" action="{{ route('reports.records.destroy', [$reportGroup, $item]) }}" class="ml-auto" data-confirm="Delete this record?">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="danger-button">
@@ -319,7 +221,7 @@
                                 </button>
                             </form>
                             </div>
-                        </details>
+                        </article>
                     @empty
                         <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
                             No {{ strtolower($type->label()) }} records attached yet.

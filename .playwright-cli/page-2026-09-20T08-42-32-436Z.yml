@@ -1,0 +1,90 @@
+- generic [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - dialog "Add Formation" [ref=e69]:
+    - generic [ref=e70]:
+      - banner [ref=e71]:
+        - generic [ref=e72]:
+          - paragraph [ref=e73]: Live ledger
+          - heading "Add Formation" [level=2] [ref=e74]
+        - button "Close modal" [ref=e75]: ×
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]: Date *
+            - textbox "Date" [active] [ref=e80]
+          - generic [ref=e81]:
+            - text: Academic year (optional)
+            - combobox "Academic year (optional)" [ref=e82]
+            - paragraph [ref=e83]: Choose a year or type a new one. This does not archive the entry.
+          - generic [ref=e84]:
+            - generic [ref=e85]: Cycle code *
+            - textbox "Cycle code" [ref=e86]:
+              - /placeholder: C1
+          - generic [ref=e87]:
+            - generic [ref=e88]: Module code *
+            - textbox "Module code" [ref=e89]:
+              - /placeholder: M1
+          - generic [ref=e90]:
+            - generic [ref=e91]: Title *
+            - textbox [ref=e92]
+          - generic [ref=e93]:
+            - generic [ref=e94]: Time in *
+            - textbox "Time in" [ref=e95]
+          - generic [ref=e96]:
+            - generic [ref=e97]: Time out *
+            - textbox "Time out" [ref=e98]
+        - generic [ref=e99]:
+          - button "Cancel" [ref=e100]
+          - button "Add entry" [ref=e101]
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - paragraph [ref=e37]: All Time
+              - heading "Formation" [level=1] [ref=e38]
+              - paragraph [ref=e39]: 0 entries · 0 hr served
+            - button "+ Add Formation" [ref=e40]
+          - generic [ref=e41]:
+            - navigation "Record scope" [ref=e42]:
+              - link "All entries" [ref=e43] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation
+              - link "Unsaved only" [ref=e44] [cursor=pointer]:
+                - /url: http://127.0.0.1:8011/indexes/formation?scope=unsaved
+            - generic [ref=e45]:
+              - text: Saved report
+              - combobox "Saved report" [ref=e46]:
+                - option "Choose a report" [selected]
+            - group [ref=e47]:
+              - generic "Profile details" [ref=e48] [cursor=pointer]
+        - article [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - generic [ref=e53]: Ledger
+              - heading "All Time entries" [level=2] [ref=e54]
+            - generic [ref=e55]: 0 record(s)
+          - generic [ref=e57]: No formation records in this scope. Use Add entry to record your first activity.

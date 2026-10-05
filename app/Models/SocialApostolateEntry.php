@@ -15,6 +15,7 @@ class SocialApostolateEntry extends Model
 
     protected $fillable = [
         'served_on',
+        'academic_year',
         'about',
         'role_in_activity',
         'time_start',

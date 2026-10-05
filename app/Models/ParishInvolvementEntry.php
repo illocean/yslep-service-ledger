@@ -15,6 +15,7 @@ class ParishInvolvementEntry extends Model
 
     protected $fillable = [
         'served_on',
+        'academic_year',
         'time_start',
         'time_end',
         'source_order',

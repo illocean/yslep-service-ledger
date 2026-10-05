@@ -1,0 +1,166 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - status [ref=e34]: Academic year snapshot saved as Browser manual snapshot.
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]: Academic Year 2030-2031
+            - generic [ref=e39]:
+              - heading "Browser manual snapshot" [level=1] [ref=e40]
+              - paragraph [ref=e41]: This snapshot is a manual archive built from selected saved reports, one level above the normal saved-reports flow.
+          - generic [ref=e42]:
+            - generic [ref=e43]: Snapshot Totals
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - generic [ref=e46]: Created
+                - generic [ref=e47]: September 20, 2026 4:45 PM
+              - generic [ref=e48]:
+                - generic [ref=e49]: Records
+                - generic [ref=e50]: "3"
+              - generic [ref=e51]:
+                - generic [ref=e52]: Grand total
+                - generic [ref=e53]: 3 hr 30 min
+              - generic [ref=e54]:
+                - generic [ref=e55]: Obsidian archive file
+                - generic [ref=e56]: C:\.anyThing\YSLEP\laravel\storage\framework\testing\browser-entry-workflow\ACADEMIC YEAR SNAPSHOTS.md
+        - status [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: Academic Year Archive
+            - generic [ref=e60]: Read-only
+            - paragraph [ref=e61]: Read-only archive — edits happen in live records, saved reports, or a new snapshot. Records here cannot be changed in place.
+        - generic [ref=e62]:
+          - article [ref=e63]:
+            - generic [ref=e64]: Formation
+            - generic [ref=e65]:
+              - generic [ref=e66]:
+                - generic [ref=e67]: Count
+                - generic [ref=e68]: "01"
+              - generic [ref=e69]:
+                - generic [ref=e70]: Hours
+                - generic [ref=e71]: 1 hr 30 min
+          - article [ref=e72]:
+            - generic [ref=e73]: Parish Involvement
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]: Count
+                - generic [ref=e77]: "01"
+              - generic [ref=e78]:
+                - generic [ref=e79]: Hours
+                - generic [ref=e80]: 1 hr
+          - article [ref=e81]:
+            - generic [ref=e82]: Social Apostolate
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - generic [ref=e85]: Count
+                - generic [ref=e86]: "01"
+              - generic [ref=e87]:
+                - generic [ref=e88]: Hours
+                - generic [ref=e89]: 1 hr
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: Included Saved Reports
+              - heading "Source reports collected into this archive" [level=2] [ref=e94]
+            - button "Delete Snapshot" [ref=e96]
+          - link "Browser selected report" [ref=e98] [cursor=pointer]:
+            - /url: http://127.0.0.1:8011/reports/RPT-20260920-164406-EKAE
+            - generic [ref=e100]: Browser selected report
+        - generic [ref=e101]:
+          - article [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - generic [ref=e105]: Formation Index Card
+                - heading "Formation" [level=2] [ref=e106]
+              - generic [ref=e107]: 1 record(s)
+            - table [ref=e110]:
+              - rowgroup [ref=e111]:
+                - row "Date Cycle No. Module No. Title Time In Time Out Duration Saved Report" [ref=e112]:
+                  - columnheader "Date" [ref=e113]
+                  - columnheader "Cycle No." [ref=e114]
+                  - columnheader "Module No." [ref=e115]
+                  - columnheader "Title" [ref=e116]
+                  - columnheader "Time In" [ref=e117]
+                  - columnheader "Time Out" [ref=e118]
+                  - columnheader "Duration" [ref=e119]
+                  - columnheader "Saved Report" [ref=e120]
+              - rowgroup [ref=e121]:
+                - row "September 20, 2026 C1 M1 Browser formation edited 9:00 AM 10:30 AM 1 hr 30 min Browser selected report" [ref=e122]:
+                  - cell "September 20, 2026" [ref=e123]
+                  - cell "C1" [ref=e124]
+                  - cell "M1" [ref=e125]
+                  - cell "Browser formation edited" [ref=e126]
+                  - cell "9:00 AM" [ref=e127]
+                  - cell "10:30 AM" [ref=e128]
+                  - cell "1 hr 30 min" [ref=e129]
+                  - cell "Browser selected report" [ref=e130]
+          - article [ref=e131]:
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - generic [ref=e134]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=e135]
+              - generic [ref=e136]: 1 record(s)
+            - table [ref=e139]:
+              - rowgroup [ref=e140]:
+                - row "Date Activity Time In Time Out Duration Saved Report" [ref=e141]:
+                  - columnheader "Date" [ref=e142]
+                  - columnheader "Activity" [ref=e143]
+                  - columnheader "Time In" [ref=e144]
+                  - columnheader "Time Out" [ref=e145]
+                  - columnheader "Duration" [ref=e146]
+                  - columnheader "Saved Report" [ref=e147]
+              - rowgroup [ref=e148]:
+                - row "September 20, 2026 Parish Involvement 1:00 PM 2:00 PM 1 hr Browser selected report" [ref=e149]:
+                  - cell "September 20, 2026" [ref=e150]
+                  - cell "Parish Involvement" [ref=e151]
+                  - cell "1:00 PM" [ref=e152]
+                  - cell "2:00 PM" [ref=e153]
+                  - cell "1 hr" [ref=e154]
+                  - cell "Browser selected report" [ref=e155]
+          - article [ref=e156]:
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=e160]
+              - generic [ref=e161]: 1 record(s)
+            - table [ref=e164]:
+              - rowgroup [ref=e165]:
+                - row "Date Activity Time In Time Out Duration Saved Report" [ref=e166]:
+                  - columnheader "Date" [ref=e167]
+                  - columnheader "Activity" [ref=e168]
+                  - columnheader "Time In" [ref=e169]
+                  - columnheader "Time Out" [ref=e170]
+                  - columnheader "Duration" [ref=e171]
+                  - columnheader "Saved Report" [ref=e172]
+              - rowgroup [ref=e173]:
+                - row "September 20, 2026 Browser outreach 11:00 AM 12:00 PM 1 hr Browser selected report" [ref=e174]:
+                  - cell "September 20, 2026" [ref=e175]
+                  - cell "Browser outreach" [ref=e176]
+                  - cell "11:00 AM" [ref=e177]
+                  - cell "12:00 PM" [ref=e178]
+                  - cell "1 hr" [ref=e179]
+                  - cell "Browser selected report" [ref=e180]

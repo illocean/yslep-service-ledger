@@ -64,13 +64,13 @@
 }
 
 @keyframes fade-in {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @keyframes slide-in {
-    from { opacity: 0; transform: translateY(-4px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @keyframes scale-in {
@@ -791,119 +791,44 @@
     }
 }
 
-/* Quick Add Bar */
-.quick-add-bar {
+/* Quick add */
+[x-cloak] { display: none !important; }
+.quick-add-bar { width: max-content; }
+.quick-add-options {
+    position: absolute;
+    bottom: calc(100% + 0.6rem);
+    right: 0;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 0.5rem;
+    border: 1px solid var(--ledger-border);
+    border-radius: var(--radius-card);
+    background: #fffdf8;
+    box-shadow: 0 12px 40px rgb(48 32 24 / 15%);
+}
+.quick-add-option {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 0.75rem 1rem;
-    background: var(--ledger-paper);
-    border: 1px solid var(--ledger-border);
-    border-radius: var(--radius-panel);
-    box-shadow: 0 20px 60px rgba(48, 32, 24, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(14px);
-}
-
-.quick-add-bar__shortcut {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--ledger-muted);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-}
-
-.kbd {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1.5rem;
-    height: 1.5rem;
-    border: 1px solid var(--ledger-border);
-    border-radius: 0.35rem;
-    background: rgba(255, 255, 255, 0.9);
-    font-family: inherit;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: var(--ledger-ink);
-    padding: 0 0.35rem;
-}
-
-.quick-add-bar__type-selector {
-    display: flex;
-    gap: 0.35rem;
-}
-
-.quick-add-bar__type-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid transparent;
+    width: 100%;
+    padding: 0.85rem 0.75rem;
+    text-align: left;
     border-radius: var(--radius-control);
-    background: rgba(255, 255, 255, 0.6);
-    color: var(--ledger-muted);
-    transition: all 150ms ease;
 }
-
-.quick-add-bar__type-btn:hover {
-    border-color: var(--ledger-border);
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--ledger-ink);
+.quick-add-option:hover, .quick-add-option:focus-visible { background: rgb(201 77 36 / 10%); }
+.entry-dialog {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    width: min(34rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    overflow: visible;
 }
-
-.quick-add-bar__type-btn.is-active {
-    border-color: var(--ledger-accent);
-    background: rgba(201, 77, 36, 0.12);
-    color: var(--ledger-accent-ink);
-}
-
-.quick-add-bar__type-btn:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(201, 77, 36, 0.2);
-}
-
-.quick-add-bar__primary-btn {
-    margin-left: auto;
-}
-
-.quick-add-bar__sync-status {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding-left: 0.75rem;
-    border-left: 1px solid var(--ledger-border);
-}
-
-.sync-status__indicator {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 999px;
-    background: #236654;
-    transition: all 200ms ease;
-}
-
-.sync-status__indicator.is-syncing {
-    background: var(--ledger-accent);
-    animation: pulse-sync 1.5s ease-in-out infinite;
-}
-
-.sync-status__indicator.has-error {
-    background: #991b1b;
-}
-
-@keyframes pulse-sync {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.1); }
-}
-
-.sync-status__text {
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: var(--ledger-muted);
+.entry-dialog::backdrop { background: rgb(32 22 18 / 45%); }
+.entry-dialog .entry-modal {
+    max-width: none;
+    max-height: calc(100dvh - 2rem);
+    background: #fffdf8;
 }
 
 /* Modal Styles */
@@ -1053,6 +978,7 @@
 }
 
 .form-input.border-rose-500,
+.form-input[aria-invalid="true"],
 .form-select.border-rose-500,
 .form-textarea.border-rose-500 {
     border-color: #f43f5e;

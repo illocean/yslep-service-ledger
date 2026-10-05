@@ -1,0 +1,101 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - button "Add entry" [ref=e4]:
+    - generic [ref=e5]: +
+    - text: Add entry
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=e13] [cursor=pointer]:
+              - /url: http://127.0.0.1:8011
+          - status "Data sources" [ref=e14]:
+            - generic "Live data from Obsidian" [ref=e15]: Live
+            - generic "Saved reports" [ref=e16]: Reports
+            - generic "Academic year archives" [ref=e17]: Archives
+        - navigation "Main navigation" [ref=e18]:
+          - menubar [ref=e19]:
+            - menuitem "Overview" [ref=e20] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e22] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e24] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e26] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e28] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e30] [cursor=pointer]: Academic Years
+    - main [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: Pre-selected from the saved report page. Add more reports below or create the snapshot as-is.
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]: Academic Year Snapshots
+            - heading "Collect reports for an academic year." [level=1] [ref=e39]
+            - paragraph [ref=e40]: Choose the year and reports yourself. Nothing is archived until you create a snapshot; saved reports stay in Reports.
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: Snapshots
+              - generic [ref=e44]: "00"
+            - generic [ref=e45]:
+              - generic [ref=e46]: Available Reports
+              - generic [ref=e47]: "01"
+            - generic [ref=e48]:
+              - generic [ref=e49]: Obsidian Snapshot File
+              - generic [ref=e50]: C:\.anyThing\YSLEP\laravel\storage\framework\testing\browser-entry-workflow\ACADEMIC YEAR SNAPSHOTS.md
+        - generic [ref=e51]:
+          - article [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]:
+                - generic [ref=e55]: Create Snapshot
+                - heading "Select available saved reports" [level=2] [ref=e56]
+                - paragraph [ref=e57]: Select the reports to include. Reports already in a snapshot stay assigned to that year and cannot be moved automatically.
+              - generic [ref=e58]: 1 selected
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - text: Academic year *
+                - combobox "Academic year *" [ref=e61]
+                - paragraph [ref=e62]: Choose an existing year or enter a new one.
+              - generic [ref=e63]:
+                - generic [ref=e64]:
+                  - text: Snapshot title
+                  - textbox "Snapshot title" [ref=e65]:
+                    - /placeholder: "Example: AY 2025-2026 Final Archive"
+                - generic [ref=e66]:
+                  - generic [ref=e67]:
+                    - generic [ref=e68]: Available
+                    - generic [ref=e69]: 1 report(s)
+                  - generic [ref=e70]:
+                    - generic [ref=e71]: Archived
+                    - generic [ref=e72]: 0 included
+                - button "Create Academic Year Snapshot" [ref=e74]
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - button "Select all" [ref=e77]
+                  - button "Clear" [ref=e78]
+                  - button "All" [ref=e79] [cursor=pointer]
+                  - button "Formation" [ref=e80] [cursor=pointer]
+                  - button "Parish Involvement" [ref=e81] [cursor=pointer]
+                  - button "Social Apostolate" [ref=e82] [cursor=pointer]
+                - generic [ref=e83]: 1 report(s) | 3 record(s) | 3 hr 30 min
+              - generic [ref=e85] [cursor=pointer]:
+                - generic [ref=e86]:
+                  - checkbox "Saved Report Browser selected report RPT-20260920-164406-EKAE | saved Sep 20, 2026 3 record(s) 3 hr 30 min Formation 1 Parish Involvement 1 Social Apostolate 1" [checked] [ref=e87]
+                  - generic [ref=e88]:
+                    - generic [ref=e89]: Saved Report
+                    - generic [ref=e90]: Browser selected report
+                    - generic [ref=e91]: RPT-20260920-164406-EKAE | saved Sep 20, 2026
+                - generic [ref=e92]:
+                  - generic [ref=e93]: 3 record(s)
+                  - generic [ref=e94]: 3 hr 30 min
+                  - generic [ref=e95]: Formation 1
+                  - generic [ref=e96]: Parish Involvement 1
+                  - generic [ref=e97]: Social Apostolate 1
+          - complementary [ref=e98]:
+            - article [ref=e99]:
+              - generic [ref=e100]: Already Archived
+              - heading "Included in snapshots" [level=2] [ref=e101]
+              - paragraph [ref=e102]: These reports were included in a snapshot. Open it to review the year and contents.
+              - generic [ref=e103]: Nothing has been archived yet.
+            - article [ref=e104]:
+              - generic [ref=e105]: Current Snapshots
+              - generic [ref=e107]: No academic-year snapshots yet.

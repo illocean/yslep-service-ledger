@@ -8,7 +8,7 @@
     <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-8 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:items-start lg:px-10 lg:py-8">
             <div class="space-y-5">
-                <div class="section-kicker">Academic Year Snapshot</div>
+                <div class="section-kicker">Academic Year {{ $academicYearSnapshot->academic_year }}</div>
                 <div class="space-y-3">
                     <h1 class="font-serif text-4xl leading-tight text-stone-900 sm:text-5xl">
                         {{ $academicYearSnapshot->compact_label }}
@@ -78,7 +78,7 @@
                 <h2 class="mt-3 font-serif text-2xl text-stone-950">Source reports collected into this archive</h2>
             </div>
 
-            <form method="POST" action="{{ route('academic-year-snapshots.destroy', $academicYearSnapshot) }}">
+            <form method="POST" action="{{ route('academic-year-snapshots.destroy', $academicYearSnapshot) }}" data-confirm="Delete this snapshot? Saved reports will remain available.">
                 @csrf
                 @method('DELETE')
 
@@ -144,6 +144,7 @@
                                     @elseif ($type === \App\Enums\IndexType::SocialApostolate)
                                         <th class="px-3 py-3">Date</th>
                                         <th class="px-3 py-3">Activity</th>
+                                        <th class="px-3 py-3">Role</th>
                                         <th class="px-3 py-3">Time In</th>
                                         <th class="px-3 py-3">Time Out</th>
                                         <th class="px-3 py-3">Duration</th>
@@ -151,6 +152,7 @@
                                     @else
                                         <th class="px-3 py-3">Date</th>
                                         <th class="px-3 py-3">Activity</th>
+                                        <th class="px-3 py-3">Role</th>
                                         <th class="px-3 py-3">Time In</th>
                                         <th class="px-3 py-3">Time Out</th>
                                         <th class="px-3 py-3">Duration</th>
@@ -173,6 +175,7 @@
                                         @elseif ($type === \App\Enums\IndexType::SocialApostolate)
                                             <td class="px-3 py-3">{{ $item->served_on_label }}</td>
                                             <td class="px-3 py-3">{{ $item->about }}</td>
+                                            <td class="px-3 py-3">{{ $item->role_in_activity }}</td>
                                             <td class="px-3 py-3">{{ $item->time_start_label }}</td>
                                             <td class="px-3 py-3">{{ $item->time_end_label }}</td>
                                             <td class="px-3 py-3">{{ $item->duration_label }}</td>
@@ -180,6 +183,7 @@
                                         @else
                                             <td class="px-3 py-3">{{ $item->served_on_label }}</td>
                                             <td class="px-3 py-3">Parish Involvement</td>
+                                            <td class="px-3 py-3">{{ $item->role_in_activity }}</td>
                                             <td class="px-3 py-3">{{ $item->time_start_label }}</td>
                                             <td class="px-3 py-3">{{ $item->time_end_label }}</td>
                                             <td class="px-3 py-3">{{ $item->duration_label }}</td>

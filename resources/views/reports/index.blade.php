@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Saved Reports')
+@section('title', 'Reports')
 
 @section('content')
     @include('partials.alerts')
@@ -8,42 +8,42 @@
     <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:px-10 lg:py-8">
             <div class="space-y-3">
-                <div class="section-kicker">Saved Reports</div>
+                <div class="section-kicker">Reports</div>
                 <h1 class="font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
-                    Manage report snapshots separately from live data.
+                    Saved report snapshots alongside live data
                 </h1>
             </div>
 
             <div class="paper-panel rounded-card p-4">
-                <div class="section-kicker">Summary</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                <div class="section-kicker">Stats</div>
+                <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Reports</div>
-                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ str_pad((string) $reportGroups->count(), 2, '0', STR_PAD_LEFT) }}</div>
+                        <div class="form-label">Report Groups</div>
+                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ $reportGroups->count() }}</div>
                     </div>
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Records</div>
-                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ str_pad((string) $totalRecords, 2, '0', STR_PAD_LEFT) }}</div>
+                        <div class="form-label">Total Records</div>
+                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ $totalRecords }}</div>
                     </div>
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Hours</div>
+                        <div class="form-label">Total Hours</div>
                         <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
                     </div>
+                    @if (app()->isLocal())
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Report file</div>
-                        <div class="mt-1 truncate font-mono text-xs text-stone-600">{{ $reportGroupsFilePath }}</div>
+                        <div class="form-label">Sync Action</div>
+                        <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-2 sync-form">
+                            @csrf
+                            <button type="submit" class="secondary-button w-full">Sync from Obsidian</button>
+                        </form>
                     </div>
+                    @endif
                 </div>
-
-                <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-4 sync-form">
-                    @csrf
-                    <button type="submit" class="secondary-button w-full">Sync from Obsidian</button>
-                </form>
             </div>
         </div>
     </section>
 
-    <section class="grid gap-6 xl:grid-cols-2">
+    <section class="grid gap-6 mt-8">
         @forelse ($reportGroups as $reportGroup)
             @php
                 $reportMinutes = $reportGroup->items->sum('duration_minutes');
@@ -64,16 +64,14 @@
                         <p class="mt-2 font-mono text-xs text-stone-600">{{ $reportGroup->tag }}</p>
                     </div>
 
-                    <a href="{{ route('reports.show', $reportGroup) }}" class="primary-button">
-                        Manage Report
-                    </a>
+                    <div class="mt-2 text-right">
+                        <a href="{{ route('reports.show', $reportGroup) }}" class="primary-button">
+                            Manage Report
+                        </a>
+                    </div>
                 </div>
 
                 <div class="mt-5 grid gap-3 sm:grid-cols-3">
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">Saved on</div>
-                        <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportGroup->created_at?->setTimezone(config('app.timezone'))->format('F j, Y g:i A') }}</div>
-                    </div>
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Records</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportGroup->items->count() }}</div>
@@ -81,6 +79,14 @@
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
                         <div class="form-label">Hours</div>
                         <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportTotalLabel }}</div>
+                    </div>
+                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
+                        <div class="form-label">Types</div>
+                        <div class="mt-1 text-xs uppercase tracking-[0.16em] text-stone-600">
+                            @foreach (\App\Enums\IndexType::cases() as $type)
+                                {{ $type->label() }}: {{ $reportGroup->itemsFor($type->value)->count() }}@if (!$loop->last), @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
@@ -93,11 +99,11 @@
                 </div>
             </article>
         @empty
-            <div class="paper-panel rounded-panel px-5 py-10 text-center sm:px-8 xl:col-span-2">
+            <div class="paper-panel rounded-panel px-5 py-10 text-center sm:px-8">
                 <div class="section-kicker">No Saved Reports</div>
                 <h2 class="mt-3 font-serif text-2xl text-stone-950">No reports yet</h2>
                 <p class="mx-auto mt-3 max-w-lg text-sm text-stone-600">
-                    Create your first saved report from the overview page.
+                    Create your first saved report from the dashboard overview, or use the quick-add bar to add entries directly.
                 </p>
                 <div class="mt-6">
                     <a href="{{ route('dashboard') }}" class="primary-button">Back to Overview</a>
@@ -105,4 +111,4 @@
             </div>
         @endforelse
     </section>
-@endsection
+@stop

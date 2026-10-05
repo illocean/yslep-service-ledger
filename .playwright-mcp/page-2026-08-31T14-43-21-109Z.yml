@@ -1,0 +1,318 @@
+- generic [active] [ref=f7e1]:
+  - link "Skip to Content" [ref=f7e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f7e3]:
+    - generic [ref=f7e4]:
+      - generic [ref=f7e5]: ⌘
+      - generic [ref=f7e6]: K
+    - group "Select entry type" [ref=f7e7]:
+      - button "Formation" [pressed] [ref=f7e8]
+      - button "Social Apostolate" [ref=f7e13]
+      - button "Parish Involvement" [ref=f7e20]
+    - button "Add new Formation entry" [ref=f7e25]
+  - generic [ref=f7e27]:
+    - banner [ref=f7e28]:
+      - generic [ref=f7e30]:
+        - generic [ref=f7e31]:
+          - generic [ref=f7e32]:
+            - generic [ref=f7e33]: YSLEP Service Ledger
+            - link "Service Ledger" [ref=f7e34] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+          - status "Data sources" [ref=f7e35]:
+            - generic "Live data from Obsidian" [ref=f7e36]: Live
+            - generic "Saved reports" [ref=f7e37]: Reports
+            - generic "Academic year archives" [ref=f7e38]: Archives
+        - navigation "Main navigation" [ref=f7e39]:
+          - menubar [ref=f7e40]:
+            - menuitem "Overview" [ref=f7e41] [cursor=pointer]
+            - menuitem "Formation" [ref=f7e43] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f7e45] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f7e47] [cursor=pointer]
+            - menuitem "Reports" [ref=f7e49] [cursor=pointer]
+            - menuitem "AY Archives" [ref=f7e51] [cursor=pointer]
+    - main [ref=f7e53]:
+      - generic [ref=f7e54]:
+        - generic [ref=f7e56]:
+          - generic [ref=f7e57]:
+            - generic [ref=f7e58]: Reports
+            - heading "Saved report snapshots alongside live data" [level=1] [ref=f7e59]
+          - generic [ref=f7e60]:
+            - generic [ref=f7e61]: Stats
+            - generic [ref=f7e62]:
+              - generic [ref=f7e63]:
+                - generic [ref=f7e64]: Report Groups
+                - generic [ref=f7e65]: "12"
+              - generic [ref=f7e66]:
+                - generic [ref=f7e67]: Total Records
+                - generic [ref=f7e68]: "105"
+              - generic [ref=f7e69]:
+                - generic [ref=f7e70]: Total Hours
+                - generic [ref=f7e71]: 160 hr
+              - generic [ref=f7e72]:
+                - generic [ref=f7e73]: Sync Action
+                - button "Sync from Obsidian" [ref=f7e75]
+        - generic [ref=f7e76]:
+          - article [ref=f7e77]:
+            - generic [ref=f7e78]:
+              - generic [ref=f7e79]:
+                - generic [ref=f7e80]: Saved Snapshot
+                - heading "JULY '26" [level=2] [ref=f7e81]
+                - paragraph [ref=f7e82]: RPT-20260801-152416-FBVV
+              - link "Manage Report" [ref=f7e84] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260801-152416-FBVV
+            - generic [ref=f7e85]:
+              - generic [ref=f7e86]:
+                - generic [ref=f7e87]: Records
+                - generic [ref=f7e88]: "9"
+              - generic [ref=f7e89]:
+                - generic [ref=f7e90]: Hours
+                - generic [ref=f7e91]: 17 hr
+              - generic [ref=f7e92]:
+                - generic [ref=f7e93]: Types
+                - generic [ref=f7e94]: "Formation: 1{, } Parish Involvement: 5{, } Social Apostolate: 3{}"
+            - generic [ref=f7e95]:
+              - generic [ref=f7e96]: "Formation: 1"
+              - generic [ref=f7e97]: "Parish Involvement: 5"
+              - generic [ref=f7e98]: "Social Apostolate: 3"
+          - article [ref=f7e99]:
+            - generic [ref=f7e100]:
+              - generic [ref=f7e101]:
+                - generic [ref=f7e102]: Saved Snapshot
+                - heading "JUNE '26" [level=2] [ref=f7e103]
+                - paragraph [ref=f7e104]: RPT-20260628-155000-NGEL
+              - link "Manage Report" [ref=f7e106] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260628-155000-NGEL
+            - generic [ref=f7e107]:
+              - generic [ref=f7e108]:
+                - generic [ref=f7e109]: Records
+                - generic [ref=f7e110]: "8"
+              - generic [ref=f7e111]:
+                - generic [ref=f7e112]: Hours
+                - generic [ref=f7e113]: 15 hr
+              - generic [ref=f7e114]:
+                - generic [ref=f7e115]: Types
+                - generic [ref=f7e116]: "Formation: 1{, } Parish Involvement: 4{, } Social Apostolate: 3{}"
+            - generic [ref=f7e117]:
+              - generic [ref=f7e118]: "Formation: 1"
+              - generic [ref=f7e119]: "Parish Involvement: 4"
+              - generic [ref=f7e120]: "Social Apostolate: 3"
+          - article [ref=f7e121]:
+            - generic [ref=f7e122]:
+              - generic [ref=f7e123]:
+                - generic [ref=f7e124]: Saved Snapshot
+                - heading "MAY '26" [level=2] [ref=f7e125]
+                - paragraph [ref=f7e126]: RPT-20260523-133015-PJFY
+              - link "Manage Report" [ref=f7e128] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260523-133015-PJFY
+            - generic [ref=f7e129]:
+              - generic [ref=f7e130]:
+                - generic [ref=f7e131]: Records
+                - generic [ref=f7e132]: "9"
+              - generic [ref=f7e133]:
+                - generic [ref=f7e134]: Hours
+                - generic [ref=f7e135]: 17 hr
+              - generic [ref=f7e136]:
+                - generic [ref=f7e137]: Types
+                - generic [ref=f7e138]: "Formation: 1{, } Parish Involvement: 5{, } Social Apostolate: 3{}"
+            - generic [ref=f7e139]:
+              - generic [ref=f7e140]: "Formation: 1"
+              - generic [ref=f7e141]: "Parish Involvement: 5"
+              - generic [ref=f7e142]: "Social Apostolate: 3"
+          - article [ref=f7e143]:
+            - generic [ref=f7e144]:
+              - generic [ref=f7e145]:
+                - generic [ref=f7e146]: Saved Snapshot
+                - heading "APRIL '26" [level=2] [ref=f7e147]
+                - paragraph [ref=f7e148]: RPT-20260428-144236-0XY7
+              - link "Manage Report" [ref=f7e150] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260428-144236-0XY7
+            - generic [ref=f7e151]:
+              - generic [ref=f7e152]:
+                - generic [ref=f7e153]: Records
+                - generic [ref=f7e154]: "10"
+              - generic [ref=f7e155]:
+                - generic [ref=f7e156]: Hours
+                - generic [ref=f7e157]: 16 hr
+              - generic [ref=f7e158]:
+                - generic [ref=f7e159]: Types
+                - generic [ref=f7e160]: "Formation: 1{, } Parish Involvement: 6{, } Social Apostolate: 3{}"
+            - generic [ref=f7e161]:
+              - generic [ref=f7e162]: "Formation: 1"
+              - generic [ref=f7e163]: "Parish Involvement: 6"
+              - generic [ref=f7e164]: "Social Apostolate: 3"
+          - article [ref=f7e165]:
+            - generic [ref=f7e166]:
+              - generic [ref=f7e167]:
+                - generic [ref=f7e168]: Saved Snapshot
+                - heading "MARCH '26" [level=2] [ref=f7e169]
+                - paragraph [ref=f7e170]: RPT-20260405-111211-9OYP
+              - link "Manage Report" [ref=f7e172] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260405-111211-9OYP
+            - generic [ref=f7e173]:
+              - generic [ref=f7e174]:
+                - generic [ref=f7e175]: Records
+                - generic [ref=f7e176]: "10"
+              - generic [ref=f7e177]:
+                - generic [ref=f7e178]: Hours
+                - generic [ref=f7e179]: 18 hr 30 min
+              - generic [ref=f7e180]:
+                - generic [ref=f7e181]: Types
+                - generic [ref=f7e182]: "Formation: 1{, } Parish Involvement: 5{, } Social Apostolate: 4{}"
+            - generic [ref=f7e183]:
+              - generic [ref=f7e184]: "Formation: 1"
+              - generic [ref=f7e185]: "Parish Involvement: 5"
+              - generic [ref=f7e186]: "Social Apostolate: 4"
+          - article [ref=f7e187]:
+            - generic [ref=f7e188]:
+              - generic [ref=f7e189]:
+                - generic [ref=f7e190]: Saved Snapshot
+                - heading "FEB '26" [level=2] [ref=f7e191]
+                - paragraph [ref=f7e192]: RPT-20260331-233739-N2HN
+              - link "Manage Report" [ref=f7e194] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233739-N2HN
+            - generic [ref=f7e195]:
+              - generic [ref=f7e196]:
+                - generic [ref=f7e197]: Records
+                - generic [ref=f7e198]: "8"
+              - generic [ref=f7e199]:
+                - generic [ref=f7e200]: Hours
+                - generic [ref=f7e201]: 10 hr
+              - generic [ref=f7e202]:
+                - generic [ref=f7e203]: Types
+                - generic [ref=f7e204]: "Formation: 1{, } Parish Involvement: 4{, } Social Apostolate: 3{}"
+            - generic [ref=f7e205]:
+              - generic [ref=f7e206]: "Formation: 1"
+              - generic [ref=f7e207]: "Parish Involvement: 4"
+              - generic [ref=f7e208]: "Social Apostolate: 3"
+          - article [ref=f7e209]:
+            - generic [ref=f7e210]:
+              - generic [ref=f7e211]:
+                - generic [ref=f7e212]: Saved Snapshot
+                - heading "JAN '26" [level=2] [ref=f7e213]
+                - paragraph [ref=f7e214]: RPT-20260331-233319-FHIA
+              - link "Manage Report" [ref=f7e216] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233319-FHIA
+            - generic [ref=f7e217]:
+              - generic [ref=f7e218]:
+                - generic [ref=f7e219]: Records
+                - generic [ref=f7e220]: "10"
+              - generic [ref=f7e221]:
+                - generic [ref=f7e222]: Hours
+                - generic [ref=f7e223]: 13 hr 30 min
+              - generic [ref=f7e224]:
+                - generic [ref=f7e225]: Types
+                - generic [ref=f7e226]: "Formation: 1{, } Parish Involvement: 5{, } Social Apostolate: 4{}"
+            - generic [ref=f7e227]:
+              - generic [ref=f7e228]: "Formation: 1"
+              - generic [ref=f7e229]: "Parish Involvement: 5"
+              - generic [ref=f7e230]: "Social Apostolate: 4"
+          - article [ref=f7e231]:
+            - generic [ref=f7e232]:
+              - generic [ref=f7e233]:
+                - generic [ref=f7e234]: Saved Snapshot
+                - heading "DEC '25" [level=2] [ref=f7e235]
+                - paragraph [ref=f7e236]: RPT-20260331-232900-GN2K
+              - link "Manage Report" [ref=f7e238] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232900-GN2K
+            - generic [ref=f7e239]:
+              - generic [ref=f7e240]:
+                - generic [ref=f7e241]: Records
+                - generic [ref=f7e242]: "8"
+              - generic [ref=f7e243]:
+                - generic [ref=f7e244]: Hours
+                - generic [ref=f7e245]: 14 hr
+              - generic [ref=f7e246]:
+                - generic [ref=f7e247]: Types
+                - generic [ref=f7e248]: "Formation: 1{, } Parish Involvement: 4{, } Social Apostolate: 3{}"
+            - generic [ref=f7e249]:
+              - generic [ref=f7e250]: "Formation: 1"
+              - generic [ref=f7e251]: "Parish Involvement: 4"
+              - generic [ref=f7e252]: "Social Apostolate: 3"
+          - article [ref=f7e253]:
+            - generic [ref=f7e254]:
+              - generic [ref=f7e255]:
+                - generic [ref=f7e256]: Saved Snapshot
+                - heading "NOV '25" [level=2] [ref=f7e257]
+                - paragraph [ref=f7e258]: RPT-20260331-232717-UBDS
+              - link "Manage Report" [ref=f7e260] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232717-UBDS
+            - generic [ref=f7e261]:
+              - generic [ref=f7e262]:
+                - generic [ref=f7e263]: Records
+                - generic [ref=f7e264]: "10"
+              - generic [ref=f7e265]:
+                - generic [ref=f7e266]: Hours
+                - generic [ref=f7e267]: 14 hr
+              - generic [ref=f7e268]:
+                - generic [ref=f7e269]: Types
+                - generic [ref=f7e270]: "Formation: 1{, } Parish Involvement: 6{, } Social Apostolate: 3{}"
+            - generic [ref=f7e271]:
+              - generic [ref=f7e272]: "Formation: 1"
+              - generic [ref=f7e273]: "Parish Involvement: 6"
+              - generic [ref=f7e274]: "Social Apostolate: 3"
+          - article [ref=f7e275]:
+            - generic [ref=f7e276]:
+              - generic [ref=f7e277]:
+                - generic [ref=f7e278]: Saved Snapshot
+                - heading "OCT '25" [level=2] [ref=f7e279]
+                - paragraph [ref=f7e280]: RPT-20260331-232646-NANA
+              - link "Manage Report" [ref=f7e282] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232646-NANA
+            - generic [ref=f7e283]:
+              - generic [ref=f7e284]:
+                - generic [ref=f7e285]: Records
+                - generic [ref=f7e286]: "7"
+              - generic [ref=f7e287]:
+                - generic [ref=f7e288]: Hours
+                - generic [ref=f7e289]: 9 hr
+              - generic [ref=f7e290]:
+                - generic [ref=f7e291]: Types
+                - generic [ref=f7e292]: "Formation: 1{, } Parish Involvement: 4{, } Social Apostolate: 2{}"
+            - generic [ref=f7e293]:
+              - generic [ref=f7e294]: "Formation: 1"
+              - generic [ref=f7e295]: "Parish Involvement: 4"
+              - generic [ref=f7e296]: "Social Apostolate: 2"
+          - article [ref=f7e297]:
+            - generic [ref=f7e298]:
+              - generic [ref=f7e299]:
+                - generic [ref=f7e300]: Saved Snapshot
+                - heading "AUG '25" [level=2] [ref=f7e301]
+                - paragraph [ref=f7e302]: RPT-20260331-232539-QYP3
+              - link "Manage Report" [ref=f7e304] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232539-QYP3
+            - generic [ref=f7e305]:
+              - generic [ref=f7e306]:
+                - generic [ref=f7e307]: Records
+                - generic [ref=f7e308]: "9"
+              - generic [ref=f7e309]:
+                - generic [ref=f7e310]: Hours
+                - generic [ref=f7e311]: 9 hr
+              - generic [ref=f7e312]:
+                - generic [ref=f7e313]: Types
+                - generic [ref=f7e314]: "Formation: 1{, } Parish Involvement: 6{, } Social Apostolate: 2{}"
+            - generic [ref=f7e315]:
+              - generic [ref=f7e316]: "Formation: 1"
+              - generic [ref=f7e317]: "Parish Involvement: 6"
+              - generic [ref=f7e318]: "Social Apostolate: 2"
+          - article [ref=f7e319]:
+            - generic [ref=f7e320]:
+              - generic [ref=f7e321]:
+                - generic [ref=f7e322]: Saved Snapshot
+                - heading "SEPT '25" [level=2] [ref=f7e323]
+                - paragraph [ref=f7e324]: RPT-20260331-231839-MMDO
+              - link "Manage Report" [ref=f7e326] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-231839-MMDO
+            - generic [ref=f7e327]:
+              - generic [ref=f7e328]:
+                - generic [ref=f7e329]: Records
+                - generic [ref=f7e330]: "7"
+              - generic [ref=f7e331]:
+                - generic [ref=f7e332]: Hours
+                - generic [ref=f7e333]: 7 hr
+              - generic [ref=f7e334]:
+                - generic [ref=f7e335]: Types
+                - generic [ref=f7e336]: "Formation: 1{, } Parish Involvement: 4{, } Social Apostolate: 2{}"
+            - generic [ref=f7e337]:
+              - generic [ref=f7e338]: "Formation: 1"
+              - generic [ref=f7e339]: "Parish Involvement: 4"
+              - generic [ref=f7e340]: "Social Apostolate: 2"

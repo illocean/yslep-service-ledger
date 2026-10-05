@@ -13,6 +13,8 @@
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
+
+        @stack('head', '')
     </head>
     <body>
         @php
@@ -39,10 +41,11 @@
         </a>
 
         <!-- Quick Add Bar (docked bottom) -->
-        <x-quick-add-bar 
+        <x-quick-add-bar
             :types="[ \App\Enums\IndexType::Formation, \App\Enums\IndexType::SocialApostolate, \App\Enums\IndexType::ParishInvolvement ]"
-            class="fixed bottom-0 left-0 right-0 z-40 sm:bottom-4 sm:left-auto sm:right-4 sm:w-auto sm:max-w-md sm:rounded-panel"
+            class="fixed bottom-4 right-4 z-40"
         />
+        @stack('quick-add-bar', '')
 
         <!-- Global Conflict Modal -->
         <x-conflict-modal 
@@ -50,33 +53,22 @@
             class="fixed inset-0 z-50"
         />
 
-        <!-- Global Entry Modals (for quick-add bar) -->
         @php
-            $dashboardAcademicYears = $cardMeta['entry_options']['academic_years'] ?? [];
+            $entryReport = request()->routeIs('reports.show')
+                ? request()->route('reportGroup')
+                : (($selectedScope ?? null) === \App\Enums\IndexScope::Report ? ($selectedReportGroup ?? null) : null);
         @endphp
-        <x-entry-modal
-            :type="\App\Enums\IndexType::Formation"
-            :form-action="route('entries.store')"
-            :academic-years="$dashboardAcademicYears"
-            :cancel-url="route('dashboard')"
-            class="fixed inset-0 z-50"
-        />
-        <x-entry-modal
-            :type="\App\Enums\IndexType::SocialApostolate"
-            :form-action="route('entries.store')"
-            :academic-years="$dashboardAcademicYears"
-            :cancel-url="route('dashboard')"
-            class="fixed inset-0 z-50"
-        />
-        <x-entry-modal
-            :type="\App\Enums\IndexType::ParishInvolvement"
-            :form-action="route('entries.store')"
-            :academic-years="$dashboardAcademicYears"
-            :cancel-url="route('dashboard')"
-            class="fixed inset-0 z-50"
-        />
+        <datalist id="entry-academic-years">
+            @foreach ($entryAcademicYears as $year)
+                <option value="{{ $year }}"></option>
+            @endforeach
+        </datalist>
+        @foreach (\App\Enums\IndexType::cases() as $entryType)
+            <x-entry-modal :type="$entryType" :report="$entryReport"
+                :form-action="$entryReport ? route('reports.records.store', $entryReport) : route('entries.store')" />
+        @endforeach
 
-        <div class="page-grid min-h-screen pb-24 sm:pb-0">
+        <div class="page-grid min-h-screen pb-24">
             <header class="px-4 pt-4 sm:px-6 lg:px-10" role="banner">
                 <div class="mx-auto max-w-7xl">
                     <div class="paper-panel masthead-shell rounded-panel px-5 py-4 sm:px-6">
@@ -103,7 +95,7 @@
                                 </a>
 
                                 @foreach (\App\Enums\IndexType::cases() as $navType)
-                                    <a href="{{ route('indexes.show', ['type' => $navType->value] + $routeParams) }}" class="topbar-link {{ request()->routeIs('indexes.show') && request()->route('type') === $navType->value ? 'is-active' : '' }}" role="menuitem" aria-current="{{ request()->routeIs('indexes.show') && request()->route('type') === $navType->value ? 'page' : 'false' }}">
+                                    <a href="{{ route('indexes.show', ['type' => $navType->value] + $routeParams) }}" class="topbar-link {{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'is-active' : '' }}" role="menuitem" aria-current="{{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'page' : 'false' }}">
                                         <span class="topbar-link__indicator" aria-hidden="true"></span>
                                         {{ $navType->label() }}
                                     </a>
@@ -116,7 +108,7 @@
 
                                 <a href="{{ route('academic-year-snapshots.index') }}" class="topbar-link {{ request()->routeIs('academic-year-snapshots.*') ? 'is-active' : '' }}" role="menuitem" aria-current="{{ request()->routeIs('academic-year-snapshots.*') ? 'page' : 'false' }}">
                                     <span class="topbar-link__indicator" aria-hidden="true"></span>
-                                    AY Archives
+                                    Academic Years
                                 </a>
                             </div>
                         </nav>
