@@ -69,10 +69,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('submit', (event) => {
-        const form = event.target.closest(DIRTY_SELECTOR);
+        const form = event.target;
+        const dirtyForm = form.closest?.(DIRTY_SELECTOR);
 
-        if (form) {
-            delete form.dataset.dirty;
+        if (dirtyForm) {
+            delete dirtyForm.dataset.dirty;
+        }
+
+        // Same-page mutations land back on a long ledger; forms that navigate
+        // elsewhere opt out with data-no-keep-scroll.
+        if (!form.hasAttribute?.('data-no-keep-scroll')) {
+            sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
         }
     });
 

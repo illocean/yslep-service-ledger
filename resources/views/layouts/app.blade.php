@@ -47,12 +47,6 @@
         />
         @stack('quick-add-bar', '')
 
-        <!-- Global Conflict Modal -->
-        <x-conflict-modal 
-            :conflicts="session('sync_conflicts', [])"
-            class="fixed inset-0 z-50"
-        />
-
         @php
             $entryReport = request()->routeIs('reports.show')
                 ? request()->route('reportGroup')

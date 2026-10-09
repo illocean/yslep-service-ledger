@@ -142,6 +142,19 @@ MD);
         $this->get('/indexes/Social%20Apostolate')->assertOk();
     }
 
+    public function test_index_page_offers_client_side_search_over_rendered_records(): void
+    {
+        $response = $this->get('/indexes/formation')->assertOk();
+
+        $response->assertSee('id="ledger-search"', false);
+        $response->assertSee('x-data="ledgerSearch"', false);
+        $this->assertMatchesRegularExpression(
+            '/data-search="[^"]*honor thy parent[^"]*september 28, 2025[^"]*"/',
+            $response->getContent(),
+            'Each record card should carry a lowercase haystack for the search filter.',
+        );
+    }
+
     public function test_live_entries_can_be_updated_and_deleted_from_the_index_page_with_markdown_sync(): void
     {
         $this->get('/indexes/social_apostolate')->assertOk();

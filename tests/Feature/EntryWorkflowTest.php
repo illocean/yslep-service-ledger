@@ -209,6 +209,11 @@ class EntryWorkflowTest extends TestCase
             $this->assertSame(0, $xpath->query('//dialog//textarea[@name="about"]')->length);
             $this->assertSame(1, $xpath->query('//dialog//input[@name="about"]')->length);
             $this->assertSame(3, $xpath->query('//dialog//input[@name="served_on"]')->length);
+            $this->assertSame(
+                3,
+                $xpath->query('//dialog[not(@data-entry-id) or @data-entry-id=""]//input[@name="served_on" and @value="'.now()->toDateString().'"]')->length,
+                'Every new-entry modal should default the service date to today.',
+            );
             $this->assertSame(3, $xpath->query('//dialog//input[@name="time_start"]')->length);
             $ids = array_map(fn (\DOMElement $element): string => $element->getAttribute('id'), iterator_to_array($xpath->query('//*[@id]')));
             $this->assertSame($ids, array_values(array_unique($ids)));

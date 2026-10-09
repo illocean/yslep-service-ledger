@@ -71,7 +71,7 @@
                     @php
                         $value = $entry?->getAttribute($name);
                         if ($name === 'served_on') {
-                            $value = $entry?->served_on?->toDateString();
+                            $value = $entry?->served_on?->toDateString() ?? (! $entry ? now()->toDateString() : null);
                         } elseif ($inputType === 'time') {
                             $value = substr((string) $value, 0, 5);
                         }

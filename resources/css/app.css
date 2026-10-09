@@ -832,8 +832,7 @@
 }
 
 /* Modal Styles */
-.entry-modal-overlay,
-.conflict-modal-overlay {
+.entry-modal-overlay {
     position: fixed;
     inset: 0;
     display: flex;
@@ -846,8 +845,7 @@
     animation: fade-in 0.2s ease-out;
 }
 
-.entry-modal,
-.conflict-modal {
+.entry-modal {
     width: 100%;
     max-width: 32rem;
     max-height: 90vh;
@@ -866,8 +864,7 @@
     to   { opacity: 1; transform: scale(1); }
 }
 
-.entry-modal__header,
-.conflict-modal__header {
+.entry-modal__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -889,33 +886,7 @@
     color: var(--ledger-ink);
 }
 
-.conflict-modal__icon {
-    flex-shrink: 0;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    background: rgba(217, 119, 6, 0.12);
-    color: #a16207;
-}
-
-.conflict-modal__title {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--ledger-ink);
-}
-
-.conflict-modal__subtitle {
-    margin-top: 0.25rem;
-    font-size: 0.82rem;
-    color: var(--ledger-muted);
-}
-
-.entry-modal__close,
-.conflict-modal__close {
+.entry-modal__close {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -929,15 +900,13 @@
     transition: all 150ms ease;
 }
 
-.entry-modal__close:hover,
-.conflict-modal__close:hover {
+.entry-modal__close:hover {
     border-color: var(--ledger-border);
     background: rgba(255, 255, 255, 0.5);
     color: var(--ledger-ink);
 }
 
-.entry-modal__form,
-.conflict-modal__body {
+.entry-modal__form {
     padding: 1.5rem;
 }
 
@@ -990,214 +959,12 @@
     color: #f43f5e;
 }
 
-.entry-modal__actions,
-.conflict-modal__actions {
+.entry-modal__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
     padding: 1rem 1.5rem;
     border-top: 1px solid var(--ledger-border);
-}
-
-/* Conflict Modal Specific */
-.conflict-card {
-    border: 1px solid var(--ledger-border);
-    border-radius: var(--radius-card);
-    background: rgba(255, 255, 255, 0.6);
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-
-.conflict-card:last-child {
-    margin-bottom: 0;
-}
-
-.conflict-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--ledger-border);
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.conflict-card__type {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.entry-type-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    border: 1px solid var(--ledger-border);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.8);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.55rem;
-}
-
-.conflict-card__id {
-    font-family: monospace;
-    font-size: 0.62rem;
-    color: var(--ledger-muted);
-}
-
-.conflict-card__timestamp {
-    font-size: 0.68rem;
-    color: var(--ledger-muted);
-}
-
-.conflict-card__diff {
-    padding: 1rem;
-}
-
-.diff-row {
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 1rem;
-    align-items: start;
-    margin-bottom: 0.75rem;
-}
-
-.diff-row:last-child {
-    margin-bottom: 0;
-}
-
-.diff-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
-.diff-field__label {
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ledger-accent-ink);
-}
-
-.diff-field__name {
-    font-family: monospace;
-    font-size: 0.7rem;
-    color: var(--ledger-muted);
-}
-
-.diff-values {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.diff-value {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding: 0.65rem 0.75rem;
-    border: 1px solid var(--ledger-border);
-    border-radius: var(--radius-control);
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.diff-value--vault {
-    border-color: rgba(35, 102, 84, 0.2);
-    background: rgba(35, 102, 84, 0.05);
-}
-
-.diff-value--db {
-    border-color: rgba(158, 52, 24, 0.2);
-    background: rgba(158, 52, 24, 0.05);
-}
-
-.diff-value__source {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ledger-muted);
-}
-
-.diff-value__content {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--ledger-ink);
-    word-break: break-word;
-}
-
-.diff-separator {
-    color: var(--ledger-muted);
-    opacity: 0.5;
-}
-
-.conflict-card__resolution {
-    display: grid;
-    gap: 0.5rem;
-    padding: 0 1rem 1rem;
-}
-
-.resolution-option {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    cursor: pointer;
-}
-
-.resolution-option input[type="radio"] {
-    flex-shrink: 0;
-    margin-top: 0.25rem;
-    width: 1rem;
-    height: 1rem;
-    accent-color: var(--ledger-accent);
-}
-
-.resolution-option__content {
-    display: flex;
-    gap: 0.75rem;
-    flex: 1;
-}
-
-.resolution-option__icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--radius-control);
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.resolution-option__label {
-    font-weight: 600;
-    color: var(--ledger-ink);
-}
-
-.resolution-option__desc {
-    display: block;
-    margin-top: 0.15rem;
-    font-size: 0.75rem;
-    color: var(--ledger-muted);
-}
-
-.conflict-modal__empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 3rem 1.5rem;
-    text-align: center;
-    color: var(--ledger-muted);
-}
-
-.conflict-modal__empty svg {
-    color: #236654;
 }
 
 /* Report Record Card (non-modal) */
@@ -1220,9 +987,7 @@
 @media (prefers-reduced-motion: reduce) {
     .quick-add-bar,
     .entry-modal-overlay,
-    .conflict-modal-overlay,
     .entry-modal,
-    .conflict-modal,
     .sync-status__indicator.is-syncing {
         animation: none !important;
         transition: none !important;

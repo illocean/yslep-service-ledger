@@ -69,7 +69,7 @@
     </section>
 
     <section>
-        <article class="paper-panel rounded-panel p-5 sm:p-6">
+        <article class="paper-panel rounded-panel p-5 sm:p-6" x-data="ledgerSearch">
             <div class="flex items-center justify-between gap-4 mb-4">
                 <div>
                     <div class="section-kicker">Ledger</div>
@@ -78,6 +78,11 @@
                 <div class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">
                     {{ $summary['count'] }} record(s)
                 </div>
+            </div>
+
+            <div class="mt-4 max-w-sm">
+                <label for="ledger-search" class="sr-only">Search records</label>
+                <input id="ledger-search" type="search" class="form-input" placeholder="Search by title, date, or year…" x-model.debounce.150ms="q" autocomplete="off">
             </div>
 
             <div class="mt-6 space-y-4">
@@ -89,10 +94,17 @@
                             \App\Enums\IndexType::SocialApostolate => $entry->about,
                             default => 'Parish Involvement',
                         };
+                        $searchable = mb_strtolower(implode(' ', array_filter([
+                            $headline,
+                            $entry->served_on_label,
+                            $entry->served_on?->toDateString(),
+                            $entry->academic_year,
+                            $entry->role_in_activity,
+                        ])));
                     @endphp
 
                     <!-- Record Card -->
-                    <article class="report-record-card rounded-cell">
+                    <article class="report-record-card rounded-cell" data-search="{{ $searchable }}" x-show="match($el)">
                         <div class="flex flex-col gap-4 rounded-cell sm:flex-row sm:items-start sm:justify-between p-4">
                             <div class="space-y-3">
                                 <div class="flex flex-wrap items-center gap-2">
@@ -146,7 +158,7 @@
                                     <span>Edit</span>
                                 </button>
                                 
-                                <form method="POST" action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup, $entry]) }}" data-confirm="Delete this entry?">
+                                <form method="POST" action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup, $entry]) }}" data-confirm="Delete this entry?" @if ($sourceMode === 'report') data-no-keep-scroll @endif>
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="type" value="{{ $type->value }}">
@@ -155,15 +167,49 @@
                                     <input type="hidden" name="return_report" value="{{ $selectedReportTag }}">
                                     <button type="submit" class="danger-button">Delete</button>
                                 </form>
-                                @if ($entry->obsidian_conflict)
-                                    <x-assignment-chip 
-                                        variant="conflict" 
-                                        label="Conflict"
-                                        class="hidden sm:inline-flex"
-                                    />
-                                @endif
                             </div>
                         </div>
+
+                        @if ($entry->obsidian_conflict)
+                            <div class="mx-4 mb-4 p-3 rounded-cell border border-stone-900/10 bg-amber-50/70">
+                                <p class="text-sm text-stone-700">This record has a conflict: both Obsidian and the database have changes since the last sync.</p>
+                                <div class="mt-2 flex flex-wrap gap-2">
+                                    @if ($sourceMode === 'live')
+                                        <form method="POST" action="{{ route('entries.conflict.accept-vault', $entry) }}" class="inline">
+                                            @csrf
+                                            <input type="hidden" name="type" value="{{ $type->value }}">
+                                            <input type="hidden" name="scope" value="{{ $selectedScope->value }}">
+                                            <input type="hidden" name="report" value="{{ $selectedReportTag }}">
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Accept the Obsidian version and overwrite database changes">
+                                                Accept Vault Version
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ route('entries.conflict.accept-db', $entry) }}" class="inline">
+                                            @csrf
+                                            <input type="hidden" name="type" value="{{ $type->value }}">
+                                            <input type="hidden" name="scope" value="{{ $selectedScope->value }}">
+                                            <input type="hidden" name="report" value="{{ $selectedReportTag }}">
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Keep the database version and write it to Obsidian">
+                                                Accept Database Version
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-vault', [$selectedReportGroup, $entry]) }}" class="inline">
+                                            @csrf
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Accept the Obsidian version and overwrite database changes">
+                                                Accept Vault Version
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-db', [$selectedReportGroup, $entry]) }}" class="inline">
+                                            @csrf
+                                            <button type="submit" class="secondary-button !text-xs !py-1.5 !px-3" title="Keep the database version and write it to Obsidian">
+                                                Accept Database Version
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
                     </article>
 
                     <!-- Live Entry Edit Modal -->
@@ -200,6 +246,9 @@
                         @endif
                     </div>
                 @endforelse
+                <div x-cloak x-show="noMatchesFor($el.parentElement)" class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
+                    No records match your search.
+                </div>
             </div>
         </article>
     </section>

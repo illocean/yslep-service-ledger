@@ -19,31 +19,16 @@ class DashboardController extends Controller
         $syncService->syncAll();
         $reportGroups = $reportGroupService->all();
         $assignedReportLookup = $reportGroupService->assignedReportLookup();
+        $builder = $this->saveGroupData($assignedReportLookup);
 
         $cards = [];
         $entries = [];
         $meta = [];
-        $liveEntries = [];
-        $saveGroupEntries = [];
-        $liveEntryStats = [];
 
         foreach (IndexType::cases() as $type) {
-            $liveEntries[$type->value] = $this->liveEntriesForType($type);
-            $saveGroupEntries[$type->value] = $liveEntries[$type->value]
-                ->reject(fn ($entry): bool => array_key_exists($type->value.':'.$entry->id, $assignedReportLookup))
-                ->values();
-            $lockedCount = $liveEntries[$type->value]
-                ->filter(fn ($entry): bool => array_key_exists($type->value.':'.$entry->id, $assignedReportLookup))
-                ->count();
-
-            $cards[$type->value] = $this->summaryForType($type, $liveEntries[$type->value]);
-            $entries[$type->value] = $liveEntries[$type->value]->take(5)->values();
+            $cards[$type->value] = $this->summaryForType($type, $builder['live_entries'][$type->value]);
+            $entries[$type->value] = $builder['live_entries'][$type->value]->take(5)->values();
             $meta[$type->value] = $syncService->cardMeta($type);
-            $liveEntryStats[$type->value] = [
-                'total' => $liveEntries[$type->value]->count(),
-                'locked' => $lockedCount,
-                'available' => $liveEntries[$type->value]->count() - $lockedCount,
-            ];
         }
 
         $grandTotalMinutes = collect($cards)->sum('total_minutes');
@@ -51,9 +36,9 @@ class DashboardController extends Controller
         return view('dashboard', [
             'cards' => $cards,
             'entries' => $entries,
-            'liveEntries' => $liveEntries,
-            'saveGroupEntries' => $saveGroupEntries,
-            'liveEntryStats' => $liveEntryStats,
+            'liveEntries' => $builder['live_entries'],
+            'saveGroupEntries' => $builder['save_group_entries'],
+            'liveEntryStats' => $builder['live_entry_stats'],
             'meta' => $meta,
             'vaultPath' => $syncService->vaultPath(),
             'reportGroups' => $reportGroups,

@@ -103,12 +103,11 @@
                 <div class="section-kicker">No Saved Reports</div>
                 <h2 class="mt-3 font-serif text-2xl text-stone-950">No reports yet</h2>
                 <p class="mx-auto mt-3 max-w-lg text-sm text-stone-600">
-                    Create your first saved report from the dashboard overview, or use the quick-add bar to add entries directly.
+                    Build your first saved report below — pick the live entries you want and give it a title — or use the quick-add bar to add entries first.
                 </p>
-                <div class="mt-6">
-                    <a href="{{ route('dashboard') }}" class="primary-button">Back to Overview</a>
-                </div>
             </div>
         @endforelse
     </section>
+
+    @include('partials.save-group-builder', ['builderOpen' => $reportGroups->isEmpty()])
 @stop

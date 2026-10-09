@@ -53,7 +53,7 @@ class ObsidianSyncController extends Controller
         $syncService->resolveConflictAcceptVault($type, $entry);
 
         return redirect()
-            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->route('indexes.show', $this->redirectParameters($request, $type))
             ->with('status', 'Conflict resolved: accepted vault version.');
     }
 
@@ -63,7 +63,7 @@ class ObsidianSyncController extends Controller
         $syncService->resolveConflictAcceptDb($type, $entry);
 
         return redirect()
-            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->route('indexes.show', $this->redirectParameters($request, $type))
             ->with('status', 'Conflict resolved: accepted database version.');
     }
 
@@ -74,7 +74,23 @@ class ObsidianSyncController extends Controller
         $syncService->resolveConflictMerge($type, $entry, $mergedData);
 
         return redirect()
-            ->route('indexes.show', ['type' => $type->value, 'scope' => $request->input('scope', 'all')])
+            ->route('indexes.show', $this->redirectParameters($request, $type))
             ->with('status', 'Conflict resolved: merged changes.');
+    }
+
+    /**
+     * Keep the user in the report scope they resolved the conflict from.
+     *
+     * @return array<string, string>
+     */
+    private function redirectParameters(Request $request, IndexType $type): array
+    {
+        $parameters = ['type' => $type->value, 'scope' => $request->input('scope', 'all')];
+
+        if (filled($request->input('report'))) {
+            $parameters['report'] = $request->string('report')->toString();
+        }
+
+        return $parameters;
     }
 }

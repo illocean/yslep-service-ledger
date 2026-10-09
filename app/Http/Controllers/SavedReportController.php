@@ -21,6 +21,7 @@ class SavedReportController extends Controller
         $reportGroups = $reportGroupService->all();
         $totalRecords = $reportGroups->sum(fn (ReportGroup $reportGroup): int => $reportGroup->items->count());
         $grandTotalMinutes = $reportGroups->sum(fn (ReportGroup $reportGroup): int => $reportGroup->items->sum('duration_minutes'));
+        $builder = $this->saveGroupData($reportGroupService->assignedReportLookup());
 
         return view('reports.index', [
             'reportGroups' => $reportGroups,
@@ -29,6 +30,8 @@ class SavedReportController extends Controller
             'grandTotalLabel' => $this->formatMinutes($grandTotalMinutes),
             'reportGroupsFilePath' => $reportGroupService->reportGroupsPath(),
             'reportNotesRoot' => rtrim(config('obsidian.vault_path'), '\\/').DIRECTORY_SEPARATOR.trim(config('obsidian.report_notes_directory', 'REPORTS'), '\\/'),
+            'saveGroupEntries' => $builder['save_group_entries'],
+            'liveEntryStats' => $builder['live_entry_stats'],
         ]);
     }
 

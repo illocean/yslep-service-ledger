@@ -54,6 +54,43 @@ trait BuildsReportScopeData
             ->get();
     }
 
+    /**
+     * Live entries grouped for the save-group builder: report-eligible rows
+     * plus available/locked counts per index type.
+     *
+     * @param  array<string, ReportGroup>  $assignedReportLookup
+     * @return array{live_entries: array<string, Collection>, save_group_entries: array<string, Collection>, live_entry_stats: array<string, array{total: int, locked: int, available: int}>}
+     */
+    private function saveGroupData(array $assignedReportLookup): array
+    {
+        $liveEntries = [];
+        $saveGroupEntries = [];
+        $liveEntryStats = [];
+
+        foreach (IndexType::cases() as $type) {
+            $entries = $this->liveEntriesForType($type);
+            $liveEntries[$type->value] = $entries;
+            $saveGroupEntries[$type->value] = $entries
+                ->reject(fn ($entry): bool => array_key_exists($type->value.':'.$entry->id, $assignedReportLookup))
+                ->values();
+            $lockedCount = $entries
+                ->filter(fn ($entry): bool => array_key_exists($type->value.':'.$entry->id, $assignedReportLookup))
+                ->count();
+
+            $liveEntryStats[$type->value] = [
+                'total' => $entries->count(),
+                'locked' => $lockedCount,
+                'available' => $entries->count() - $lockedCount,
+            ];
+        }
+
+        return [
+            'live_entries' => $liveEntries,
+            'save_group_entries' => $saveGroupEntries,
+            'live_entry_stats' => $liveEntryStats,
+        ];
+    }
+
     private function scopedEntriesForType(
         IndexType $type,
         IndexScope $scope,
