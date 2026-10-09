@@ -1,4 +1,4 @@
-@props(['types' => \App\Enums\IndexType::cases(), 'defaultType' => null, 'reportId' => null, 'class' => ''])
+@props(['types' => \App\Enums\IndexType::cases(), 'class' => ''])
 
 <div class="quick-add-bar {{ $class }}" x-data="quickAddBar" data-allowed-types='@json(collect($types)->map(fn ($t) => $t->value)->values())'
     @click.outside="menuOpen = false" @keydown.escape.window="menuOpen = false"

@@ -45,7 +45,6 @@
             :types="[ \App\Enums\IndexType::Formation, \App\Enums\IndexType::SocialApostolate, \App\Enums\IndexType::ParishInvolvement ]"
             class="fixed bottom-4 right-4 z-40"
         />
-        @stack('quick-add-bar', '')
 
         @php
             $entryReport = request()->routeIs('reports.show')

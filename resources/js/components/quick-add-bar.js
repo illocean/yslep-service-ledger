@@ -5,6 +5,9 @@ document.addEventListener('alpine:init', () => {
         allowed: [],
 
         init() {
+            // Guard against a stored type that no longer exists (e.g. an enum
+            // value renamed since it was written): fall back to the menu
+            // instead of dispatching an event no modal listens for.
             this.allowed = JSON.parse(this.$el.dataset.allowedTypes || '[]');
             this.$watch('menuOpen', (open) => {
                 if (open) {

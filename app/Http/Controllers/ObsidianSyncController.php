@@ -85,10 +85,16 @@ class ObsidianSyncController extends Controller
      */
     private function redirectParameters(Request $request, IndexType $type): array
     {
-        $parameters = ['type' => $type->value, 'scope' => $request->input('scope', 'all')];
+        $scope = $request->input('scope', 'all');
+        $report = $request->input('report');
 
-        if (filled($request->input('report'))) {
-            $parameters['report'] = $request->string('report')->toString();
+        $parameters = [
+            'type' => $type->value,
+            'scope' => is_string($scope) ? $scope : 'all',
+        ];
+
+        if (is_string($report) && filled($report)) {
+            $parameters['report'] = $report;
         }
 
         return $parameters;

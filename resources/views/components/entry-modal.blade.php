@@ -5,7 +5,6 @@
     'academicYears' => [],
     'formAction' => '',
     'formMethod' => 'POST',
-    'cancelUrl' => null,
     'class' => '',
 ])
 

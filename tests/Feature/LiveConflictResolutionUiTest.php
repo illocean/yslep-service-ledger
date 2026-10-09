@@ -168,4 +168,22 @@ MD);
 
         $this->assertFalse($entry->fresh()->obsidian_conflict, 'Conflict should be resolved.');
     }
+
+    public function test_conflict_resolution_redirect_ignores_non_string_scope_and_report_input(): void
+    {
+        $entry = $this->conflictedFormationEntry();
+
+        $response = $this->post(route('entries.conflict.accept-vault', $entry), [
+            'type' => 'formation',
+            'scope' => ['not', 'a', 'string'],
+            'report' => ['not', 'a', 'string'],
+        ]);
+
+        $response->assertRedirect(route('indexes.show', [
+            'type' => 'formation',
+            'scope' => 'all',
+        ]));
+
+        $this->assertFalse($entry->fresh()->obsidian_conflict, 'Conflict should still be resolved.');
+    }
 }

@@ -7,16 +7,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (savedScroll !== null) {
         sessionStorage.removeItem(SCROLL_KEY);
-        const y = parseInt(savedScroll, 10);
 
-        requestAnimationFrame(() => {
-            window.scrollTo({ top: Number.isFinite(y) ? y : 0, behavior: 'instant' });
-        });
+        let y = NaN;
+        let path = null;
+
+        try {
+            const parsed = JSON.parse(savedScroll);
+
+            if (parsed !== null && typeof parsed === 'object') {
+                ({ y, path } = parsed);
+            } else {
+                y = parsed;
+            }
+        } catch {
+            // Unparseable value: drop it rather than scroll somewhere random.
+        }
+
+        // Only the page that saved the offset may restore it; a cross-page
+        // submit would otherwise land mid-page on an unrelated destination.
+        if (path !== null && path !== location.pathname) {
+            y = NaN;
+        }
+
+        if (Number.isFinite(y)) {
+            requestAnimationFrame(() => {
+                window.scrollTo({ top: y, behavior: 'instant' });
+            });
+        }
     }
+
+    const saveScroll = () => {
+        sessionStorage.setItem(SCROLL_KEY, JSON.stringify({ y: window.scrollY, path: location.pathname }));
+    };
 
     document.querySelectorAll('[data-auto-submit]').forEach((element) => {
         element.addEventListener('change', () => {
-            sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+            saveScroll();
             element.form?.submit();
         });
     });
@@ -76,10 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
             delete dirtyForm.dataset.dirty;
         }
 
-        // Same-page mutations land back on a long ledger; forms that navigate
-        // elsewhere opt out with data-no-keep-scroll.
-        if (!form.hasAttribute?.('data-no-keep-scroll')) {
-            sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+        // A cancelled data-confirm sets defaultPrevented and must not leave a
+        // stale key. Cross-page posts are safe without opting out: restore
+        // skips any key whose pathname differs. data-no-keep-scroll is for
+        // same-page landings that should start at the top (the builder).
+        if (!event.defaultPrevented && !form.hasAttribute?.('data-no-keep-scroll')) {
+            saveScroll();
         }
     });
 

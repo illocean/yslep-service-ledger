@@ -2,12 +2,6 @@
 
 @section('title', $type->cardTitle())
 
-@if ($selectedScope === \App\Enums\IndexScope::Report && $selectedReportGroup)
-    @push('head')
-        <meta name="quick-add-report-id" content="{{ $selectedReportGroup->id }}">
-    @endpush
-@endif
-
 @section('content')
     @include('partials.alerts')
 
@@ -158,7 +152,7 @@
                                     <span>Edit</span>
                                 </button>
                                 
-                                <form method="POST" action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup, $entry]) }}" data-confirm="Delete this entry?" @if ($sourceMode === 'report') data-no-keep-scroll @endif>
+                                <form method="POST" action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup, $entry]) }}" data-confirm="Delete this entry?">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="type" value="{{ $type->value }}">
@@ -220,7 +214,6 @@
                             :form-action="route('entries.update', ['entry' => $entry->id])"
                             :form-method="'PATCH'"
                             :academic-years="$academicYears"
-                            :cancel-url="route('indexes.show', ['type' => $type->value] + $allScopeParams)"
                         />
                     @else
                         <!-- Saved Report Entry Edit Modal -->
@@ -231,7 +224,6 @@
                             :form-action="route('reports.records.update', [$selectedReportGroup, $entry])"
                             :form-method="'PATCH'"
                             :academic-years="$academicYears"
-                            :cancel-url="route('reports.show', $selectedReportGroup)"
                         />
                     @endif
                 @empty
@@ -246,9 +238,11 @@
                         @endif
                     </div>
                 @endforelse
-                <div x-cloak x-show="noMatchesFor($el.parentElement)" class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
-                    No records match your search.
-                </div>
+                @if ($entries->isNotEmpty())
+                    <div x-cloak x-show="noMatchesFor($el.parentElement)" class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-5 py-8 text-center text-sm leading-7 text-stone-600">
+                        No records match your search.
+                    </div>
+                @endif
             </div>
         </article>
     </section>

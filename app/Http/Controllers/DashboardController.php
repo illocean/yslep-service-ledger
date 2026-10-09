@@ -36,7 +36,6 @@ class DashboardController extends Controller
         return view('dashboard', [
             'cards' => $cards,
             'entries' => $entries,
-            'liveEntries' => $builder['live_entries'],
             'saveGroupEntries' => $builder['save_group_entries'],
             'liveEntryStats' => $builder['live_entry_stats'],
             'meta' => $meta,
