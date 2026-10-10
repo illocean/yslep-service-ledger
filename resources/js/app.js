@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const DIRTY_SELECTOR = 'form.record-form-shell, form[data-dirty-guard]';
+    const DIRTY_SELECTOR = 'form[data-dirty-guard]';
 
     document.addEventListener('input', (event) => {
         const form = event.target.closest(DIRTY_SELECTOR);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('beforeunload', (event) => {
-        if (document.querySelector('form.record-form-shell[data-dirty], form[data-dirty-guard][data-dirty]')) {
+        if (document.querySelector('form[data-dirty-guard][data-dirty]')) {
             event.preventDefault();
             event.returnValue = '';
         }

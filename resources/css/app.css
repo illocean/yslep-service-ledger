@@ -73,9 +73,13 @@
     to   { opacity: 1; }
 }
 
-@keyframes scale-in {
-    from { opacity: 0; transform: scale(0.97); }
-    to   { opacity: 1; transform: scale(1); }
+@keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
 }
 
 @layer components {
@@ -136,31 +140,6 @@
         font-weight: 700;
         letter-spacing: 0.15em;
         text-transform: uppercase;
-    }
-
-    .form-input {
-        width: 100%;
-        border: 1px solid var(--ledger-border);
-        border-radius: var(--radius-control);
-        color: var(--ledger-ink);
-        font-size: 0.9rem;
-        transition:
-            border-color 150ms ease,
-            box-shadow 150ms ease,
-            transform 150ms ease;
-    }
-
-    .form-input:hover {
-        border-color: rgba(32, 22, 18, 0.22);
-    }
-
-    .form-input:focus-visible,
-    select.form-input:focus-visible {
-        outline: 2px solid var(--ledger-accent-ink);
-        outline-offset: 2px;
-        border-color: rgba(201, 77, 36, 0.55);
-        box-shadow: 0 0 0 4px rgba(201, 77, 36, 0.12);
-        transform: translateY(-1px);
     }
 
     .primary-button {
@@ -336,13 +315,6 @@
         box-shadow: 0 0 0 3px rgba(201, 77, 36, 0.15);
     }
 
-    .profile-cell {
-        border: 1px solid var(--ledger-border);
-        border-radius: var(--radius-cell);
-        background: rgba(255, 255, 255, 0.74);
-        padding: 1rem;
-    }
-
     .secondary-link-card {
         align-items: center;
         background: rgba(255, 255, 255, 0.76);
@@ -375,23 +347,6 @@
         border-radius: var(--radius-card);
         background: rgba(255, 255, 255, 0.76);
         padding: 1rem;
-    }
-
-    .record-form-grid {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .record-form-grid__wide {
-        grid-column: 1 / -1;
-    }
-
-    .report-record-card {
-        border: 1px solid rgba(32, 22, 18, 0.08);
-        border-radius: var(--radius-card);
-        background: rgba(255, 255, 255, 0.8);
-        padding: 1rem;
-        box-shadow: 0 14px 34px rgba(48, 32, 24, 0.06);
     }
 
     .clean-scroll {
@@ -472,12 +427,6 @@
         color: #236654;
     }
 
-    .assignment-chip--locked {
-        border-color: rgba(201, 77, 36, 0.16);
-        background: rgba(201, 77, 36, 0.1);
-        color: #8d3118;
-    }
-
     .assignment-chip--complete {
         border-color: rgba(120, 113, 108, 0.16);
         background: rgba(120, 113, 108, 0.08);
@@ -526,13 +475,6 @@
         font-size: clamp(1.6rem, 2.4vw, 2.35rem);
         line-height: 1.05;
         color: var(--ledger-ink);
-    }
-
-    .brand-lockup__caption {
-        max-width: 42rem;
-        color: var(--ledger-muted);
-        font-size: 0.88rem;
-        line-height: 1.65;
     }
 
     .header-status {
@@ -894,17 +836,7 @@
     padding: 1.5rem;
 }
 
-.form-field {
-    margin-bottom: 1rem;
-}
-
-.form-field:last-of-type {
-    margin-bottom: 0;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
+.form-input {
     width: 100%;
     border: 1px solid var(--ledger-border);
     border-radius: var(--radius-control);
@@ -916,24 +848,19 @@
     transition: all 150ms ease;
 }
 
-.form-input:hover,
-.form-select:hover,
-.form-textarea:hover {
+.form-input:hover {
     border-color: rgba(32, 22, 18, 0.22);
 }
 
-.form-input:focus-visible,
-.form-select:focus-visible,
-.form-textarea:focus-visible {
-    outline: none;
+.form-input:focus-visible {
+    outline: 2px solid var(--ledger-accent-ink);
+    outline-offset: 2px;
     border-color: rgba(201, 77, 36, 0.55);
     box-shadow: 0 0 0 4px rgba(201, 77, 36, 0.12);
+    transform: translateY(-1px);
 }
 
-.form-input.border-rose-500,
-.form-input[aria-invalid="true"],
-.form-select.border-rose-500,
-.form-textarea.border-rose-500 {
+.form-input[aria-invalid="true"] {
     border-color: #f43f5e;
 }
 
@@ -962,8 +889,7 @@
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     .quick-add-bar,
-    .entry-modal,
-    .sync-status__indicator.is-syncing {
+    .entry-modal {
         animation: none !important;
         transition: none !important;
     }
