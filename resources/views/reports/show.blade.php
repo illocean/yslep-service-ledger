@@ -35,7 +35,7 @@
                     </div>
                     <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
                         <div class="form-label">Hours</div>
-                        <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
+                        <div class="mt-1 font-serif text-2xl tabular-nums text-stone-950">{{ $grandTotalLabel }}</div>
                     </div>
                 </div>
 
@@ -55,33 +55,7 @@
         </div>
     </section>
 
-    <section class="grid gap-4 lg:grid-cols-4">
-        @foreach ($cards as $card)
-            <article class="stat-panel rounded-stat p-5">
-                <div class="section-kicker">{{ $card['label'] }}</div>
-                <div class="mt-5 flex items-end justify-between gap-4">
-                    <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Count</div>
-                        <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Hours</div>
-                        <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
-                    </div>
-                </div>
-            </article>
-        @endforeach
-
-        <article class="stat-panel rounded-stat border-[color:var(--ledger-accent)] p-5">
-            <div class="section-kicker">Grand Total</div>
-            <div class="mt-5">
-                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Combined hours across all three indexes</div>
-                <div class="mt-3 font-serif text-4xl text-stone-950">{{ $grandTotalLabel }}</div>
-            </div>
-        </article>
-    </section>
-
-    <section class="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+    <section class="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
         <article class="paper-panel rounded-panel p-5 sm:p-6">
             <div class="section-kicker">Rename</div>
             <h2 class="mt-1 font-serif text-xl text-stone-950">Report title</h2>
@@ -132,6 +106,12 @@
             @php
                 $items = $reportGroup->itemsFor($type->value);
                 $sectionPrefix = 'report-' . $type->value;
+                $typeMinutes = $items->sum('duration_minutes');
+                $typeHours = intdiv($typeMinutes, 60);
+                $typeRemainingMinutes = $typeMinutes % 60;
+                $typeDurationLabel = $typeRemainingMinutes === 0
+                    ? $typeHours . ' hr'
+                    : sprintf('%d hr %02d min', $typeHours, $typeRemainingMinutes);
             @endphp
 
             <article class="paper-panel rounded-panel p-5 sm:p-6">
@@ -140,9 +120,16 @@
                         <div class="section-kicker">{{ $type->cardTitle() }}</div>
                         <h2 class="mt-1 font-serif text-xl text-stone-950">{{ $type->label() }}</h2>
                     </div>
-                    <div class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">
-                        {{ $items->count() }} record(s)
-                    </div>
+                    <dl class="flex items-center gap-4 text-right">
+                        <div>
+                            <dt class="form-label">Records</dt>
+                            <dd class="mt-1 font-serif text-2xl tabular-nums text-stone-950">{{ $items->count() }}</dd>
+                        </div>
+                        <div>
+                            <dt class="form-label">Hours</dt>
+                            <dd class="mt-1 text-sm font-semibold tabular-nums text-stone-900">{{ $typeDurationLabel }}</dd>
+                        </div>
+                    </dl>
                 </div>
 
                 <button type="button" class="primary-button mt-4" @click="$dispatch('quick-add-open', { type: '{{ $type->value }}' })" aria-haspopup="dialog">+ Add {{ $type->label() }}</button>

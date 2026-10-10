@@ -45,6 +45,27 @@
         </div>
     </section>
 
+    <section class="paper-panel rounded-panel p-5 sm:p-6">
+        <p class="section-kicker">Current Snapshots</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            @forelse ($snapshots as $snapshot)
+                <a href="{{ route('academic-year-snapshots.show', $snapshot) }}" class="secondary-link-card">
+                    <div class="min-w-0">
+                        <div class="truncate text-sm font-semibold text-stone-900">{{ $snapshot->compact_label }}</div>
+                        <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">
+                            {{ $snapshot->reportGroups()->count() }} report(s) | {{ $snapshot->items->count() }} record(s)
+                        </div>
+                    </div>
+                    <div class="shrink-0 text-sm font-semibold text-stone-900">Open</div>
+                </a>
+            @empty
+                <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600 sm:col-span-2 xl:col-span-3">
+                    No academic-year snapshots yet.
+                </div>
+            @endforelse
+        </div>
+    </section>
+
     <section class="snapshot-builder-grid"
         x-data="snapshotBuilder({
             selectedIds: @json($selectedIdJson),
@@ -213,27 +234,6 @@
                         @endforeach
                     </div>
                 @endif
-            </article>
-
-            <article class="paper-panel rounded-panel p-5 sm:p-6">
-                <div class="section-kicker">Current Snapshots</div>
-                <div class="mt-4 space-y-3">
-                    @forelse ($snapshots as $snapshot)
-                        <a href="{{ route('academic-year-snapshots.show', $snapshot) }}" class="secondary-link-card">
-                            <div>
-                                <div class="text-sm font-semibold text-stone-900">{{ $snapshot->compact_label }}</div>
-                                <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">
-                                    {{ $snapshot->reportGroups()->count() }} report(s) | {{ $snapshot->items->count() }} record(s)
-                                </div>
-                            </div>
-                            <div class="text-sm font-semibold text-stone-900">Open</div>
-                        </a>
-                    @empty
-                        <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
-                            No academic-year snapshots yet.
-                        </div>
-                    @endforelse
-                </div>
             </article>
         </aside>
     </section>

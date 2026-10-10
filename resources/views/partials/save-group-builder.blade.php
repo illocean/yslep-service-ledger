@@ -9,7 +9,7 @@
 @endphp
 
 <section class="paper-panel rounded-panel p-5 sm:p-6">
-    <details class="group" @if($errors->any() || old('title') || ($builderOpen ?? false)) open @endif>
+    <details id="save-group-builder" class="group" @if($errors->any() || old('title') || ($builderOpen ?? false)) open @endif>
         <summary class="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
             <div>
                 <div class="section-kicker">Save Report Group</div>
@@ -64,10 +64,10 @@
                                 <table class="ledger-table min-w-full text-left text-sm">
                                     <thead class="bg-stone-950/[0.03] text-xs uppercase tracking-[0.14em] text-stone-600">
                                         <tr>
-                                            <th class="px-3 py-2">Pick</th>
-                                            <th class="px-3 py-2">Date</th>
-                                            <th class="px-3 py-2">Details</th>
-                                            <th class="px-3 py-2">Hours</th>
+                                            <th class="px-3 py-2" scope="col">Pick</th>
+                                            <th class="px-3 py-2" scope="col">Date</th>
+                                            <th class="px-3 py-2" scope="col">Details</th>
+                                            <th class="px-3 py-2" scope="col">Hours</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,7 +75,8 @@
                                             @php $entryValue = $type->value . ':' . $entry->id; @endphp
                                             <tr>
                                                 <td class="px-3 py-2 align-top">
-                                                    <input type="checkbox" name="selected_entries[]" value="{{ $entryValue }}" @checked($selectedEntries->contains($entryValue)) class="report-checkbox">
+                                                    <input type="checkbox" name="selected_entries[]" value="{{ $entryValue }}" @checked($selectedEntries->contains($entryValue)) class="report-checkbox"
+                                                        aria-label="Include the {{ $type->label() }} entry from {{ $entry->served_on_label }} ({{ $entry->duration_label }}) in this report">
                                                 </td>
                                                 <td class="px-3 py-2 align-top whitespace-nowrap">{{ $entry->served_on_label }}</td>
                                                 <td class="px-3 py-2 align-top text-stone-600">
