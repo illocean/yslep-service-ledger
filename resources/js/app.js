@@ -47,6 +47,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.querySelectorAll('[data-open-save-group-builder]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const builder = document.getElementById('save-group-builder');
+
+            if (!builder) {
+                return;
+            }
+
+            // Opening an already-open <details> fires no toggle event, so the
+            // focus handler never runs; move focus manually or the focused
+            // button ends up scrolled off-screen.
+            const wasOpen = builder.open;
+
+            builder.open = true;
+            button.setAttribute('aria-expanded', 'true');
+            builder.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+                block: 'start',
+            });
+
+            if (wasOpen) {
+                builder.querySelector('input:not([type="hidden"])')?.focus({ preventScroll: true });
+            }
+        });
+    });
+
     document.querySelectorAll('form[data-confirm]').forEach((form) => {
         form.addEventListener('submit', (event) => {
             const message = form.getAttribute('data-confirm');

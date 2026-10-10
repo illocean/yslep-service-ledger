@@ -77,7 +77,7 @@ MD);
         $response->assertSee('Build a saved report from unassigned live entries');
         $response->assertSee('No reports yet');
         $this->assertMatchesRegularExpression(
-            '/<details class="group"\s+open\s*>/',
+            '/<details id="save-group-builder"[^>]*\bopen\b/',
             $response->getContent(),
             'The builder should start open while there are no saved reports to manage.',
         );

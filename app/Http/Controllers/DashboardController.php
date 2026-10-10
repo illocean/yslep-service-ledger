@@ -27,7 +27,12 @@ class DashboardController extends Controller
 
         foreach (IndexType::cases() as $type) {
             $cards[$type->value] = $this->summaryForType($type, $builder['live_entries'][$type->value]);
-            $entries[$type->value] = $builder['live_entries'][$type->value]->take(5)->values();
+            // Newest first, but sorting explicitly instead of reversing the
+            // ascending query keeps nullable served_on rows last, not first.
+            $entries[$type->value] = $builder['live_entries'][$type->value]
+                ->sortByDesc(fn ($entry): array => [$entry->served_on?->getTimestamp(), $entry->source_order])
+                ->take(5)
+                ->values();
             $meta[$type->value] = $syncService->cardMeta($type);
         }
 
@@ -39,12 +44,9 @@ class DashboardController extends Controller
             'saveGroupEntries' => $builder['save_group_entries'],
             'liveEntryStats' => $builder['live_entry_stats'],
             'meta' => $meta,
-            'vaultPath' => $syncService->vaultPath(),
             'reportGroups' => $reportGroups,
             'assignedReportLookup' => $assignedReportLookup,
-            'grandTotalMinutes' => $grandTotalMinutes,
             'grandTotalLabel' => $this->formatMinutes($grandTotalMinutes),
-            'reportGroupsFilePath' => $reportGroupService->reportGroupsPath(),
         ]);
     }
 }
