@@ -28,7 +28,11 @@ class IndexPageController extends Controller
         $reportGroups = $reportGroupService->all();
         $assignedReportLookup = $selectedScope->isLive() ? $reportGroupService->assignedReportLookup() : [];
 
-        $entries = $this->scopedEntriesForType($indexType, $selectedScope, $selectedReportGroup)->values();
+        // Newest first: after a save the redirect lands here, and the entry that
+        // was just created must be visible without scrolling.
+        $entries = $this->scopedEntriesForType($indexType, $selectedScope, $selectedReportGroup)
+            ->sortByDesc(fn ($entry): array => [$entry->served_on?->getTimestamp(), $entry->source_order])
+            ->values();
         $summary = $this->summaryForType($indexType, $entries);
         $cardMeta = $syncService->cardMeta($indexType);
         $otherCards = [];

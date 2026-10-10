@@ -6,108 +6,95 @@
     @include('partials.alerts')
 
     <section class="paper-panel overflow-hidden rounded-panel">
-        <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:px-10 lg:py-8">
-            <div class="space-y-3">
-                <div class="section-kicker">Reports</div>
-                <h1 class="font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
+        <div class="grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:items-center lg:px-10 lg:py-8">
+            <div>
+                <p class="section-kicker">Reports</p>
+                <h1 class="mt-2 font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
                     Saved report snapshots alongside live data
                 </h1>
+
+                <dl class="mt-4 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+                    <div class="flex items-baseline gap-2">
+                        <dt class="form-label">Report Groups</dt>
+                        <dd class="font-semibold tabular-nums text-stone-900">{{ $reportGroups->count() }}</dd>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <dt class="form-label">Total Records</dt>
+                        <dd class="font-semibold tabular-nums text-stone-900">{{ $totalRecords }}</dd>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <dt class="form-label">Total Hours</dt>
+                        <dd class="font-semibold tabular-nums text-stone-900">{{ $grandTotalLabel }}</dd>
+                    </div>
+                </dl>
             </div>
 
-            <div class="paper-panel rounded-card p-4">
-                <div class="section-kicker">Stats</div>
-                <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Report Groups</div>
-                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ $reportGroups->count() }}</div>
-                    </div>
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Total Records</div>
-                        <div class="mt-1 font-serif text-2xl text-stone-950">{{ $totalRecords }}</div>
-                    </div>
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Total Hours</div>
-                        <div class="mt-1 font-bold text-stone-900">{{ $grandTotalLabel }}</div>
-                    </div>
-                    @if (app()->isLocal())
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-3">
-                        <div class="form-label">Sync Action</div>
-                        <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="mt-2 sync-form">
-                            @csrf
-                            <button type="submit" class="secondary-button w-full">Sync from Obsidian</button>
-                        </form>
-                    </div>
-                    @endif
-                </div>
+            <div class="flex flex-wrap items-center gap-3 lg:justify-end">
+                @if (app()->isLocal())
+                    <form method="POST" action="{{ route('reports.sync-from-obsidian') }}" class="sync-form">
+                        @csrf
+                        <button type="submit" class="secondary-button w-auto">Sync from Obsidian</button>
+                    </form>
+                @endif
+
+                <button type="button" class="primary-button" data-open-save-group-builder
+                    aria-expanded="false" aria-controls="save-group-builder">
+                    Save a Report
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="grid gap-6 mt-8">
-        @forelse ($reportGroups as $reportGroup)
-            @php
-                $reportMinutes = $reportGroup->items->sum('duration_minutes');
-                $reportHours = intdiv($reportMinutes, 60);
-                $reportRemainingMinutes = $reportMinutes % 60;
-                $reportTotalLabel = $reportMinutes === 0
-                    ? '0 hr'
-                    : ($reportRemainingMinutes === 0
-                        ? $reportHours . ' hr'
-                        : sprintf('%d hr %02d min', $reportHours, $reportRemainingMinutes));
-            @endphp
-
-            <article class="paper-panel rounded-panel p-5 sm:p-6">
-                <div class="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                        <div class="section-kicker">Saved Snapshot</div>
-                        <h2 class="mt-3 font-serif text-3xl text-stone-950">{{ $reportGroup->title ?: 'Untitled Report Group' }}</h2>
-                        <p class="mt-2 font-mono text-xs text-stone-600">{{ $reportGroup->tag }}</p>
-                    </div>
-
-                    <div class="mt-2 text-right">
-                        <a href="{{ route('reports.show', $reportGroup) }}" class="primary-button">
-                            Manage Report
-                        </a>
-                    </div>
+    @forelse ($reportGroups as $reportGroup)
+        @php
+            $reportMinutes = $reportGroup->items->sum('duration_minutes');
+            $reportHours = intdiv($reportMinutes, 60);
+            $reportRemainingMinutes = $reportMinutes % 60;
+            $reportDurationLabel = $reportRemainingMinutes === 0
+                ? $reportHours . ' hr'
+                : sprintf('%d hr %02d min', $reportHours, $reportRemainingMinutes);
+        @endphp
+        <article class="paper-panel rounded-panel p-5 sm:p-6">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+                <div class="min-w-0">
+                    <p class="section-kicker">Saved Snapshot</p>
+                    <h2 class="mt-2 font-serif text-2xl leading-snug text-stone-950">
+                        {{ $reportGroup->title ?: 'Untitled Report Group' }}
+                    </h2>
+                    <p class="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-stone-500">{{ $reportGroup->tag }}</p>
                 </div>
 
-                <div class="mt-5 grid gap-3 sm:grid-cols-3">
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">Records</div>
-                        <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportGroup->items->count() }}</div>
-                    </div>
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">Hours</div>
-                        <div class="mt-2 text-sm font-semibold text-stone-900">{{ $reportTotalLabel }}</div>
-                    </div>
-                    <div class="rounded-cell border border-stone-900/10 bg-white/70 p-4">
-                        <div class="form-label">Types</div>
-                        <div class="mt-1 text-xs uppercase tracking-[0.16em] text-stone-600">
-                            @foreach (\App\Enums\IndexType::cases() as $type)
-                                {{ $type->label() }}: {{ $reportGroup->itemsFor($type->value)->count() }}@if (!$loop->last), @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
-                    @foreach (\App\Enums\IndexType::cases() as $type)
-                        <span class="rounded-full border border-stone-900/10 bg-white/80 px-3 py-2">
-                            {{ $type->label() }}: {{ $reportGroup->itemsFor($type->value)->count() }}
-                        </span>
-                    @endforeach
-                </div>
-            </article>
-        @empty
-            <div class="paper-panel rounded-panel px-5 py-10 text-center sm:px-8">
-                <div class="section-kicker">No Saved Reports</div>
-                <h2 class="mt-3 font-serif text-2xl text-stone-950">No reports yet</h2>
-                <p class="mx-auto mt-3 max-w-lg text-sm text-stone-600">
-                    Build your first saved report below — pick the live entries you want and give it a title — or use the quick-add bar to add entries first.
-                </p>
+                <a href="{{ route('reports.show', $reportGroup) }}" class="primary-button shrink-0">Manage Report</a>
             </div>
-        @endforelse
-    </section>
+
+            <dl class="mt-5 grid gap-3 sm:grid-cols-3">
+                <div class="rounded-cell border border-stone-900/10 bg-white/70 px-4 py-3">
+                    <dt class="form-label">Records</dt>
+                    <dd class="mt-1 font-serif text-2xl tabular-nums text-stone-950">{{ $reportGroup->items()->count() }}</dd>
+                </div>
+                <div class="rounded-cell border border-stone-900/10 bg-white/70 px-4 py-3">
+                    <dt class="form-label">Hours</dt>
+                    <dd class="mt-1 font-serif text-2xl tabular-nums text-stone-950">{{ $reportDurationLabel }}</dd>
+                </div>
+                <div class="rounded-cell border border-stone-900/10 bg-white/70 px-4 py-3">
+                    <dt class="form-label">Types</dt>
+                    <dd class="mt-2 flex flex-wrap gap-1.5">
+                        @foreach (\App\Enums\IndexType::cases() as $type)
+                            <span class="compact-pill">{{ $type->label() }}: {{ $reportGroup->itemsFor($type->value)->count() }}</span>
+                        @endforeach
+                    </dd>
+                </div>
+            </dl>
+        </article>
+    @empty
+        <section class="paper-panel rounded-panel px-5 py-8 text-center sm:px-8">
+            <p class="section-kicker">No Saved Reports</p>
+            <h2 class="mt-2 font-serif text-2xl text-stone-950">No reports yet</h2>
+            <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-stone-600">
+                Pick unassigned live entries and group them into a report you can archive with an academic year.
+            </p>
+        </section>
+    @endforelse
 
     @include('partials.save-group-builder', ['builderOpen' => $reportGroups->isEmpty()])
-@stop
+@endsection

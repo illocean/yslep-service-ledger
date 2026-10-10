@@ -129,9 +129,10 @@ MD);
 
         $this->assertNotNull($entries);
         $this->assertCount(2, $entries);
+        // Newest first: a save redirects back here and the new entry must be visible.
         $this->assertSame([
-            'I Belong to a Family',
             'Honor Thy Parent',
+            'I Belong to a Family',
         ], $entries->pluck('title')->all());
     }
 

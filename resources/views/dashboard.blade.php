@@ -71,14 +71,18 @@
                 <span class="mt-1 h-10 w-1 shrink-0 rounded-full {{ $unassignedTotal > 0 ? 'bg-[color:var(--ledger-accent)]' : 'bg-stone-900/10' }}" aria-hidden="true"></span>
                 <div>
                     <h2 id="attention-heading" class="font-serif text-xl text-stone-950">
-                        @if ($unassignedTotal > 0)
+                        @if ($totalEntries === 0)
+                            No entries yet
+                        @elseif ($unassignedTotal > 0)
                             {{ $unassignedTotal }} {{ $unassignedTotal === 1 ? 'entry' : 'entries' }} ready to save
                         @else
                             Every entry is saved
                         @endif
                     </h2>
                     <p class="mt-1 text-sm leading-6 text-stone-600">
-                        @if ($unassignedTotal > 0)
+                        @if ($totalEntries === 0)
+                            Add your first service entry to start the ledger.
+                        @elseif ($unassignedTotal > 0)
                             Unassigned entries in {{ implode(', ', $unassignedLabels) }} — group them into a saved report below.
                         @else
                             Nothing is waiting: every live entry already belongs to a saved report.
@@ -87,7 +91,11 @@
                 </div>
             </div>
 
-            @if ($unassignedTotal > 0)
+            @if ($totalEntries === 0)
+                <button type="button" class="primary-button shrink-0" @click="$dispatch('quick-add-open', { type: '{{ $fallbackType->value }}' })" aria-haspopup="dialog">
+                    Add your first entry
+                </button>
+            @elseif ($unassignedTotal > 0)
                 <button type="button" class="primary-button shrink-0" data-open-save-group-builder
                     aria-expanded="false" aria-controls="save-group-builder">
                     Save a Report
@@ -99,6 +107,8 @@
             @endif
         </div>
     </section>
+
+    @include('partials.save-group-builder')
 
     <section class="grid gap-4 lg:grid-cols-3">
         @foreach (\App\Enums\IndexType::cases() as $type)
@@ -191,6 +201,4 @@
             </article>
         @endforeach
     </section>
-
-    @include('partials.save-group-builder')
 @endsection
