@@ -148,6 +148,21 @@ MD);
             $content,
             'The conflict form must carry the index type the controller requires.',
         );
+
+        $dom = new \DOMDocument;
+        @$dom->loadHTML($content);
+        $xpath = new \DOMXPath($dom);
+        $conflictForms = $xpath->query('//form[contains(@action, "/conflict/")]');
+
+        $this->assertGreaterThan(0, $conflictForms->length);
+
+        foreach ($conflictForms as $form) {
+            $this->assertSame(
+                0,
+                $xpath->query('.//input[@name="_method"]', $form)->length,
+                'Conflict actions are POST routes and must not spoof PATCH.',
+            );
+        }
     }
 
     public function test_conflict_resolution_redirect_keeps_report_scope(): void

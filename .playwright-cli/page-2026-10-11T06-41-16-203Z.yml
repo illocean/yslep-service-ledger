@@ -1,0 +1,228 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - button "Add entry" [ref=e5]:
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Add entry
+    - button "Choose entry type" [ref=e8]:
+      - generic [ref=e9]: ▾
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "Service Ledger YSLEP" [ref=e14] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e15]: YSLEP
+          - paragraph [ref=e16]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=e17]:
+          - menubar [ref=e18]:
+            - menuitem "Overview" [ref=e19] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e21] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e23] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e25] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e27] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e29] [cursor=pointer]: Academic Years
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - paragraph [ref=e36]: Reports
+            - heading "Every saved report, and the live entries each one locks." [level=1] [ref=e37]
+            - generic [ref=e38]:
+              - generic [ref=e39]:
+                - term [ref=e40]: Report Groups
+                - definition [ref=e41]: "13"
+              - generic [ref=e42]:
+                - term [ref=e43]: Total Records
+                - definition [ref=e44]: "120"
+              - generic [ref=e45]:
+                - term [ref=e46]: Total Hours
+                - definition [ref=e47]: 188 hr
+          - generic [ref=e48]:
+            - button "Sync from Obsidian" [ref=e50]
+            - button "Save a Report" [ref=e51]
+        - region "Saved report register" [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - heading "Saved report register" [level=2] [ref=e55]
+              - paragraph [ref=e56]: Newest first. A report locks its live entries until the report is deleted, then they become free again.
+            - link "Academic year snapshots" [ref=e57] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots
+          - list [ref=e58]:
+            - listitem [ref=e59]:
+              - generic [ref=e60]:
+                - link "AUGUST & SEPT '27" [ref=e61] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - generic [ref=e62]: RPT-20260924-181146-CS2L
+              - generic [ref=e63]: 15 records
+              - generic [ref=e64]: 28 hr
+              - generic [ref=e65]:
+                - generic [ref=e66]: Formation 2
+                - generic [ref=e67]: Parish Involvement 8
+                - generic [ref=e68]: Social Apostolate 5
+              - link "Manage Report" [ref=e69] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+            - listitem [ref=e70]:
+              - generic [ref=e71]:
+                - link "JULY '26" [ref=e72] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260801-152416-FBVV
+                - generic [ref=e73]: RPT-20260801-152416-FBVV
+              - generic [ref=e74]: 9 records
+              - generic [ref=e75]: 17 hr
+              - generic [ref=e76]:
+                - generic [ref=e77]: Formation 1
+                - generic [ref=e78]: Parish Involvement 5
+                - generic [ref=e79]: Social Apostolate 3
+              - link "Manage Report" [ref=e80] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260801-152416-FBVV
+            - listitem [ref=e81]:
+              - generic [ref=e82]:
+                - link "JUNE '26" [ref=e83] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260628-155000-NGEL
+                - generic [ref=e84]: RPT-20260628-155000-NGEL
+              - generic [ref=e85]: 8 records
+              - generic [ref=e86]: 15 hr
+              - generic [ref=e87]:
+                - generic [ref=e88]: Formation 1
+                - generic [ref=e89]: Parish Involvement 4
+                - generic [ref=e90]: Social Apostolate 3
+              - link "Manage Report" [ref=e91] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260628-155000-NGEL
+            - listitem [ref=e92]:
+              - generic [ref=e93]:
+                - link "MAY '26" [ref=e94] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260523-133015-PJFY
+                - generic [ref=e95]: RPT-20260523-133015-PJFY
+              - generic [ref=e96]: 9 records
+              - generic [ref=e97]: 17 hr
+              - generic [ref=e98]:
+                - generic [ref=e99]: Formation 1
+                - generic [ref=e100]: Parish Involvement 5
+                - generic [ref=e101]: Social Apostolate 3
+              - link "Manage Report" [ref=e102] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260523-133015-PJFY
+            - listitem [ref=e103]:
+              - generic [ref=e104]:
+                - link "APRIL '26" [ref=e105] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260428-144236-0XY7
+                - generic [ref=e106]: RPT-20260428-144236-0XY7
+              - generic [ref=e107]: 10 records
+              - generic [ref=e108]: 16 hr
+              - generic [ref=e109]:
+                - generic [ref=e110]: Formation 1
+                - generic [ref=e111]: Parish Involvement 6
+                - generic [ref=e112]: Social Apostolate 3
+              - link "Manage Report" [ref=e113] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260428-144236-0XY7
+            - listitem [ref=e114]:
+              - generic [ref=e115]:
+                - link "MARCH '26" [ref=e116] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260405-111211-9OYP
+                - generic [ref=e117]: RPT-20260405-111211-9OYP
+              - generic [ref=e118]: 10 records
+              - generic [ref=e119]: 18 hr 30 min
+              - generic [ref=e120]:
+                - generic [ref=e121]: Formation 1
+                - generic [ref=e122]: Parish Involvement 5
+                - generic [ref=e123]: Social Apostolate 4
+              - link "Manage Report" [ref=e124] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260405-111211-9OYP
+            - listitem [ref=e125]:
+              - generic [ref=e126]:
+                - link "FEB '26" [ref=e127] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-233739-N2HN
+                - generic [ref=e128]: RPT-20260331-233739-N2HN
+              - generic [ref=e129]: 8 records
+              - generic [ref=e130]: 10 hr
+              - generic [ref=e131]:
+                - generic [ref=e132]: Formation 1
+                - generic [ref=e133]: Parish Involvement 4
+                - generic [ref=e134]: Social Apostolate 3
+              - link "Manage Report" [ref=e135] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233739-N2HN
+            - listitem [ref=e136]:
+              - generic [ref=e137]:
+                - link "JAN '26" [ref=e138] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-233319-FHIA
+                - generic [ref=e139]: RPT-20260331-233319-FHIA
+              - generic [ref=e140]: 10 records
+              - generic [ref=e141]: 13 hr 30 min
+              - generic [ref=e142]:
+                - generic [ref=e143]: Formation 1
+                - generic [ref=e144]: Parish Involvement 5
+                - generic [ref=e145]: Social Apostolate 4
+              - link "Manage Report" [ref=e146] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233319-FHIA
+            - listitem [ref=e147]:
+              - generic [ref=e148]:
+                - link "DEC '25" [ref=e149] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-232900-GN2K
+                - generic [ref=e150]: RPT-20260331-232900-GN2K
+              - generic [ref=e151]: 8 records
+              - generic [ref=e152]: 14 hr
+              - generic [ref=e153]:
+                - generic [ref=e154]: Formation 1
+                - generic [ref=e155]: Parish Involvement 4
+                - generic [ref=e156]: Social Apostolate 3
+              - link "Manage Report" [ref=e157] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232900-GN2K
+            - listitem [ref=e158]:
+              - generic [ref=e159]:
+                - link "NOV '25" [ref=e160] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-232717-UBDS
+                - generic [ref=e161]: RPT-20260331-232717-UBDS
+              - generic [ref=e162]: 10 records
+              - generic [ref=e163]: 14 hr
+              - generic [ref=e164]:
+                - generic [ref=e165]: Formation 1
+                - generic [ref=e166]: Parish Involvement 6
+                - generic [ref=e167]: Social Apostolate 3
+              - link "Manage Report" [ref=e168] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232717-UBDS
+            - listitem [ref=e169]:
+              - generic [ref=e170]:
+                - link "OCT '25" [ref=e171] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-232646-NANA
+                - generic [ref=e172]: RPT-20260331-232646-NANA
+              - generic [ref=e173]: 7 records
+              - generic [ref=e174]: 9 hr
+              - generic [ref=e175]:
+                - generic [ref=e176]: Formation 1
+                - generic [ref=e177]: Parish Involvement 4
+                - generic [ref=e178]: Social Apostolate 2
+              - link "Manage Report" [ref=e179] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232646-NANA
+            - listitem [ref=e180]:
+              - generic [ref=e181]:
+                - link "AUG '25" [ref=e182] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-232539-QYP3
+                - generic [ref=e183]: RPT-20260331-232539-QYP3
+              - generic [ref=e184]: 9 records
+              - generic [ref=e185]: 9 hr
+              - generic [ref=e186]:
+                - generic [ref=e187]: Formation 1
+                - generic [ref=e188]: Parish Involvement 6
+                - generic [ref=e189]: Social Apostolate 2
+              - link "Manage Report" [ref=e190] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232539-QYP3
+            - listitem [ref=e191]:
+              - generic [ref=e192]:
+                - link "SEPT '25" [ref=e193] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/reports/RPT-20260331-231839-MMDO
+                - generic [ref=e194]: RPT-20260331-231839-MMDO
+              - generic [ref=e195]: 7 records
+              - generic [ref=e196]: 7 hr
+              - generic [ref=e197]:
+                - generic [ref=e198]: Formation 1
+                - generic [ref=e199]: Parish Involvement 4
+                - generic [ref=e200]: Social Apostolate 2
+              - link "Manage Report" [ref=e201] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-231839-MMDO
+        - group [ref=e203]:
+          - generic "Save Report Group Build a saved report from unassigned live entries" [ref=e204] [cursor=pointer]:
+            - generic [ref=e205]:
+              - generic [ref=e206]: Save Report Group
+              - heading "Build a saved report from unassigned live entries" [level=2] [ref=e207]
+            - img [ref=e209]

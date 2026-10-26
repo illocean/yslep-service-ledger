@@ -39,7 +39,7 @@
     @quick-add-open.window="if (!$el.dataset.entryId && $event.detail.type === $el.dataset.type) open()"
     @open-entry-modal.window="if ($el.dataset.entryId && $event.detail.type === $el.dataset.type && String($event.detail.entryId) === $el.dataset.entryId) open()"
     @click="if ($event.target === $el) close()"
-    @close="document.body.style.overflow = ''">
+    @close="document.body.style.overflow = ''; returnFocus()">
     <div class="entry-modal">
         <header class="entry-modal__header">
             <div>

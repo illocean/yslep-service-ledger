@@ -12,7 +12,7 @@ enum IndexScope: string
     {
         return match ($this) {
             self::All => 'All Time',
-            self::Unsaved => 'Unsaved Only',
+            self::Unsaved => 'Unsaved only',
             self::Report => 'Saved Report',
         };
     }

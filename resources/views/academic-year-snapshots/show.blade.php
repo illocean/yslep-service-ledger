@@ -8,6 +8,7 @@
     <section class="paper-panel overflow-hidden rounded-panel">
         <div class="grid gap-8 px-5 py-6 sm:px-8 lg:grid-cols-[1.45fr_0.85fr] lg:items-start lg:px-10 lg:py-8">
             <div class="space-y-5">
+                <a class="text-link" href="{{ route('academic-year-snapshots.index') }}">&larr; All academic year snapshots</a>
                 <div class="section-kicker">Academic Year {{ $academicYearSnapshot->academic_year }}</div>
                 <div class="space-y-3">
                     <h1 class="font-serif text-4xl leading-tight text-stone-900 sm:text-5xl">
@@ -53,22 +54,17 @@
         </div>
     </section>
 
-    <section class="grid gap-4 lg:grid-cols-4">
-        @foreach ($cards as $card)
-            <article class="stat-panel rounded-stat p-5">
-                <div class="section-kicker">{{ $card['label'] }}</div>
-                <div class="mt-5 flex items-end justify-between gap-4">
-                    <div>
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Count</div>
-                        <div class="mt-2 font-serif text-4xl text-stone-950">{{ str_pad((string) $card['count'], 2, '0', STR_PAD_LEFT) }}</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">Hours</div>
-                        <div class="mt-2 text-lg font-bold text-stone-900">{{ $card['total_label'] }}</div>
-                    </div>
-                </div>
-            </article>
-        @endforeach
+    <section class="paper-panel rounded-panel p-5 sm:p-6" aria-labelledby="index-totals-heading">
+        <h2 id="index-totals-heading" class="font-serif text-2xl leading-tight text-stone-950">Index totals in this archive</h2>
+        <ul class="archive-totals">
+            @foreach ($cards as $card)
+                <li class="archive-totals__row">
+                    <span class="archive-totals__label">{{ $card['label'] }}</span>
+                    <span class="archive-totals__records tabular-nums">{{ $card['count'] }} {{ $card['count'] === 1 ? 'record' : 'records' }}</span>
+                    <span class="archive-totals__hours tabular-nums">{{ $card['total_label'] }}</span>
+                </li>
+            @endforeach
+        </ul>
     </section>
 
     <section class="paper-panel rounded-panel p-5 sm:p-6">
@@ -123,7 +119,7 @@
                     </div>
 
                     <div class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-600">
-                        {{ $items->count() }} record(s)
+                        {{ $items->count() }} {{ $items->count() === 1 ? 'record' : 'records' }}
                     </div>
                 </div>
 

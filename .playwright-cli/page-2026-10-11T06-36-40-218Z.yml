@@ -1,0 +1,566 @@
+- generic [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - button "Add entry" [ref=e5]:
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Add entry
+    - button "Choose entry type" [ref=e8]:
+      - generic [ref=e9]: ▾
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "Service Ledger YSLEP" [ref=e14] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e15]: YSLEP
+          - paragraph [ref=e16]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=e17]:
+          - menubar [ref=e18]:
+            - menuitem "Overview" [ref=e19] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e21] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e23] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e25] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e27] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e29] [cursor=pointer]: Academic Years
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - region "All-time service ledger from your three Obsidian inputs." [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - paragraph [ref=e36]: Overview
+              - heading "All-time service ledger from your three Obsidian inputs." [level=1] [ref=e37]
+              - paragraph [ref=e38]: Entries stay live until you group them into a saved report. Hours are summed from the recorded time in and time out.
+              - generic [ref=e39]:
+                - generic [ref=e40]:
+                  - term [ref=e41]: Entries
+                  - definition [ref=e42]: "111"
+                - generic [ref=e43]:
+                  - term [ref=e44]: Saved Reports
+                  - definition [ref=e45]: "13"
+                - generic [ref=e46]:
+                  - term [ref=e47]: Unassigned
+                  - definition [ref=e48]: "0"
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: Time Served
+              - paragraph [ref=e51]: 167 hr
+              - paragraph [ref=e52]: Combined hours across all three indexes, Aug 2025 — Aug 2026.
+              - generic [ref=e53]:
+                - generic [ref=e54]: Last month served
+                - generic [ref=e55]: 17 hr
+                - generic [ref=e56]: August 2026 — nothing recorded in September 2026, October 2026.
+              - generic [ref=e57]:
+                - paragraph [ref=e58]: Latest Report
+                - paragraph [ref=e59]: AUGUST & SEPT '27
+                - generic [ref=e60]:
+                  - link "Open report" [ref=e61] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                  - link "View All Reports" [ref=e62] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/reports
+          - generic [ref=e63]:
+            - generic [ref=e65]:
+              - heading "Every entry is saved" [level=2] [ref=e66]
+              - paragraph [ref=e67]: "Nothing is waiting: every live entry already belongs to a saved report."
+            - link "Open the Formation Ledger" [ref=e69] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/indexes/formation
+        - group [ref=e71]:
+          - generic "Save Report Group Build a saved report from unassigned live entries" [ref=e72] [cursor=pointer]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: Save Report Group
+              - heading "Build a saved report from unassigned live entries" [level=2] [ref=e75]
+            - img [ref=e77]
+          - generic [ref=e509]:
+            - generic [ref=e510]:
+              - text: Report Title
+              - textbox "Report Title" [active] [ref=e511]:
+                - /placeholder: e.g. Christmas break service report
+            - generic [ref=e513]:
+              - generic [ref=e514]: "Already saved:"
+              - generic [ref=e515]:
+                - img [ref=e516]
+                - generic [ref=e518]: Formation
+              - generic [ref=e519]:
+                - img [ref=e520]
+                - generic [ref=e522]: Parish Involvement
+              - generic [ref=e523]:
+                - img [ref=e524]
+                - generic [ref=e526]: Social Apostolate
+            - generic [ref=e527]: All categories are saved or locked. Create new live entries in Obsidian first.
+            - button "Save Report" [ref=e529]
+        - region "Hours served per month" [ref=e79]:
+          - figure [ref=e80]:
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - heading "Hours served per month" [level=2] [ref=e83]
+                - generic [ref=e84]: Every month from Aug 2025 — Aug 2026 on one shared scale, split by index. The tallest column is March 2026 at 17 hr 30 min.
+              - list "Index colours" [ref=e85]:
+                - listitem [ref=e86]: Formation
+                - listitem [ref=e88]: Parish Involvement
+                - listitem [ref=e90]: Social Apostolate
+            - group "Monthly hours stacked by index; scroll horizontally if needed" [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - generic [ref=e95]: 9 hr
+                  - generic [ref=e97]:
+                    - 'link "Formation, August 2025: 1 hr. Open the Formation ledger for this month." [ref=e98] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2025-08
+                    - 'link "Parish Involvement, August 2025: 6 hr. Open the Parish Involvement ledger for this month." [ref=e99] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2025-08
+                    - 'link "Social Apostolate, August 2025: 2 hr. Open the Social Apostolate ledger for this month." [ref=e100] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2025-08
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: "9"
+                    - generic [ref=e103]: entries
+                  - generic [ref=e104]:
+                    - text: Aug
+                    - generic [ref=e105]: "2025"
+                - generic [ref=e106]:
+                  - generic [ref=e107]: 7 hr
+                  - generic [ref=e109]:
+                    - 'link "Formation, September 2025: 1 hr. Open the Formation ledger for this month." [ref=e110] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2025-09
+                    - 'link "Parish Involvement, September 2025: 4 hr. Open the Parish Involvement ledger for this month." [ref=e111] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2025-09
+                    - 'link "Social Apostolate, September 2025: 2 hr. Open the Social Apostolate ledger for this month." [ref=e112] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2025-09
+                  - generic [ref=e113]:
+                    - generic [ref=e114]: "7"
+                    - generic [ref=e115]: entries
+                  - generic [ref=e116]: Sep
+                - generic [ref=e117]:
+                  - generic [ref=e118]: 9 hr
+                  - generic [ref=e120]:
+                    - 'link "Formation, October 2025: 1 hr. Open the Formation ledger for this month." [ref=e121] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2025-10
+                    - 'link "Parish Involvement, October 2025: 6 hr. Open the Parish Involvement ledger for this month." [ref=e122] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2025-10
+                    - 'link "Social Apostolate, October 2025: 2 hr. Open the Social Apostolate ledger for this month." [ref=e123] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2025-10
+                  - generic [ref=e124]:
+                    - generic [ref=e125]: "7"
+                    - generic [ref=e126]: entries
+                  - generic [ref=e127]: Oct
+                - generic [ref=e128]:
+                  - generic [ref=e129]: 14 hr
+                  - generic [ref=e131]:
+                    - 'link "Formation, November 2025: 1 hr. Open the Formation ledger for this month." [ref=e132] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2025-11
+                    - 'link "Parish Involvement, November 2025: 9 hr. Open the Parish Involvement ledger for this month." [ref=e133] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2025-11
+                    - 'link "Social Apostolate, November 2025: 4 hr. Open the Social Apostolate ledger for this month." [ref=e134] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2025-11
+                  - generic [ref=e135]:
+                    - generic [ref=e136]: "10"
+                    - generic [ref=e137]: entries
+                  - generic [ref=e138]: Nov
+                - generic [ref=e139]:
+                  - generic [ref=e140]: 17 hr
+                  - generic [ref=e142]:
+                    - 'link "Formation, December 2025: 2 hr. Open the Formation ledger for this month." [ref=e143] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2025-12
+                    - 'link "Parish Involvement, December 2025: 8 hr. Open the Parish Involvement ledger for this month." [ref=e144] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2025-12
+                    - 'link "Social Apostolate, December 2025: 7 hr. Open the Social Apostolate ledger for this month." [ref=e145] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2025-12
+                  - generic [ref=e146]:
+                    - generic [ref=e147]: "11"
+                    - generic [ref=e148]: entries
+                  - generic [ref=e149]: Dec
+                - generic [ref=e150]:
+                  - generic [ref=e151]: 14 hr
+                  - generic [ref=e153]:
+                    - 'link "Formation, January 2026: 1 hr. Open the Formation ledger for this month." [ref=e154] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-01
+                    - 'link "Parish Involvement, January 2026: 9 hr. Open the Parish Involvement ledger for this month." [ref=e155] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-01
+                    - 'link "Social Apostolate, January 2026: 4 hr. Open the Social Apostolate ledger for this month." [ref=e156] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-01
+                  - generic [ref=e157]:
+                    - generic [ref=e158]: "10"
+                    - generic [ref=e159]: entries
+                  - generic [ref=e160]:
+                    - text: Jan
+                    - generic [ref=e161]: "2026"
+                - generic [ref=e162]:
+                  - generic [ref=e163]: 7 hr 30 min
+                  - generic [ref=e165]:
+                    - 'link "Formation, February 2026: 1 hr. Open the Formation ledger for this month." [ref=e166] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-02
+                    - 'link "Parish Involvement, February 2026: 4 hr 30 min. Open the Parish Involvement ledger for this month." [ref=e167] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-02
+                    - 'link "Social Apostolate, February 2026: 2 hr. Open the Social Apostolate ledger for this month." [ref=e168] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-02
+                  - generic [ref=e169]:
+                    - generic [ref=e170]: "6"
+                    - generic [ref=e171]: entries
+                  - generic [ref=e172]: Feb
+                - generic [ref=e173]:
+                  - generic [ref=e174]: 17 hr 30 min
+                  - generic [ref=e176]:
+                    - 'link "Formation, March 2026: 1 hr. Open the Formation ledger for this month." [ref=e177] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-03
+                    - 'link "Parish Involvement, March 2026: 8 hr 30 min. Open the Parish Involvement ledger for this month." [ref=e178] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-03
+                    - 'link "Social Apostolate, March 2026: 8 hr. Open the Social Apostolate ledger for this month." [ref=e179] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-03
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: "9"
+                    - generic [ref=e182]: entries
+                  - generic [ref=e183]: Mar
+                - generic [ref=e184]:
+                  - generic [ref=e185]: 14 hr
+                  - generic [ref=e187]:
+                    - 'link "Formation, April 2026: 1 hr. Open the Formation ledger for this month." [ref=e188] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-04
+                    - 'link "Parish Involvement, April 2026: 8 hr. Open the Parish Involvement ledger for this month." [ref=e189] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-04
+                    - 'link "Social Apostolate, April 2026: 5 hr. Open the Social Apostolate ledger for this month." [ref=e190] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-04
+                  - generic [ref=e191]:
+                    - generic [ref=e192]: "9"
+                    - generic [ref=e193]: entries
+                  - generic [ref=e194]: Apr
+                - generic [ref=e195]:
+                  - generic [ref=e196]: 15 hr
+                  - generic [ref=e198]:
+                    - 'link "Formation, May 2026: 1 hr. Open the Formation ledger for this month." [ref=e199] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-05
+                    - 'link "Parish Involvement, May 2026: 10 hr. Open the Parish Involvement ledger for this month." [ref=e200] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-05
+                    - 'link "Social Apostolate, May 2026: 4 hr. Open the Social Apostolate ledger for this month." [ref=e201] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-05
+                  - generic [ref=e202]:
+                    - generic [ref=e203]: "9"
+                    - generic [ref=e204]: entries
+                  - generic [ref=e205]: May
+                - generic [ref=e206]:
+                  - generic [ref=e207]: 13 hr
+                  - generic [ref=e209]:
+                    - 'link "Formation, June 2026: 1 hr. Open the Formation ledger for this month." [ref=e210] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-06
+                    - 'link "Parish Involvement, June 2026: 8 hr. Open the Parish Involvement ledger for this month." [ref=e211] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-06
+                    - 'link "Social Apostolate, June 2026: 4 hr. Open the Social Apostolate ledger for this month." [ref=e212] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-06
+                  - generic [ref=e213]:
+                    - generic [ref=e214]: "8"
+                    - generic [ref=e215]: entries
+                  - generic [ref=e216]: Jun
+                - generic [ref=e217]:
+                  - generic [ref=e218]: 13 hr
+                  - generic [ref=e220]:
+                    - 'link "Formation, July 2026: 1 hr. Open the Formation ledger for this month." [ref=e221] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-07
+                    - 'link "Parish Involvement, July 2026: 8 hr. Open the Parish Involvement ledger for this month." [ref=e222] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-07
+                    - 'link "Social Apostolate, July 2026: 4 hr. Open the Social Apostolate ledger for this month." [ref=e223] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-07
+                  - generic [ref=e224]:
+                    - generic [ref=e225]: "7"
+                    - generic [ref=e226]: entries
+                  - generic [ref=e227]: Jul
+                - generic [ref=e228]:
+                  - generic [ref=e229]: 17 hr
+                  - generic [ref=e231]:
+                    - 'link "Formation, August 2026: 1 hr. Open the Formation ledger for this month." [ref=e232] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/formation?month=2026-08
+                    - 'link "Parish Involvement, August 2026: 10 hr. Open the Parish Involvement ledger for this month." [ref=e233] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-08
+                    - 'link "Social Apostolate, August 2026: 6 hr. Open the Social Apostolate ledger for this month." [ref=e234] [cursor=pointer]':
+                      - /url: http://127.0.0.1:8000/indexes/social_apostolate?month=2026-08
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: "9"
+                    - generic [ref=e237]: entries
+                  - generic [ref=e238]: Aug
+            - paragraph [ref=e239]:
+              - generic [ref=e240]: Coverage
+              - generic [ref=e241]: 13 of 13 months hold entries
+            - table "Hours served per month, by index" [ref=e243]:
+              - caption [ref=e244]: Hours served per month, by index
+              - rowgroup [ref=e245]:
+                - row "Month Formation hours Parish Involvement hours Social Apostolate hours Entries Total hours" [ref=e246]:
+                  - columnheader "Month" [ref=e247]
+                  - columnheader "Formation hours" [ref=e248]
+                  - columnheader "Parish Involvement hours" [ref=e249]
+                  - columnheader "Social Apostolate hours" [ref=e250]
+                  - columnheader "Entries" [ref=e251]
+                  - columnheader "Total hours" [ref=e252]
+              - rowgroup [ref=e253]:
+                - row "August 2025 1 hr 6 hr 2 hr 9 9 hr" [ref=e254]:
+                  - rowheader "August 2025" [ref=e255]
+                  - cell "1 hr" [ref=e256]
+                  - cell "6 hr" [ref=e257]
+                  - cell "2 hr" [ref=e258]
+                  - cell "9" [ref=e259]
+                  - cell "9 hr" [ref=e260]
+                - row "September 2025 1 hr 4 hr 2 hr 7 7 hr" [ref=e261]:
+                  - rowheader "September 2025" [ref=e262]
+                  - cell "1 hr" [ref=e263]
+                  - cell "4 hr" [ref=e264]
+                  - cell "2 hr" [ref=e265]
+                  - cell "7" [ref=e266]
+                  - cell "7 hr" [ref=e267]
+                - row "October 2025 1 hr 6 hr 2 hr 7 9 hr" [ref=e268]:
+                  - rowheader "October 2025" [ref=e269]
+                  - cell "1 hr" [ref=e270]
+                  - cell "6 hr" [ref=e271]
+                  - cell "2 hr" [ref=e272]
+                  - cell "7" [ref=e273]
+                  - cell "9 hr" [ref=e274]
+                - row "November 2025 1 hr 9 hr 4 hr 10 14 hr" [ref=e275]:
+                  - rowheader "November 2025" [ref=e276]
+                  - cell "1 hr" [ref=e277]
+                  - cell "9 hr" [ref=e278]
+                  - cell "4 hr" [ref=e279]
+                  - cell "10" [ref=e280]
+                  - cell "14 hr" [ref=e281]
+                - row "December 2025 2 hr 8 hr 7 hr 11 17 hr" [ref=e282]:
+                  - rowheader "December 2025" [ref=e283]
+                  - cell "2 hr" [ref=e284]
+                  - cell "8 hr" [ref=e285]
+                  - cell "7 hr" [ref=e286]
+                  - cell "11" [ref=e287]
+                  - cell "17 hr" [ref=e288]
+                - row "January 2026 1 hr 9 hr 4 hr 10 14 hr" [ref=e289]:
+                  - rowheader "January 2026" [ref=e290]
+                  - cell "1 hr" [ref=e291]
+                  - cell "9 hr" [ref=e292]
+                  - cell "4 hr" [ref=e293]
+                  - cell "10" [ref=e294]
+                  - cell "14 hr" [ref=e295]
+                - row "February 2026 1 hr 4 hr 30 min 2 hr 6 7 hr 30 min" [ref=e296]:
+                  - rowheader "February 2026" [ref=e297]
+                  - cell "1 hr" [ref=e298]
+                  - cell "4 hr 30 min" [ref=e299]
+                  - cell "2 hr" [ref=e300]
+                  - cell "6" [ref=e301]
+                  - cell "7 hr 30 min" [ref=e302]
+                - row "March 2026 1 hr 8 hr 30 min 8 hr 9 17 hr 30 min" [ref=e303]:
+                  - rowheader "March 2026" [ref=e304]
+                  - cell "1 hr" [ref=e305]
+                  - cell "8 hr 30 min" [ref=e306]
+                  - cell "8 hr" [ref=e307]
+                  - cell "9" [ref=e308]
+                  - cell "17 hr 30 min" [ref=e309]
+                - row "April 2026 1 hr 8 hr 5 hr 9 14 hr" [ref=e310]:
+                  - rowheader "April 2026" [ref=e311]
+                  - cell "1 hr" [ref=e312]
+                  - cell "8 hr" [ref=e313]
+                  - cell "5 hr" [ref=e314]
+                  - cell "9" [ref=e315]
+                  - cell "14 hr" [ref=e316]
+                - row "May 2026 1 hr 10 hr 4 hr 9 15 hr" [ref=e317]:
+                  - rowheader "May 2026" [ref=e318]
+                  - cell "1 hr" [ref=e319]
+                  - cell "10 hr" [ref=e320]
+                  - cell "4 hr" [ref=e321]
+                  - cell "9" [ref=e322]
+                  - cell "15 hr" [ref=e323]
+                - row "June 2026 1 hr 8 hr 4 hr 8 13 hr" [ref=e324]:
+                  - rowheader "June 2026" [ref=e325]
+                  - cell "1 hr" [ref=e326]
+                  - cell "8 hr" [ref=e327]
+                  - cell "4 hr" [ref=e328]
+                  - cell "8" [ref=e329]
+                  - cell "13 hr" [ref=e330]
+                - row "July 2026 1 hr 8 hr 4 hr 7 13 hr" [ref=e331]:
+                  - rowheader "July 2026" [ref=e332]
+                  - cell "1 hr" [ref=e333]
+                  - cell "8 hr" [ref=e334]
+                  - cell "4 hr" [ref=e335]
+                  - cell "7" [ref=e336]
+                  - cell "13 hr" [ref=e337]
+                - row "August 2026 1 hr 10 hr 6 hr 9 17 hr" [ref=e338]:
+                  - rowheader "August 2026" [ref=e339]
+                  - cell "1 hr" [ref=e340]
+                  - cell "10 hr" [ref=e341]
+                  - cell "6 hr" [ref=e342]
+                  - cell "9" [ref=e343]
+                  - cell "17 hr" [ref=e344]
+        - generic [ref=e345]:
+          - region "Assignment funnel" [ref=e346]:
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - heading "Assignment funnel" [level=2] [ref=e349]
+                - paragraph [ref=e350]: 111 of 111 entries are locked into saved reports; 0 are still ready to save.
+              - list "Funnel segments" [ref=e351]:
+                - listitem [ref=e352]: Locked in Reports
+                - listitem [ref=e353]: Ready to save
+            - list [ref=e354]:
+              - listitem [ref=e355]:
+                - link "Formation unsaved only" [ref=e356] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/formation?scope=unsaved
+                  - text: Formation
+                  - generic [ref=e357]: unsaved only
+                - 'img "Formation: 13 locked in reports, 0 ready to save, 13 entries in total." [ref=e358]'
+                - generic [ref=e360]:
+                  - generic [ref=e361]:
+                    - strong [ref=e362]: "13"
+                    - text: locked
+                  - generic [ref=e363]:
+                    - strong [ref=e364]: "0"
+                    - text: ready
+                  - generic [ref=e365]:
+                    - strong [ref=e366]: "13"
+                    - text: total
+              - listitem [ref=e367]:
+                - link "Parish Involvement unsaved only" [ref=e368] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/parish_involvement?scope=unsaved
+                  - text: Parish Involvement
+                  - generic [ref=e369]: unsaved only
+                - 'img "Parish Involvement: 62 locked in reports, 0 ready to save, 62 entries in total." [ref=e370]'
+                - generic [ref=e372]:
+                  - generic [ref=e373]:
+                    - strong [ref=e374]: "62"
+                    - text: locked
+                  - generic [ref=e375]:
+                    - strong [ref=e376]: "0"
+                    - text: ready
+                  - generic [ref=e377]:
+                    - strong [ref=e378]: "62"
+                    - text: total
+              - listitem [ref=e379]:
+                - link "Social Apostolate unsaved only" [ref=e380] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/social_apostolate?scope=unsaved
+                  - text: Social Apostolate
+                  - generic [ref=e381]: unsaved only
+                - 'img "Social Apostolate: 36 locked in reports, 0 ready to save, 36 entries in total." [ref=e382]'
+                - generic [ref=e384]:
+                  - generic [ref=e385]:
+                    - strong [ref=e386]: "36"
+                    - text: locked
+                  - generic [ref=e387]:
+                    - strong [ref=e388]: "0"
+                    - text: ready
+                  - generic [ref=e389]:
+                    - strong [ref=e390]: "36"
+                    - text: total
+          - region "Academic year lens" [ref=e391]:
+            - heading "Academic year lens" [level=2] [ref=e392]
+            - paragraph [ref=e393]: 0 of 111 entries carry an academic year.
+            - paragraph [ref=e394]: Totals by the academic year stored on each entry. Years are never inferred.
+            - list [ref=e395]:
+              - listitem [ref=e396]:
+                - generic [ref=e397]:
+                  - generic [ref=e398]:
+                    - text: Not set
+                    - generic [ref=e399]: not archived
+                  - generic [ref=e400]: 111 entries
+                  - generic [ref=e401]: 167 hr
+            - paragraph [ref=e402]:
+              - text: No entry carries an academic year yet. Entries stay unassigned to a year until you set one.
+              - link "Open academic year snapshots" [ref=e403] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/academic-year-snapshots
+        - region "The three indexes" [ref=e404]:
+          - generic [ref=e405]:
+            - generic [ref=e406]:
+              - heading "The three indexes" [level=2] [ref=e407]
+              - paragraph [ref=e408]: Share of all-time hours, average per entry, and what is locked in reports.
+            - link "Academic year snapshots" [ref=e409] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots
+          - table [ref=e411]:
+            - rowgroup [ref=e412]:
+              - row "Index Share of hours Hours Entries Avg per entry Locked in Reports Ledger" [ref=e413]:
+                - columnheader "Index" [ref=e414]
+                - columnheader "Share of hours" [ref=e415]
+                - columnheader "Hours" [ref=e416]
+                - columnheader "Entries" [ref=e417]
+                - columnheader "Avg per entry" [ref=e418]
+                - columnheader "Locked in Reports" [ref=e419]
+                - columnheader "Ledger" [ref=e420]
+            - rowgroup [ref=e421]:
+              - row "Formation FORMATION.md 8% 14 hr 13 1 hr 04 min 13 Open ledger" [ref=e422]:
+                - rowheader "Formation FORMATION.md" [ref=e423]:
+                  - link "Formation" [ref=e424] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/formation
+                  - generic [ref=e425]: FORMATION.md
+                - cell "8%" [ref=e426]:
+                  - generic [ref=e429]: 8%
+                - cell "14 hr" [ref=e430]
+                - cell "13" [ref=e431]
+                - cell "1 hr 04 min" [ref=e432]
+                - cell "13" [ref=e433]
+                - cell "Open ledger" [ref=e434]:
+                  - link "Open ledger" [ref=e435] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/formation
+              - row "Parish Involvement PARISH INVOLVEMENT.md 59% 99 hr 62 1 hr 35 min 62 Open ledger" [ref=e436]:
+                - rowheader "Parish Involvement PARISH INVOLVEMENT.md" [ref=e437]:
+                  - link "Parish Involvement" [ref=e438] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/parish_involvement
+                  - generic [ref=e439]: PARISH INVOLVEMENT.md
+                - cell "59%" [ref=e440]:
+                  - generic [ref=e443]: 59%
+                - cell "99 hr" [ref=e444]
+                - cell "62" [ref=e445]
+                - cell "1 hr 35 min" [ref=e446]
+                - cell "62" [ref=e447]
+                - cell "Open ledger" [ref=e448]:
+                  - link "Open ledger" [ref=e449] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/parish_involvement
+              - row "Social Apostolate SOCIAL APOSTOLATE.md 32% 54 hr 36 1 hr 30 min 36 Open ledger" [ref=e450]:
+                - rowheader "Social Apostolate SOCIAL APOSTOLATE.md" [ref=e451]:
+                  - link "Social Apostolate" [ref=e452] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/social_apostolate
+                  - generic [ref=e453]: SOCIAL APOSTOLATE.md
+                - cell "32%" [ref=e454]:
+                  - generic [ref=e457]: 32%
+                - cell "54 hr" [ref=e458]
+                - cell "36" [ref=e459]
+                - cell "1 hr 30 min" [ref=e460]
+                - cell "36" [ref=e461]
+                - cell "Open ledger" [ref=e462]:
+                  - link "Open ledger" [ref=e463] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/indexes/social_apostolate
+        - region "Most recent entries" [ref=e464]:
+          - heading "Most recent entries" [level=2] [ref=e465]
+          - list [ref=e466]:
+            - listitem [ref=e467]:
+              - generic [ref=e468]: August 29, 2026
+              - link "Parish Involvement" [ref=e469] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+              - generic [ref=e470]: 2 hr
+              - link "AUGUST & SEPT '27" [ref=e471] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - img [ref=e472]
+                - generic [ref=e474]: AUGUST & SEPT '27
+            - listitem [ref=e475]:
+              - generic [ref=e476]: August 23, 2026
+              - link "Parish Involvement" [ref=e477] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+              - generic [ref=e478]: 2 hr
+              - link "AUGUST & SEPT '27" [ref=e479] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - img [ref=e480]
+                - generic [ref=e482]: AUGUST & SEPT '27
+            - listitem [ref=e483]:
+              - generic [ref=e484]: August 18, 2026
+              - link "Creating SocCom slides Social Apostolate" [ref=e485] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/social_apostolate
+                - text: Creating SocCom slides
+                - generic [ref=e486]: Social Apostolate
+              - generic [ref=e487]: 2 hr
+              - link "AUGUST & SEPT '27" [ref=e488] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - img [ref=e489]
+                - generic [ref=e491]: AUGUST & SEPT '27
+            - listitem [ref=e492]:
+              - generic [ref=e493]: August 16, 2026
+              - link "C3 / M1 — Brotherly love Formation" [ref=e494] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+                - text: C3 / M1 — Brotherly love
+                - generic [ref=e495]: Formation
+              - generic [ref=e496]: 1 hr
+              - link "AUGUST & SEPT '27" [ref=e497] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - img [ref=e498]
+                - generic [ref=e500]: AUGUST & SEPT '27
+            - listitem [ref=e501]:
+              - generic [ref=e502]: August 15, 2026
+              - link "Parish Involvement" [ref=e503] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+              - generic [ref=e504]: 2 hr
+              - link "AUGUST & SEPT '27" [ref=e505] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - img [ref=e506]
+                - generic [ref=e508]: AUGUST & SEPT '27

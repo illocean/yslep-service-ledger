@@ -1,0 +1,282 @@
+- generic [active] [ref=f7e1]:
+  - link "Skip to Content" [ref=f7e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f7e3]:
+    - banner [ref=f7e4]:
+      - generic [ref=f7e5]:
+        - generic [ref=f7e6]:
+          - link "Service Ledger YSLEP" [ref=f7e7] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=f7e8]: YSLEP
+          - paragraph [ref=f7e9]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=f7e10]:
+          - generic [ref=f7e11]:
+            - link "Overview" [ref=f7e12] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000
+            - link "Formation" [ref=f7e14] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/indexes/formation
+            - link "Parish Involvement" [ref=f7e16] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/indexes/parish_involvement
+            - link "Social Apostolate" [ref=f7e18] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/indexes/social_apostolate
+            - link "Reports" [ref=f7e20] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/reports
+            - link "Academic Years" [ref=f7e22] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots
+        - generic [ref=f7e25]:
+          - button "Add entry" [ref=f7e26]:
+            - generic [aria-hidden] [ref=f7e27]: +
+          - button "Choose entry type" [ref=f7e28]:
+            - generic [aria-hidden] [ref=f7e29]: ▾
+    - main [ref=f7e30]:
+      - generic [ref=f7e31]:
+        - generic [ref=f7e32]:
+          - generic [ref=f7e33]:
+            - generic [ref=f7e34]:
+              - paragraph [ref=f7e35]: All Time
+              - heading "Formation" [level=1] [ref=f7e36]
+              - generic [ref=f7e37]:
+                - generic [ref=f7e38]: 14 entries
+                - generic [aria-hidden] [ref=f7e39]: ·
+                - generic [ref=f7e40]: 15 hr served
+                - generic [ref=f7e41]: 2025-2026
+            - button "+ Add Formation" [ref=f7e42]
+          - generic [ref=f7e43]:
+            - navigation "Record scope" [ref=f7e44]:
+              - link "All entries" [ref=f7e45] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+              - link "Unsaved only" [ref=f7e46] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation?scope=unsaved
+            - generic [ref=f7e47]:
+              - text: Saved report
+              - combobox "Saved report" [ref=f7e48]:
+                - option "Choose a report" [selected]
+                - option "OCT '26"
+                - option "AUGUST & SEPT '27"
+                - option "JULY '26"
+                - option "JUNE '26"
+                - option "MAY '26"
+                - option "APRIL '26"
+                - option "MARCH '26"
+                - option "FEB '26"
+                - option "JAN '26"
+                - option "DEC '25"
+                - option "NOV '25"
+                - option "OCT '25"
+                - option "AUG '25"
+                - option "SEPT '25"
+        - generic [ref=f7e49]:
+          - article [ref=f7e50]:
+            - generic [ref=f7e51]:
+              - generic [ref=f7e52]:
+                - paragraph [ref=f7e53]: Ledger
+                - heading "All records" [level=2] [ref=f7e54]
+              - paragraph [ref=f7e55]: 14 records
+            - generic [ref=f7e56]:
+              - generic [ref=f7e57]: Search records
+              - searchbox "Search records" [ref=f7e58]
+            - generic [ref=f7e59]:
+              - article [ref=f7e60]:
+                - generic [ref=f7e61]:
+                  - generic [ref=f7e62]:
+                    - generic [ref=f7e63]:
+                      - generic [ref=f7e64]: 1 hr
+                      - generic [ref=f7e65]: OCT '26
+                    - paragraph [ref=f7e69]: C3 / M3 - MAJOR RELIGIONS IN THE WORLD
+                    - generic [ref=f7e70]:
+                      - generic [ref=f7e71]: October 26, 2026
+                      - generic [ref=f7e72]: 1:00 PM–2:00 PM
+                  - generic [ref=f7e73]:
+                    - button "Edit C3 / M3 - MAJOR RELIGIONS IN THE WORLD" [ref=f7e74] [cursor=pointer]: Edit
+                    - button "Delete C3 / M3 - MAJOR RELIGIONS IN THE WORLD" [ref=f7e76]: Delete
+              - article [ref=f7e77]:
+                - generic [ref=f7e78]:
+                  - generic [ref=f7e79]:
+                    - generic [ref=f7e80]:
+                      - generic [ref=f7e81]: 1 hr
+                      - generic [ref=f7e82]: AUGUST & SEPT '27
+                    - paragraph [ref=f7e86]: C3 / M1 - Brotherly love
+                    - generic [ref=f7e87]:
+                      - generic [ref=f7e88]: August 16, 2026
+                      - generic [ref=f7e89]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e90]:
+                    - button "Edit C3 / M1 - Brotherly love" [ref=f7e91] [cursor=pointer]: Edit
+                    - button "Delete C3 / M1 - Brotherly love" [ref=f7e93]: Delete
+              - article [ref=f7e94]:
+                - generic [ref=f7e95]:
+                  - generic [ref=f7e96]:
+                    - generic [ref=f7e97]:
+                      - generic [ref=f7e98]: 1 hr
+                      - generic [ref=f7e99]: JULY '26
+                    - paragraph [ref=f7e103]: C2 / M7 - what is my personal strength
+                    - generic [ref=f7e104]:
+                      - generic [ref=f7e105]: July 19, 2026
+                      - generic [ref=f7e106]: 2:00 PM–3:00 PM
+                  - generic [ref=f7e107]:
+                    - button "Edit C2 / M7 - what is my personal strength" [ref=f7e108] [cursor=pointer]: Edit
+                    - button "Delete C2 / M7 - what is my personal strength" [ref=f7e110]: Delete
+              - article [ref=f7e111]:
+                - generic [ref=f7e112]:
+                  - generic [ref=f7e113]:
+                    - generic [ref=f7e114]:
+                      - generic [ref=f7e115]: 1 hr
+                      - generic [ref=f7e116]: JUNE '26
+                    - paragraph [ref=f7e120]: C2 / M9 - Becoming Your Best Self
+                    - generic [ref=f7e121]:
+                      - generic [ref=f7e122]: June 21, 2026
+                      - generic [ref=f7e123]: 2:00 PM–3:00 PM
+                  - generic [ref=f7e124]:
+                    - button "Edit C2 / M9 - Becoming Your Best Self" [ref=f7e125] [cursor=pointer]: Edit
+                    - button "Delete C2 / M9 - Becoming Your Best Self" [ref=f7e127]: Delete
+              - article [ref=f7e128]:
+                - generic [ref=f7e129]:
+                  - generic [ref=f7e130]:
+                    - generic [ref=f7e131]:
+                      - generic [ref=f7e132]: 1 hr
+                      - generic [ref=f7e133]: MAY '26
+                    - paragraph [ref=f7e137]: C0 / M0 - WALA NG MODULE/CYCLE
+                    - generic [ref=f7e138]:
+                      - generic [ref=f7e139]: May 23, 2026
+                      - generic [ref=f7e140]: 2:00 PM–3:00 PM
+                  - generic [ref=f7e141]:
+                    - button "Edit C0 / M0 - WALA NG MODULE/CYCLE" [ref=f7e142] [cursor=pointer]: Edit
+                    - button "Delete C0 / M0 - WALA NG MODULE/CYCLE" [ref=f7e144]: Delete
+              - article [ref=f7e145]:
+                - generic [ref=f7e146]:
+                  - generic [ref=f7e147]:
+                    - generic [ref=f7e148]:
+                      - generic [ref=f7e149]: 1 hr
+                      - generic [ref=f7e150]: APRIL '26
+                    - paragraph [ref=f7e154]: C2 / M8 - Linking others to God
+                    - generic [ref=f7e155]:
+                      - generic [ref=f7e156]: April 1, 2026
+                      - generic [ref=f7e157]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e158]:
+                    - button "Edit C2 / M8 - Linking others to God" [ref=f7e159] [cursor=pointer]: Edit
+                    - button "Delete C2 / M8 - Linking others to God" [ref=f7e161]: Delete
+              - article [ref=f7e162]:
+                - generic [ref=f7e163]:
+                  - generic [ref=f7e164]:
+                    - generic [ref=f7e165]:
+                      - generic [ref=f7e166]: 1 hr
+                      - generic [ref=f7e167]: MARCH '26
+                    - paragraph [ref=f7e171]: C2 / M7 - Servanthood a way of life
+                    - generic [ref=f7e172]:
+                      - generic [ref=f7e173]: March 21, 2026
+                      - generic [ref=f7e174]: 1:00 PM–2:00 PM
+                  - generic [ref=f7e175]:
+                    - button "Edit C2 / M7 - Servanthood a way of life" [ref=f7e176] [cursor=pointer]: Edit
+                    - button "Delete C2 / M7 - Servanthood a way of life" [ref=f7e178]: Delete
+              - article [ref=f7e179]:
+                - generic [ref=f7e180]:
+                  - generic [ref=f7e181]:
+                    - generic [ref=f7e182]:
+                      - generic [ref=f7e183]: 1 hr
+                      - generic [ref=f7e184]: FEB '26
+                    - paragraph [ref=f7e188]: C2 / M6 - Reaching out and touching lives
+                    - generic [ref=f7e189]:
+                      - generic [ref=f7e190]: February 1, 2026
+                      - generic [ref=f7e191]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e192]:
+                    - button "Edit C2 / M6 - Reaching out and touching lives" [ref=f7e193] [cursor=pointer]: Edit
+                    - button "Delete C2 / M6 - Reaching out and touching lives" [ref=f7e195]: Delete
+              - article [ref=f7e196]:
+                - generic [ref=f7e197]:
+                  - generic [ref=f7e198]:
+                    - generic [ref=f7e199]:
+                      - generic [ref=f7e200]: 1 hr
+                      - generic [ref=f7e201]: JAN '26
+                    - paragraph [ref=f7e205]: C2 / M5 - Social Justice
+                    - generic [ref=f7e206]:
+                      - generic [ref=f7e207]: January 25, 2026
+                      - generic [ref=f7e208]: 2:00 PM–3:00 PM
+                  - generic [ref=f7e209]:
+                    - button "Edit C2 / M5 - Social Justice" [ref=f7e210] [cursor=pointer]: Edit
+                    - button "Delete C2 / M5 - Social Justice" [ref=f7e212]: Delete
+              - article [ref=f7e213]:
+                - generic [ref=f7e214]:
+                  - generic [ref=f7e215]:
+                    - generic [ref=f7e216]:
+                      - generic [ref=f7e217]: 2 hr
+                      - generic [ref=f7e218]: DEC '25
+                    - paragraph [ref=f7e222]: C2 / M4 - Jesus Is My Brother
+                    - generic [ref=f7e223]:
+                      - generic [ref=f7e224]: December 7, 2025
+                      - generic [ref=f7e225]: 2:00 PM–4:00 PM
+                  - generic [ref=f7e226]:
+                    - button "Edit C2 / M4 - Jesus Is My Brother" [ref=f7e227] [cursor=pointer]: Edit
+                    - button "Delete C2 / M4 - Jesus Is My Brother" [ref=f7e229]: Delete
+              - article [ref=f7e230]:
+                - generic [ref=f7e231]:
+                  - generic [ref=f7e232]:
+                    - generic [ref=f7e233]:
+                      - generic [ref=f7e234]: 1 hr
+                      - generic [ref=f7e235]: NOV '25
+                    - paragraph [ref=f7e239]: C2 / M3 - Celebrating Brotherhood
+                    - generic [ref=f7e240]:
+                      - generic [ref=f7e241]: November 15, 2025
+                      - generic [ref=f7e242]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e243]:
+                    - button "Edit C2 / M3 - Celebrating Brotherhood" [ref=f7e244] [cursor=pointer]: Edit
+                    - button "Delete C2 / M3 - Celebrating Brotherhood" [ref=f7e246]: Delete
+              - article [ref=f7e247]:
+                - generic [ref=f7e248]:
+                  - generic [ref=f7e249]:
+                    - generic [ref=f7e250]:
+                      - generic [ref=f7e251]: 1 hr
+                      - generic [ref=f7e252]: OCT '25
+                    - paragraph [ref=f7e256]: C2 / M2 - Honor Thy Parent
+                    - generic [ref=f7e257]:
+                      - generic [ref=f7e258]: October 2, 2025
+                      - generic [ref=f7e259]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e260]:
+                    - button "Edit C2 / M2 - Honor Thy Parent" [ref=f7e261] [cursor=pointer]: Edit
+                    - button "Delete C2 / M2 - Honor Thy Parent" [ref=f7e263]: Delete
+              - article [ref=f7e264]:
+                - generic [ref=f7e265]:
+                  - generic [ref=f7e266]:
+                    - generic [ref=f7e267]:
+                      - generic [ref=f7e268]: 1 hr
+                      - generic [ref=f7e269]: SEPT '25
+                    - paragraph [ref=f7e273]: C2 / M1 - I Belong to a Family
+                    - generic [ref=f7e274]:
+                      - generic [ref=f7e275]: September 21, 2025
+                      - generic [ref=f7e276]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e277]:
+                    - button "Edit C2 / M1 - I Belong to a Family" [ref=f7e278] [cursor=pointer]: Edit
+                    - button "Delete C2 / M1 - I Belong to a Family" [ref=f7e280]: Delete
+              - article [ref=f7e281]:
+                - generic [ref=f7e282]:
+                  - generic [ref=f7e283]:
+                    - generic [ref=f7e284]:
+                      - generic [ref=f7e285]: 1 hr
+                      - generic [ref=f7e286]: AUG '25
+                    - paragraph [ref=f7e290]: C1 / M8 - Called to Be a Steward
+                    - generic [ref=f7e291]:
+                      - generic [ref=f7e292]: August 1, 2025
+                      - generic [ref=f7e293]: 3:00 PM–4:00 PM
+                  - generic [ref=f7e294]:
+                    - button "Edit C1 / M8 - Called to Be a Steward" [ref=f7e295] [cursor=pointer]: Edit
+                    - button "Delete C1 / M8 - Called to Be a Steward" [ref=f7e297]: Delete
+          - complementary [ref=f7e298]:
+            - generic [ref=f7e299]:
+              - paragraph [ref=f7e300]: Other indexes
+              - heading "Elsewhere in the ledger" [level=2] [ref=f7e301]
+              - generic [ref=f7e302]:
+                - link "Parish Involvement 67 records 109 hr" [ref=f7e303] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/parish_involvement
+                  - generic [ref=f7e304]: Parish Involvement
+                  - generic [ref=f7e305]: 67 records 109 hr
+                - link "Social Apostolate 39 records 60 hr" [ref=f7e306] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/social_apostolate
+                  - generic [ref=f7e307]: Social Apostolate
+                  - generic [ref=f7e308]: 39 records 60 hr
+            - generic [ref=f7e309]:
+              - paragraph [ref=f7e310]: Profile
+              - heading "Ledger file" [level=2] [ref=f7e311]
+              - paragraph [ref=f7e312]: FORMATION.md
+              - paragraph [ref=f7e313]: Synced from the vault when this page opens.
+              - generic [ref=f7e315]:
+                - term [ref=f7e316]: School Year
+                - definition [ref=f7e317]: 2025-2026

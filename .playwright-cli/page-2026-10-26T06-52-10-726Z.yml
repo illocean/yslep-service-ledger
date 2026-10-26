@@ -1,0 +1,232 @@
+- generic [active] [ref=f3e1]:
+  - link "Skip to Content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f3e3]:
+    - banner [ref=f3e4]:
+      - generic [ref=f3e5]:
+        - generic [ref=f3e6]:
+          - link "Service Ledger YSLEP" [ref=f3e7] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=f3e8]: YSLEP
+          - paragraph [ref=f3e9]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=f3e10]:
+          - menubar [ref=f3e11]:
+            - menuitem "Overview" [ref=f3e12] [cursor=pointer]
+            - menuitem "Formation" [ref=f3e14] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=f3e16] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=f3e18] [cursor=pointer]
+            - menuitem "Reports" [ref=f3e20] [cursor=pointer]
+            - menuitem "Academic Years" [ref=f3e22] [cursor=pointer]
+        - generic [ref=f3e25]:
+          - button "Add entry" [ref=f3e26]:
+            - generic [aria-hidden] [ref=f3e27]: +
+          - button "Choose entry type" [ref=f3e29]:
+            - generic [aria-hidden] [ref=f3e30]: ▾
+    - main [ref=f3e31]:
+      - generic [ref=f3e32]:
+        - generic [ref=f3e34]:
+          - generic [ref=f3e35]:
+            - link "← All saved reports" [ref=f3e36] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/reports
+            - generic [ref=f3e37]: Saved report
+            - heading "OCT '26" [level=1] [ref=f3e38]
+            - generic [ref=f3e39]:
+              - generic [ref=f3e40]: "Tag: RPT-20261026-134630-P33B"
+              - generic [aria-hidden] [ref=f3e41]: ·
+              - generic [ref=f3e42]: Created October 26, 2026
+            - paragraph [ref=f3e43]: Editing a record here changes this saved report only. The live ledger entry stays unchanged.
+            - generic [ref=f3e44]:
+              - link "Archive this report" [ref=f3e45] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/academic-year-snapshots?prefill=17
+              - generic [ref=f3e46]: Opens the snapshot builder with this report selected.
+          - generic [ref=f3e47]:
+            - generic [ref=f3e48]: Totals
+            - generic [ref=f3e49]:
+              - generic [ref=f3e50]:
+                - term [ref=f3e51]: Records
+                - definition [ref=f3e52]: "9"
+              - generic [ref=f3e53]:
+                - term [ref=f3e54]: Hours
+                - definition [ref=f3e55]: 17 hr
+        - group [ref=f3e56]:
+          - generic "Report settings Rename, sync, or delete this report Open" [ref=f3e57] [cursor=pointer]:
+            - generic [ref=f3e58]:
+              - generic [ref=f3e59]: Report settings
+              - generic [ref=f3e60]: Rename, sync, or delete this report
+            - generic [ref=f3e61]: Open
+        - generic [ref=f3e63]:
+          - article [ref=f3e64]:
+            - generic [ref=f3e65]:
+              - generic [ref=f3e66]:
+                - generic [ref=f3e67]: Formation Index Card
+                - heading "Formation" [level=2] [ref=f3e68]
+              - generic [ref=f3e69]:
+                - generic [ref=f3e70]:
+                  - term [ref=f3e71]: Records
+                  - definition [ref=f3e72]: "1"
+                - generic [ref=f3e73]:
+                  - term [ref=f3e74]: Hours
+                  - definition [ref=f3e75]: 1 hr
+            - generic [ref=f3e76]:
+              - button "+ Add Formation record" [ref=f3e77]
+              - link "Open live Formation ledger" [ref=f3e78] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+            - article [ref=f3e80]:
+              - generic [ref=f3e81]:
+                - generic [ref=f3e82]:
+                  - generic [ref=f3e83]: Date
+                  - generic [ref=f3e84]: October 26, 2026
+                  - generic [ref=f3e85]: 1:00 PM–2:00 PM
+                - generic [ref=f3e86]:
+                  - heading "C3 / M3 - MAJOR RELIGIONS IN THE WORLD" [level=3] [ref=f3e88]
+                  - generic [ref=f3e89]: 1 hr
+                - generic [ref=f3e91]:
+                  - 'button "Edit record: C3 / M3 - MAJOR RELIGIONS IN THE WORLD" [ref=f3e92]': Edit record
+                  - button "Delete record" [ref=f3e94]
+          - article [ref=f3e95]:
+            - generic [ref=f3e96]:
+              - generic [ref=f3e97]:
+                - generic [ref=f3e98]: Parish Involvement Index Card
+                - heading "Parish Involvement" [level=2] [ref=f3e99]
+              - generic [ref=f3e100]:
+                - generic [ref=f3e101]:
+                  - term [ref=f3e102]: Records
+                  - definition [ref=f3e103]: "5"
+                - generic [ref=f3e104]:
+                  - term [ref=f3e105]: Hours
+                  - definition [ref=f3e106]: 10 hr
+            - generic [ref=f3e107]:
+              - button "+ Add Parish Involvement record" [ref=f3e108]
+              - link "Open live Parish Involvement ledger" [ref=f3e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement
+            - generic [ref=f3e110]:
+              - article [ref=f3e111]:
+                - generic [ref=f3e112]:
+                  - generic [ref=f3e113]:
+                    - generic [ref=f3e114]: Date
+                    - generic [ref=f3e115]: October 3, 2026
+                    - generic [ref=f3e116]: 6:00 PM–8:00 PM
+                  - generic [ref=f3e117]:
+                    - heading "Parish involvement" [level=3] [ref=f3e119]
+                    - generic [ref=f3e120]:
+                      - generic [ref=f3e121]: SLIDES OPERATOR
+                      - generic [ref=f3e122]: 2 hr
+                  - generic [ref=f3e123]:
+                    - 'button "Edit record: Parish involvement" [ref=f3e124]': Edit record
+                    - button "Delete record" [ref=f3e126]
+              - article [ref=f3e127]:
+                - generic [ref=f3e128]:
+                  - generic [ref=f3e129]:
+                    - generic [ref=f3e130]: Date
+                    - generic [ref=f3e131]: October 11, 2026
+                    - generic [ref=f3e132]: 8:00 AM–10:00 AM
+                  - generic [ref=f3e133]:
+                    - heading "Parish involvement" [level=3] [ref=f3e135]
+                    - generic [ref=f3e136]:
+                      - generic [ref=f3e137]: SLIDES OPERATOR
+                      - generic [ref=f3e138]: 2 hr
+                  - generic [ref=f3e139]:
+                    - 'button "Edit record: Parish involvement" [ref=f3e140]': Edit record
+                    - button "Delete record" [ref=f3e142]
+              - article [ref=f3e143]:
+                - generic [ref=f3e144]:
+                  - generic [ref=f3e145]:
+                    - generic [ref=f3e146]: Date
+                    - generic [ref=f3e147]: October 17, 2026
+                    - generic [ref=f3e148]: 6:00 PM–8:00 PM
+                  - generic [ref=f3e149]:
+                    - heading "Parish involvement" [level=3] [ref=f3e151]
+                    - generic [ref=f3e152]:
+                      - generic [ref=f3e153]: SLIDES OPERATOR
+                      - generic [ref=f3e154]: 2 hr
+                  - generic [ref=f3e155]:
+                    - 'button "Edit record: Parish involvement" [ref=f3e156]': Edit record
+                    - button "Delete record" [ref=f3e158]
+              - article [ref=f3e159]:
+                - generic [ref=f3e160]:
+                  - generic [ref=f3e161]:
+                    - generic [ref=f3e162]: Date
+                    - generic [ref=f3e163]: October 25, 2026
+                    - generic [ref=f3e164]: 8:00 AM–10:00 AM
+                  - generic [ref=f3e165]:
+                    - heading "Parish involvement" [level=3] [ref=f3e167]
+                    - generic [ref=f3e168]:
+                      - generic [ref=f3e169]: SLIDES OPERATOR
+                      - generic [ref=f3e170]: 2 hr
+                  - generic [ref=f3e171]:
+                    - 'button "Edit record: Parish involvement" [ref=f3e172]': Edit record
+                    - button "Delete record" [ref=f3e174]
+              - article [ref=f3e175]:
+                - generic [ref=f3e176]:
+                  - generic [ref=f3e177]:
+                    - generic [ref=f3e178]: Date
+                    - generic [ref=f3e179]: November 1, 2026
+                    - generic [ref=f3e180]: 8:00 AM–10:00 AM
+                  - generic [ref=f3e181]:
+                    - heading "Parish involvement" [level=3] [ref=f3e183]
+                    - generic [ref=f3e184]:
+                      - generic [ref=f3e185]: SLIDES OPERATOR
+                      - generic [ref=f3e186]: 2 hr
+                  - generic [ref=f3e187]:
+                    - 'button "Edit record: Parish involvement" [ref=f3e188]': Edit record
+                    - button "Delete record" [ref=f3e190]
+          - article [ref=f3e191]:
+            - generic [ref=f3e192]:
+              - generic [ref=f3e193]:
+                - generic [ref=f3e194]: Social Apostolate Index Card
+                - heading "Social Apostolate" [level=2] [ref=f3e195]
+              - generic [ref=f3e196]:
+                - generic [ref=f3e197]:
+                  - term [ref=f3e198]: Records
+                  - definition [ref=f3e199]: "3"
+                - generic [ref=f3e200]:
+                  - term [ref=f3e201]: Hours
+                  - definition [ref=f3e202]: 6 hr
+            - generic [ref=f3e203]:
+              - button "+ Add Social Apostolate record" [ref=f3e204]
+              - link "Open live Social Apostolate ledger" [ref=f3e205] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/social_apostolate
+            - generic [ref=f3e206]:
+              - article [ref=f3e207]:
+                - generic [ref=f3e208]:
+                  - generic [ref=f3e209]:
+                    - generic [ref=f3e210]: Date
+                    - generic [ref=f3e211]: October 2, 2026
+                    - generic [ref=f3e212]: 8:00 PM–10:00 PM
+                  - generic [ref=f3e213]:
+                    - heading "Creating SocCom slides" [level=3] [ref=f3e215]
+                    - generic [ref=f3e216]:
+                      - generic [ref=f3e217]: SOCCOM
+                      - generic [ref=f3e218]: 2 hr
+                  - generic [ref=f3e219]:
+                    - 'button "Edit record: Creating SocCom slides" [ref=f3e220]': Edit record
+                    - button "Delete record" [ref=f3e222]
+              - article [ref=f3e223]:
+                - generic [ref=f3e224]:
+                  - generic [ref=f3e225]:
+                    - generic [ref=f3e226]: Date
+                    - generic [ref=f3e227]: October 9, 2026
+                    - generic [ref=f3e228]: 8:00 AM–10:00 AM
+                  - generic [ref=f3e229]:
+                    - heading "Creating SocCom slides" [level=3] [ref=f3e231]
+                    - generic [ref=f3e232]:
+                      - generic [ref=f3e233]: SOOCOM
+                      - generic [ref=f3e234]: 2 hr
+                  - generic [ref=f3e235]:
+                    - 'button "Edit record: Creating SocCom slides" [ref=f3e236]': Edit record
+                    - button "Delete record" [ref=f3e238]
+              - article [ref=f3e239]:
+                - generic [ref=f3e240]:
+                  - generic [ref=f3e241]:
+                    - generic [ref=f3e242]: Date
+                    - generic [ref=f3e243]: October 25, 2026
+                    - generic [ref=f3e244]: 11:00 AM–1:00 PM
+                  - generic [ref=f3e245]:
+                    - heading "Helped with the documents" [level=3] [ref=f3e247]
+                    - generic [ref=f3e248]:
+                      - generic [ref=f3e249]: yslep caritas scholar
+                      - generic [ref=f3e250]: 2 hr
+                  - generic [ref=f3e251]:
+                    - 'button "Edit record: Helped with the documents" [ref=f3e252]': Edit record
+                    - button "Delete record" [ref=f3e254]

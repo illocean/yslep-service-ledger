@@ -122,11 +122,15 @@ MD);
 
         $response->assertOk();
         $response->assertSee('service ledger from your three Obsidian inputs');
-        $response->assertSee('View All Reports');
+        $response->assertSee('View all reports');
         $response->assertSee('Locked in Reports');
         $response->assertSee('3 hr');
         $response->assertSee('2 hr 30 min');
         $response->assertSee('8 hr 30 min');
+        // Unassigned entries must surface the one-click path into the builder.
+        $response->assertSee('ready to save');
+        $response->assertSee('data-open-save-group-builder', false);
+        $response->assertSee('id="save-group-builder"', false);
 
         $this->assertDatabaseCount('formation_entries', 2);
         $this->assertDatabaseCount('parish_involvement_entries', 2);

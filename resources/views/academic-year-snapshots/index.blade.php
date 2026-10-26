@@ -24,7 +24,8 @@
                     Collect reports for an academic year.
                 </h1>
                 <p class="max-w-3xl text-sm leading-7 text-stone-600">
-                    Choose the year and reports yourself. Nothing is archived until you create a snapshot; saved reports stay in Reports.
+                    Choose the year and reports yourself. Nothing is archived until you create a snapshot; saved reports
+                    stay in <a class="text-link" href="{{ route('reports.index') }}">Reports</a>.
                 </p>
             </div>
 
@@ -42,6 +43,28 @@
                     <div class="mt-2 break-all font-mono text-[0.72rem] text-stone-700">{{ $snapshotFilePath }}</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="paper-panel rounded-panel p-5 sm:p-6">
+        <p class="section-kicker">Current Snapshots</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            @forelse ($snapshots as $snapshot)
+                <a href="{{ route('academic-year-snapshots.show', $snapshot) }}" class="secondary-link-card">
+                    <div class="min-w-0">
+                        <div class="truncate text-sm font-semibold text-stone-900">{{ $snapshot->compact_label }}</div>
+                        <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">
+                            {{ $snapshot->reportGroups()->count() }} {{ $snapshot->reportGroups()->count() === 1 ? 'report' : 'reports' }} |
+                            {{ $snapshot->items->count() }} {{ $snapshot->items->count() === 1 ? 'record' : 'records' }}
+                        </div>
+                    </div>
+                    <div class="shrink-0 text-sm font-semibold text-stone-900">Open</div>
+                </a>
+            @empty
+                <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600 sm:col-span-2 xl:col-span-3">
+                    No academic-year snapshots yet.
+                </div>
+            @endforelse
         </div>
     </section>
 
@@ -82,7 +105,7 @@
                     <div class="snapshot-builder-toolbar__meta">
                         <div class="compact-stat">
                             <div class="form-label">Available</div>
-                            <div class="mt-2 text-sm font-semibold text-stone-900">{{ $availableReportGroups->count() }} report(s)</div>
+                            <div class="mt-2 text-sm font-semibold text-stone-900">{{ $availableReportGroups->count() }} {{ $availableReportGroups->count() === 1 ? 'report' : 'reports' }}</div>
                         </div>
                         <div class="compact-stat">
                             <div class="form-label">Archived</div>
@@ -92,7 +115,7 @@
 
                     <div class="snapshot-builder-toolbar__action">
                         <button type="submit" class="primary-button" :disabled="selectedIds.length === 0">
-                            Create Academic Year Snapshot
+                            Create snapshot
                         </button>
                     </div>
                 </div>
@@ -115,7 +138,7 @@
                             @endforeach
                         </div>
                         <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-600" x-show="selectedIds.length > 0">
-                            <span x-text="selectedIds.length"></span> report(s) | <span x-text="selectedRecordCount"></span> record(s) | <span x-text="selectedHoursLabel"></span>
+                            <span x-text="selectedReportLabel"></span> | <span x-text="selectedRecordLabel"></span> | <span x-text="selectedHoursLabel"></span>
                         </div>
                     </div>
 
@@ -165,7 +188,7 @@
                                 </div>
 
                                 <div class="archive-report-card__stats">
-                                    <span class="compact-pill">{{ $reportGroup->items->count() }} record(s)</span>
+                                    <span class="compact-pill">{{ $reportGroup->items->count() }} {{ $reportGroup->items->count() === 1 ? 'record' : 'records' }}</span>
                                     <span class="compact-pill">{{ $reportTotalLabel }}</span>
                                     @foreach (\App\Enums\IndexType::cases() as $type)
                                         @php
@@ -213,27 +236,6 @@
                         @endforeach
                     </div>
                 @endif
-            </article>
-
-            <article class="paper-panel rounded-panel p-5 sm:p-6">
-                <div class="section-kicker">Current Snapshots</div>
-                <div class="mt-4 space-y-3">
-                    @forelse ($snapshots as $snapshot)
-                        <a href="{{ route('academic-year-snapshots.show', $snapshot) }}" class="secondary-link-card">
-                            <div>
-                                <div class="text-sm font-semibold text-stone-900">{{ $snapshot->compact_label }}</div>
-                                <div class="mt-1 text-xs uppercase tracking-[0.18em] text-stone-600">
-                                    {{ $snapshot->reportGroups()->count() }} report(s) | {{ $snapshot->items->count() }} record(s)
-                                </div>
-                            </div>
-                            <div class="text-sm font-semibold text-stone-900">Open</div>
-                        </a>
-                    @empty
-                        <div class="rounded-card border border-dashed border-stone-900/12 bg-stone-50/60 px-4 py-5 text-sm text-stone-600">
-                            No academic-year snapshots yet.
-                        </div>
-                    @endforelse
-                </div>
             </article>
         </aside>
     </section>
