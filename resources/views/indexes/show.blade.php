@@ -8,22 +8,39 @@
     @php
         $allScopeParams = ['type' => $type->value];
         $unsavedScopeParams = ['type' => $type->value, 'scope' => \App\Enums\IndexScope::Unsaved->value];
-        $reportScopeParams = ['type' => $type->value, 'scope' => \App\Enums\IndexScope::Report->value];
 
-        if ($selectedReportTag) {
-            $reportScopeParams['report'] = $selectedReportTag;
+        if (filled($monthFilter)) {
+            $allScopeParams['month'] = $monthFilter;
+            $unsavedScopeParams['month'] = $monthFilter;
         }
+
+        $ledgerHeading = match ($selectedScope) {
+            \App\Enums\IndexScope::All => 'All records',
+            \App\Enums\IndexScope::Unsaved => 'Unsaved records',
+            \App\Enums\IndexScope::Report => 'Records in this saved report',
+        };
     @endphp
 
     <section class="paper-panel rounded-panel px-5 py-6 sm:px-8 lg:px-10">
         <div class="flex flex-wrap items-start justify-between gap-6">
             <div class="min-w-0">
-                <p class="section-kicker">{{ $selectedScopeLabel }}</p>
+                <p class="section-kicker">{{ $sourceMode === 'report' ? 'Saved report' : $selectedScopeLabel }}</p>
                 <h1 class="mt-2 font-serif text-3xl leading-tight text-stone-950 sm:text-4xl">{{ $type->label() }}</h1>
+                @if ($sourceMode === 'report' && $selectedReportGroup)
+                    <p class="mt-2 text-sm font-semibold text-stone-800">{{ $selectedReportGroup->compact_label }}</p>
+                    <p class="mt-3 max-w-2xl rounded-cell border border-stone-900/10 bg-white/60 px-4 py-3 text-sm leading-6 text-stone-700">
+                        Snapshot records. Edits and deletes here stay in this saved report and do not change the live ledger.
+                    </p>
+                @endif
                 <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-stone-600">
-                    <span class="tabular-nums">{{ $summary['count'] }} entries</span>
+                    <span class="tabular-nums">{{ $summary['count'] }} {{ $summary['count'] === 1 ? 'entry' : 'entries' }}</span>
                     <span aria-hidden="true">·</span>
                     <span class="tabular-nums">{{ $summary['total_label'] }} served</span>
+                    @if (filled($monthFilter))
+                        <a href="{{ route('indexes.show', ['type' => $type->value]) }}" class="compact-pill compact-pill--soft" title="Clear the month filter and show every dated entry">
+                            {{ $monthLabel }} <span aria-hidden="true">&times;</span><span class="sr-only">— clear month filter</span>
+                        </a>
+                    @endif
                     @if (filled($cardMeta['profile']['school_year'] ?? null))
                         <span class="rounded-full border border-stone-900/10 bg-white/70 px-3 py-1 text-xs font-semibold">
                             {{ $cardMeta['profile']['school_year'] }}
@@ -45,6 +62,9 @@
 
             <form method="GET" action="{{ route('indexes.show', ['type' => $type->value]) }}" class="min-w-0 flex-1 sm:max-w-sm">
                 <input type="hidden" name="scope" value="report">
+                @if (filled($monthFilter))
+                    <input type="hidden" name="month" value="{{ $monthFilter }}">
+                @endif
                 <label for="report" class="form-label">Saved report</label>
                 <select id="report" name="report" class="form-input mt-1" data-auto-submit>
                     <option value="">Choose a report</option>
@@ -56,7 +76,7 @@
 
             @if ($selectedScope === \App\Enums\IndexScope::Report && $selectedReportGroup)
                 <a href="{{ route('reports.show', $selectedReportGroup) }}" class="secondary-button w-auto sm:ml-auto">
-                    Open Full Report
+                    Open saved report
                 </a>
             @endif
         </div>
@@ -67,9 +87,9 @@
             <div class="flex flex-wrap items-end justify-between gap-4">
                 <div>
                     <p class="section-kicker">Ledger</p>
-                    <h2 class="mt-2 font-serif text-xl text-stone-950">{{ $selectedScopeLabel }} entries</h2>
+                    <h2 class="mt-2 font-serif text-xl text-stone-950">{{ $ledgerHeading }}</h2>
                 </div>
-                <p class="text-sm text-stone-600 tabular-nums">{{ $summary['count'] }} record(s)</p>
+                <p class="text-sm text-stone-600 tabular-nums">{{ $summary['count'] }} {{ $summary['count'] === 1 ? 'record' : 'records' }}</p>
             </div>
 
             <div class="mt-4">
@@ -109,10 +129,6 @@
                         <div class="flex flex-col gap-3 p-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                             <div class="min-w-0 space-y-2">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <x-assignment-chip
-                                        :variant="$sourceMode === 'live' ? 'complete' : 'saved'"
-                                        :label="$sourceMode === 'live' ? 'Live record' : 'Saved record'"
-                                    />
                                     <span class="compact-pill">{{ $entry->duration_label }}</span>
                                     @if ($assignment)
                                         <x-assignment-chip variant="saved" :label="$assignment->compact_label" />
@@ -140,56 +156,56 @@
                                     data-type="{{ $type->value }}"
                                     data-entry-id="{{ $entry->id }}"
                                     data-source-mode="{{ $sourceMode }}"
-                                    @if ($sourceMode === 'report') data-report-id="{{ $selectedReportGroup->id }}" @endif
+                                    aria-label="Edit {{ $headline }}"
                                     @click="window.dispatchEvent(new CustomEvent('open-entry-modal', { detail: { type: $el.dataset.type, entryId: parseInt($el.dataset.entryId), isEdit: true } }))"
                                 >Edit</button>
 
-                                <form method="POST" action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup->id, $entry->id]) }}" data-confirm="Delete this entry?">
+                                <form method="POST"
+                                    action="{{ $sourceMode === 'live' ? route('entries.destroy', $entry->id) : route('reports.records.destroy', [$selectedReportGroup, $entry]) }}"
+                                    data-confirm="{{ $sourceMode === 'live' ? 'Delete this live entry from the ledger and Obsidian?' : 'Remove this record from the saved report? The live ledger entry will not be deleted.' }}">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="type" value="{{ $type->value }}">
                                     <input type="hidden" name="return_type" value="{{ $type->value }}">
                                     <input type="hidden" name="return_scope" value="{{ $selectedScope->value }}">
                                     <input type="hidden" name="return_report" value="{{ $selectedReportTag }}">
-                                    <button type="submit" class="compact-pill hover:text-rose-700">Delete</button>
+                                    <button type="submit" class="compact-pill hover:text-rose-700" aria-label="{{ $sourceMode === 'live' ? 'Delete' : 'Remove' }} {{ $headline }}">
+                                        {{ $sourceMode === 'live' ? 'Delete' : 'Remove' }}
+                                    </button>
                                 </form>
                             </div>
                         </div>
 
                         @if ($entry->obsidian_conflict)
                             <div class="border-t border-stone-900/10 bg-amber-50/60 px-4 py-3">
-                                <p class="text-sm text-stone-700">This record has a conflict: both Obsidian and the database have changes since the last sync.</p>
+                                <p class="text-sm text-stone-700">Obsidian and the database both changed since the last sync. Choose which copy to keep.</p>
 
                                 @if ($sourceMode === 'live')
                                     <div class="mt-3 flex flex-wrap gap-2">
-                                        <form method="POST" action="{{ route('entries.conflict.accept-vault', $entry->id) }}" data-dirty-guard>
+                                        <form method="POST" action="{{ route('entries.conflict.accept-vault', $entry->id) }}" data-dirty-guard data-confirm="Keep the Obsidian copy? The database change to this live entry will be lost.">
                                             @csrf
-                                            @method('PATCH')
                                             <input type="hidden" name="type" value="{{ $type->value }}">
                                             <input type="hidden" name="scope" value="{{ $selectedScope->value }}">
                                             <input type="hidden" name="report" value="{{ $selectedReportTag }}">
-                                            <button type="submit" class="primary-button">Accept Vault Version</button>
+                                            <button type="submit" class="secondary-button compact-inline-button">Keep Obsidian copy</button>
                                         </form>
-                                        <form method="POST" action="{{ route('entries.conflict.accept-db', $entry->id) }}" data-dirty-guard>
+                                        <form method="POST" action="{{ route('entries.conflict.accept-db', $entry->id) }}" data-dirty-guard data-confirm="Keep the database copy? The Obsidian change to this live entry will be lost.">
                                             @csrf
-                                            @method('PATCH')
                                             <input type="hidden" name="type" value="{{ $type->value }}">
                                             <input type="hidden" name="scope" value="{{ $selectedScope->value }}">
                                             <input type="hidden" name="report" value="{{ $selectedReportTag }}">
-                                            <button type="submit" class="secondary-button w-auto">Accept Database Version</button>
+                                            <button type="submit" class="secondary-button compact-inline-button">Keep database copy</button>
                                         </form>
                                     </div>
                                 @else
                                     <div class="mt-3 flex flex-wrap gap-2">
-                                        <form method="POST" action="{{ route('reports.records.conflict.accept-vault', [$selectedReportGroup->id, $entry->id]) }}" data-dirty-guard>
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-vault', [$selectedReportGroup, $entry]) }}" data-confirm="Keep the Obsidian copy? The database change to this saved record will be lost.">
                                             @csrf
-                                            @method('PATCH')
-                                            <button type="submit" class="primary-button">Accept Vault Version</button>
+                                            <button type="submit" class="secondary-button compact-inline-button">Keep Obsidian copy</button>
                                         </form>
-                                        <form method="POST" action="{{ route('reports.records.conflict.accept-db', [$selectedReportGroup->id, $entry->id]) }}" data-dirty-guard>
+                                        <form method="POST" action="{{ route('reports.records.conflict.accept-db', [$selectedReportGroup, $entry]) }}" data-confirm="Keep the database copy? The Obsidian change to this saved record will be lost.">
                                             @csrf
-                                            @method('PATCH')
-                                            <button type="submit" class="secondary-button w-auto">Accept Database Version</button>
+                                            <button type="submit" class="secondary-button compact-inline-button">Keep database copy</button>
                                         </form>
                                     </div>
                                 @endif
@@ -209,7 +225,7 @@
                                 :type="$type"
                                 :entry="$entry"
                                 :report="$selectedReportGroup"
-                                :form-action="route('reports.records.update', [$selectedReportGroup->id, $entry->id])"
+                                :form-action="route('reports.records.update', [$selectedReportGroup, $entry])"
                                 form-method="PATCH"
                                 :academic-years="$academicYears"
                             />
@@ -220,6 +236,8 @@
                         <p class="text-sm text-stone-600">
                             @if ($sourceMode === 'report')
                                 No records in this saved report yet.
+                            @elseif (filled($monthFilter))
+                                No {{ strtolower($type->label()) }} records in {{ $monthLabel }}.
                             @else
                                 No {{ strtolower($type->label()) }} records in this scope.
                             @endif
@@ -240,18 +258,61 @@
 
         <aside class="space-y-4">
             <section class="paper-panel rounded-panel p-5 sm:p-6">
-                <p class="section-kicker">Profile</p>
-                <h2 class="mt-2 font-serif text-xl text-stone-950">Ledger file</h2>
-                <dl class="mt-4 space-y-2 text-sm">
-                    @foreach ($cardMeta['profile'] as $key => $value)
-                        @if (filled($value))
-                            <div class="flex items-baseline justify-between gap-4 border-b border-stone-900/8 pb-2 last:border-0">
-                                <dt class="form-label">{{ str($key)->replace('_', ' ')->title() }}</dt>
-                                <dd class="text-right font-semibold text-stone-900">{{ $value }}</dd>
-                            </div>
+                <p class="section-kicker">Other indexes</p>
+                <h2 class="mt-2 font-serif text-xl text-stone-950">Elsewhere in the ledger</h2>
+
+                <div class="mt-4 grid gap-2">
+                    @foreach (\App\Enums\IndexType::cases() as $otherType)
+                        @continue($otherType === $type)
+
+                        @php
+                            $otherParams = ['type' => $otherType->value];
+
+                            if (filled($monthFilter)) {
+                                $otherParams['month'] = $monthFilter;
+                            }
+
+                            if ($sourceMode === 'report' && $selectedReportTag) {
+                                $otherParams['scope'] = \App\Enums\IndexScope::Report->value;
+                                $otherParams['report'] = $selectedReportTag;
+                            } elseif ($selectedScope === \App\Enums\IndexScope::Unsaved) {
+                                $otherParams['scope'] = \App\Enums\IndexScope::Unsaved->value;
+                            }
+
+                            $otherSummary = $otherCards[$otherType->value] ?? null;
+                        @endphp
+
+                        @if ($otherSummary)
+                            <a href="{{ route('indexes.show', $otherParams) }}" class="secondary-link-card">
+                                <span class="text-sm font-semibold text-stone-900">{{ $otherType->label() }}</span>
+                                <span class="text-right text-xs font-semibold tabular-nums text-stone-600">
+                                    {{ $otherSummary['count'] }} {{ $otherSummary['count'] === 1 ? 'record' : 'records' }}<br>
+                                    {{ $otherSummary['total_label'] }}
+                                </span>
+                            </a>
                         @endif
                     @endforeach
-                </dl>
+                </div>
+            </section>
+
+            <section class="paper-panel rounded-panel p-5 sm:p-6">
+                <p class="section-kicker">Profile</p>
+                <h2 class="mt-2 font-serif text-xl text-stone-950">Ledger file</h2>
+                <p class="mt-2 font-mono text-xs text-stone-600">{{ $cardMeta['file_name'] }}</p>
+                <p class="mt-1 text-xs leading-5 text-stone-600">Synced from the vault when this page opens.</p>
+
+                @if (collect($cardMeta['profile'])->filter(fn ($value): bool => filled($value))->isNotEmpty())
+                    <dl class="mt-4 space-y-2 text-sm">
+                        @foreach ($cardMeta['profile'] as $key => $value)
+                            @if (filled($value))
+                                <div class="flex items-baseline justify-between gap-4 border-b border-stone-900/8 pb-2 last:border-0">
+                                    <dt class="form-label">{{ str($key)->replace('_', ' ')->title() }}</dt>
+                                    <dd class="text-right font-semibold text-stone-900">{{ $value }}</dd>
+                                </div>
+                            @endif
+                        @endforeach
+                    </dl>
+                @endif
             </section>
         </aside>
     </div>

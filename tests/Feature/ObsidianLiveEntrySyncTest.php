@@ -9,6 +9,7 @@ use App\Models\SocialApostolateEntry;
 use App\Services\ObsidianSyncService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ObsidianLiveEntrySyncTest extends TestCase
@@ -16,6 +17,7 @@ class ObsidianLiveEntrySyncTest extends TestCase
     use RefreshDatabase;
 
     private string $vaultPath = '';
+
     private ObsidianSyncService $syncService;
 
     protected function setUp(): void
@@ -344,7 +346,7 @@ MD);
             'title' => 'Legacy Entry',
             'time_in' => '15:00:00',
             'time_out' => '16:00:00',
-            'obsidian_record_uuid' => (string) \Illuminate\Support\Str::uuid(),
+            'obsidian_record_uuid' => (string) Str::uuid(),
             'obsidian_content_hash' => null,
             'obsidian_last_synced_at' => null,
             'obsidian_last_source' => null,

@@ -1,0 +1,314 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - button "Add entry" [ref=e5]:
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Add entry
+    - button "Choose entry type" [ref=e8]:
+      - generic [ref=e9]: ▾
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "Service Ledger YSLEP" [ref=e14] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e15]: YSLEP
+          - paragraph [ref=e16]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=e17]:
+          - menubar [ref=e18]:
+            - menuitem "Overview" [ref=e19] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e21] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e23] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e25] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e27] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e29] [cursor=pointer]: Academic Years
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - paragraph [ref=e36]: All Time
+              - heading "Formation" [level=1] [ref=e37]
+              - generic [ref=e38]:
+                - generic [ref=e39]: 13 entries
+                - generic [ref=e40]: ·
+                - generic [ref=e41]: 14 hr served
+                - generic [ref=e42]: 2025-2026
+            - button "+ Add Formation" [ref=e43]
+          - generic [ref=e44]:
+            - navigation "Record scope" [ref=e45]:
+              - link "All entries" [ref=e46] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation
+              - link "Unsaved only" [ref=e47] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/formation?scope=unsaved
+            - generic [ref=e48]:
+              - text: Saved report
+              - combobox "Saved report" [ref=e49]:
+                - option "Choose a report" [selected]
+                - option "AUGUST & SEPT '27"
+                - option "JULY '26"
+                - option "JUNE '26"
+                - option "MAY '26"
+                - option "APRIL '26"
+                - option "MARCH '26"
+                - option "FEB '26"
+                - option "JAN '26"
+                - option "DEC '25"
+                - option "NOV '25"
+                - option "OCT '25"
+                - option "AUG '25"
+                - option "SEPT '25"
+        - generic [ref=e50]:
+          - article [ref=e51]:
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - paragraph [ref=e54]: Ledger
+                - heading "All Time entries" [level=2] [ref=e55]
+              - paragraph [ref=e56]: 13 records
+            - generic [ref=e57]:
+              - generic [ref=e58]: Search records
+              - searchbox "Search records" [ref=e59]
+            - generic [ref=e60]:
+              - article [ref=e61]:
+                - generic [ref=e62]:
+                  - generic [ref=e63]:
+                    - generic [ref=e64]:
+                      - generic [ref=e65]:
+                        - img [ref=e66]
+                        - generic [ref=e68]: Live record
+                      - generic [ref=e69]: 1 hr
+                      - generic [ref=e70]:
+                        - img [ref=e71]
+                        - generic [ref=e73]: AUGUST & SEPT '27
+                    - paragraph [ref=e74]: C3 / M1 - Brotherly love
+                    - generic [ref=e75]:
+                      - generic [ref=e76]: August 16, 2026
+                      - generic [ref=e77]: 3:00 PM–4:00 PM
+                  - generic [ref=e78]:
+                    - button "Edit" [ref=e79] [cursor=pointer]
+                    - button "Delete" [ref=e81]
+              - article [ref=e82]:
+                - generic [ref=e83]:
+                  - generic [ref=e84]:
+                    - generic [ref=e85]:
+                      - generic [ref=e86]:
+                        - img [ref=e87]
+                        - generic [ref=e89]: Live record
+                      - generic [ref=e90]: 1 hr
+                      - generic [ref=e91]:
+                        - img [ref=e92]
+                        - generic [ref=e94]: JULY '26
+                    - paragraph [ref=e95]: C2 / M7 - what is my personal strength
+                    - generic [ref=e96]:
+                      - generic [ref=e97]: July 19, 2026
+                      - generic [ref=e98]: 2:00 PM–3:00 PM
+                  - generic [ref=e99]:
+                    - button "Edit" [ref=e100] [cursor=pointer]
+                    - button "Delete" [ref=e102]
+              - article [ref=e103]:
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - generic [ref=e106]:
+                      - generic [ref=e107]:
+                        - img [ref=e108]
+                        - generic [ref=e110]: Live record
+                      - generic [ref=e111]: 1 hr
+                      - generic [ref=e112]:
+                        - img [ref=e113]
+                        - generic [ref=e115]: JUNE '26
+                    - paragraph [ref=e116]: C2 / M9 - Becoming Your Best Self
+                    - generic [ref=e117]:
+                      - generic [ref=e118]: June 21, 2026
+                      - generic [ref=e119]: 2:00 PM–3:00 PM
+                  - generic [ref=e120]:
+                    - button "Edit" [ref=e121] [cursor=pointer]
+                    - button "Delete" [ref=e123]
+              - article [ref=e124]:
+                - generic [ref=e125]:
+                  - generic [ref=e126]:
+                    - generic [ref=e127]:
+                      - generic [ref=e128]:
+                        - img [ref=e129]
+                        - generic [ref=e131]: Live record
+                      - generic [ref=e132]: 1 hr
+                      - generic [ref=e133]:
+                        - img [ref=e134]
+                        - generic [ref=e136]: MAY '26
+                    - paragraph [ref=e137]: C0 / M0 - WALA NG MODULE/CYCLE
+                    - generic [ref=e138]:
+                      - generic [ref=e139]: May 23, 2026
+                      - generic [ref=e140]: 2:00 PM–3:00 PM
+                  - generic [ref=e141]:
+                    - button "Edit" [ref=e142] [cursor=pointer]
+                    - button "Delete" [ref=e144]
+              - article [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]:
+                    - generic [ref=e148]:
+                      - generic [ref=e149]:
+                        - img [ref=e150]
+                        - generic [ref=e152]: Live record
+                      - generic [ref=e153]: 1 hr
+                      - generic [ref=e154]:
+                        - img [ref=e155]
+                        - generic [ref=e157]: APRIL '26
+                    - paragraph [ref=e158]: C2 / M8 - Linking others to God
+                    - generic [ref=e159]:
+                      - generic [ref=e160]: April 1, 2026
+                      - generic [ref=e161]: 3:00 PM–4:00 PM
+                  - generic [ref=e162]:
+                    - button "Edit" [ref=e163] [cursor=pointer]
+                    - button "Delete" [ref=e165]
+              - article [ref=e166]:
+                - generic [ref=e167]:
+                  - generic [ref=e168]:
+                    - generic [ref=e169]:
+                      - generic [ref=e170]:
+                        - img [ref=e171]
+                        - generic [ref=e173]: Live record
+                      - generic [ref=e174]: 1 hr
+                      - generic [ref=e175]:
+                        - img [ref=e176]
+                        - generic [ref=e178]: MARCH '26
+                    - paragraph [ref=e179]: C2 / M7 - Servanthood a way of life
+                    - generic [ref=e180]:
+                      - generic [ref=e181]: March 21, 2026
+                      - generic [ref=e182]: 1:00 PM–2:00 PM
+                  - generic [ref=e183]:
+                    - button "Edit" [ref=e184] [cursor=pointer]
+                    - button "Delete" [ref=e186]
+              - article [ref=e187]:
+                - generic [ref=e188]:
+                  - generic [ref=e189]:
+                    - generic [ref=e190]:
+                      - generic [ref=e191]:
+                        - img [ref=e192]
+                        - generic [ref=e194]: Live record
+                      - generic [ref=e195]: 1 hr
+                      - generic [ref=e196]:
+                        - img [ref=e197]
+                        - generic [ref=e199]: FEB '26
+                    - paragraph [ref=e200]: C2 / M6 - Reaching out and touching lives
+                    - generic [ref=e201]:
+                      - generic [ref=e202]: February 1, 2026
+                      - generic [ref=e203]: 3:00 PM–4:00 PM
+                  - generic [ref=e204]:
+                    - button "Edit" [ref=e205] [cursor=pointer]
+                    - button "Delete" [ref=e207]
+              - article [ref=e208]:
+                - generic [ref=e209]:
+                  - generic [ref=e210]:
+                    - generic [ref=e211]:
+                      - generic [ref=e212]:
+                        - img [ref=e213]
+                        - generic [ref=e215]: Live record
+                      - generic [ref=e216]: 1 hr
+                      - generic [ref=e217]:
+                        - img [ref=e218]
+                        - generic [ref=e220]: JAN '26
+                    - paragraph [ref=e221]: C2 / M5 - Social Justice
+                    - generic [ref=e222]:
+                      - generic [ref=e223]: January 25, 2026
+                      - generic [ref=e224]: 2:00 PM–3:00 PM
+                  - generic [ref=e225]:
+                    - button "Edit" [ref=e226] [cursor=pointer]
+                    - button "Delete" [ref=e228]
+              - article [ref=e229]:
+                - generic [ref=e230]:
+                  - generic [ref=e231]:
+                    - generic [ref=e232]:
+                      - generic [ref=e233]:
+                        - img [ref=e234]
+                        - generic [ref=e236]: Live record
+                      - generic [ref=e237]: 2 hr
+                      - generic [ref=e238]:
+                        - img [ref=e239]
+                        - generic [ref=e241]: DEC '25
+                    - paragraph [ref=e242]: C2 / M4 - Jesus Is My Brother
+                    - generic [ref=e243]:
+                      - generic [ref=e244]: December 7, 2025
+                      - generic [ref=e245]: 2:00 PM–4:00 PM
+                  - generic [ref=e246]:
+                    - button "Edit" [ref=e247] [cursor=pointer]
+                    - button "Delete" [ref=e249]
+              - article [ref=e250]:
+                - generic [ref=e251]:
+                  - generic [ref=e252]:
+                    - generic [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]
+                        - generic [ref=e257]: Live record
+                      - generic [ref=e258]: 1 hr
+                      - generic [ref=e259]:
+                        - img [ref=e260]
+                        - generic [ref=e262]: NOV '25
+                    - paragraph [ref=e263]: C2 / M3 - Celebrating Brotherhood
+                    - generic [ref=e264]:
+                      - generic [ref=e265]: November 15, 2025
+                      - generic [ref=e266]: 3:00 PM–4:00 PM
+                  - generic [ref=e267]:
+                    - button "Edit" [ref=e268] [cursor=pointer]
+                    - button "Delete" [ref=e270]
+              - article [ref=e271]:
+                - generic [ref=e272]:
+                  - generic [ref=e273]:
+                    - generic [ref=e274]:
+                      - generic [ref=e275]:
+                        - img [ref=e276]
+                        - generic [ref=e278]: Live record
+                      - generic [ref=e279]: 1 hr
+                      - generic [ref=e280]:
+                        - img [ref=e281]
+                        - generic [ref=e283]: OCT '25
+                    - paragraph [ref=e284]: C2 / M2 - Honor Thy Parent
+                    - generic [ref=e285]:
+                      - generic [ref=e286]: October 2, 2025
+                      - generic [ref=e287]: 3:00 PM–4:00 PM
+                  - generic [ref=e288]:
+                    - button "Edit" [ref=e289] [cursor=pointer]
+                    - button "Delete" [ref=e291]
+              - article [ref=e292]:
+                - generic [ref=e293]:
+                  - generic [ref=e294]:
+                    - generic [ref=e295]:
+                      - generic [ref=e296]:
+                        - img [ref=e297]
+                        - generic [ref=e299]: Live record
+                      - generic [ref=e300]: 1 hr
+                      - generic [ref=e301]:
+                        - img [ref=e302]
+                        - generic [ref=e304]: SEPT '25
+                    - paragraph [ref=e305]: C2 / M1 - I Belong to a Family
+                    - generic [ref=e306]:
+                      - generic [ref=e307]: September 21, 2025
+                      - generic [ref=e308]: 3:00 PM–4:00 PM
+                  - generic [ref=e309]:
+                    - button "Edit" [ref=e310] [cursor=pointer]
+                    - button "Delete" [ref=e312]
+              - article [ref=e313]:
+                - generic [ref=e314]:
+                  - generic [ref=e315]:
+                    - generic [ref=e316]:
+                      - generic [ref=e317]:
+                        - img [ref=e318]
+                        - generic [ref=e320]: Live record
+                      - generic [ref=e321]: 1 hr
+                      - generic [ref=e322]:
+                        - img [ref=e323]
+                        - generic [ref=e325]: AUG '25
+                    - paragraph [ref=e326]: C1 / M8 - Called to Be a Steward
+                    - generic [ref=e327]:
+                      - generic [ref=e328]: August 1, 2025
+                      - generic [ref=e329]: 3:00 PM–4:00 PM
+                  - generic [ref=e330]:
+                    - button "Edit" [ref=e331] [cursor=pointer]
+                    - button "Delete" [ref=e333]
+          - complementary [ref=e334]:
+            - generic [ref=e335]:
+              - paragraph [ref=e336]: Profile
+              - heading "Ledger file" [level=2] [ref=e337]
+              - generic [ref=e339]:
+                - term [ref=e340]: School Year
+                - definition [ref=e341]: 2025-2026

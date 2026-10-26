@@ -53,6 +53,18 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
+        get selectedReportLabel() {
+            const reports = this.selectedIds.length;
+
+            return reports + (reports === 1 ? ' report' : ' reports');
+        },
+
+        get selectedRecordLabel() {
+            const records = this.selectedRecordCount;
+
+            return records + (records === 1 ? ' record' : ' records');
+        },
+
         get selectedRecordCount() {
             let total = 0;
             this.selectedIds.forEach((id) => {

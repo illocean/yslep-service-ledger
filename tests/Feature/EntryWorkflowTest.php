@@ -104,10 +104,32 @@ class EntryWorkflowTest extends TestCase
 
         $this->get(route('reports.show', $report))
             ->assertSee('action="'.route('reports.records.store', $report).'"', false)
+            ->assertSee('action="'.route('reports.records.update', [$report, $item]).'"', false)
             ->assertSee('name="index_type"', false)
             ->assertSee('name="_method" value="PATCH"', false);
         $this->get(route('indexes.show', ['type' => 'parish_involvement', 'scope' => 'report', 'report' => $report->tag]))
             ->assertSee('action="'.route('reports.records.store', $report).'"', false);
+    }
+
+    public function test_saved_report_edit_persists_without_changing_the_live_entry(): void
+    {
+        $report = $this->createReport();
+        $item = $report->items()->sole();
+        $liveEntry = IndexType::Formation->modelClass()::query()->findOrFail($item->source_entry_id);
+        $payload = $this->payload(IndexType::Formation);
+        unset($payload['type']);
+        $payload['index_type'] = IndexType::Formation->value;
+        $payload['title'] = 'Edited snapshot title';
+        $payload['academic_year'] = '2031-2032';
+
+        $this->patch(route('reports.records.update', [$report, $item]), $payload)
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('reports.show', $report));
+
+        $this->assertSame('Edited snapshot title', $item->fresh()->title);
+        $this->assertSame('2031-2032', $item->fresh()->academic_year);
+        $this->assertSame('Formation session', $liveEntry->fresh()->title);
+        $this->assertStringContainsString('Edited snapshot title', File::get($item->fresh()->obsidian_note_path));
     }
 
     public function test_removing_a_report_record_updates_totals_and_releases_the_live_entry(): void

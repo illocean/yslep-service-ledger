@@ -122,7 +122,7 @@ MD);
 
         $response->assertOk();
         $response->assertSee('service ledger from your three Obsidian inputs');
-        $response->assertSee('View All Reports');
+        $response->assertSee('View all reports');
         $response->assertSee('Locked in Reports');
         $response->assertSee('3 hr');
         $response->assertSee('2 hr 30 min');

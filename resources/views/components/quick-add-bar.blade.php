@@ -4,7 +4,7 @@
     @click.outside="menuOpen = false" @keydown.escape.window="menuOpen = false"
     @keydown.ctrl.k.window.prevent="menuOpen = !menuOpen"
     @keydown.meta.k.window.prevent="menuOpen = !menuOpen">
-    <div id="quick-add-options" x-cloak x-show="menuOpen" class="quick-add-options" aria-label="Choose entry type">
+    <div id="quick-add-options" x-cloak x-show="menuOpen" class="quick-add-options" role="group" aria-label="Choose entry type">
         <p class="section-kicker px-3 py-2">Add an entry</p>
         @foreach ($types as $type)
             <button type="button" class="quick-add-option" @click="openModal('{{ $type->value }}', '{{ $type->label() }}')" aria-haspopup="dialog">
@@ -13,10 +13,10 @@
         @endforeach
     </div>
     <div class="flex items-stretch gap-2">
-        <button type="button" class="primary-button" @click="quickAdd()" aria-haspopup="dialog">
-            <span aria-hidden="true">+</span> <span x-text="menuLabel">Add entry</span>
+        <button type="button" class="primary-button" @click="quickAdd()" :aria-label="menuLabel">
+            <span aria-hidden="true">+</span> <span class="quick-add-label" x-text="menuLabel">Add entry</span>
         </button>
-        <button type="button" class="primary-button" @click="menuOpen = !menuOpen"
+        <button type="button" class="primary-button quick-add-toggle" @click="menuOpen = !menuOpen"
             :aria-expanded="menuOpen" aria-controls="quick-add-options" aria-label="Choose entry type">
             <span aria-hidden="true">▾</span>
         </button>

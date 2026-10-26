@@ -1,0 +1,213 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - button "Add entry" [ref=e5]:
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Add entry
+    - button "Choose entry type" [ref=e8]:
+      - generic [ref=e9]: ▾
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "Service Ledger YSLEP" [ref=e14] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e15]: YSLEP
+          - paragraph [ref=e16]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - generic "Data sources" [ref=e17]:
+          - status "Live data from Obsidian" [ref=e18]: Live
+          - link "Saved reports" [ref=e19] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/reports
+            - text: Reports
+          - link "Academic year archives" [ref=e20] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/academic-year-snapshots
+            - text: Archives
+        - navigation "Main navigation" [ref=e21]:
+          - menubar [ref=e22]:
+            - menuitem "Overview" [ref=e23] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e25] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e27] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e29] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e31] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e33] [cursor=pointer]: Academic Years
+    - main [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - paragraph [ref=e40]: All Time
+              - heading "Parish Involvement" [level=1] [ref=e41]
+              - generic [ref=e42]:
+                - generic [ref=e43]: 5 entries
+                - generic [ref=e44]: ·
+                - generic [ref=e45]: 8 hr 30 min served
+                - link "March 2026 — clear month filter" [ref=e46] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/indexes/parish_involvement
+                  - text: March 2026
+                  - generic [ref=e47]: ×
+                  - generic [ref=e48]: — clear month filter
+                - generic [ref=e49]: 2025-2026
+            - button "+ Add Parish Involvement" [ref=e50]
+          - generic [ref=e51]:
+            - navigation "Record scope" [ref=e52]:
+              - link "All entries" [ref=e53] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement?month=2026-03
+              - link "Unsaved only" [ref=e54] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/indexes/parish_involvement?scope=unsaved&month=2026-03
+            - generic [ref=e55]:
+              - text: Saved report
+              - combobox "Saved report" [ref=e56]:
+                - option "Choose a report" [selected]
+                - option "AUGUST & SEPT '27"
+                - option "JULY '26"
+                - option "JUNE '26"
+                - option "MAY '26"
+                - option "APRIL '26"
+                - option "MARCH '26"
+                - option "FEB '26"
+                - option "JAN '26"
+                - option "DEC '25"
+                - option "NOV '25"
+                - option "OCT '25"
+                - option "AUG '25"
+                - option "SEPT '25"
+        - generic [ref=e57]:
+          - article [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - paragraph [ref=e61]: Ledger
+                - heading "All Time entries" [level=2] [ref=e62]
+              - paragraph [ref=e63]: 5 records
+            - generic [ref=e64]:
+              - generic [ref=e65]: Search records
+              - searchbox "Search records" [ref=e66]
+            - generic [ref=e67]:
+              - article [ref=e68]:
+                - generic [ref=e69]:
+                  - generic [ref=e70]:
+                    - generic [ref=e71]:
+                      - generic [ref=e72]:
+                        - img [ref=e73]
+                        - generic [ref=e75]: Live record
+                      - generic [ref=e76]: 2 hr
+                      - generic [ref=e77]:
+                        - img [ref=e78]
+                        - generic [ref=e80]: APRIL '26
+                      - 'generic "Conflict detected: both Obsidian and database have changes since last sync" [ref=e81]': Conflict
+                    - paragraph [ref=e82]: Parish Involvement
+                    - generic [ref=e83]:
+                      - generic [ref=e84]: March 29, 2026
+                      - generic [ref=e85]: 8:00 AM–10:00 AM
+                  - generic [ref=e86]:
+                    - button "Edit" [ref=e87] [cursor=pointer]
+                    - button "Delete" [ref=e89]
+                - generic [ref=e90]:
+                  - paragraph [ref=e91]: "This record has a conflict: both Obsidian and the database have changes since the last sync."
+                  - generic [ref=e92]:
+                    - button "Accept Vault Version" [ref=e94]
+                    - button "Accept Database Version" [ref=e96]
+              - article [ref=e97]:
+                - generic [ref=e98]:
+                  - generic [ref=e99]:
+                    - generic [ref=e100]:
+                      - generic [ref=e101]:
+                        - img [ref=e102]
+                        - generic [ref=e104]: Live record
+                      - generic [ref=e105]: 2 hr
+                      - generic [ref=e106]:
+                        - img [ref=e107]
+                        - generic [ref=e109]: APRIL '26
+                      - 'generic "Conflict detected: both Obsidian and database have changes since last sync" [ref=e110]': Conflict
+                    - paragraph [ref=e111]: Parish Involvement
+                    - generic [ref=e112]:
+                      - generic [ref=e113]: March 22, 2026
+                      - generic [ref=e114]: 8:00 AM–10:00 AM
+                  - generic [ref=e115]:
+                    - button "Edit" [ref=e116] [cursor=pointer]
+                    - button "Delete" [ref=e118]
+                - generic [ref=e119]:
+                  - paragraph [ref=e120]: "This record has a conflict: both Obsidian and the database have changes since the last sync."
+                  - generic [ref=e121]:
+                    - button "Accept Vault Version" [ref=e123]
+                    - button "Accept Database Version" [ref=e125]
+              - article [ref=e126]:
+                - generic [ref=e127]:
+                  - generic [ref=e128]:
+                    - generic [ref=e129]:
+                      - generic [ref=e130]:
+                        - img [ref=e131]
+                        - generic [ref=e133]: Live record
+                      - generic [ref=e134]: 1 hr 30 min
+                      - generic [ref=e135]:
+                        - img [ref=e136]
+                        - generic [ref=e138]: MARCH '26
+                      - 'generic "Conflict detected: both Obsidian and database have changes since last sync" [ref=e139]': Conflict
+                    - paragraph [ref=e140]: Parish Involvement
+                    - generic [ref=e141]:
+                      - generic [ref=e142]: March 15, 2026
+                      - generic [ref=e143]: 8:00 AM–9:30 AM
+                  - generic [ref=e144]:
+                    - button "Edit" [ref=e145] [cursor=pointer]
+                    - button "Delete" [ref=e147]
+                - generic [ref=e148]:
+                  - paragraph [ref=e149]: "This record has a conflict: both Obsidian and the database have changes since the last sync."
+                  - generic [ref=e150]:
+                    - button "Accept Vault Version" [ref=e152]
+                    - button "Accept Database Version" [ref=e154]
+              - article [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - generic [ref=e158]:
+                      - generic [ref=e159]:
+                        - img [ref=e160]
+                        - generic [ref=e162]: Live record
+                      - generic [ref=e163]: 1 hr 30 min
+                      - generic [ref=e164]:
+                        - img [ref=e165]
+                        - generic [ref=e167]: MARCH '26
+                      - 'generic "Conflict detected: both Obsidian and database have changes since last sync" [ref=e168]': Conflict
+                    - paragraph [ref=e169]: Parish Involvement
+                    - generic [ref=e170]:
+                      - generic [ref=e171]: March 8, 2026
+                      - generic [ref=e172]: 8:00 AM–9:30 AM
+                  - generic [ref=e173]:
+                    - button "Edit" [ref=e174] [cursor=pointer]
+                    - button "Delete" [ref=e176]
+                - generic [ref=e177]:
+                  - paragraph [ref=e178]: "This record has a conflict: both Obsidian and the database have changes since the last sync."
+                  - generic [ref=e179]:
+                    - button "Accept Vault Version" [ref=e181]
+                    - button "Accept Database Version" [ref=e183]
+              - article [ref=e184]:
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]:
+                      - generic [ref=e188]:
+                        - img [ref=e189]
+                        - generic [ref=e191]: Live record
+                      - generic [ref=e192]: 1 hr 30 min
+                      - generic [ref=e193]:
+                        - img [ref=e194]
+                        - generic [ref=e196]: MARCH '26
+                      - 'generic "Conflict detected: both Obsidian and database have changes since last sync" [ref=e197]': Conflict
+                    - paragraph [ref=e198]: Parish Involvement
+                    - generic [ref=e199]:
+                      - generic [ref=e200]: March 1, 2026
+                      - generic [ref=e201]: 8:00 AM–9:30 AM
+                  - generic [ref=e202]:
+                    - button "Edit" [ref=e203] [cursor=pointer]
+                    - button "Delete" [ref=e205]
+                - generic [ref=e206]:
+                  - paragraph [ref=e207]: "This record has a conflict: both Obsidian and the database have changes since the last sync."
+                  - generic [ref=e208]:
+                    - button "Accept Vault Version" [ref=e210]
+                    - button "Accept Database Version" [ref=e212]
+          - complementary [ref=e213]:
+            - generic [ref=e214]:
+              - paragraph [ref=e215]: Profile
+              - heading "Ledger file" [level=2] [ref=e216]
+              - generic [ref=e218]:
+                - term [ref=e219]: School Year
+                - definition [ref=e220]: 2025-2026

@@ -7,6 +7,7 @@ use App\Enums\IndexType;
 use App\Http\Controllers\Concerns\BuildsReportScopeData;
 use App\Services\ObsidianSyncService;
 use App\Services\ReportGroupService;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -33,6 +34,17 @@ class IndexPageController extends Controller
         $entries = $this->scopedEntriesForType($indexType, $selectedScope, $selectedReportGroup)
             ->sortByDesc(fn ($entry): array => [$entry->served_on?->getTimestamp(), $entry->source_order])
             ->values();
+
+        // Optional month lens from the dashboard chart drill-in (?month=2025-09).
+        $monthFilter = $request->string('month')->toString();
+        $monthFilter = preg_match('/^\d{4}-\d{2}$/', $monthFilter) === 1 ? $monthFilter : '';
+
+        if ($monthFilter !== '') {
+            $entries = $entries
+                ->filter(fn ($entry): bool => $entry->served_on?->format('Y-m') === $monthFilter)
+                ->values();
+        }
+
         $summary = $this->summaryForType($indexType, $entries);
         $cardMeta = $syncService->cardMeta($indexType);
         $otherCards = [];
@@ -61,6 +73,8 @@ class IndexPageController extends Controller
             'selectedReportTag' => $selectedReportGroup?->tag,
             'selectedScope' => $selectedScope,
             'selectedScopeLabel' => $selectedScopeLabel,
+            'monthFilter' => $monthFilter,
+            'monthLabel' => $monthFilter === '' ? null : CarbonImmutable::createFromFormat('Y-m', $monthFilter)->format('F Y'),
             'reportGroups' => $reportGroups,
             'sourceMode' => $selectedScope->isLive() ? 'live' : 'report',
             'assignedReportLookup' => $assignedReportLookup,

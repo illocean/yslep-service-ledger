@@ -1,0 +1,194 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "Service Ledger YSLEP" [ref=e7] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e8]: YSLEP
+          - paragraph [ref=e9]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - generic "Data source" [ref=e10]:
+          - status "Live data from Obsidian" [ref=e11]: Obsidian live
+        - navigation "Main navigation" [ref=e12]:
+          - menubar [ref=e13]:
+            - menuitem "Overview" [ref=e14] [cursor=pointer]
+            - menuitem "Formation" [ref=e16] [cursor=pointer]
+            - menuitem "Parish Involvement" [ref=e18] [cursor=pointer]
+            - menuitem "Social Apostolate" [ref=e20] [cursor=pointer]
+            - menuitem "Reports" [ref=e22] [cursor=pointer]
+            - menuitem "Academic Years" [ref=e24] [cursor=pointer]
+        - generic [ref=e27]:
+          - button "Add entry" [ref=e28]:
+            - generic [aria-hidden] [ref=e29]: +
+          - button "Choose entry type" [ref=e31]:
+            - generic [aria-hidden] [ref=e32]: ▾
+    - main [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - paragraph [ref=e38]: Reports
+            - heading "Saved reports, ready to review and archive." [level=1] [ref=e39]
+            - paragraph [ref=e40]: Each report keeps a frozen copy of its records until you delete it.
+            - generic [ref=e41]:
+              - generic [ref=e42]:
+                - term [ref=e43]: Reports
+                - definition [ref=e44]: "14"
+              - generic [ref=e45]:
+                - term [ref=e46]: Records
+                - definition [ref=e47]: "129"
+              - generic [ref=e48]:
+                - term [ref=e49]: Hours
+                - definition [ref=e50]: 205 hr
+          - generic [ref=e51]:
+            - button "Sync from Obsidian" [ref=e53]
+            - generic [ref=e54]: All live entries are saved
+        - region [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - heading "Saved report register" [level=2] [ref=e58]
+              - paragraph [ref=e59]: Newest first. Open a report to review its records or rename it.
+            - generic [ref=e60]: 14 reports
+          - list [ref=e61]:
+            - listitem [ref=e62]:
+              - link "OCT '26" [ref=e64] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20261026-134630-P33B
+                - text: OCT '26 →
+              - generic [ref=e65]: 9 records
+              - generic [ref=e66]: 17 hr
+              - generic [ref=e67]:
+                - generic [ref=e68]: Formation 1
+                - generic [ref=e69]: Parish Involvement 5
+                - generic [ref=e70]: Social Apostolate 3
+            - listitem [ref=e71]:
+              - link "AUGUST & SEPT '27" [ref=e73] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260924-181146-CS2L
+                - text: AUGUST & SEPT '27 →
+              - generic [ref=e74]: 15 records
+              - generic [ref=e75]: 28 hr
+              - generic [ref=e76]:
+                - generic [ref=e77]: Formation 2
+                - generic [ref=e78]: Parish Involvement 8
+                - generic [ref=e79]: Social Apostolate 5
+            - listitem [ref=e80]:
+              - link "JULY '26" [ref=e82] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260801-152416-FBVV
+                - text: JULY '26 →
+              - generic [ref=e83]: 9 records
+              - generic [ref=e84]: 17 hr
+              - generic [ref=e85]:
+                - generic [ref=e86]: Formation 1
+                - generic [ref=e87]: Parish Involvement 5
+                - generic [ref=e88]: Social Apostolate 3
+            - listitem [ref=e89]:
+              - link "JUNE '26" [ref=e91] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260628-155000-NGEL
+                - text: JUNE '26 →
+              - generic [ref=e92]: 8 records
+              - generic [ref=e93]: 15 hr
+              - generic [ref=e94]:
+                - generic [ref=e95]: Formation 1
+                - generic [ref=e96]: Parish Involvement 4
+                - generic [ref=e97]: Social Apostolate 3
+            - listitem [ref=e98]:
+              - link "MAY '26" [ref=e100] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260523-133015-PJFY
+                - text: MAY '26 →
+              - generic [ref=e101]: 9 records
+              - generic [ref=e102]: 17 hr
+              - generic [ref=e103]:
+                - generic [ref=e104]: Formation 1
+                - generic [ref=e105]: Parish Involvement 5
+                - generic [ref=e106]: Social Apostolate 3
+            - listitem [ref=e107]:
+              - link "APRIL '26" [ref=e109] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260428-144236-0XY7
+                - text: APRIL '26 →
+              - generic [ref=e110]: 10 records
+              - generic [ref=e111]: 16 hr
+              - generic [ref=e112]:
+                - generic [ref=e113]: Formation 1
+                - generic [ref=e114]: Parish Involvement 6
+                - generic [ref=e115]: Social Apostolate 3
+            - listitem [ref=e116]:
+              - link "MARCH '26" [ref=e118] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260405-111211-9OYP
+                - text: MARCH '26 →
+              - generic [ref=e119]: 10 records
+              - generic [ref=e120]: 18 hr 30 min
+              - generic [ref=e121]:
+                - generic [ref=e122]: Formation 1
+                - generic [ref=e123]: Parish Involvement 5
+                - generic [ref=e124]: Social Apostolate 4
+            - listitem [ref=e125]:
+              - link "FEB '26" [ref=e127] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233739-N2HN
+                - text: FEB '26 →
+              - generic [ref=e128]: 8 records
+              - generic [ref=e129]: 10 hr
+              - generic [ref=e130]:
+                - generic [ref=e131]: Formation 1
+                - generic [ref=e132]: Parish Involvement 4
+                - generic [ref=e133]: Social Apostolate 3
+            - listitem [ref=e134]:
+              - link "JAN '26" [ref=e136] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-233319-FHIA
+                - text: JAN '26 →
+              - generic [ref=e137]: 10 records
+              - generic [ref=e138]: 13 hr 30 min
+              - generic [ref=e139]:
+                - generic [ref=e140]: Formation 1
+                - generic [ref=e141]: Parish Involvement 5
+                - generic [ref=e142]: Social Apostolate 4
+            - listitem [ref=e143]:
+              - link "DEC '25" [ref=e145] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232900-GN2K
+                - text: DEC '25 →
+              - generic [ref=e146]: 8 records
+              - generic [ref=e147]: 14 hr
+              - generic [ref=e148]:
+                - generic [ref=e149]: Formation 1
+                - generic [ref=e150]: Parish Involvement 4
+                - generic [ref=e151]: Social Apostolate 3
+            - listitem [ref=e152]:
+              - link "NOV '25" [ref=e154] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232717-UBDS
+                - text: NOV '25 →
+              - generic [ref=e155]: 10 records
+              - generic [ref=e156]: 14 hr
+              - generic [ref=e157]:
+                - generic [ref=e158]: Formation 1
+                - generic [ref=e159]: Parish Involvement 6
+                - generic [ref=e160]: Social Apostolate 3
+            - listitem [ref=e161]:
+              - link "OCT '25" [ref=e163] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232646-NANA
+                - text: OCT '25 →
+              - generic [ref=e164]: 7 records
+              - generic [ref=e165]: 9 hr
+              - generic [ref=e166]:
+                - generic [ref=e167]: Formation 1
+                - generic [ref=e168]: Parish Involvement 4
+                - generic [ref=e169]: Social Apostolate 2
+            - listitem [ref=e170]:
+              - link "AUG '25" [ref=e172] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-232539-QYP3
+                - text: AUG '25 →
+              - generic [ref=e173]: 9 records
+              - generic [ref=e174]: 9 hr
+              - generic [ref=e175]:
+                - generic [ref=e176]: Formation 1
+                - generic [ref=e177]: Parish Involvement 6
+                - generic [ref=e178]: Social Apostolate 2
+            - listitem [ref=e179]:
+              - link "SEPT '25" [ref=e181] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports/RPT-20260331-231839-MMDO
+                - text: SEPT '25 →
+              - generic [ref=e182]: 7 records
+              - generic [ref=e183]: 7 hr
+              - generic [ref=e184]:
+                - generic [ref=e185]: Formation 1
+                - generic [ref=e186]: Parish Involvement 4
+                - generic [ref=e187]: Social Apostolate 2

@@ -293,6 +293,56 @@ MD);
         $this->assertStringContainsString('I Belong to a Family', $content);
     }
 
+    public function test_saved_report_index_renders_tag_routes_and_post_conflict_forms(): void
+    {
+        $this->get('/')->assertOk();
+
+        $entry = FormationEntry::query()->orderBy('id')->firstOrFail();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Rendered tag report',
+            'selected_entries' => [
+                'formation:'.$entry->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->firstOrFail();
+        $reportItem = ReportGroupItem::query()->where('report_group_id', $reportGroup->id)->firstOrFail();
+        $reportItem->update(['obsidian_conflict' => true]);
+
+        $response = $this->get(route('indexes.show', [
+            'type' => 'formation',
+            'scope' => 'report',
+            'report' => $reportGroup->tag,
+        ]));
+
+        $response->assertOk();
+        $content = $response->getContent();
+
+        $this->assertStringContainsString('action="'.route('reports.records.update', [$reportGroup, $reportItem]).'"', $content);
+        $this->assertStringContainsString('action="'.route('reports.records.destroy', [$reportGroup, $reportItem]).'"', $content);
+        $this->assertStringContainsString('action="'.route('reports.records.conflict.accept-vault', [$reportGroup, $reportItem]).'"', $content);
+        $this->assertStringContainsString('action="'.route('reports.records.conflict.accept-db', [$reportGroup, $reportItem]).'"', $content);
+
+        $numericIdUrl = route('reports.records.update', [$reportGroup->id, $reportItem->id]);
+        $this->assertStringNotContainsString('action="'.$numericIdUrl.'"', $content);
+
+        $dom = new \DOMDocument;
+        @$dom->loadHTML($content);
+        $xpath = new \DOMXPath($dom);
+        $conflictForms = $xpath->query('//form[contains(@action, "/conflict/")]');
+
+        $this->assertGreaterThan(0, $conflictForms->length);
+
+        foreach ($conflictForms as $form) {
+            $this->assertSame(
+                0,
+                $xpath->query('.//input[@name="_method"]', $form)->length,
+                'Conflict actions are POST routes and must not spoof PATCH.',
+            );
+        }
+    }
+
     public function test_saved_scope_record_changes_from_the_index_page_redirect_back_to_the_same_saved_scope(): void
     {
         $this->get('/')->assertOk();

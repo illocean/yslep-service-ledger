@@ -1,0 +1,198 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - button "Add entry" [ref=e5]:
+      - generic [ref=e6]: +
+      - generic [ref=e7]: Add entry
+    - button "Choose entry type" [ref=e8]:
+      - generic [ref=e9]: ▾
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "Service Ledger YSLEP" [ref=e14] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000
+            - text: Service Ledger
+            - generic [ref=e15]: YSLEP
+          - paragraph [ref=e16]: Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.
+        - navigation "Main navigation" [ref=e17]:
+          - menubar [ref=e18]:
+            - menuitem "Overview" [ref=e19] [cursor=pointer]: Overview
+            - menuitem "Formation" [ref=e21] [cursor=pointer]: Formation
+            - menuitem "Parish Involvement" [ref=e23] [cursor=pointer]: Parish Involvement
+            - menuitem "Social Apostolate" [ref=e25] [cursor=pointer]: Social Apostolate
+            - menuitem "Reports" [ref=e27] [cursor=pointer]: Reports
+            - menuitem "Academic Years" [ref=e29] [cursor=pointer]: Academic Years
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: Academic Year Snapshots
+            - heading "Collect reports for an academic year." [level=1] [ref=e37]
+            - paragraph [ref=e38]:
+              - text: Choose the year and reports yourself. Nothing is archived until you create a snapshot; saved reports stay in
+              - link "Reports" [ref=e39] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/reports
+              - text: .
+          - generic [ref=e40]:
+            - generic [ref=e41]:
+              - generic [ref=e42]: Snapshots
+              - generic [ref=e43]: "04"
+            - generic [ref=e44]:
+              - generic [ref=e45]: Available Reports
+              - generic [ref=e46]: "01"
+            - generic [ref=e47]:
+              - generic [ref=e48]: Obsidian Snapshot File
+              - generic [ref=e49]: C:/Users/andador kim phillip/Desktop/NOTES-OBSIDIAN/!YSLEP\ACADEMIC YEAR SNAPSHOTS.md
+        - generic [ref=e50]:
+          - paragraph [ref=e51]: Current Snapshots
+          - generic [ref=e52]:
+            - link "Test AY 2025-2026 Final Archive 2 reports | 17 records Open" [ref=e53] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-232921-DLBZ
+              - generic [ref=e54]:
+                - generic [ref=e55]: Test AY 2025-2026 Final Archive
+                - generic [ref=e56]: 2 reports | 17 records
+              - generic [ref=e57]: Open
+            - link "Test AY 2025-2026 1 report | 9 records Open" [ref=e58] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-165649-VFRW
+              - generic [ref=e59]:
+                - generic [ref=e60]: Test AY 2025-2026
+                - generic [ref=e61]: 1 report | 9 records
+              - generic [ref=e62]: Open
+            - link "APRIL MMR 4 reports | 39 records Open" [ref=e63] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+              - generic [ref=e64]:
+                - generic [ref=e65]: APRIL MMR
+                - generic [ref=e66]: 4 reports | 39 records
+              - generic [ref=e67]: Open
+            - link "1ST YEAR 5 reports | 41 records Open" [ref=e68] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+              - generic [ref=e69]:
+                - generic [ref=e70]: 1ST YEAR
+                - generic [ref=e71]: 5 reports | 41 records
+              - generic [ref=e72]: Open
+        - generic [ref=e73]:
+          - article [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e76]:
+                - generic [ref=e77]: Create Snapshot
+                - heading "Select available saved reports" [level=2] [ref=e78]
+                - paragraph [ref=e79]: Select the reports to include. Reports already in a snapshot stay assigned to that year and cannot be moved automatically.
+              - generic [ref=e80]: 0 selected
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - text: Academic year *
+                - combobox "Academic year *" [ref=e83]
+                - paragraph [ref=e84]: Choose an existing year or enter a new one.
+              - generic [ref=e85]:
+                - generic [ref=e86]:
+                  - text: Snapshot title
+                  - textbox "Snapshot title" [ref=e87]:
+                    - /placeholder: "Example: AY 2025-2026 Final Archive"
+                - generic [ref=e88]:
+                  - generic [ref=e89]:
+                    - generic [ref=e90]: Available
+                    - generic [ref=e91]: 1 report
+                  - generic [ref=e92]:
+                    - generic [ref=e93]: Archived
+                    - generic [ref=e94]: 12 included
+                - button "Create Academic Year Snapshot" [disabled] [ref=e96]
+              - generic [ref=e98]:
+                - button "Select all" [ref=e99]
+                - button "Clear" [ref=e100]
+                - button "All" [ref=e101] [cursor=pointer]
+                - button "Formation" [ref=e102] [cursor=pointer]
+                - button "Parish Involvement" [ref=e103] [cursor=pointer]
+                - button "Social Apostolate" [ref=e104] [cursor=pointer]
+              - generic [ref=e106] [cursor=pointer]:
+                - generic [ref=e107]:
+                  - checkbox "Saved Report AUGUST & SEPT '27 RPT-20260924-181146-CS2L | saved Sep 24, 2026 15 records 28 hr Formation 2 Parish Involvement 8 Social Apostolate 5" [ref=e108]
+                  - generic [ref=e109]:
+                    - generic [ref=e110]: Saved Report
+                    - generic [ref=e111]: AUGUST & SEPT '27
+                    - generic [ref=e112]: RPT-20260924-181146-CS2L | saved Sep 24, 2026
+                - generic [ref=e113]:
+                  - generic [ref=e114]: 15 records
+                  - generic [ref=e115]: 28 hr
+                  - generic [ref=e116]: Formation 2
+                  - generic [ref=e117]: Parish Involvement 8
+                  - generic [ref=e118]: Social Apostolate 5
+          - complementary [ref=e119]:
+            - article [ref=e120]:
+              - generic [ref=e121]: Already Archived
+              - heading "Included in snapshots" [level=2] [ref=e122]
+              - paragraph [ref=e123]: These reports were included in a snapshot. Open it to review the year and contents.
+              - generic [ref=e124]:
+                - generic [ref=e125]:
+                  - generic [ref=e126]:
+                    - generic [ref=e127]: JULY '26
+                    - generic [ref=e128]: In Test AY 2025-2026
+                  - link "Open" [ref=e129] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-165649-VFRW
+                - generic [ref=e130]:
+                  - generic [ref=e131]:
+                    - generic [ref=e132]: JUNE '26
+                    - generic [ref=e133]: In Test AY 2025-2026 Final Archive
+                  - link "Open" [ref=e134] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-232921-DLBZ
+                - generic [ref=e135]:
+                  - generic [ref=e136]:
+                    - generic [ref=e137]: MAY '26
+                    - generic [ref=e138]: In Test AY 2025-2026 Final Archive
+                  - link "Open" [ref=e139] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260830-232921-DLBZ
+                - generic [ref=e140]:
+                  - generic [ref=e141]:
+                    - generic [ref=e142]: APRIL '26
+                    - generic [ref=e143]: In APRIL MMR
+                  - link "Open" [ref=e144] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=e145]:
+                  - generic [ref=e146]:
+                    - generic [ref=e147]: MARCH '26
+                    - generic [ref=e148]: In APRIL MMR
+                  - link "Open" [ref=e149] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=e150]:
+                  - generic [ref=e151]:
+                    - generic [ref=e152]: FEB '26
+                    - generic [ref=e153]: In APRIL MMR
+                  - link "Open" [ref=e154] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=e155]:
+                  - generic [ref=e156]:
+                    - generic [ref=e157]: JAN '26
+                    - generic [ref=e158]: In APRIL MMR
+                  - link "Open" [ref=e159] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260428-144310-RCUE
+                - generic [ref=e160]:
+                  - generic [ref=e161]:
+                    - generic [ref=e162]: DEC '25
+                    - generic [ref=e163]: In 1ST YEAR
+                  - link "Open" [ref=e164] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: NOV '25
+                    - generic [ref=e168]: In 1ST YEAR
+                  - link "Open" [ref=e169] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=e170]:
+                  - generic [ref=e171]:
+                    - generic [ref=e172]: OCT '25
+                    - generic [ref=e173]: In 1ST YEAR
+                  - link "Open" [ref=e174] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=e175]:
+                  - generic [ref=e176]:
+                    - generic [ref=e177]: AUG '25
+                    - generic [ref=e178]: In 1ST YEAR
+                  - link "Open" [ref=e179] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: SEPT '25
+                    - generic [ref=e183]: In 1ST YEAR
+                  - link "Open" [ref=e184] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8000/academic-year-snapshots/AYS-20252026-20260418-164645-IZI6
