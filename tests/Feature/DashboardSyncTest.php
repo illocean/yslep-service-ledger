@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\AcademicYearSnapshot;
 use App\Models\FormationEntry;
+use App\Models\ParishInvolvementEntry;
 use App\Models\ReportGroup;
 use App\Models\SocialApostolateEntry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -76,10 +77,10 @@ entry_options:
 
 ## Service Records
 
-| Date | Time In | Time Out |
-| --- | --- | --- |
-| September 7, 2025 | 6:30 PM | 7:30 PM |
-| September 14, 2025 | 6:00 PM | 7:30 PM |
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM |
+| September 14, 2025 | Parish service | 6:00 PM | 7:30 PM |
 MD);
 
         File::put($this->vaultPath.DIRECTORY_SEPARATOR.'SOCIAL APOSTOLATE.md', <<<'MD'
@@ -131,6 +132,8 @@ MD);
         $response->assertSee('ready to save');
         $response->assertSee('data-open-save-group-builder', false);
         $response->assertSee('id="save-group-builder"', false);
+        // The recent list must show what the Parish entry was, not just the type name.
+        $response->assertSee('Parish service');
 
         $this->assertDatabaseCount('formation_entries', 2);
         $this->assertDatabaseCount('parish_involvement_entries', 2);
@@ -349,6 +352,52 @@ MD);
         $this->assertStringContainsString('AY 2025-2026 Final Archive', File::get($this->vaultPath.DIRECTORY_SEPARATOR.'ACADEMIC YEAR SNAPSHOTS.md'));
         $this->assertStringContainsString('Formation archive', File::get($this->vaultPath.DIRECTORY_SEPARATOR.'ACADEMIC YEAR SNAPSHOTS.md'));
         $this->assertStringContainsString('Social archive', File::get($this->vaultPath.DIRECTORY_SEPARATOR.'ACADEMIC YEAR SNAPSHOTS.md'));
+    }
+
+    public function test_saved_report_markdown_table_uses_the_parish_activity(): void
+    {
+        $this->get('/')->assertOk();
+
+        $parishEntry = ParishInvolvementEntry::query()->orderBy('id')->firstOrFail();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Parish archive',
+            'selected_entries' => [
+                'parish_involvement:'.$parishEntry->id,
+            ],
+        ])->assertRedirect();
+
+        $this->assertStringContainsString(
+            '| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM | 1 hr |',
+            File::get($this->vaultPath.DIRECTORY_SEPARATOR.'REPORT GROUPS.md'),
+        );
+    }
+
+    public function test_academic_year_snapshot_markdown_table_uses_the_parish_activity(): void
+    {
+        $this->get('/')->assertOk();
+
+        $parishEntry = ParishInvolvementEntry::query()->orderBy('id')->firstOrFail();
+
+        $this->post(route('report-groups.store'), [
+            'title' => 'Parish archive',
+            'selected_entries' => [
+                'parish_involvement:'.$parishEntry->id,
+            ],
+        ])->assertRedirect();
+
+        $reportGroup = ReportGroup::query()->firstOrFail();
+
+        $this->post(route('academic-year-snapshots.store'), [
+            'title' => 'Parish snapshot',
+            'academic_year' => '2025-2026',
+            'selected_report_groups' => [$reportGroup->id],
+        ])->assertRedirect();
+
+        $this->assertStringContainsString(
+            '| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM | 1 hr |',
+            File::get($this->vaultPath.DIRECTORY_SEPARATOR.'ACADEMIC YEAR SNAPSHOTS.md'),
+        );
     }
 
     public function test_academic_year_snapshot_picker_hides_saved_reports_that_are_already_archived(): void

@@ -76,10 +76,42 @@ MD);
         $response->assertSee('data-save-group-card="formation"', false);
         $response->assertSee('Build a saved report from unassigned live entries');
         $response->assertSee('No reports yet');
+        $this->assertStringNotContainsString('<details', $response->getContent());
         $this->assertMatchesRegularExpression(
-            '/<details id="save-group-builder"[^>]*\bopen\b/',
+            '/<section[^>]*id="save-group-builder"[^>]*>/',
             $response->getContent(),
-            'The builder should start open while there are no saved reports to manage.',
+            'The builder should always render as a visible panel (no <details> toggle).',
         );
+    }
+
+    public function test_save_group_builder_shows_the_parish_activity_in_details(): void
+    {
+        File::put($this->vaultPath.DIRECTORY_SEPARATOR.'PARISH INVOLVEMENT.md', <<<'MD'
+---
+index: parish_involvement
+card_title: Parish Involvement Index Card
+profile:
+  school_year: "2025-2026"
+entry_options:
+  academic_years:
+    - "2025-2026"
+---
+# Parish Involvement Index Card
+
+## Service Records
+
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM |
+MD);
+
+        app(ObsidianSyncService::class)->syncIndex(IndexType::ParishInvolvement);
+
+        $response = $this->get(route('reports.index'));
+
+        $response->assertOk();
+        $response->assertSee('data-save-group-card="parish_involvement"', false);
+        $response->assertSee('Parish service');
+        $this->assertStringNotContainsString('<div>Parish Involvement</div>', $response->getContent());
     }
 }

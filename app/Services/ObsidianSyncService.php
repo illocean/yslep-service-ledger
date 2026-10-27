@@ -256,6 +256,7 @@ class ObsidianSyncService
             IndexType::Formation => $this->withFormationFields($normalized, $record),
             IndexType::ParishInvolvement => [
                 ...$normalized,
+                'about' => trim((string) Arr::get($record, 'about', '')),
                 'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
             ],
             IndexType::SocialApostolate => [
@@ -417,11 +418,13 @@ class ObsidianSyncService
             }
 
             $index = array_flip($table['headers']);
+            $aboutKey = array_key_exists('activity', $index) ? 'activity' : (array_key_exists('about', $index) ? 'about' : null);
             $roleKey = array_key_exists('role', $index) ? 'role' : (array_key_exists('role in activity', $index) ? 'role in activity' : null);
 
             foreach ($table['rows'] as $row) {
                 $records[] = [
                     'served_on' => $this->normalizeDate($row[$index['date']] ?? null),
+                    'about' => $aboutKey ? trim((string) ($row[$index[$aboutKey]] ?? '')) : '',
                     'role_in_activity' => $roleKey ? trim((string) ($row[$index[$roleKey]] ?? '')) : null,
                     'time_start' => $this->normalizeTime($row[$index['timein']] ?? null),
                     'time_end' => $this->normalizeTime($row[$index['timeout']] ?? null),
@@ -640,11 +643,12 @@ class ObsidianSyncService
             ],
             IndexType::ParishInvolvement => [
                 ...$normalized,
-                'role_in_activity' => $record['role_in_activity'] ?? null,
+                'about' => trim((string) Arr::get($record, 'about', '')),
+                'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
             ],
             IndexType::SocialApostolate => [
                 ...$normalized,
-                'about' => trim((string) Arr::get($record, 'about')),
+                'about' => trim((string) Arr::get($record, 'about', '')),
                 'role_in_activity' => Arr::get($record, 'role_in_activity') ? trim((string) Arr::get($record, 'role_in_activity')) : null,
             ],
         };
@@ -792,7 +796,7 @@ class ObsidianSyncService
     {
         return match ($type) {
             IndexType::Formation => ['Date', 'Cycle No.', 'Module No.', 'Title', 'Time In', 'Time Out'],
-            IndexType::ParishInvolvement => ['Date', 'Role', 'Time In', 'Time Out'],
+            IndexType::ParishInvolvement => ['Date', 'Activity', 'Role', 'Time In', 'Time Out'],
             IndexType::SocialApostolate => ['Date', 'Activity', 'Role', 'Time In', 'Time Out'],
         };
     }
@@ -810,6 +814,7 @@ class ObsidianSyncService
             ],
             IndexType::ParishInvolvement => [
                 $this->formatDateForMarkdown($record['served_on'] ?? null),
+                str_replace('|', '/', $record['about'] ?? ''),
                 str_replace('|', '/', $record['role_in_activity'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_start'] ?? ''),
                 $this->formatTimeForMarkdown($record['time_end'] ?? ''),
@@ -845,7 +850,17 @@ class ObsidianSyncService
             return '';
         }
 
-        return CarbonImmutable::createFromFormat('H:i:s', $time, config('app.timezone'))->format('g:i A');
+        // Handle both "H:i:s" (8 chars) and "H:i" (5 chars) time strings.
+        // createFromFormat throws on format mismatch, so try the most specific first.
+        foreach (['H:i:s', 'H:i'] as $format) {
+            try {
+                return CarbonImmutable::createFromFormat($format, $time, config('app.timezone'))->format('g:i A');
+            } catch (\Throwable) {
+                continue;
+            }
+        }
+
+        return '';
     }
 
     private function strikeValue(string $value): string
@@ -908,7 +923,13 @@ class ObsidianSyncService
                     ...array_column($records, 'title'),
                 ]),
             ],
-            IndexType::ParishInvolvement => $defaults,
+            IndexType::ParishInvolvement => [
+                ...$defaults,
+                'activities' => $this->normalizeOptionList([
+                    'Parish Service',
+                    ...array_column($records, 'about'),
+                ]),
+            ],
             IndexType::SocialApostolate => [
                 ...$defaults,
                 'activities' => $this->normalizeOptionList([
@@ -932,6 +953,7 @@ class ObsidianSyncService
             ],
             IndexType::ParishInvolvement => [
                 'academic_years' => $this->mergeOptionLists($defaults['academic_years'], Arr::get($entryOptions, 'academic_years', [])),
+                'activities' => $this->mergeOptionLists($defaults['activities'], Arr::get($entryOptions, 'activities', [])),
             ],
             IndexType::SocialApostolate => [
                 'academic_years' => $this->mergeOptionLists($defaults['academic_years'], Arr::get($entryOptions, 'academic_years', [])),
@@ -1246,6 +1268,8 @@ class ObsidianSyncService
                 $record['served_on'] ?? '',
                 $record['time_start'] ?? '',
                 $record['time_end'] ?? '',
+                $record['about'] ?? '',
+                $record['role_in_activity'] ?? '',
             ]),
             IndexType::SocialApostolate => implode('|', [
                 $record['served_on'] ?? '',
@@ -1277,6 +1301,8 @@ class ObsidianSyncService
                 $entry->served_on?->toDateString() ?? $entry->getRawOriginal('served_on') ?? '',
                 $entry->getRawOriginal('time_start') ?? '',
                 $entry->getRawOriginal('time_end') ?? '',
+                $entry->about ?? '',
+                $entry->role_in_activity ?? '',
             ]),
             IndexType::SocialApostolate => implode('|', [
                 $entry->served_on?->toDateString() ?? $entry->getRawOriginal('served_on') ?? '',
@@ -1330,6 +1356,7 @@ class ObsidianSyncService
             IndexType::ParishInvolvement => [
                 'served_on' => $entry->served_on?->format('Y-m-d'),
                 'academic_year' => $entry->academic_year,
+                'about' => $entry->about,
                 'time_start' => $timeStart,
                 'time_end' => $timeEnd,
                 'role_in_activity' => $entry->role_in_activity,
@@ -1391,6 +1418,7 @@ class ObsidianSyncService
                 ],
                 IndexType::ParishInvolvement => [
                     ...$normalized,
+                    'about' => $record['about'] ?? null,
                     'role_in_activity' => $record['role_in_activity'] ?? null,
                 ],
                 IndexType::SocialApostolate => [

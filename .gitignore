@@ -55,3 +55,10 @@ Thumbs.db
 /docker-compose.override.yaml
 /scripts/local*
 /config/local*
+
+# Playwright test output
+/test-results/
+
+# Stray empty file
+/null
+

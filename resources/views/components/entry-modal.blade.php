@@ -24,7 +24,7 @@
             ['title', 'Title', 'text', true],
         ];
     } else {
-        if ($type === \App\Enums\IndexType::SocialApostolate) {
+        if ($type === \App\Enums\IndexType::SocialApostolate || $type === \App\Enums\IndexType::ParishInvolvement) {
             $fields[] = ['about', 'Activity', 'text', true];
         }
         $fields[] = ['role_in_activity', 'Role in activity', 'text', $type === \App\Enums\IndexType::SocialApostolate && ! $report];

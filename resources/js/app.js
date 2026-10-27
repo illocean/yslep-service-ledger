@@ -55,21 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Opening an already-open <details> fires no toggle event, so the
-            // focus handler never runs; move focus manually or the focused
-            // button ends up scrolled off-screen.
-            const wasOpen = builder.open;
-
-            builder.open = true;
-            button.setAttribute('aria-expanded', 'true');
+            // The builder is always visible, so the button scrolls it into
+            // view and puts the cursor in its first field.
             builder.scrollIntoView({
                 behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
                 block: 'start',
             });
 
-            if (wasOpen) {
-                builder.querySelector('input:not([type="hidden"])')?.focus({ preventScroll: true });
-            }
+            builder.querySelector('input:not([type="hidden"])')?.focus({ preventScroll: true });
         });
     });
 

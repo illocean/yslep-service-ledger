@@ -56,47 +56,39 @@
         @endforeach
 
         <div class="page-grid min-h-screen pb-10">
-            <header class="masthead" role="banner">
-                <div class="masthead__inner">
+            <header class="floating-navbar" role="banner">
+                <nav class="floating-navbar__inner" aria-label="Main navigation">
                     <div class="brand-lockup">
-                        <a href="{{ route('dashboard') }}" class="brand-lockup__title">
-                            Service Ledger
-                            <span class="brand-lockup__mark">YSLEP</span>
+                        <a href="{{ route('dashboard') }}" class="brand-lockup__title" aria-label="YSLEP Dashboard">
+                            YSLEP
                         </a>
-                        <p class="sr-only">Formation, Social Apostolate, and Parish Involvement service records, saved reports, and academic year archives.</p>
                     </div>
 
-                    <nav class="nav-shell" aria-label="Main navigation">
-                        <div class="nav-cluster__links clean-scroll">
-                            <a href="{{ route('dashboard') }}" class="topbar-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('dashboard') ? 'page' : 'false' }}">
-                                <span class="topbar-link__indicator" aria-hidden="true"></span>
-                                Overview
-                            </a>
+                    <div class="nav-cluster__links clean-scroll">
+                        <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('dashboard') ? 'page' : 'false' }}">
+                            Overview
+                        </a>
 
-                            @foreach (\App\Enums\IndexType::cases() as $navType)
-                                <a href="{{ route('indexes.show', ['type' => $navType->value] + $routeParams) }}" class="topbar-link {{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'page' : 'false' }}">
-                                    <span class="topbar-link__indicator" aria-hidden="true"></span>
-                                    {{ $navType->label() }}
-                                </a>
-                            @endforeach
-
-                            <a href="{{ route('reports.index') }}" class="topbar-link {{ request()->routeIs('reports.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('reports.*') ? 'page' : 'false' }}">
-                                <span class="topbar-link__indicator" aria-hidden="true"></span>
-                                Reports
+                        @foreach (\App\Enums\IndexType::cases() as $navType)
+                            <a href="{{ route('indexes.show', ['type' => $navType->value] + $routeParams) }}" class="nav-link {{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('indexes.show') && request()->route('type') === $navType ? 'page' : 'false' }}">
+                                {{ $navType->label() }}
                             </a>
+                        @endforeach
 
-                            <a href="{{ route('academic-year-snapshots.index') }}" class="topbar-link {{ request()->routeIs('academic-year-snapshots.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('academic-year-snapshots.*') ? 'page' : 'false' }}">
-                                <span class="topbar-link__indicator" aria-hidden="true"></span>
-                                Academic Years
-                            </a>
-                        </div>
-                    </nav>
+                        <a href="{{ route('reports.index') }}" class="nav-link {{ request()->routeIs('reports.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('reports.*') ? 'page' : 'false' }}">
+                            Reports
+                        </a>
+
+                        <a href="{{ route('academic-year-snapshots.index') }}" class="nav-link {{ request()->routeIs('academic-year-snapshots.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('academic-year-snapshots.*') ? 'page' : 'false' }}">
+                            Years
+                        </a>
+                    </div>
 
                     <x-quick-add-bar
                         :types="[ \App\Enums\IndexType::Formation, \App\Enums\IndexType::SocialApostolate, \App\Enums\IndexType::ParishInvolvement ]"
                         class="quick-add-bar--header"
                     />
-                </div>
+                </nav>
             </header>
 
             <main id="main-content" class="page-enter px-4 py-6 sm:px-6 lg:px-10" role="main">

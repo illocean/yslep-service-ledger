@@ -9,9 +9,27 @@ document.addEventListener('alpine:init', () => {
             // value renamed since it was written): fall back to the menu
             // instead of dispatching an event no modal listens for.
             this.allowed = JSON.parse(this.$el.dataset.allowedTypes || '[]');
+
+            if (!this.allowed.includes(localStorage.getItem('yslep-quick-add-type'))) {
+                this.menuLabel = 'Add entry';
+            }
+
             this.$watch('menuOpen', (open) => {
                 if (open) {
                     this.$nextTick(() => this.$el.querySelector('.quick-add-option')?.focus());
+                    return;
+                }
+
+                // Closing while a menu item still owns focus (Escape, Ctrl+K)
+                // would otherwise leave focus on a hidden button.
+                const options = this.$el.querySelector('#quick-add-options');
+
+                if (options?.contains(document.activeElement)) {
+                    this.$nextTick(() => {
+                        if (!document.querySelector('dialog.entry-dialog[open]')) {
+                            this.$el.querySelector('.quick-add-toggle')?.focus();
+                        }
+                    });
                 }
             });
         },

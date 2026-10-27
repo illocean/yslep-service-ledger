@@ -301,7 +301,7 @@ class ReportGroupVaultSyncService
             $lines[] = '- Title: '.($item->title ?: 'Not set');
         }
 
-        if ($type === IndexType::SocialApostolate) {
+        if ($type === IndexType::SocialApostolate || $type === IndexType::ParishInvolvement) {
             $lines[] = '- Activity: '.($item->about ?: 'Not set');
             if ($item->role_in_activity) {
                 $lines[] = '- Role: '.($item->role_in_activity);
@@ -349,7 +349,7 @@ class ReportGroupVaultSyncService
                 $relativePath = 'records/'.basename($item->obsidian_note_path ?: $this->defaultRecordFileName($item->index_type, $item->obsidian_record_uuid ?: (string) Str::uuid()));
                 $summary = $type === IndexType::Formation
                     ? trim(($item->cycle_code ?? '').' / '.($item->module_code ?? '').' - '.($item->title ?? ''), ' -/')
-                    : ($type === IndexType::SocialApostolate ? ($item->about ?? 'Activity') : 'Parish Involvement');
+                    : ($item->about ?: ($type === IndexType::SocialApostolate ? 'Activity' : 'Parish Involvement'));
 
                 $lines[] = '- [['.$relativePath.']] - '.$summary.' ('.$item->duration_label.')';
             }
@@ -427,12 +427,17 @@ class ReportGroupVaultSyncService
             ];
         }
 
+        if ($type === IndexType::ParishInvolvement) {
+            $payload['about'] = Arr::get($matter, 'about') ? trim((string) Arr::get($matter, 'about')) : ($existingItem?->about ?? null);
+            $existingRole = $payload['role_in_activity'];
+            $payload['role_in_activity'] = $existingRole ? trim((string) $existingRole) : null;
+        }
+
         return [
             ...$payload,
             'cycle_code' => null,
             'module_code' => null,
             'title' => null,
-            'about' => null,
         ];
     }
 
@@ -478,6 +483,8 @@ class ReportGroupVaultSyncService
             IndexType::ParishInvolvement => [
                 'served_on' => $item->served_on?->format('Y-m-d'),
                 'academic_year' => $item->academic_year,
+                'about' => $item->about,
+                'role_in_activity' => $item->role_in_activity,
                 'time_start' => $timeStart,
                 'time_end' => $timeEnd,
             ],
@@ -614,14 +621,19 @@ class ReportGroupVaultSyncService
         }
 
         $reportGroup = $item->reportGroup;
+
+        $item->forceFill([
+            ...$payload,
+            'obsidian_last_synced_at' => now(),
+            'obsidian_conflict' => false,
+        ])->save();
+
+        // Render the note with the merged data so the vault content matches the DB
         $noteContent = $this->renderRecordNote($reportGroup, $item);
         $vaultHash = hash('sha256', $noteContent);
 
         $item->forceFill([
-            ...$payload,
             'obsidian_note_hash' => $vaultHash,
-            'obsidian_last_synced_at' => now(),
-            'obsidian_conflict' => false,
         ])->save();
 
         // Write merged content to vault

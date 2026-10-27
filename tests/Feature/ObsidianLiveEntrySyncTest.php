@@ -225,9 +225,9 @@ MD);
     public function test_it_is_idempotent_when_vault_unchanged(): void
     {
         File::put($this->parishFile(), $this->parishVault(<<<'MD'
-| Date | Time In | Time Out |
-| --- | --- | --- |
-| September 7, 2025 | 6:30 PM | 7:30 PM |
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM |
 MD));
 
         $this->syncService->syncIndex(IndexType::ParishInvolvement);
@@ -242,6 +242,22 @@ MD));
         $entry = $entry->fresh();
         $this->assertSame($firstHash, $entry->obsidian_content_hash);
         $this->assertSame($firstSyncedAt?->format('Y-m-d H:i:s'), $entry->obsidian_last_synced_at?->format('Y-m-d H:i:s'));
+    }
+
+    public function test_it_parses_legacy_parish_tables_without_an_activity_column(): void
+    {
+        File::put($this->parishFile(), $this->parishVault(<<<'MD'
+| Date | Role | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Volunteer | 6:30 PM | 7:30 PM |
+MD));
+
+        $this->syncService->syncIndex(IndexType::ParishInvolvement);
+
+        $entry = ParishInvolvementEntry::query()->firstOrFail();
+
+        $this->assertSame('', (string) $entry->about);
+        $this->assertSame('Volunteer', $entry->role_in_activity);
     }
 
     public function test_it_soft_deletes_orphaned_entries_when_removed_from_vault(): void
@@ -280,9 +296,9 @@ MD));
     {
         // Start with one entry in vault
         File::put($this->parishFile(), $this->parishVault(<<<'MD'
-| Date | Time In | Time Out |
-| --- | --- | --- |
-| September 7, 2025 | 6:30 PM | 7:30 PM |
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM |
 MD));
 
         $this->syncService->syncIndex(IndexType::ParishInvolvement);
@@ -293,8 +309,8 @@ MD));
 
         // Remove it from vault (soft-deletes in DB)
         File::put($this->parishFile(), $this->parishVault(<<<'MD'
-| Date | Time In | Time Out |
-| --- | --- | --- |
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
 MD));
 
         $this->syncService->syncIndex(IndexType::ParishInvolvement);
@@ -837,5 +853,106 @@ MD);
         $entry = $entry->fresh();
         $this->assertFalse($entry->obsidian_conflict, 'Conflict should be resolved');
         $this->assertSame('Merged Activity', $entry->about, 'Should have merged value after resolution');
+    }
+
+    public function test_format_time_for_markdown_handles_five_char_time_strings(): void
+    {
+        // 5-char time strings (HH:MM without seconds) must not crash formatTimeForMarkdown
+        // when they flow through hash computation during sync.
+        File::put($this->socialFile(), $this->socialVault(<<<'MD'
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 8, 2025 | Five char time test | 3:00 PM | 4:00 PM |
+MD));
+
+        $this->syncService->syncIndex(IndexType::SocialApostolate);
+
+        $entry = SocialApostolateEntry::query()->firstOrFail();
+
+        $this->assertNotNull($entry->obsidian_content_hash, 'Hash should be computed');
+
+        // Sync again — the hash should be stable (idempotent)
+        $hashBeforeReSync = $entry->obsidian_content_hash;
+        $this->syncService->syncIndex(IndexType::SocialApostolate);
+
+        $entry = $entry->fresh();
+        $this->assertSame($hashBeforeReSync, $entry->obsidian_content_hash, 'Hash should be stable across re-syncs');
+    }
+
+    public function test_merge_with_five_char_time_produces_stable_hash(): void
+    {
+        // Ensure that merging entries with 5-char time strings (HH:MM) produces
+        // a stable hash — i.e., formatTimeForMarkdown handles "15:00" without
+        // throwing and the resulting hash matches what syncReportGroup would compute.
+        File::put($this->socialFile(), $this->socialVault(<<<'MD'
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 8, 2025 | Original Activity | 3:00 PM | 4:00 PM |
+MD));
+
+        $this->syncService->syncIndex(IndexType::SocialApostolate);
+
+        $entry = SocialApostolateEntry::query()->firstOrFail();
+        $uuid = $entry->obsidian_record_uuid;
+        $originalHash = $entry->obsidian_content_hash;
+
+        // Vault changes with a 5-char time in the merged data
+        File::put($this->socialFile(), <<<MD
+---
+index: social_apostolate
+card_title: Social Apostolate Index Card
+profile:
+  school_year: "2025-2026"
+entry_options:
+  academic_years:
+    - "2025-2026"
+records:
+  - record_uuid: '{$uuid}'
+    served_on: '2025-09-08'
+    about: 'Vault Edited Activity'
+    time_start: '15:00:00'
+    time_end: '16:00:00'
+
+---
+# Social Apostolate Index Card
+
+## Service Records
+
+MD);
+
+        // DB changes
+        $entry->forceFill([
+            'about' => 'DB Edited Activity',
+            'obsidian_content_hash' => $originalHash,
+            'updated_at' => now()->subMinute(),
+        ])->save();
+
+        // Sync to create conflict
+        $this->syncService->syncIndex(IndexType::SocialApostolate);
+
+        $entry = $entry->fresh();
+        $this->assertTrue($entry->obsidian_conflict);
+
+        // Resolve by manual merge with 5-char times
+        $this->post(route('entries.conflict.merge', ['entry' => $entry->id]), [
+            'type' => 'social_apostolate',
+            'scope' => 'all',
+            'served_on' => '2025-09-08',
+            'about' => 'Merged Activity',
+            'time_start' => '15:00',
+            'time_end' => '16:00',
+        ])->assertRedirect();
+
+        $entry = $entry->fresh();
+        $this->assertFalse($entry->obsidian_conflict);
+        $this->assertSame('Merged Activity', $entry->about);
+
+        // After merge, sync again — hash should be stable (no new conflict)
+        $hashAfterMerge = $entry->obsidian_content_hash;
+        $this->syncService->syncIndex(IndexType::SocialApostolate);
+
+        $entry = $entry->fresh();
+        $this->assertFalse($entry->obsidian_conflict, 'Should not be conflicted after merge + re-sync');
+        $this->assertSame($hashAfterMerge, $entry->obsidian_content_hash, 'Hash should be stable after merge re-sync');
     }
 }

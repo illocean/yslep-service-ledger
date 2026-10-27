@@ -20,7 +20,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         close() {
-            this.$el.close();
+            this.$el.closest('dialog').close();
         },
 
         // Escape, the close button, and a backdrop click all end at the native
@@ -32,17 +32,23 @@ document.addEventListener('alpine:init', () => {
 
             // Another dialog took over: it owns focus now, and its own opener
             // is restored when it closes.
-            if (!opener || !opener.isConnected || document.querySelector('dialog.entry-dialog[open]')) {
+            if (! opener || ! opener.isConnected || document.querySelector('dialog.entry-dialog[open]')) {
                 return;
             }
 
-            opener.focus({ preventScroll: true });
+            // A quick-add menu item is hidden again as soon as it opens the
+            // dialog, so focusing it would silently drop focus on <body>.
+            const target = opener.closest('#quick-add-options')
+                ? document.querySelector('.quick-add-bar .quick-add-toggle')
+                : opener;
+
+            target?.focus({ preventScroll: true });
         },
 
         triggerElement() {
             const active = document.activeElement;
 
-            if (!active || active === document.body || active === document.documentElement) {
+            if (! active || active === document.body || active === document.documentElement) {
                 return null;
             }
 

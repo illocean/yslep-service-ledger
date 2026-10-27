@@ -48,7 +48,7 @@
 
                 @if ($hasSaveableEntries)
                     <button type="button" class="primary-button" data-open-save-group-builder
-                        aria-expanded="false" aria-controls="save-group-builder">
+                        aria-controls="save-group-builder">
                         Build a report
                     </button>
                 @else

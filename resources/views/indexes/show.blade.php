@@ -110,7 +110,7 @@
                         $headline = match ($type) {
                             \App\Enums\IndexType::Formation => trim(($entry->cycle_code ?? '') . ' / ' . ($entry->module_code ?? ''), ' /') . ' - ' . $entry->title,
                             \App\Enums\IndexType::SocialApostolate => $entry->about,
-                            default => 'Parish Involvement',
+                            default => $entry->about ?: 'Parish Involvement',
                         };
                         $searchable = mb_strtolower(implode(' ', array_filter([
                             $headline,

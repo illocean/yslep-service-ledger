@@ -229,7 +229,7 @@ class EntryWorkflowTest extends TestCase
             $this->assertSame(3, $xpath->query('//button[@class="quick-add-option"]')->length);
             $this->assertSame(3, $xpath->query('//dialog//input[@name="academic_year" and not(@required)]')->length);
             $this->assertSame(0, $xpath->query('//dialog//textarea[@name="about"]')->length);
-            $this->assertSame(1, $xpath->query('//dialog//input[@name="about"]')->length);
+            $this->assertSame(2, $xpath->query('//dialog//input[@name="about"]')->length);
             $this->assertSame(3, $xpath->query('//dialog//input[@name="served_on"]')->length);
             $this->assertSame(
                 3,
@@ -239,6 +239,30 @@ class EntryWorkflowTest extends TestCase
             $this->assertSame(3, $xpath->query('//dialog//input[@name="time_start"]')->length);
             $ids = array_map(fn (\DOMElement $element): string => $element->getAttribute('id'), iterator_to_array($xpath->query('//*[@id]')));
             $this->assertSame($ids, array_values(array_unique($ids)));
+        }
+    }
+
+    public function test_navbar_announces_the_current_page_without_typos(): void
+    {
+        // Regression: the floating navbar once spelled the attribute `ariia-current`
+        // on the Years link, so screen readers could never see the current-page
+        // state. Guard against that typo and assert aria-current semantics instead.
+        foreach (['/', '/indexes/formation', '/indexes/parish_involvement', '/indexes/social_apostolate', '/reports', '/academic-year-snapshots'] as $path) {
+            $response = $this->get($path)->assertOk();
+            $dom = new \DOMDocument;
+            @$dom->loadHTML($response->getContent());
+            $xpath = new \DOMXPath($dom);
+
+            $this->assertSame(0, $xpath->query('//*[@ariia-current]')->length, 'navbar must not contain the ariia-current typo');
+
+            $links = $xpath->query('//a[@class="nav-link"]');
+            foreach ($links as $link) {
+                $this->assertContains(
+                    $link->getAttribute('aria-current'),
+                    ['page', 'false'],
+                    'each nav link must expose a proper aria-current value',
+                );
+            }
         }
     }
 
@@ -264,7 +288,7 @@ class EntryWorkflowTest extends TestCase
             'time_end' => '10:30',
             ...match ($type) {
                 IndexType::Formation => ['cycle_code' => 'C1', 'module_code' => 'M1', 'title' => 'Formation session'],
-                IndexType::ParishInvolvement => ['role_in_activity' => 'Volunteer'],
+                IndexType::ParishInvolvement => ['about' => 'Parish volunteer', 'role_in_activity' => 'Volunteer'],
                 IndexType::SocialApostolate => ['about' => 'Community outreach', 'role_in_activity' => 'Volunteer'],
             },
         ];

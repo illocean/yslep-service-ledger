@@ -372,7 +372,7 @@ class ReportGroupService
                 ],
                 IndexType::ParishInvolvement => [
                     $item->served_on_label,
-                    'Parish Involvement',
+                    str_replace('|', '/', $item->about ?? ''),
                     $item->time_start_label,
                     $item->time_end_label,
                     $item->duration_label,

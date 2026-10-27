@@ -115,7 +115,7 @@
                     </button>
                 @elseif ($unassignedTotal > 0)
                     <button type="button" class="primary-button" data-open-save-group-builder
-                        aria-expanded="false" aria-controls="save-group-builder">
+                        aria-controls="save-group-builder">
                         Build a report
                     </button>
                 @else
@@ -127,7 +127,7 @@
         </div>
     </section>
 
-    @if ($hasSaveableEntries || $errors->any() || filled(old('title')) || filled(old('selected_entries')))
+    @if ($hasSaveableEntries)
         @include('partials.save-group-builder')
     @endif
 
@@ -247,14 +247,22 @@
             <div class="flex flex-wrap items-end justify-between gap-3">
                 <div>
                     <h2 id="funnel-heading" class="font-serif text-2xl leading-tight text-stone-950">Assignment funnel</h2>
-                    <p class="mt-2 text-sm leading-6 text-stone-600">
-                        {{ $lockedTotal }} of {{ $totalEntries }} entries are locked into saved reports; {{ $unassignedTotal }} are still ready to save.
-                    </p>
+                    @if ($unassignedTotal > 0)
+                        <p class="mt-2 text-sm leading-6 text-stone-600">
+                            {{ $lockedTotal }} of {{ $totalEntries }} entries are locked into saved reports; {{ $unassignedTotal }} are still ready to save.
+                        </p>
+                    @else
+                        <p class="mt-2 text-sm leading-6 text-stone-600">
+                            {{ $lockedTotal }} of {{ $totalEntries }} entries are locked into saved reports.
+                        </p>
+                    @endif
                 </div>
-                <ul class="funnel-legend" aria-label="Funnel segments">
-                    <li class="funnel-legend__item funnel-legend__item--locked">Locked in Reports</li>
-                    <li class="funnel-legend__item funnel-legend__item--ready">Ready to save</li>
-                </ul>
+                @if ($unassignedTotal > 0)
+                    <ul class="funnel-legend" aria-label="Funnel segments">
+                        <li class="funnel-legend__item funnel-legend__item--locked">Locked in Reports</li>
+                        <li class="funnel-legend__item funnel-legend__item--ready">Ready to save</li>
+                    </ul>
+                @endif
             </div>
 
             <ol class="funnel-list">
@@ -270,13 +278,21 @@
                             {{ $funnelType->label() }}
                             <span class="funnel-row__hint">unsaved only</span>
                         </a>
-                        <div class="funnel-bar" role="img" aria-label="{{ $funnelType->label() }}: {{ $funnelStats['locked'] }} locked in reports, {{ $funnelStats['available'] }} ready to save, {{ $funnelStats['total'] }} entries in total.">
-                            <span class="funnel-bar__locked" style="width: {{ $lockedWidth }}%"></span>
-                            <span class="funnel-bar__ready" style="width: {{ $readyWidth }}%"></span>
-                        </div>
+                        @if ($funnelStats['available'] > 0)
+                            <div class="funnel-bar" role="img" aria-label="{{ $funnelType->label() }}: {{ $funnelStats['locked'] }} locked in reports, {{ $funnelStats['available'] }} ready to save, {{ $funnelStats['total'] }} entries in total.">
+                                <span class="funnel-bar__locked" style="width: {{ $lockedWidth }}%"></span>
+                                <span class="funnel-bar__ready" style="width: {{ $readyWidth }}%"></span>
+                            </div>
+                        @else
+                            <div class="funnel-bar" role="img" aria-label="{{ $funnelType->label() }}: {{ $funnelStats['locked'] }} locked in reports, {{ $funnelStats['total'] }} entries in total.">
+                                <span class="funnel-bar__locked" style="width: 100%"></span>
+                            </div>
+                        @endif
                         <div class="funnel-row__counts">
                             <span><strong class="funnel-row__num">{{ $funnelStats['locked'] }}</strong> locked</span>
-                            <span><strong class="funnel-row__num">{{ $funnelStats['available'] }}</strong> ready</span>
+                            @if ($funnelStats['available'] > 0)
+                                <span><strong class="funnel-row__num">{{ $funnelStats['available'] }}</strong> ready</span>
+                            @endif
                             <span><strong class="funnel-row__num">{{ $funnelStats['total'] }}</strong> total</span>
                         </div>
                     </li>
@@ -410,9 +426,9 @@
                         @elseif ($recentType === \App\Enums\IndexType::SocialApostolate)
                             {{ $recentEntry->about }}
                         @else
-                            {{ filled($recentEntry->role_in_activity) ? $recentEntry->role_in_activity : 'Parish Involvement' }}
+                            {{ $recentEntry->about ?: ($recentEntry->role_in_activity ?: 'Parish Involvement') }}
                         @endif
-                        @if (! ($recentType === \App\Enums\IndexType::ParishInvolvement && blank($recentEntry->role_in_activity)))
+                        @if (! ($recentType === \App\Enums\IndexType::ParishInvolvement && blank($recentEntry->about) && blank($recentEntry->role_in_activity)))
                             <span class="recent-row__type">{{ $recentType->label() }}</span>
                         @endif
                     </a>

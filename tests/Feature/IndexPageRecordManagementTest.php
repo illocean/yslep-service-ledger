@@ -70,10 +70,10 @@ entry_options:
 
 ## Service Records
 
-| Date | Time In | Time Out |
-| --- | --- | --- |
-| September 7, 2025 | 6:30 PM | 7:30 PM |
-| September 14, 2025 | 6:00 PM | 7:30 PM |
+| Date | Activity | Time In | Time Out |
+| --- | --- | --- | --- |
+| September 7, 2025 | Parish service | 6:30 PM | 7:30 PM |
+| September 14, 2025 | Parish service | 6:00 PM | 7:30 PM |
 MD);
 
         File::put($this->vaultPath.DIRECTORY_SEPARATOR.'SOCIAL APOSTOLATE.md', <<<'MD'
@@ -153,6 +153,18 @@ MD);
             '/data-search="[^"]*honor thy parent[^"]*september 28, 2025[^"]*"/',
             $response->getContent(),
             'Each record card should carry a lowercase haystack for the search filter.',
+        );
+    }
+
+    public function test_parish_index_card_uses_the_activity_as_its_headline(): void
+    {
+        $response = $this->get('/indexes/parish_involvement')->assertOk();
+
+        $response->assertSee('Parish service');
+        $this->assertMatchesRegularExpression(
+            '/data-search="[^"]*parish service[^"]*"/',
+            $response->getContent(),
+            'The Parish search haystack should include the activity, not just the type name.',
         );
     }
 

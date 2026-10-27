@@ -42,7 +42,7 @@ class UpsertReportGroupItemRequest extends FormRequest
                 'max:255',
             ],
             'about' => [
-                Rule::requiredIf($type === IndexType::SocialApostolate->value),
+                Rule::requiredIf(in_array($type, [IndexType::SocialApostolate->value, IndexType::ParishInvolvement->value])),
                 'nullable',
                 'string',
                 'max:255',
@@ -90,7 +90,7 @@ class UpsertReportGroupItemRequest extends FormRequest
             $payload['title'] = trim($this->string('title')->toString());
         }
 
-        if ($this->indexType() === IndexType::SocialApostolate) {
+        if ($this->indexType() === IndexType::SocialApostolate || $this->indexType() === IndexType::ParishInvolvement) {
             $payload['about'] = trim($this->string('about')->toString());
         }
 
