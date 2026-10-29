@@ -24,6 +24,7 @@ Homestead.yaml
 Thumbs.db
 
 # AI / Agent configs
+# Per-user local dirs stay ignored (personal cache / local overrides).
 /.claude/
 /.claude-flow/
 /.opencode/
@@ -31,13 +32,22 @@ Thumbs.db
 /.cursor/
 /.copilot*
 /.github/copilot*
-/agent*
+# Keep shared skill rules under .ai/rules; ignore other .ai scratch.
 /*.ai
 !/.ai/
 /.ai/*
 !/.ai/rules/
+# Personal agent-local startup/override files are local.
+/agent*
 /claude*
 /opencode*
+# Project-level agent config + instructions are NOT personal: track them so a
+# fresh clone gets the skills, instructions, and MCP wiring. /opencode* above
+# ignores the local/global opencode.jsonc form; /opencode.json rescues the
+# repo-root project config only.  /agent* ignores AGENT.md, so negate it back.
+!/opencode.json
+!/AGENTS.md
+!/AGENT.md
 
 # Agent / vector databases
 /.swarm/
@@ -61,4 +71,3 @@ Thumbs.db
 
 # Stray empty file
 /null
-
