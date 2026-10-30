@@ -76,7 +76,11 @@
                         @endforeach
 
                         <a href="{{ route('reports.index') }}" class="nav-link {{ request()->routeIs('reports.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('reports.*') ? 'page' : 'false' }}">
-                            Reports
+                             Reports
+                        </a>
+
+                        <a href="{{ route('insight') }}" class="nav-link {{ request()->routeIs('insight') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('insight') ? 'page' : 'false' }}">
+                            Yearly totals
                         </a>
 
                         <a href="{{ route('academic-year-snapshots.index') }}" class="nav-link {{ request()->routeIs('academic-year-snapshots.*') ? 'is-active' : '' }}" aria-current="{{ request()->routeIs('academic-year-snapshots.*') ? 'page' : 'false' }}">

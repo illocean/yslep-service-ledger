@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademicYearSnapshotController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexPageController;
+use App\Http\Controllers\InsightController;
 use App\Http\Controllers\ObsidianSyncController;
 use App\Http\Controllers\ReportGroupController;
 use App\Http\Controllers\ReportGroupItemController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', DashboardController::class)->name('dashboard');
 Route::get('/indexes/{type}', [IndexPageController::class, 'show'])->name('indexes.show');
 Route::get('/reports', [SavedReportController::class, 'index'])->name('reports.index');
+Route::get('/insight', InsightController::class)->name('insight');
 Route::get('/reports/{reportGroup}', [SavedReportController::class, 'show'])->name('reports.show');
 Route::patch('/reports/{reportGroup}', [SavedReportController::class, 'update'])->name('reports.update');
 Route::delete('/reports/{reportGroup}', [SavedReportController::class, 'destroy'])->name('reports.destroy');

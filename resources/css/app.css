@@ -374,50 +374,6 @@
         cursor: not-allowed;
     }
 
-    .assignment-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        max-width: 100%;
-        min-height: 2.5rem;
-        border: 1px solid rgba(201, 77, 36, 0.16);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.88);
-        color: var(--ledger-ink);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.01em;
-        line-height: 1.2;
-        padding: 0.38rem 0.7rem;
-        white-space: normal;
-    }
-
-    .assignment-chip__dot {
-        width: 0.55rem;
-        height: 0.55rem;
-        flex: none;
-        border-radius: 999px;
-        background: currentColor;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
-    }
-
-    .assignment-chip--saved {
-        border-color: rgba(35, 102, 84, 0.16);
-        background: rgba(35, 102, 84, 0.08);
-        color: #236654;
-    }
-
-    .assignment-chip--complete {
-        border-color: rgba(120, 113, 108, 0.16);
-        background: rgba(120, 113, 108, 0.08);
-        color: #57534e;
-    }
-
-    .assignment-chip--conflict {
-        border-color: rgba(217, 119, 6, 0.16);
-        background: rgba(217, 119, 6, 0.1);
-        color: #a16207;
-    }
 
     .floating-navbar {
         position: sticky;
@@ -746,6 +702,86 @@
     .fill-social_apostolate { background: var(--ledger-olive); }
 
     .fill-parish_involvement { background: var(--ledger-accent); }
+
+    /* Insight BI dashboard — per-report year tables -------------------------------- */
+
+    .insight-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .insight-table__row {
+        border-top: 1px solid var(--ledger-border);
+    }
+
+    .insight-table__row:first-child {
+        border-top: 0;
+    }
+
+    .insight-table__head {
+        padding: 0.6rem 0.5rem;
+        text-align: left;
+        font-size: 0.64rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--ledger-muted);
+        white-space: nowrap;
+    }
+
+    .insight-table__head--total {
+        font-weight: 800;
+        color: var(--ledger-ink);
+    }
+
+    .insight-table__cell {
+        padding: 0.7rem 0.5rem;
+        border-bottom: 1px solid var(--ledger-border);
+    }
+
+    .insight-table__cell--name {
+        min-width: 12rem;
+    }
+
+    .insight-table__cell--total {
+        font-weight: 800;
+    }
+
+    .insight-table__foot-label {
+        padding-top: 0.9rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ledger-muted);
+    }
+
+    .insight-table__foot-value {
+        padding-top: 0.9rem;
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--ledger-ink);
+    }
+
+    .insight-bar {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .insight-bar__track {
+        height: 0.55rem;
+        border-radius: 3px;
+        background: rgba(32, 22, 18, 0.06);
+        overflow: hidden;
+    }
+
+    .insight-bar__fill {
+        height: 100%;
+        border-radius: 3px;
+        min-width: 2px;
+    }
+
 
     .ruled-figures {
         display: flex;
@@ -1675,6 +1711,23 @@
     border-color: rgba(201, 77, 36, 0.22);
     opacity: 1;
 }
+.quick-add-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: transparent;
+    transition: background-color 150ms ease;
+}
+
+/* Dot inside assignment chips — the status halo on the ledger stamp. */
+.assignment-chip__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    flex: none;
+    border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+}
 .quick-add-options {
     position: absolute;
     bottom: calc(100% + 0.6rem);
@@ -1835,6 +1888,15 @@
     margin-top: 0.35rem;
     font-size: 0.75rem;
     color: #f43f5e;
+}
+
+/* Report Edit Details Accordion */
+.report-edit-details summary {
+    list-style: none;
+}
+
+.report-edit-details summary::-webkit-details-marker {
+    display: none;
 }
 
 /* Report Record Card (non-modal) */
